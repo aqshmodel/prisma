@@ -1,8 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import { ArrowRight, Sparkles } from 'lucide-react';
-import { Section } from '@/components/ui/Section';
-import { Card } from '@/components/ui/Card';
+import { ArrowRight } from 'lucide-react';
 import { FormattedText } from '@/components/ui/FormattedText';
 import { OS_CONTENT } from '@/features/result/data/content-os';
 
@@ -11,54 +9,53 @@ export const TypeSection: React.FC = () => {
     const types = Object.values(OS_CONTENT);
 
     return (
-        <Section background="prisma">
-            <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/20 text-prisma-800 text-xs font-bold uppercase tracking-wider border border-white/40 backdrop-blur-sm">
-                    <Sparkles className="w-3 h-3" />
-                    16 Types
+        <section className="py-24 md:py-32 bg-slate-50 border-t border-slate-200/60 relative overflow-hidden">
+            <div className="max-w-7xl mx-auto px-6 relative z-10">
+                <div className="text-left md:text-center max-w-3xl mx-auto mb-12 md:mb-20 space-y-6 animate-fade-in-up">
+                    <span className="inline-block text-xs font-serif tracking-[0.2em] text-slate-400 uppercase mb-2">
+                        Discover Your Type
+                    </span>
+                    <h2 className="text-3xl md:text-5xl font-serif font-medium text-slate-900 leading-[1.4] md:leading-[1.3] tracking-tight text-balance">
+                        <span className="inline-block">多様な個性が、</span><br className="hidden md:block" />
+                        <span className="inline-block"><span className="text-prisma-600">組織の力</span>になる。</span>
+                    </h2>
+                    <p className="text-slate-600 text-base md:text-lg leading-[1.8] md:leading-loose tracking-wide font-medium">
+                        <span className="inline-block">Aqsh Prismaは、人間の認知特性を16の「基本タイプ」に分類。</span><br className="hidden md:block" />
+                        <span className="inline-block">それぞれの強みと役割を理解することが、最強のチーム作りへの第一歩です。</span>
+                    </p>
                 </div>
-                <h2 className="text-3xl md:text-4xl font-bold text-slate-800 leading-tight">
-                    多様な個性が、<br />
-                    組織の力になる。
-                </h2>
-                <p className="text-slate-700 text-lg">
-                    Aqsh Prismaは、人間の認知特性を16の「基本タイプ」に分類。<br />
-                    それぞれの強みと役割を理解することが、最強のチーム作りへの第一歩です。
-                </p>
-            </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-7xl mx-auto">
-                {types.map((type) => (
-                    <Link key={type.code} href={`/types/${type.code}`} className="block group h-full">
-                        <Card className="h-full hover:shadow-2xl hover:shadow-prisma-200/50 transition-all duration-300 border border-white/50 hover:border-prisma-300 hover:-translate-y-1 bg-white/80 backdrop-blur-sm">
-                            <div className="flex flex-col h-full">
-                                <div className="flex justify-between items-start mb-4">
-                                    <span className="text-xs font-bold px-2 py-1 rounded bg-slate-100 text-slate-600 group-hover:bg-prisma-500 group-hover:text-white transition-colors">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
+                    {types.map((type, idx) => (
+                        <Link key={type.code} href={`/types/${type.code}`} className="block group h-full">
+                            <div className="h-full glass-panel rounded-apple p-6 flex flex-col transition-all duration-500 ease-apple hover:scale-[1.02] hover:shadow-lg hover:shadow-prisma-200/50 hover:bg-white/80" style={{ animationDelay: `${idx * 50}ms` }}>
+                                <div className="flex justify-between items-start mb-6">
+                                    <span className="text-[10px] font-bold px-2 py-1 rounded bg-slate-100 text-slate-500 tracking-widest group-hover:bg-prisma-500 group-hover:text-white transition-colors duration-300">
                                         {type.code}
                                     </span>
-                                    <div className="w-8 h-8 rounded-full bg-slate-50 flex items-center justify-center group-hover:bg-prisma-100 transition-colors">
+                                    <div className="w-8 h-8 rounded-full bg-slate-50 flex items-center justify-center group-hover:bg-prisma-50 group-hover:text-prisma-600 transition-colors duration-300">
                                         <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-prisma-600 transition-colors" />
                                     </div>
                                 </div>
 
-                                <h3 className="text-xl font-bold text-slate-800 mb-2 group-hover:text-prisma-700 transition-colors">
+                                <h3 className="text-lg font-serif font-bold text-slate-800 mb-3 group-hover:text-prisma-700 transition-colors duration-300">
                                     {type.name}
                                 </h3>
 
-                                <p className="text-sm text-slate-500 font-medium mb-4 line-clamp-2 min-h-[2.5em]">
+                                <p className="text-xs text-slate-500 font-medium mb-4 line-clamp-2 min-h-[2.5em] tracking-wide">
                                     {type.catchphrase}
                                 </p>
 
-                                <div className="mt-auto pt-4 border-t border-slate-100">
-                                    <div className="text-xs text-slate-400 line-clamp-3 leading-relaxed group-hover:text-slate-600 transition-colors">
+                                <div className="mt-auto pt-4 border-t border-slate-100/50">
+                                    <div className="text-[11px] text-slate-400 line-clamp-3 leading-relaxed group-hover:text-slate-600 transition-colors duration-300">
                                         <FormattedText text={type.description} />
                                     </div>
                                 </div>
                             </div>
-                        </Card>
-                    </Link>
-                ))}
+                        </Link>
+                    ))}
+                </div>
             </div>
-        </Section>
+        </section>
     );
 };

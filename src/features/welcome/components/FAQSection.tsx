@@ -1,27 +1,29 @@
 import React, { useState } from 'react';
-import { Section } from '@/components/ui/Section';
-import { ChevronDown, MessageCircleQuestion } from 'lucide-react';
+import { ChevronDown } from 'lucide-react';
 
 
 export const FAQSection: React.FC = () => {
     return (
-        <Section background="white">
-            <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-prisma-50 text-prisma-700 text-xs font-bold uppercase tracking-wider border border-prisma-100">
-                    <MessageCircleQuestion className="w-3 h-3" />
-                    FAQ
+        <section className="py-24 md:py-32 bg-white border-t border-slate-100 relative overflow-hidden">
+            <div className="max-w-4xl mx-auto px-6 relative z-10">
+                <div className="text-center mb-20 animate-fade-in-up">
+                    <span className="inline-block text-xs font-serif tracking-[0.2em] text-slate-400 uppercase mb-2">
+                        Q & A
+                    </span>
+                    <h2 className="text-3xl md:text-5xl font-serif font-medium text-slate-900 leading-[1.3] tracking-tight">
+                        よくあるご質問
+                    </h2>
                 </div>
-                <h2 className="text-3xl md:text-4xl font-bold text-slate-800 leading-tight">
-                    よくあるご質問
-                </h2>
-            </div>
 
-            <div className="max-w-3xl mx-auto space-y-4">
-                {faqs.map((faq, idx) => (
-                    <FAQItem key={idx} question={faq.question} answer={faq.answer} />
-                ))}
+                <div className="space-y-4">
+                    {faqs.map((faq, idx) => (
+                        <div key={idx} className="animate-fade-in-up" style={{ animationDelay: `${idx * 100}ms` }}>
+                            <FAQItem question={faq.question} answer={faq.answer} />
+                        </div>
+                    ))}
+                </div>
             </div>
-        </Section>
+        </section>
     );
 };
 
@@ -29,24 +31,31 @@ const FAQItem = ({ question, answer }: { question: string, answer: string }) => 
     const [isOpen, setIsOpen] = useState(false);
 
     return (
-        <div className="border border-slate-200 rounded-lg overflow-hidden transition-all duration-300 hover:border-prisma-300 bg-white">
+        <div className={`group rounded-apple border transition-all duration-500 ease-apple overflow-hidden ${isOpen ? 'bg-slate-50 border-prisma-200/50 shadow-sm' : 'bg-white border-slate-200 hover:border-slate-300'}`}>
             <button
                 onClick={() => setIsOpen(!isOpen)}
-                className="w-full flex items-center justify-between p-5 text-left bg-white hover:bg-slate-50 transition-colors"
+                className="w-full flex items-center justify-between p-6 md:p-8 text-left transition-colors"
+                aria-expanded={isOpen}
             >
-                <span className="font-bold text-slate-800 pr-8">{question}</span>
-                <ChevronDown className={`w-5 h-5 text-slate-400 transition-transform duration-300 flex-shrink-0 ${isOpen ? 'rotate-180' : ''}`} />
+                <span className={`font-serif text-lg md:text-xl font-medium transition-colors duration-300 ${isOpen ? 'text-prisma-700' : 'text-slate-800'}`}>
+                    {question}
+                </span>
+                <span className={`flex items-center justify-center w-8 h-8 rounded-full border transition-all duration-500 ease-apple ml-4 shrink-0 ${isOpen ? 'bg-prisma-500 border-prisma-500 text-white rotate-180' : 'bg-slate-50 border-slate-200 text-slate-400 group-hover:bg-white group-hover:border-slate-300'}`}>
+                    <ChevronDown className="w-4 h-4" />
+                </span>
             </button>
-            {isOpen && (
-                <div
-                    className="overflow-hidden bg-slate-50/50 animate-fade-in-up"
-                >
-                    <div className="p-5 pt-0 text-slate-600 leading-relaxed text-sm">
-                        <div className="h-px w-full bg-slate-100 mb-4" />
-                        {answer}
+
+            <div
+                className={`grid transition-[grid-template-rows] duration-500 ease-apple ${isOpen ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'}`}
+            >
+                <div className="overflow-hidden">
+                    <div className="p-6 md:p-8 pt-0 text-slate-600 leading-loose text-base md:text-lg border-t border-dashed border-prisma-100/50 mx-6 md:mx-8 mt-2">
+                        <div className="pt-4">
+                            {answer}
+                        </div>
                     </div>
                 </div>
-            )}
+            </div>
         </div>
     );
 };

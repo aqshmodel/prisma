@@ -1,9 +1,14 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { Inter, Noto_Serif_JP } from 'next/font/google';
 import './globals.css';
 import { Layout } from '../components/layout/Layout';
 
-const inter = Inter({ subsets: ['latin'] });
+const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
+const notoSerif = Noto_Serif_JP({
+    subsets: ['latin'],
+    weight: ['400', '700'],
+    variable: '--font-serif'
+});
 
 export const metadata: Metadata = {
     metadataBase: new URL('https://prisma.aqsh.co.jp'),
@@ -43,9 +48,14 @@ export default function RootLayout({
     children: React.ReactNode;
 }) {
     return (
-        <html lang="ja">
-            <body className={inter.className} suppressHydrationWarning={true}>
-                <Layout>{children}</Layout>
+        <html lang="ja" className={`${inter.variable} ${notoSerif.variable}`}>
+            <body className="font-sans antialiased text-slate-800 bg-prisma-50 selection:bg-prisma-200 selection:text-prisma-900" suppressHydrationWarning={true}>
+                {/* Noise Texture Overlay */}
+                <div className="fixed inset-0 z-0 pointer-events-none opacity-[0.4]" style={{ backgroundImage: 'url(/noise.svg)' }}></div>
+
+                <div className="relative z-10">
+                    <Layout>{children}</Layout>
+                </div>
             </body>
         </html>
     );

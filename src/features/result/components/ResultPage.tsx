@@ -43,8 +43,9 @@ const COLOR_MAP: Record<string, string> = {
     'amber-500': '#f59e0b',
     'blue-800': '#1e40af',
     'blue-600': '#2563eb',
-    'teal-600': '#0d9488',
-    'cyan-700': '#0e7490',
+    'teal-600': '#0ababa', // Updated to User's Teal
+    'cyan-700': '#078282', // Updated to User's Deep Teal
+    'prisma-500': '#0ABAB5', // User's Primary
     'fuchsia-400': '#e879f9',
     'yellow-400': '#facc15',
     'gray-500': '#6b7280',
@@ -66,6 +67,7 @@ export const ResultPage: React.FC = () => {
 
     const restore = useDiagnosisStore((state) => state.restoreLastResult);
     const history = useDiagnosisStore((state) => state.history);
+    const dataSavedRef = useRef(false);
 
     useEffect(() => {
         if (!result) {
@@ -75,7 +77,34 @@ export const ResultPage: React.FC = () => {
             } else {
                 router.push('/');
             }
+            return;
         }
+
+        const saveResult = async () => {
+            if (dataSavedRef.current) return;
+
+            try {
+                // Dynamic import to avoid SSR issues
+                const { db } = await import('@/lib/firebase');
+                const { collection, addDoc, serverTimestamp } = await import('firebase/firestore');
+
+                // Save only necessary data
+                await addDoc(collection(db, 'diagnosis_results'), {
+                    type: result,
+                    // engine: result.engine, // engine data is included in result
+                    // bias: result.bias,     // bias data is included in result
+                    timestamp: serverTimestamp(),
+                    userAgent: window.navigator.userAgent,
+                });
+
+                dataSavedRef.current = true;
+                console.log('Diagnosis result saved to Firestore');
+            } catch (error) {
+                console.error('Error saving diagnosis result:', error);
+            }
+        };
+
+        saveResult();
     }, [result, history, restore, router]);
 
     if (!result) return null;
@@ -108,59 +137,76 @@ export const ResultPage: React.FC = () => {
     ];
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-slate-50 via-prisma-50 to-white pb-20 relative overflow-hidden">
-            {/* Ambient Background - Tiffany Blue Glow */}
-            <div
-                className="absolute top-[-20%] left-[-10%] w-[60%] h-[600px] z-0 opacity-20 pointer-events-none blur-[100px]"
-                style={{ background: `radial-gradient(circle, ${themeColor}, transparent 70%)` }}
-            />
-            <div
-                className="absolute top-[10%] right-[-10%] w-[40%] h-[500px] z-0 opacity-15 pointer-events-none blur-[120px]"
-                style={{ background: 'radial-gradient(circle, #0ABAB5, transparent 70%)' }}
-            />
+        <div className="min-h-screen bg-gradient-to-br from-slate-50 via-prisma-50 to-white pb-20 relative">
+            {/* Ambient Background Wrapper - Handles overflow for blobs */}
+            <div className="absolute inset-0 overflow-hidden pointer-events-none">
+                {/* Ambient Background - Tiffany Blue Glow */}
+                <div
+                    className="absolute top-[-20%] left-[-10%] w-[60%] h-[600px] z-0 opacity-20 blur-[100px]"
+                    style={{ background: `radial-gradient(circle, ${themeColor}, transparent 70%)` }}
+                />
+                <div
+                    className="absolute top-[10%] right-[-10%] w-[40%] h-[500px] z-0 opacity-15 blur-[120px]"
+                    style={{ background: 'radial-gradient(circle, #0ABAB5, transparent 70%)' }}
+                />
+            </div>
 
             {/* Header */}
-            <div className="relative z-10 pt-12 pb-8 px-4 text-center animate-fade-in-up">
-                <div>
-                    <span className="inline-block px-4 py-1.5 bg-white/70 backdrop-blur-md rounded-full text-xs font-bold text-prisma-800 mb-6 border border-prisma-200 shadow-sm animate-scale-in">
-                        DIAGNOSTICS RESULT
-                    </span>
-
-                    <div className="flex flex-col items-center gap-3 mb-4">
-                        <h1 className="text-4xl sm:text-5xl font-bold text-slate-800 leading-tight tracking-tight drop-shadow-sm">
-                            {osData.name.split('(')[0].trim()}
-                        </h1>
-                        <span className="text-2xl sm:text-3xl font-black text-slate-300 tracking-wider">
-                            ({osData.code})
+            <div className="relative z-10 pt-20 pb-12 px-4 text-center animate-fade-in-up">
+                <div className="flex flex-col items-center">
+                    <div className="inline-block mb-6 relative">
+                        <span className="relative z-10 px-4 py-1 text-xs font-serif tracking-[0.2em] uppercase text-prisma-800 border-b border-prisma-300">
+                            Diagnostics Result
                         </span>
                     </div>
 
-                    <div className="text-lg text-slate-600 font-medium opacity-90 mt-2 max-w-2xl mx-auto leading-relaxed">
-                        <FormattedText text={osData.catchphrase} />
+                    <div className="flex flex-col items-center gap-2 mb-8 relative">
+                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-white/50 blur-3xl -z-10 rounded-full" />
+
+                        <h1 className="text-5xl sm:text-7xl font-serif font-medium text-slate-900 leading-tight tracking-tight mix-blend-multiply">
+                            {osData.name.split('(')[0].trim()}
+                        </h1>
+                        <div className="flex items-baseline gap-3 mt-2">
+                            <span className="text-sm font-serif italic text-slate-500 tracking-wider">Type</span>
+                            <span className="text-3xl sm:text-4xl font-serif text-prisma-600 tracking-widest opacity-90">
+                                {osData.code}
+                            </span>
+                        </div>
+                    </div>
+
+                    <div className="max-w-2xl mx-auto relative px-8 py-6">
+                        {/* Decorative Quotes */}
+                        <span className="absolute top-0 left-0 text-6xl text-prisma-200 font-serif leading-none opacity-50">“</span>
+                        <span className="absolute bottom-0 right-0 text-6xl text-prisma-200 font-serif leading-none opacity-50 rotate-180">“</span>
+
+                        <div className="text-lg sm:text-xl text-slate-700 font-medium opacity-90 leading-[2.2] font-serif tracking-wide">
+                            <FormattedText text={osData.catchphrase} />
+                        </div>
                     </div>
                 </div>
             </div>
 
             {/* Tab Navigation */}
-            <div className="sticky top-0 z-50 bg-white/80 backdrop-blur-xl border-b border-prisma-100 shadow-sm mb-8 animate-fade-in-up stagger-1">
-                <div className="max-w-4xl mx-auto flex overflow-x-auto no-scrollbar px-4 sm:px-0">
+            <div className="sticky top-16 z-40 bg-white/80 backdrop-blur-md border-b border-prisma-100/50 mb-12 animate-fade-in-up stagger-1">
+                <div className="max-w-4xl mx-auto flex overflow-x-auto no-scrollbar px-6 sm:px-0 justify-start sm:justify-center gap-8">
                     {tabs.map((tab) => (
                         <button
                             key={tab.id}
                             onClick={() => setActiveTab(tab.id)}
-                            className={`flex-1 flex items-center justify-center gap-2 py-4 px-4 text-sm font-bold transition-all relative min-w-max whitespace-nowrap group ${activeTab === tab.id
-                                ? 'text-prisma-700'
-                                : 'text-slate-500 hover:text-slate-700 hover:bg-slate-50/50'
+                            className={`py-4 text-sm tracking-widest transition-all relative whitespace-nowrap group font-serif ${activeTab === tab.id
+                                ? 'text-prisma-800 font-medium'
+                                : 'text-slate-400 hover:text-prisma-600'
                                 }`}
                         >
-                            <tab.icon size={18} className={`transition-transform duration-300 ${activeTab === tab.id ? 'scale-110' : 'group-hover:scale-105'}`} />
-                            {tab.label}
-                            {activeTab === tab.id && (
-                                <div
-                                    className="absolute bottom-0 left-0 right-0 h-0.5 rounded-t-full shadow-[0_-2px_6px_rgba(10,186,181,0.2)]"
-                                    style={{ backgroundColor: '#0ABAB5' }}
-                                />
-                            )}
+                            <span className="flex items-center gap-2">
+                                {/* Icon removed for cleaner look, or keep small */}
+                                {tab.label}
+                            </span>
+
+                            <div
+                                className={`absolute bottom-0 left-0 right-0 h-[2px] transition-all duration-500 ease-out ${activeTab === tab.id ? 'bg-prisma-500 w-full opacity-100' : 'bg-prisma-300 w-0 opacity-0 group-hover:w-full group-hover:opacity-50'
+                                    }`}
+                            />
                         </button>
                     ))}
                 </div>

@@ -1,64 +1,85 @@
 import React from 'react';
-import { Section } from '@/components/ui/Section';
 import { BookOpen, Users, Scale } from 'lucide-react';
 
 export const TrustSection: React.FC = () => {
     return (
-        <Section background="dark" className="text-white relative overflow-hidden">
-            {/* Background Pattern */}
-            <div className="absolute inset-0 opacity-10 pointer-events-none">
-                <div className="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-prisma-500 blur-3xl opacity-30" />
-                <div className="absolute top-1/2 left-1/4 w-64 h-64 rounded-full bg-teal-500 blur-3xl opacity-20" />
-            </div>
+        <section className="py-24 md:py-32 bg-[#0B0F17] relative overflow-hidden text-white">
+            {/* Ambient Background Effects */}
+            <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-prisma-900/40 rounded-full blur-[120px] pointer-events-none mix-blend-screen" />
+            <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-teal-900/20 rounded-full blur-[120px] pointer-events-none mix-blend-screen" />
 
-            <div className="grid md:grid-cols-3 gap-8 mb-16 relative z-10">
-                <div className="bg-prisma-900/50 p-8 rounded-2xl border border-prisma-800 backdrop-blur-sm">
-                    <BookOpen className="w-8 h-8 text-prisma-400 mb-4" />
-                    <h3 className="text-xl font-bold mb-3 text-white">Jungian Typology</h3>
-                    <p className="text-prisma-100 leading-relaxed">
-                        C.G.ユングの「タイプ論」をベースに、人間の認知プロセスを体系化。
-                        <span className="text-prisma-300 font-bold">生まれ持った「脳の利き手」</span>を特定します。
-                    </p>
+            <div className="max-w-7xl mx-auto px-6 relative z-10">
+                <div className="text-center mb-20 animate-fade-in-up">
+                    <span className="inline-block text-xs font-serif tracking-[0.2em] text-prisma-200 uppercase mb-4 opacity-70">
+                        Scientific Foundation
+                    </span>
+                    <h2 className="text-3xl md:text-5xl font-serif font-medium text-white leading-[1.3] tracking-tight mb-6">
+                        理論に裏打ちされた<br />
+                        確かな信頼性。
+                    </h2>
                 </div>
-                <div className="bg-prisma-900/50 p-8 rounded-2xl border border-prisma-800 backdrop-blur-sm">
-                    <Users className="w-8 h-8 text-prisma-400 mb-4" />
-                    <h3 className="text-xl font-bold mb-3 text-white">Socionics</h3>
-                    <p className="text-prisma-100 leading-relaxed">
-                        タイプ間の「情報代謝」をモデル化したソシオニクス理論を採用。
-                        <span className="text-prisma-300 font-bold">相性のメカニズム</span>を論理的に解明します。
-                    </p>
-                </div>
-                <div className="bg-prisma-900/50 p-8 rounded-2xl border border-prisma-800 backdrop-blur-sm">
-                    <Scale className="w-8 h-8 text-prisma-400 mb-4" />
-                    <h3 className="text-xl font-bold mb-3 text-white">Business Psychology</h3>
-                    <p className="text-prisma-100 leading-relaxed">
-                        現代の組織論と行動経済学を統合。
-                        理論を実務で使える<span className="text-prisma-300 font-bold">マネジメント指標</span>へと昇華させました。
-                    </p>
-                </div>
-            </div>
 
-            <div className="relative max-w-4xl mx-auto">
-                <div className="absolute inset-0 bg-gradient-to-r from-prisma-500 to-teal-500 rounded-2xl transform rotate-1 opacity-20" />
-                <div className="relative bg-prisma-900/80 backdrop-blur-sm border border-prisma-800 p-8 rounded-2xl">
-                    <h3 className="text-xl font-bold mb-6 flex items-center gap-3 text-white">
-                        <span className="w-8 h-8 rounded-full bg-prisma-500 flex items-center justify-center text-sm">1</span>
-                        Why it works
-                    </h3>
-                    <p className="text-prisma-100 leading-relaxed mb-8">
-                        多くの適性検査が「行動」や「発言」という<span className="text-white font-bold">表面的な現象</span>を測定するのに対し、
-                        Aqsh Prismaはその源泉となる<span className="text-white font-bold">「思考回路」</span>を特定します。
-                        そのため、環境が変わってもブレない本質的な特性を理解することができます。
-                    </p>
-                    <div className="h-px w-full bg-prisma-800 mb-6" />
-                    <div className="flex items-center justify-between text-sm text-prisma-400">
-                        <span>Based on Jungian Typology</span>
-                        <span>Socionics Theory</span>
+                <div className="grid md:grid-cols-3 gap-8 mb-20">
+                    <TrustCard
+                        icon={<BookOpen className="w-6 h-6 text-prisma-300" />}
+                        title="Jungian Typology"
+                        desc={<>C.G.ユングの「タイプ論」をベースに、人間の認知プロセスを体系化。<span className="text-prisma-200 font-bold">生まれ持った「脳の利き手」</span>を特定します。</>}
+                    />
+                    <TrustCard
+                        icon={<Users className="w-6 h-6 text-prisma-300" />}
+                        title="Socionics"
+                        desc={<>タイプ間の「情報代謝」をモデル化したソシオニクス理論を採用。<span className="text-prisma-200 font-bold">相性のメカニズム</span>を論理的に解明します。</>}
+                    />
+                    <TrustCard
+                        icon={<Scale className="w-6 h-6 text-prisma-300" />}
+                        title="Business Psychology"
+                        desc={<>現代の組織論と行動経済学を統合。理論を実務で使える<span className="text-prisma-200 font-bold">マネジメント指標</span>へと昇華させました。</>}
+                    />
+                </div>
+
+                <div className="max-w-4xl mx-auto animate-fade-in-up stagger-3">
+                    <div className="relative rounded-apple p-[1px] bg-gradient-to-br from-white/10 via-white/5 to-transparent overflow-hidden">
+                        <div className="absolute inset-0 bg-prisma-500/10 blur-xl opacity-50" />
+                        <div className="relative bg-[#0F141C]/80 backdrop-blur-xl rounded-apple p-10 md:p-14 border border-white/5">
+                            <div className="flex flex-col md:flex-row gap-8 items-start md:items-center">
+                                <div className="shrink-0 flex items-center justify-center w-16 h-16 rounded-full bg-prisma-500/20 text-prisma-300 font-serif text-2xl font-bold border border-prisma-500/30">
+                                    1
+                                </div>
+                                <div>
+                                    <h3 className="text-2xl font-serif font-bold mb-4 text-white">Why it works</h3>
+                                    <p className="text-slate-300 leading-relaxed text-lg">
+                                        多くの適性検査が「行動」や「発言」という<span className="text-white font-bold border-b border-prisma-500/50">表面的な現象</span>を測定するのに対し、
+                                        Aqsh Prismaはその源泉となる<span className="text-white font-bold border-b border-prisma-500/50">「思考回路」</span>を特定します。
+                                        そのため、環境が変わってもブレない本質的な特性を理解することができます。
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div className="mt-10 pt-8 border-t border-white/5 flex flex-wrap gap-6 justify-center md:justify-start text-xs font-medium tracking-widest uppercase text-slate-500">
+                                <span>Based on Jungian Typology</span>
+                                <span>•</span>
+                                <span>Socionics Theory</span>
+                                <span>•</span>
+                                <span>Cognitive Science</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </Section>
+        </section>
     );
 };
+
+const TrustCard = ({ icon, title, desc }: { icon: React.ReactNode, title: string, desc: React.ReactNode }) => (
+    <div className="group p-8 rounded-apple bg-white/[0.03] border border-white/[0.05] hover:bg-white/[0.06] hover:border-white/[0.1] transition-all duration-500 ease-apple hover:-translate-y-1">
+        <div className="mb-6 opacity-80 group-hover:opacity-100 transition-opacity duration-300">
+            {icon}
+        </div>
+        <h3 className="text-xl font-serif font-bold mb-4 text-white/90 group-hover:text-white transition-colors">{title}</h3>
+        <p className="text-slate-400 leading-relaxed text-sm text-balance-apple group-hover:text-slate-300 transition-colors">
+            {desc}
+        </p>
+    </div>
+);
 
 

@@ -1,19 +1,21 @@
 @import "tailwindcss";
 
 @theme {
-  --color-prisma-50: #F5FCFB;
-  --color-prisma-100: #E0F8F6;
-  --color-prisma-200: #BFF0EB;
-  --color-prisma-300: #90E2DB;
-  --color-prisma-400: #5CCDC5;
-  --color-prisma-500: #0ABAB5;
-  --color-prisma-600: #069691;
-  --color-prisma-700: #087875;
-  --color-prisma-800: #0A5F5D;
-  --color-prisma-900: #0D4E4D;
-  --color-prisma-950: #052F2F;
+  /* User Provided Colors Mapped to Scale */
+  --color-prisma-50: #f0fdfd; /* Very light tint */
+  --color-prisma-100: #c3ffff; /* User: Lighter Cyan */
+  --color-prisma-200: #86ffff; /* User: Light Cyan */
+  --color-prisma-300: #4dfafa; /* Interpolated */
+  --color-prisma-400: #26e6e6; /* Interpolated */
+  --color-prisma-500: #0ABAB5; /* User: Tiffany Blue (Primary) */
+  --color-prisma-600: #0ababa; /* User: Teal (Medium) */
+  --color-prisma-700: #078282; /* User: Deep Teal (Dark) */
+  --color-prisma-800: #056060; /* Darker shade */
+  --color-prisma-900: #034040; /* Darker shade */
+  --color-prisma-950: #012020; /* Darkest shade */
   
-  --font-sans: 'Inter', sans-serif;
+  --font-sans: var(--font-inter), 'Helvetica Neue', Arial, sans-serif;
+  --font-serif: var(--font-serif), 'Hiragino Mincho ProN', 'Yu Mincho', serif;
 
   --animate-fade-in-up: fade-in-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   --animate-fade-in-up-delay-100: fade-in-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) 100ms forwards;
@@ -22,6 +24,12 @@
   --animate-scale-in: scale-in 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   --animate-shimmer: shimmer 2.5s linear infinite;
   --animate-draw-stroke: draw-stroke 1.5s ease-out forwards;
+
+  /* Apple-style Physics Easing */
+  --ease-apple: cubic-bezier(0.25, 0.1, 0.25, 1);
+  --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  
+  --radius-apple: 2rem; /* 32px for Bento Grid */
 
   @keyframes fade-in-up {
     from {
@@ -60,7 +68,19 @@
 .stagger-2 { animation-delay: 200ms; }
 .stagger-3 { animation-delay: 300ms; }
 .stagger-4 { animation-delay: 400ms; }
+.stagger-4 { animation-delay: 400ms; }
 .stagger-5 { animation-delay: 500ms; }
+
+/* Apple Design Utilities */
+.rounded-apple {
+  border-radius: var(--radius-apple);
+}
+.glass-panel {
+  @apply bg-white/60 backdrop-blur-xl border border-white/40 shadow-sm;
+}
+.text-balance-apple {
+  text-wrap: balance;
+}
 
 /* Custom Scrollbar for Tabs */
 .no-scrollbar::-webkit-scrollbar {
