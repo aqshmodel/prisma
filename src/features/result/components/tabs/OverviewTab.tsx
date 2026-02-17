@@ -1,18 +1,15 @@
 'use client';
 
-import React, { useState, Suspense } from 'react';
+import React from 'react';
 
-import { Zap, LayoutDashboard, Info } from 'lucide-react';
+import { Zap, LayoutDashboard } from 'lucide-react';
 import { Card } from '../../../../components/ui/Card';
+import { FormattedText } from '../../../../components/ui/FormattedText';
 import { RadarChart } from '../RadarChart';
 import { MatrixChart } from '../MatrixChart';
 import type { OSContent } from '../../data/content-os';
 import type { EngineContent } from '../../data/content-engine';
 
-// Lazy load the modal since it's not immediately visible
-const EngineDetailModal = React.lazy(() =>
-    import('../EngineDetailModal').then(module => ({ default: module.EngineDetailModal }))
-);
 
 interface OverviewTabProps {
     osData: OSContent;
@@ -21,8 +18,6 @@ interface OverviewTabProps {
 }
 
 export const OverviewTab: React.FC<OverviewTabProps> = ({ osData, engineData, themeColor }) => {
-    const [isModalOpen, setIsModalOpen] = useState(false);
-
     return (
         <div
             className="space-y-6"
@@ -32,35 +27,54 @@ export const OverviewTab: React.FC<OverviewTabProps> = ({ osData, engineData, th
                     <div className="flex justify-center">
                         <RadarChart data={osData.params} color={osData.color} />
                     </div>
-                    <div className="space-y-4">
+                    <div className="space-y-6">
                         <div>
                             <div className="flex items-center justify-between mb-2">
                                 <h3 className="text-sm font-semibold text-slate-400 uppercase tracking-wider">Primary Engine</h3>
-                                <button
-                                    onClick={() => setIsModalOpen(true)}
-                                    className="text-xs flex items-center gap-1 text-indigo-600 hover:text-indigo-800 font-medium transition-colors"
-                                >
-                                    <Info size={14} />
-                                    詳細を見る
-                                </button>
                             </div>
-                            <p className="text-2xl font-bold text-slate-800 flex items-center gap-2">
-                                <Zap className="text-yellow-500" fill="currentColor" />
+                            <p className="text-3xl font-bold text-slate-800 flex items-center gap-3">
+                                <span className={`p-2 rounded-lg bg-yellow-100/50 text-yellow-600`}>
+                                    <Zap className="w-6 h-6" fill="currentColor" />
+                                </span>
                                 {engineData.name}
                             </p>
-                            <p className="text-slate-600 mt-2 text-sm leading-relaxed">
-                                {engineData.motivation}
+                            <p className="text-slate-600 mt-4 text-base leading-relaxed font-medium">
+                                <FormattedText text={engineData.motivation} />
                             </p>
+                            <div className="mt-4 p-4 bg-slate-50 rounded-xl border border-slate-100 text-sm text-slate-600 leading-relaxed">
+                                <FormattedText text={engineData.description} />
+                            </div>
                         </div>
-                        <div className="pt-4 border-t border-slate-100">
+
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                            <div className="bg-red-50 p-3 rounded-lg border border-red-100">
+                                <span className="text-red-800 font-bold text-xs block mb-1">⚠️ ストレス反応</span>
+                                <p className="text-xs text-red-700 leading-snug">
+                                    <FormattedText text={engineData.stressBehavior} />
+                                </p>
+                            </div>
+                            <div className="bg-emerald-50 p-3 rounded-lg border border-emerald-100">
+                                <span className="text-emerald-800 font-bold text-xs block mb-1">🌱 成長へのヒント</span>
+                                <p className="text-xs text-emerald-700 leading-snug">
+                                    <FormattedText text={engineData.growthAdvice} />
+                                </p>
+                            </div>
+                        </div>
+
+                        <div className="pt-6 border-t border-slate-100">
                             <h3 className="text-sm font-semibold text-slate-400 uppercase tracking-wider mb-2">Basic Type</h3>
-                            <p className="text-xl font-bold text-slate-800">{osData.code}</p>
-                            <p className="text-slate-500 text-xs mt-1">
+                            <div className="flex items-baseline gap-2">
+                                <p className="text-2xl font-bold text-slate-800">
+                                    {osData.name.split('(')[0].trim()}
+                                </p>
+                                <span className="text-lg font-semibold text-slate-400">({osData.code})</span>
+                            </div>
+                            <p className="text-slate-500 text-xs mt-2">
                                 相性最高: <span className="font-semibold">{osData.bestMatch}</span> / 要注意: <span className="font-semibold">{osData.worstMatch}</span>
                             </p>
                             <div className="mt-4">
-                                <a href={`/types/${osData.code}`} className="text-sm text-indigo-600 font-bold hover:underline">
-                                    ↪ タイプ詳細を見る
+                                <a href={`/types/${osData.code}`} className="text-sm text-indigo-600 font-bold hover:underline flex items-center gap-1">
+                                    詳細プロファイルを見る <span aria-hidden="true">&rarr;</span>
                                 </a>
                             </div>
                         </div>
@@ -96,14 +110,7 @@ export const OverviewTab: React.FC<OverviewTabProps> = ({ osData, engineData, th
                 </div>
             </Card>
 
-            <Suspense fallback={null}>
-                <EngineDetailModal
-                    isOpen={isModalOpen}
-                    onClose={() => setIsModalOpen(false)}
-                    engine={engineData}
-                    engineType={engineData.name.split(' ')[0]}
-                />
-            </Suspense>
+            {/* Engine Detail Modal removed */}
         </div>
     );
 };

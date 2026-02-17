@@ -3,6 +3,7 @@ import React from 'react';
 
 import { Briefcase, Target } from 'lucide-react';
 import { Card } from '../../../../components/ui/Card';
+import { FormattedText } from '../../../../components/ui/FormattedText';
 import type { OSContent } from '../../data/content-os';
 
 interface WorkTabProps {
@@ -26,20 +27,20 @@ export const WorkTab: React.FC<WorkTabProps> = ({ osData, themeColor }) => {
                     <div>
                         <h4 className="font-bold text-slate-700 mb-2">ミッション</h4>
                         <p className="text-lg font-medium text-slate-800 border-l-4 border-slate-300 pl-4 py-1 italic">
-                            "{osData.workStyle.mission}"
+                            "<FormattedText text={osData.workStyle.mission} />"
                         </p>
                     </div>
                     <div className="grid md:grid-cols-2 gap-6">
                         <div>
                             <h4 className="font-bold text-slate-700 mb-2 text-sm">働き方のスタイル</h4>
                             <p className="text-sm text-slate-600 leading-relaxed bg-slate-50 p-3 rounded-lg whitespace-pre-wrap">
-                                {osData.workStyle.style}
+                                <FormattedText text={osData.workStyle.style} />
                             </p>
                         </div>
                         <div>
                             <h4 className="font-bold text-slate-700 mb-2 text-sm">モチベーションの源泉</h4>
                             <p className="text-sm text-slate-600 leading-relaxed bg-slate-50 p-3 rounded-lg whitespace-pre-wrap">
-                                {osData.workStyle.motivation}
+                                <FormattedText text={osData.workStyle.motivation} />
                             </p>
                         </div>
                     </div>
@@ -56,7 +57,7 @@ export const WorkTab: React.FC<WorkTabProps> = ({ osData, themeColor }) => {
                         <div key={idx} className="bg-white border border-slate-200 rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow">
                             <h4 className="font-bold text-slate-800 mb-2 text-sm border-b pb-2">{role.title}</h4>
                             <p className="text-xs text-slate-600 leading-relaxed">
-                                {role.reason}
+                                <FormattedText text={role.reason} />
                             </p>
                         </div>
                     ))}

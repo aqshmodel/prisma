@@ -67,6 +67,8 @@ export const ResultPage: React.FC = () => {
 
     const restore = useDiagnosisStore((state) => state.restoreLastResult);
     const history = useDiagnosisStore((state) => state.history);
+    const isNewResult = useDiagnosisStore((state) => state.isNewResult);
+    const markResultAsSaved = useDiagnosisStore((state) => state.markResultAsSaved);
     const dataSavedRef = useRef(false);
 
     useEffect(() => {
@@ -81,7 +83,8 @@ export const ResultPage: React.FC = () => {
         }
 
         const saveResult = async () => {
-            if (dataSavedRef.current) return;
+            // Only save if it's a new result and hasn't been saved in this session yet
+            if (!isNewResult || dataSavedRef.current) return;
 
             try {
                 // Dynamic import to avoid SSR issues
@@ -98,6 +101,7 @@ export const ResultPage: React.FC = () => {
                 });
 
                 dataSavedRef.current = true;
+                markResultAsSaved(); // Reset flag so it won't be saved again
                 console.log('Diagnosis result saved to Firestore');
             } catch (error) {
                 console.error('Error saving diagnosis result:', error);
@@ -105,7 +109,7 @@ export const ResultPage: React.FC = () => {
         };
 
         saveResult();
-    }, [result, history, restore, router]);
+    }, [result, history, restore, router, isNewResult, markResultAsSaved]);
 
     if (!result) return null;
 
@@ -188,7 +192,7 @@ export const ResultPage: React.FC = () => {
 
             {/* Tab Navigation */}
             <div className="sticky top-16 z-40 bg-white/80 backdrop-blur-md border-b border-prisma-100/50 mb-12 animate-fade-in-up stagger-1">
-                <div className="max-w-4xl mx-auto flex overflow-x-auto no-scrollbar px-6 sm:px-0 justify-start sm:justify-center gap-8">
+                <div className="max-w-4xl md:max-w-6xl mx-auto flex overflow-x-auto no-scrollbar px-6 sm:px-0 justify-start sm:justify-center gap-8">
                     {tabs.map((tab) => (
                         <button
                             key={tab.id}
@@ -213,7 +217,7 @@ export const ResultPage: React.FC = () => {
             </div>
 
             {/* Content Area */}
-            <div className="max-w-3xl mx-auto px-4 relative z-10 min-h-[500px]">
+            <div className="max-w-3xl md:max-w-5xl mx-auto px-2 sm:px-4 relative z-10 min-h-[500px]">
                 {/* Key changes trigger animation replay */}
                 <div key={activeTab} className="animate-fade-in-up stagger-2">
                     {activeTab === 'overview' && (

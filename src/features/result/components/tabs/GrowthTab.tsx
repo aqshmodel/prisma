@@ -3,6 +3,7 @@ import React from 'react';
 
 import { TrendingUp, CheckCircle2 } from 'lucide-react';
 import { Card } from '../../../../components/ui/Card';
+import { FormattedText } from '../../../../components/ui/FormattedText';
 import type { OSContent } from '../../data/content-os';
 import type { EngineContent } from '../../data/content-engine';
 
@@ -31,7 +32,7 @@ export const GrowthTab: React.FC<GrowthTabProps> = ({ osData, engineData, themeC
                     成長へのアドバイス
                 </h3>
                 <p className="text-indigo-800 leading-relaxed whitespace-pre-wrap text-sm">
-                    {engineData.growthAdvice}
+                    <FormattedText text={engineData.growthAdvice} />
                 </p>
             </div>
 
@@ -41,15 +42,15 @@ export const GrowthTab: React.FC<GrowthTabProps> = ({ osData, engineData, themeC
                     成長ロードマップ
                 </h3>
 
-                <div className="relative space-y-8 before:absolute before:inset-0 before:ml-6 before:w-0.5 before:-translate-x-px before:bg-gradient-to-b before:from-indigo-100 before:via-indigo-100 before:to-transparent">
+                <div className="relative space-y-8 sm:before:absolute sm:before:inset-0 sm:before:ml-6 sm:before:w-0.5 sm:before:-translate-x-px sm:before:bg-gradient-to-b sm:before:from-indigo-100 sm:before:via-indigo-100 sm:before:to-transparent">
                     {levels.map(({ data, level }) => {
                         const levelActions = osData.growth?.actionItems?.filter(item => item.level === level) || [];
 
                         return (
-                            <div key={level} className="relative pl-14">
+                            <div key={level} className="relative sm:pl-14">
                                 {/* Level Badge */}
                                 <div
-                                    className="absolute left-2 top-0 w-8 h-8 rounded-full flex items-center justify-center text-white text-sm font-bold shadow-md z-10 border-2 border-white"
+                                    className="w-8 h-8 rounded-full flex items-center justify-center text-white text-sm font-bold shadow-md z-10 border-2 border-white mb-3 sm:mb-0 sm:absolute sm:left-2 sm:top-0"
                                     style={{ backgroundColor: level === 1 ? '#94a3b8' : level === 2 ? themeColor : '#eab308' }}
                                 >
                                     {level}
@@ -59,8 +60,12 @@ export const GrowthTab: React.FC<GrowthTabProps> = ({ osData, engineData, themeC
                                     <Card className="p-5 border-l-4" style={{
                                         borderLeftColor: level === 1 ? '#94a3b8' : level === 2 ? themeColor : '#eab308'
                                     }}>
-                                        <h4 className="text-lg font-bold text-slate-800 mb-2">{data.title}</h4>
-                                        <p className="text-slate-600 text-sm leading-relaxed">{data.content}</p>
+                                        <h4 className="text-lg font-bold text-slate-800 mb-2">
+                                            <FormattedText text={data.title} />
+                                        </h4>
+                                        <p className="text-slate-600 text-sm leading-relaxed">
+                                            <FormattedText text={data.content} />
+                                        </p>
                                     </Card>
 
                                     {levelActions.length > 0 && (
@@ -74,10 +79,10 @@ export const GrowthTab: React.FC<GrowthTabProps> = ({ osData, engineData, themeC
                                                         />
                                                         <div>
                                                             <h5 className="font-bold text-slate-700 text-sm mb-1 group-hover:text-indigo-700 transition-colors">
-                                                                {action.title}
+                                                                <FormattedText text={action.title} />
                                                             </h5>
                                                             <p className="text-xs text-slate-500 leading-relaxed">
-                                                                {action.description}
+                                                                <FormattedText text={action.description} />
                                                             </p>
                                                         </div>
                                                     </div>

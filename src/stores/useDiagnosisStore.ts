@@ -7,6 +7,7 @@ interface State {
     currentStep: number;
     result: DiagnosisResult | null;
     history: DiagnosisResult[];
+    isNewResult: boolean;
 }
 
 interface Action {
@@ -16,6 +17,7 @@ interface Action {
     resetDiagnosis: () => void;
     setResult: (result: DiagnosisResult) => void;
     restoreLastResult: () => void;
+    markResultAsSaved: () => void;
     clearHistory: () => void;
 }
 
@@ -33,6 +35,7 @@ export const useDiagnosisStore = create<State & Action>()(
             // Step 8: Results (calculated)
             result: null,
             history: [],
+            isNewResult: false,
 
             setAnswer: (id, value) => set((state) => ({
                 answers: { ...state.answers, [id]: value }
@@ -41,16 +44,20 @@ export const useDiagnosisStore = create<State & Action>()(
             nextStep: () => set((state) => ({ currentStep: state.currentStep + 1 })),
             prevStep: () => set((state) => ({ currentStep: Math.max(0, state.currentStep - 1) })),
 
-            resetDiagnosis: () => set({ answers: {}, currentStep: 0, result: null }),
+            resetDiagnosis: () => set({ answers: {}, currentStep: 0, result: null, isNewResult: false }),
 
             setResult: (result) => set(() => ({
                 result: result,
-                history: [result] // Keep only the latest one
+                history: [result], // Keep only the latest one
+                isNewResult: true, // Mark as new result
             })),
 
             restoreLastResult: () => set((state) => ({
-                result: state.history.length > 0 ? state.history[0] : null
+                result: state.history.length > 0 ? state.history[0] : null,
+                isNewResult: false // Restored results are not "new"
             })),
+
+            markResultAsSaved: () => set({ isNewResult: false }), // Action to reset the flag
 
             clearHistory: () => set({ history: [] })
         }),

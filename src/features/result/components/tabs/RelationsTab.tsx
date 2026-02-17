@@ -3,6 +3,7 @@ import React from 'react';
 
 import { Heart, ThumbsUp, ThumbsDown } from 'lucide-react';
 import { Card } from '../../../../components/ui/Card';
+import { FormattedText } from '../../../../components/ui/FormattedText';
 import type { OSContent } from '../../data/content-os';
 
 interface RelationsTabProps {
@@ -24,11 +25,15 @@ export const RelationsTab: React.FC<RelationsTabProps> = ({ osData }) => {
                     <div className="grid md:grid-cols-2 gap-4 mb-6">
                         <div className="bg-pink-50 rounded-xl p-4 border border-pink-100">
                             <h4 className="text-sm font-bold text-pink-800 mb-2">求めるパートナー像</h4>
-                            <p className="text-sm text-slate-700 leading-relaxed">{osData.relationships.partnerQuality}</p>
+                            <p className="text-sm text-slate-700 leading-relaxed">
+                                <FormattedText text={osData.relationships.partnerQuality} />
+                            </p>
                         </div>
                         <div className="bg-slate-50 rounded-xl p-4 border border-slate-200">
                             <h4 className="text-sm font-bold text-slate-700 mb-2">対立のトリガー</h4>
-                            <p className="text-sm text-slate-600 leading-relaxed">{osData.relationships.conflictTrigger}</p>
+                            <p className="text-sm text-slate-600 leading-relaxed">
+                                <FormattedText text={osData.relationships.conflictTrigger} />
+                            </p>
                         </div>
                     </div>
                 )}
@@ -44,7 +49,7 @@ export const RelationsTab: React.FC<RelationsTabProps> = ({ osData }) => {
                             {osData.doCommunication.map((item, idx) => (
                                 <li key={idx} className="flex gap-2 text-sm text-cyan-900">
                                     <span className="text-cyan-500 font-bold">•</span>
-                                    {item}
+                                    <FormattedText text={item} />
                                 </li>
                             ))}
                         </ul>
@@ -59,7 +64,7 @@ export const RelationsTab: React.FC<RelationsTabProps> = ({ osData }) => {
                             {osData.dontCommunication.map((item, idx) => (
                                 <li key={idx} className="flex gap-2 text-sm text-rose-900">
                                     <span className="text-rose-400 font-bold">•</span>
-                                    {item}
+                                    <FormattedText text={item} />
                                 </li>
                             ))}
                         </ul>

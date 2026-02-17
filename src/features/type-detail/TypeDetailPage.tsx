@@ -41,7 +41,7 @@ export const TypeDetailPage: React.FC = () => {
 
             {/* Header / Nav */}
             <div className="bg-white border-b border-slate-200 sticky top-0 z-50">
-                <div className="max-w-4xl mx-auto px-4 h-16 flex items-center justify-between">
+                <div className="max-w-4xl md:max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
                     <Link href="/" className="text-slate-500 hover:text-slate-800 flex items-center gap-2 font-medium">
                         <ArrowLeft size={20} />
                         TOP
@@ -52,7 +52,7 @@ export const TypeDetailPage: React.FC = () => {
 
             {/* Hero */}
             <div className="bg-white pb-12 pt-8 px-4 border-b border-slate-100">
-                <div className="max-w-3xl mx-auto text-center">
+                <div className="max-w-3xl md:max-w-5xl mx-auto text-center">
                     <div className="inline-block px-3 py-1 bg-slate-100 rounded-full text-slate-600 text-sm font-bold mb-6">
                         Basic Type Detail
                     </div>
@@ -72,7 +72,7 @@ export const TypeDetailPage: React.FC = () => {
                 </div>
             </div>
 
-            <div className="max-w-3xl mx-auto px-4 mt-8 space-y-12">
+            <div className="max-w-3xl md:max-w-5xl mx-auto px-2 sm:px-4 mt-8 space-y-12">
 
                 {/* Basic Profile */}
                 <section>
@@ -150,19 +150,29 @@ export const TypeDetailPage: React.FC = () => {
                         <div className="grid md:grid-cols-2 gap-6 mb-6">
                             <div className="bg-indigo-50 p-4 rounded-lg border border-indigo-100">
                                 <h4 className="font-bold text-indigo-900 mb-1">最高の相性</h4>
-                                <Link href={`/types/${osData.bestMatch}`} className="text-2xl font-bold text-indigo-600 hover:underline">
-                                    {osData.bestMatch}
+                                <Link href={`/types/${osData.bestMatch}`} className="text-lg font-bold text-indigo-600 hover:underline block">
+                                    {OS_CONTENT[osData.bestMatch]?.name ? (
+                                        <>
+                                            <span className="text-2xl mr-2">{OS_CONTENT[osData.bestMatch].name.split('(')[0]}</span>
+                                            <span className="text-sm opacity-80">({osData.bestMatch})</span>
+                                        </>
+                                    ) : osData.bestMatch}
                                 </Link>
-                                <p className="text-xs text-indigo-700 mt-1">
+                                <p className="text-xs text-indigo-700 mt-2">
                                     補完し合い、共に成長できるパートナー
                                 </p>
                             </div>
                             <div className="bg-orange-50 p-4 rounded-lg border border-orange-100">
                                 <h4 className="font-bold text-orange-900 mb-1">要注意な相性</h4>
-                                <Link href={`/types/${osData.worstMatch}`} className="text-2xl font-bold text-orange-600 hover:underline">
-                                    {osData.worstMatch}
+                                <Link href={`/types/${osData.worstMatch}`} className="text-lg font-bold text-orange-600 hover:underline block">
+                                    {OS_CONTENT[osData.worstMatch]?.name ? (
+                                        <>
+                                            <span className="text-2xl mr-2">{OS_CONTENT[osData.worstMatch].name.split('(')[0]}</span>
+                                            <span className="text-sm opacity-80">({osData.worstMatch})</span>
+                                        </>
+                                    ) : osData.worstMatch}
                                 </Link>
-                                <p className="text-xs text-orange-700 mt-1">
+                                <p className="text-xs text-orange-700 mt-2">
                                     誤解が生じやすく、ストレスを感じやすい相手
                                 </p>
                             </div>

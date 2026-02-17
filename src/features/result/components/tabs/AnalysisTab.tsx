@@ -56,20 +56,28 @@ export const AnalysisTab: React.FC<AnalysisTabProps> = ({ osData, themeColor, bi
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div className="bg-slate-50 p-4 rounded-lg">
                                 <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">根源的欲求</h4>
-                                <p className="font-medium text-slate-800">{osData.psychology.coreDesire}</p>
+                                <p className="font-medium text-slate-800">
+                                    <FormattedText text={osData.psychology.coreDesire} />
+                                </p>
                             </div>
                             <div className="bg-slate-50 p-4 rounded-lg">
                                 <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">盲点</h4>
-                                <p className="font-medium text-slate-800">{osData.psychology.blindSpot}</p>
+                                <p className="font-medium text-slate-800">
+                                    <FormattedText text={osData.psychology.blindSpot} />
+                                </p>
                             </div>
                         </div>
                         <div className="bg-red-50 p-4 rounded-lg border border-red-100">
                             <h4 className="font-bold text-red-800 mb-2 text-sm">ストレス反応</h4>
-                            <p className="text-sm text-red-900 leading-relaxed">{osData.psychology.stressResponse}</p>
+                            <p className="text-sm text-red-900 leading-relaxed">
+                                <FormattedText text={osData.psychology.stressResponse} />
+                            </p>
                         </div>
                         <div className="bg-emerald-50 p-4 rounded-lg border border-emerald-100">
                             <h4 className="font-bold text-emerald-800 mb-2 text-sm">回復方法</h4>
-                            <p className="text-sm text-emerald-900 leading-relaxed">{osData.psychology.recoveryMethod}</p>
+                            <p className="text-sm text-emerald-900 leading-relaxed">
+                                <FormattedText text={osData.psychology.recoveryMethod} />
+                            </p>
                         </div>
                     </div>
                 </Card>
@@ -95,7 +103,7 @@ export const AnalysisTab: React.FC<AnalysisTabProps> = ({ osData, themeColor, bi
                                     ⚠️ {bias.warning}
                                 </p>
                                 <p className="text-sm text-slate-600 mb-4 leading-relaxed whitespace-pre-line">
-                                    {bias.detail}
+                                    <FormattedText text={bias.detail} />
                                 </p>
 
                                 <div className="bg-white p-4 rounded-lg border border-red-100 shadow-sm">
@@ -104,7 +112,7 @@ export const AnalysisTab: React.FC<AnalysisTabProps> = ({ osData, themeColor, bi
                                         対策アプローチ
                                     </h5>
                                     <p className="text-sm text-slate-600 leading-relaxed">
-                                        {bias.countermeasure}
+                                        <FormattedText text={bias.countermeasure} />
                                     </p>
                                 </div>
                             </div>
