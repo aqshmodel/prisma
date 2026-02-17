@@ -3,11 +3,11 @@ import { TypeDetailPage } from '../../../features/type-detail/TypeDetailPage';
 import { OS_CONTENT } from '../../../features/result/data/content-os';
 
 type Props = {
-    params: { code: string };
+    params: Promise<{ code: string }>;
 };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-    const code = params.code;
+    const { code } = await params;
     const data = OS_CONTENT[code as keyof typeof OS_CONTENT];
 
     if (!data) {

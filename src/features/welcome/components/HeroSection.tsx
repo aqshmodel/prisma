@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 
 import { ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
@@ -122,10 +123,13 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onStart, onResume, onV
                         {/* Image Frame - Arch Shape or Organic */}
                         <div className="absolute inset-0 border border-prisma-200 rounded-[100px_100px_0_0] lg:rounded-[200px_200px_0_0] -translate-x-4 translate-y-4 -z-10" />
                         <div className="relative w-full h-full bg-slate-100 rounded-[100px_100px_0_0] lg:rounded-[200px_200px_0_0] overflow-hidden shadow-2xl shadow-prisma-100/50">
-                            <img
+                            <Image
                                 src="/hero-image.png"
                                 alt="Prisma Analysis"
-                                className="w-full h-full object-cover object-center opacity-90 hover:scale-105 transition-transform duration-[2s] ease-out mix-blend-multiply"
+                                fill
+                                className="object-cover object-center opacity-90 hover:scale-105 transition-transform duration-[2s] ease-out mix-blend-multiply"
+                                sizes="(max-width: 1024px) 100vw, 50vw"
+                                priority
                             />
                             {/* Overlay Gradient */}
                             <div className="absolute inset-0 bg-gradient-to-t from-prisma-900/10 to-transparent pointer-events-none" />

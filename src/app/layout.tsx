@@ -12,11 +12,11 @@ const notoSerif = Noto_Serif_JP({
 
 export const metadata: Metadata = {
     metadataBase: new URL('https://prisma.aqsh.co.jp'),
-    title: 'Aqsh Prisma | 組織シナジー最大化ツール',
+    title: 'Aqsh Prisma | 無料16タイプ診断 ソシオニクス × ビジネス心理学',
     description: 'ソシオニクスとビジネス心理学に基づき、あなたのリーダーシップ特性と潜在リスクを可視化する次世代の組織診断ツール。',
     openGraph: {
-        title: 'Aqsh Prisma | 組織シナジー最大化ツール',
-        description: 'あなたのリーダーシップ特性と潜在リスクを可視化する次世代の組織診断ツール。',
+        title: 'Aqsh Prisma | 無料16タイプ診断 ソシオニクス × ビジネス心理学',
+        description: 'ソシオニクスとビジネス心理学に基づき、あなたのリーダーシップ特性と潜在リスクを可視化する次世代の組織診断ツール。',
         url: 'https://prisma.aqsh.co.jp/',
         siteName: 'Aqsh Prisma',
         images: [
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     },
     twitter: {
         card: 'summary_large_image',
-        title: 'Aqsh Prisma | 組織シナジー最大化ツール',
+        title: 'Aqsh Prisma | 無料16タイプ診断 ソシオニクス × ビジネス心理学',
         description: 'ソシオニクスとビジネス心理学に基づき、あなたのリーダーシップ特性と潜在リスクを可視化する次世代の組織診断ツール。',
         images: ['/og-image.png'],
     },
@@ -47,9 +47,33 @@ export default function RootLayout({
 }: {
     children: React.ReactNode;
 }) {
+    const jsonLd = [
+        {
+            '@context': 'https://schema.org',
+            '@type': 'WebSite',
+            name: 'Aqsh Prisma',
+            url: 'https://prisma.aqsh.co.jp/',
+            alternateName: ['Aqsh Prisma', 'Aqsh プリスマ'],
+        },
+        {
+            '@context': 'https://schema.org',
+            '@type': 'Organization',
+            name: 'Aqsh Prisma',
+            url: 'https://prisma.aqsh.co.jp/',
+            logo: 'https://prisma.aqsh.co.jp/logo.png',
+            sameAs: [
+                'https://aqsh.co.jp/',
+            ],
+        }
+    ];
+
     return (
         <html lang="ja" className={`${inter.variable} ${notoSerif.variable}`}>
             <body className="font-sans antialiased text-slate-800 bg-prisma-50 selection:bg-prisma-200 selection:text-prisma-900" suppressHydrationWarning={true}>
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+                />
                 {/* Noise Texture Overlay */}
                 <div className="fixed inset-0 z-0 pointer-events-none opacity-[0.4]" style={{ backgroundImage: 'url(/noise.svg)' }}></div>
 
