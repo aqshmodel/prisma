@@ -1,9 +1,14 @@
 import { WelcomePage } from '../features/welcome/WelcomePage';
 import type { Metadata } from 'next';
+import { getAllArticles } from '../features/articles/utils/mdx';
+import { ArticleSection } from '../features/welcome/components/ArticleSection';
 
 export const metadata: Metadata = {
     title: 'Aqsh Prisma | 無料16タイプ診断 ソシオニクス × ビジネス心理学',
     description: 'ソシオニクスとビジネス心理学に基づき、あなたのリーダーシップ特性と潜在リスクを可視化する次世代の組織診断ツール。',
+    alternates: {
+        canonical: 'https://prisma.aqsh.co.jp',
+    },
     openGraph: {
         title: 'Aqsh Prisma | 無料16タイプ診断 ソシオニクス × ビジネス心理学',
         description: 'ソシオニクスとビジネス心理学に基づき、あなたのリーダーシップ特性と潜在リスクを可視化する次世代の組織診断ツール。',
@@ -22,7 +27,18 @@ export const metadata: Metadata = {
     },
 };
 
+/**
+ * アプリケーションのトップページ (Server Component)
+ * Compositionパターンを利用し、重いデータフェッチ（記事一覧等）をサーバー側で行ってから
+ * Client Componentである `WelcomePage` にスロットとして流し込みます。
+ */
 export default function Home() {
+    const latestArticles = getAllArticles().slice(0, 3);
+
+    /**
+     * SoftwareApplication (JSON-LD)
+     * Webアプリケーションとしてのメタデータを検索エンジンにアピールします。
+     */
     const jsonLd = {
         "@context": "https://schema.org",
         "@type": "SoftwareApplication",
@@ -51,7 +67,9 @@ export default function Home() {
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
             />
-            <WelcomePage />
+            <WelcomePage
+                articleSlot={<ArticleSection articles={latestArticles} />}
+            />
         </>
     );
 }

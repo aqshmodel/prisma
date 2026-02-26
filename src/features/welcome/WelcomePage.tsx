@@ -13,7 +13,11 @@ import { HowToSection } from './components/HowToSection';
 import { FAQSection } from './components/FAQSection';
 import { CTASection } from './components/CTASection';
 
-export const WelcomePage: React.FC = () => {
+interface WelcomePageProps {
+    articleSlot?: React.ReactNode;
+}
+
+export const WelcomePage: React.FC<WelcomePageProps> = ({ articleSlot }) => {
     const router = useRouter();
     const resetDiagnosis = useDiagnosisStore((state) => state.resetDiagnosis);
     const answers = useDiagnosisStore((state) => state.answers);
@@ -52,6 +56,8 @@ export const WelcomePage: React.FC = () => {
             <TrustSection />
             <HowToSection />
             <FAQSection />
+
+            {articleSlot}
 
             <CTASection onStart={handleStart} />
         </div>

@@ -1,0 +1,13 @@
+RewriteEngine On
+
+# 1. 拡張子 .html を強制的に除去してスラッシュ付きにリダイレクト
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*)\.html$ /$1/ [R=301,L]
+
+# 2. スラッシュなしのURLにアクセスが来た場合、末尾にスラッシュをつける
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_URI} !(.*)/$
+RewriteRule ^(.*)$ /$1/ [R=301,L]
+
+# 3. 存在しないファイルやディレクトリへのアクセスを Next.js の 404 にルーティング
+ErrorDocument 404 /404.html

@@ -1,5 +1,6 @@
 import type { MetadataRoute } from 'next';
 import { OS_CONTENT } from '@/features/result/data/content-os';
+import { getAllArticles } from '@/features/articles/utils/mdx';
 
 export const dynamic = 'force-static';
 
@@ -21,6 +22,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
             changeFrequency: 'monthly',
             priority: 0.8,
         },
+        {
+            url: `${baseUrl}/articles`,
+            lastModified: currentDate,
+            changeFrequency: 'weekly',
+            priority: 0.8,
+        },
     ];
 
     // Dynamic Routes (16 Types)
@@ -31,5 +38,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
         priority: 0.7,
     }));
 
-    return [...staticRoutes, ...typeRoutes];
+    // Dynamic Routes (Articles)
+    const allArticles = getAllArticles();
+    const articleRoutes: MetadataRoute.Sitemap = allArticles.map((article) => ({
+        url: `${baseUrl}/articles/${article.slug}`,
+        lastModified: new Date(article.date), // MDXの実際の更新日を使用（SEOベストプラクティス）
+        changeFrequency: 'monthly',
+        priority: 0.7,
+    }));
+
+    return [...staticRoutes, ...typeRoutes, ...articleRoutes];
 }

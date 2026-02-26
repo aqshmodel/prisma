@@ -23,7 +23,7 @@ export const HowToSection: React.FC = () => {
                         step={1}
                         icon={<MousePointerClick className="w-6 h-6 text-prisma-600" />}
                         title="72の質問に回答"
-                        desc="ブラウザ上で直感的に回答。所要時間は約5分〜8分です。アカウント登録は必要ありません。"
+                        desc="ブラウザ上で直感的に回答。所要時間は約10分〜15分です。アカウント登録は必要ありません。"
                     />
                     <StepItem
                         step={2}

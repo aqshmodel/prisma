@@ -112,7 +112,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onStart, onResume, onV
                             </Button>
                         )}
                         <p className="text-xs text-slate-400 font-medium tracking-wider mt-2 font-serif">
-                            所要時間：約 5分  |  登録不要
+                            所要時間：約 10分  |  登録不要
                         </p>
                     </div>
                 </div>

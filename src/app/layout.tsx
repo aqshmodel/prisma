@@ -10,6 +10,10 @@ const notoSerif = Noto_Serif_JP({
     variable: '--font-serif'
 });
 
+/**
+ * プロジェクト全体のフォールバックとなるデフォルトメタデータ
+ * 各ページで上書き（override）されない項目には、ここに定義された内容が反映されます。
+ */
 export const metadata: Metadata = {
     metadataBase: new URL('https://prisma.aqsh.co.jp'),
     title: 'Aqsh Prisma | 無料16タイプ診断 ソシオニクス × ビジネス心理学',
@@ -42,11 +46,19 @@ export const metadata: Metadata = {
     },
 };
 
+/**
+ * 全ページ共通のルートレイアウト (Server Component)
+ * JSON-LD（組織情報等）や共通のナビゲーション枠、フォントの設定を行います。
+ */
 export default function RootLayout({
     children,
 }: {
     children: React.ReactNode;
 }) {
+    /**
+     * WebSite および Organization の情報構造化データ
+     * 検索エンジンがこのサイトを提供する運営元情報を正確にインデックスできるようにします。
+     */
     const jsonLd = [
         {
             '@context': 'https://schema.org',

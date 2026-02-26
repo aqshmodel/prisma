@@ -30,7 +30,7 @@ export const CTASection: React.FC<CTASectionProps> = ({ onStart }) => {
                         <ArrowRight className="w-6 h-6 ml-2" />
                     </Button>
                     <p className="mt-4 text-sm text-slate-600">
-                        所要時間：約5分 | 登録不要
+                        所要時間：約10分 | 登録不要
                     </p>
                 </div>
             </div>

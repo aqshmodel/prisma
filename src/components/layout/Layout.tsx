@@ -22,7 +22,11 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
                     <Link href="/" className="text-xl font-serif font-bold text-slate-800 tracking-tight hover:opacity-70 transition-opacity">
                         Aqsh <span className="text-prisma-600">PRISMA</span>
                     </Link>
-                    {/* Future: Add Nav Links here */}
+                    <nav className="flex items-center gap-6 text-sm font-medium">
+                        <Link href="/articles" className="text-slate-600 hover:text-prisma-600 transition-colors">
+                            コラム
+                        </Link>
+                    </nav>
                 </div>
             </header>
 
@@ -51,7 +55,8 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
                                 チームの可能性を最大化する。
                             </p>
                         </div>
-                        <div className="flex gap-6 text-sm text-slate-400 font-medium">
+                        <div className="flex flex-wrap justify-center md:justify-end gap-6 text-sm text-slate-400 font-medium">
+                            <Link href="/articles" className="hover:text-white transition-colors">コラム</Link>
                             <Link href="https://aqsh.co.jp/privacypolicy/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Privacy Policy</Link>
                             <Link href="https://aqsh.co.jp/aqsh-termofservice/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Terms of Service</Link>
                             <Link href="https://aqsh.co.jp/contact/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Contact</Link>
