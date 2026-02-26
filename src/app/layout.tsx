@@ -54,6 +54,7 @@ export default function RootLayout({
             name: 'Aqsh Prisma',
             url: 'https://prisma.aqsh.co.jp/',
             alternateName: ['Aqsh Prisma', 'Aqsh プリスマ'],
+            description: 'ソシオニクスとビジネス心理学に基づき、あなたのリーダーシップ特性と潜在リスクを可視化する次世代の組織診断ツール。',
         },
         {
             '@context': 'https://schema.org',
