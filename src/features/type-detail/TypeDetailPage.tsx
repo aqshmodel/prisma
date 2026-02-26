@@ -17,6 +17,29 @@ import { Card } from '../../components/ui/Card';
 import { FormattedText } from '../../components/ui/FormattedText';
 import { RadarChart } from '../result/components/RadarChart';
 import { ShareButtons } from '../../components/common/ShareButtons';
+import { useReactToPrint } from 'react-to-print';
+import { TorisetsuPrintLayout } from './components/TorisetsuPrintLayout';
+
+// Color mapping definition from ResultPage.tsx (for themeColor resolution)
+const COLOR_MAP: Record<string, string> = {
+    'sky-500': '#0ea5e9',
+    'emerald-400': '#34d399',
+    'orange-400': '#fb923c',
+    'indigo-500': '#6366f1',
+    'rose-500': '#f43f5e',
+    'slate-600': '#475569',
+    'red-600': '#dc2626',
+    'violet-400': '#a78bfa',
+    'amber-500': '#f59e0b',
+    'blue-800': '#1e40af',
+    'blue-600': '#2563eb',
+    'teal-600': '#0ababa',
+    'cyan-700': '#078282',
+    'prisma-500': '#0ABAB5',
+    'fuchsia-400': '#e879f9',
+    'yellow-400': '#facc15',
+    'gray-500': '#6b7280',
+};
 
 export const TypeDetailPage: React.FC = () => {
     const params = useParams();
@@ -26,6 +49,36 @@ export const TypeDetailPage: React.FC = () => {
     const osData = useMemo(() => {
         return code ? OS_CONTENT[code as keyof typeof OS_CONTENT] : null;
     }, [code]);
+
+    const themeColor = osData ? (COLOR_MAP[osData.color] || '#6366f1') : '#6366f1';
+
+    // Print logic state and ref
+    const [isPrinting, setIsPrinting] = React.useState(false);
+    const printRef = React.useRef<HTMLDivElement>(null);
+    const promiseResolveRef = React.useRef<(() => void) | null>(null);
+
+    const handlePrint = useReactToPrint({
+        contentRef: printRef,
+        documentTitle: `Aqsh_Prisma_Torisetsu_${osData?.code || 'Type'}`,
+        onBeforePrint: React.useCallback(() => {
+            return new Promise<void>((resolve) => {
+                promiseResolveRef.current = resolve;
+                setIsPrinting(true);
+            });
+        }, []),
+        onAfterPrint: React.useCallback(() => {
+            promiseResolveRef.current = null;
+            setIsPrinting(false);
+        }, []),
+    });
+
+    React.useEffect(() => {
+        if (isPrinting && promiseResolveRef.current) {
+            // DOMがマウント（レンダリング）された直後にresolveする
+            promiseResolveRef.current();
+            promiseResolveRef.current = null;
+        }
+    }, [isPrinting]);
 
     if (!osData) {
         return (
@@ -191,6 +244,18 @@ export const TypeDetailPage: React.FC = () => {
                         title={`【16性格診断】${osData.name} (${osData.code}) の詳細`}
                         text={`${osData.catchphrase} #16性格診断`}
                     />
+                    <div className="mt-8">
+                        <Button
+                            variant="primary"
+                            onClick={() => handlePrint()}
+                            disabled={isPrinting}
+                            className={`flex items-center gap-2 mx-auto shadow-md ${isPrinting ? 'opacity-50 cursor-not-allowed' : ''}`}
+                        >
+                            <FileText size={18} />
+                            {isPrinting ? 'PDFを準備中...' : 'このタイプの取扱説明書（PDF）を作成'}
+                        </Button>
+                        <p className="text-xs text-slate-400 mt-2">※ A4サイズで綺麗に印刷・保存できます</p>
+                    </div>
                 </section>
 
                 {/* All Types Nav */}
@@ -218,6 +283,13 @@ export const TypeDetailPage: React.FC = () => {
                     </div>
                 </section>
             </div>
+
+            {/* Print Mount Node (On-Demand) */}
+            {isPrinting && (
+                <div className="invisible h-0 overflow-hidden" aria-hidden="true">
+                    <TorisetsuPrintLayout ref={printRef} osData={osData} themeColor={themeColor} />
+                </div>
+            )}
         </div>
     );
 };

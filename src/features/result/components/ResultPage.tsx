@@ -59,11 +59,32 @@ export const ResultPage: React.FC = () => {
     const reset = useDiagnosisStore((state) => state.resetDiagnosis);
     const [activeTab, setActiveTab] = useState<TabType>('overview');
 
+    // Print logic state and ref
+    const [isPrinting, setIsPrinting] = useState(false);
     const componentRef = useRef<HTMLDivElement>(null);
+    const promiseResolveRef = useRef<(() => void) | null>(null);
+
     const handlePrint = useReactToPrint({
         contentRef: componentRef,
         documentTitle: `Prisma_Result_${result?.os.code || 'Analysis'}`,
+        onBeforePrint: React.useCallback(() => {
+            return new Promise<void>((resolve) => {
+                promiseResolveRef.current = resolve;
+                setIsPrinting(true);
+            });
+        }, []),
+        onAfterPrint: React.useCallback(() => {
+            promiseResolveRef.current = null;
+            setIsPrinting(false);
+        }, []),
     });
+
+    useEffect(() => {
+        if (isPrinting && promiseResolveRef.current) {
+            promiseResolveRef.current();
+            promiseResolveRef.current = null;
+        }
+    }, [isPrinting]);
 
     const restore = useDiagnosisStore((state) => state.restoreLastResult);
     const history = useDiagnosisStore((state) => state.history);
@@ -272,10 +293,11 @@ export const ResultPage: React.FC = () => {
                         <Button
                             variant="outline"
                             onClick={() => handlePrint()}
-                            className="flex items-center gap-2 text-slate-600 hover:text-slate-800 border-slate-300"
+                            disabled={isPrinting}
+                            className={`flex items-center gap-2 text-slate-600 border-slate-300 ${isPrinting ? 'opacity-50 cursor-not-allowed' : 'hover:text-slate-800'}`}
                         >
                             <Download size={18} />
-                            PDFで保存する
+                            {isPrinting ? '準備中...' : 'PDFで保存する'}
                         </Button>
 
                         <Button
@@ -290,17 +312,19 @@ export const ResultPage: React.FC = () => {
                 </div>
             </div>
 
-            {/* Hidden Print Layout */}
-            <div className="hidden">
-                <PrintLayout
-                    ref={componentRef}
-                    result={result}
-                    osData={osData}
-                    engineData={engineData}
-                    biasRisks={biasRisks}
-                    themeColor={themeColor}
-                />
-            </div>
+            {/* Print Mount Node (On-Demand) */}
+            {isPrinting && (
+                <div className="invisible h-0 overflow-hidden" aria-hidden="true">
+                    <PrintLayout
+                        ref={componentRef}
+                        result={result}
+                        osData={osData}
+                        engineData={engineData}
+                        biasRisks={biasRisks}
+                        themeColor={themeColor}
+                    />
+                </div>
+            )}
 
         </div>
     );
