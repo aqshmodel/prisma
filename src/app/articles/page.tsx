@@ -47,6 +47,9 @@ export default function ArticlesPage() {
             <div className="min-h-screen bg-slate-50 pb-20">
                 {/* Header */}
                 <div className="bg-white border-b border-slate-200 sticky top-0 z-50">
+                    {/* 背景だけを画面幅いっぱいに引き延ばすフルブリードハック */}
+                    <div className="absolute inset-0 bg-white border-b border-slate-200 w-screen left-1/2 -translate-x-1/2 -z-10" aria-hidden="true" />
+
                     <div className="max-w-4xl md:max-w-6xl xl:max-w-[1200px] mx-auto px-4 h-16 flex items-center justify-between">
                         <Link href="/" className="text-slate-500 hover:text-slate-800 flex items-center gap-2 font-medium">
                             <ArrowLeft size={20} />
