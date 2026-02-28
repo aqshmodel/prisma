@@ -1,9 +1,9 @@
 
 import Link from 'next/link';
-import Image from 'next/image';
 import type { Metadata } from 'next';
 import { getAllArticles } from '../../features/articles/utils/mdx';
-import { ArrowLeft, BookOpen, Calendar } from 'lucide-react';
+import { ArticleList } from '../../features/articles/components/ArticleList';
+import { ArrowLeft, BookOpen } from 'lucide-react';
 
 /**
  * 記事一覧ページの静的メタデータ
@@ -76,61 +76,13 @@ export default function ArticlesPage() {
 
                 {/* Article List */}
                 <div className="max-w-3xl md:max-w-5xl xl:max-w-[1200px] mx-auto px-4 mt-12">
-                    {articles.length === 0 ? (
-                        <div className="text-center text-slate-500 py-12">
-                            記事が公開されていません。
-                        </div>
-                    ) : (
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-                            {articles.map((article) => (
-                                <Link
-                                    href={`/articles/${article.slug}`}
-                                    key={article.slug}
-                                    className="group bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden hover:shadow-md transition-all flex flex-col"
-                                >
-                                    <div className="h-48 bg-slate-200 relative overflow-hidden">
-                                        {/* next/image を使用し、帯域と描画パフォーマンスを最適化 */}
-                                        {article.coverImage ? (
-                                            <Image
-                                                src={article.coverImage}
-                                                alt={article.title}
-                                                fill
-                                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 33vw"
-                                                className="object-cover transition-transform duration-700 group-hover:scale-105"
-                                            />
-                                        ) : (
-                                            <div className="absolute inset-0 bg-gradient-to-br from-prisma-500/20 to-indigo-500/20" aria-hidden="true" />
-                                        )}
-                                    </div>
-                                    <div className="p-6 flex flex-col flex-grow">
-                                        <div className="flex items-center gap-2 text-xs text-slate-500 font-medium mb-3">
-                                            <span className="bg-prisma-50 text-prisma-700 px-2 py-1 rounded-md">
-                                                {article.category || 'コラム'}
-                                            </span>
-                                            <span className="flex items-center gap-1">
-                                                <Calendar size={12} />
-                                                {article.date}
-                                            </span>
-                                        </div>
-                                        <h2 className="text-xl font-bold text-slate-800 leading-tight mb-3 group-hover:text-prisma-600 transition-colors line-clamp-2">
-                                            {article.title}
-                                        </h2>
-                                        <p className="text-sm text-slate-600 line-clamp-3 mb-4">
-                                            {article.description}
-                                        </p>
-                                        <div className="mt-auto pt-4 border-t border-slate-100 flex items-center justify-between">
-                                            <span className="text-xs text-slate-400 font-medium">
-                                                {article.author || 'Aqsh Prisma Team'}
-                                            </span>
-                                            <span className="text-sm font-bold text-prisma-600 group-hover:translate-x-1 transition-transform">
-                                                続きを読む →
-                                            </span>
-                                        </div>
-                                    </div>
-                                </Link>
-                            ))}
-                        </div>
-                    )}
+                    <ArticleList
+                        articles={articles.slice(0, 10)}
+                        currentPage={1}
+                        totalPages={Math.ceil(articles.length / 10)}
+                        basePath="/articles/page"
+                        defaultPath="/articles"
+                    />
                 </div>
             </div>
         </>
