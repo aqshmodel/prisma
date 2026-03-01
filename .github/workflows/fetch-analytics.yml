@@ -1,0 +1,52 @@
+name: Fetch SEO Analytics Data
+
+on:
+  schedule:
+    # 毎週月曜日の UTC 0:00 (日本時間の 月曜 9:00) に自動実行
+    - cron: '0 0 * * 1'
+  workflow_dispatch: # GitHubの画面から手動ボタンで実行したい時のため
+
+jobs:
+  fetch-analytics:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # 変更をリポジトリにpushするための権限
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          # プッシュするためにTokenが必要
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: pip install -r scripts/requirements.txt
+
+      - name: Create Google Credentials File
+        # GitHub SecretsにあるJSON文字列を一時ファイルとして書き出す
+        run: |
+          echo "${{ secrets.GOOGLE_APPLICATION_CREDENTIALS_JSON }}" > google-key.json
+
+      - name: Fetch Analytics Data
+        env:
+          # 書き出したJSONファイルのパスと、その他のSecretsをスクリプトの環境変数に渡す
+          GOOGLE_APPLICATION_CREDENTIALS: google-key.json
+          GA4_PROPERTY_ID: ${{ secrets.GA4_PROPERTY_ID }}
+          GSC_SITE_URL: ${{ secrets.GSC_SITE_URL }}
+        run: python scripts/fetch_analytics_data.py
+
+      - name: Commit and Push changes
+        # 取得した出力ファイル(documents/analytics配下)をGit commitしてPushする
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git add documents/analytics/
+          # 変更がある場合のみコミットする
+          git diff --staged --quiet || git commit -m "docs(analytics): Auto-fetch SEO analytics data [skip ci]"
+          git push origin HEAD

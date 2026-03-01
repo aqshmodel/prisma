@@ -1,0 +1,5 @@
+google-api-python-client
+google-analytics-data
+python-dotenv
+pandas
+oauth2client

@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Inter, Noto_Serif_JP } from 'next/font/google';
 import './globals.css';
 import { Layout } from '../components/layout/Layout';
+import { GoogleAnalytics } from '../components/GoogleAnalytics';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 const notoSerif = Noto_Serif_JP({
@@ -81,8 +82,9 @@ export default function RootLayout({
     ];
 
     return (
-        <html lang="ja" className={`${inter.variable} ${notoSerif.variable}`}>
+        <html lang="ja" className={`${inter.variable} ${notoSerif.variable}`} suppressHydrationWarning={true}>
             <body className="font-sans antialiased text-slate-800 bg-prisma-50 selection:bg-prisma-200 selection:text-prisma-900" suppressHydrationWarning={true}>
+                <GoogleAnalytics />
                 <script
                     type="application/ld+json"
                     dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

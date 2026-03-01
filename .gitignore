@@ -24,8 +24,14 @@ dist-ssr
 *.sw?
 
 # Project specific
-documents/
-docs/
+# documents/ や docs/ は戦略資料などを管理するために全体除外を解除
 .next/
 out/
 skills/
+
+docs/
+documents/
+
+# Google API Keys
+google-key/
+
