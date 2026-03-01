@@ -13,12 +13,12 @@ export const SolutionSection: React.FC = () => {
                         Scientific Approach
                     </span>
                     <h2 className="text-3xl md:text-5xl font-serif font-medium text-slate-900 leading-[1.4] md:leading-[1.3] tracking-tight text-balance">
-                        <span className="inline-block">見えない「摩擦」を、</span><br className="hidden md:block" />
+                        <span className="inline-block">見えない「根本原因」を、</span><br className="hidden md:block" />
                         <span className="inline-block"><span className="text-prisma-600 inline-block">見える「データ」</span>に変える。</span>
                     </h2>
                     <p className="text-slate-600 text-base md:text-lg leading-[1.8] md:leading-loose tracking-wide font-medium">
-                        <span className="inline-block">Aqsh Prismaは、個人の特性を3つのレイヤーで分析。</span><br className="hidden md:block" />
-                        <span className="inline-block">感覚や経験則に頼らない、科学的な組織マネジメントを実現します。</span>
+                        <span className="inline-block">Aqsh Prismaは、あなたの特性を4つのレイヤーで分析。</span><br className="hidden md:block" />
+                        <span className="inline-block">感覚や経験則に頼らない、科学的な「自分だけの取扱説明書」を生成します。</span>
                     </p>
                 </div>
 
@@ -76,7 +76,7 @@ const items = [
     },
     {
         title: "バイアスリスク (Risk)",
-        description: "意思決定を歪める「認知バイアス」の傾向を予測。リーダーシップにおける落とし穴を事前に回避します。",
+        description: "意思決定や人間関係を歪める「認知バイアス」の傾向を予測。キャリアや恋愛における落とし穴を事前に回避します。",
         header: (
             <Skeleton className="flex items-center justify-center bg-rose-50/30">
                 <ShieldCheck className="w-16 h-16 text-rose-300/80" />
@@ -85,8 +85,8 @@ const items = [
         icon: <ShieldCheck className="h-6 w-6 text-slate-400 group-hover/bento:text-rose-400 transition-colors" />,
     },
     {
-        title: "組織マトリクス (Matrix)",
-        description: "チームメンバー全員のタイプをマッピング。相関関係を可視化し、最適な配置とコミュニケーション戦略を立案します。",
+        title: "関係性マトリクス (Match)",
+        description: "他の15タイプとの相関関係を可視化。誰と最高のシナジーを生み、誰と摩擦が起きやすいのか、関係性の予測マップを手に入れます。",
         header: (
             <Skeleton className="flex items-center justify-center bg-slate-50 relative overflow-hidden">
                 <div className="absolute inset-0 grid grid-cols-8 grid-rows-4 gap-px opacity-[0.03]">

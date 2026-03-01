@@ -14,8 +14,8 @@ export const BenefitSection: React.FC = () => {
                         Why Prisma?
                     </span>
                     <h2 className="text-3xl md:text-5xl font-serif font-medium text-slate-900 leading-[1.4] md:leading-[1.2] tracking-tight text-balance">
-                        <span className="inline-block">個人の成長が、</span><br className="hidden md:block" />
-                        <span className="inline-block"><span className="text-prisma-600">組織の進化</span>に直結する。</span>
+                        <span className="inline-block">自己理解の深さが、</span><br className="hidden md:block" />
+                        <span className="inline-block"><span className="text-prisma-600">人生の質</span>に直結する。</span>
                     </h2>
                 </div>
 
@@ -23,22 +23,22 @@ export const BenefitSection: React.FC = () => {
                     <BenefitCard
                         icon={<Target className="w-8 h-8" />}
                         title="Deep Insight"
-                        subtitle="自己認識の深化"
-                        description="自分が何者で、どこへ向かうべきかが明確になります。強みを活かし、弱点を補うための具体的な指針が得られます。"
+                        subtitle="自分だけの取扱説明書"
+                        description="自分が何者で、どこへ向かうべきかが明確に。得意なことだけでなく、絶対に避けるべき「致死量のタスク」まで可視化します。"
                         delay={0}
                     />
                     <BenefitCard
                         icon={<Users className="w-8 h-8" />}
                         title="Empathy"
-                        subtitle="相互理解の促進"
-                        description="「なぜあの人はそう動くのか」が腑に落ちます。感情的な対立が減り、建設的な対話が生まれる土壌を作ります。"
+                        subtitle="人間関係のノイズ削減"
+                        description="「なぜあの人はあんな態度をとるのか」が腑に落ちます。不毛な感情対立が減り、ストレスのない関係構築の土台が作れます。"
                         delay={100}
                     />
                     <BenefitCard
                         icon={<TrendingUp className="w-8 h-8" />}
-                        title="Synergy"
-                        subtitle="パフォーマンス最大化"
-                        description="適材適所の配置と、個性に合わせたマネジメントにより、チーム全体の生産性が劇的に向上します。"
+                        title="Life Hack"
+                        subtitle="才能の最大化"
+                        description="無理に自分を変えるのではなく、持って生まれた「脳のOS」を活かしきることで、仕事も恋愛も本来の力を発揮できるようになります。"
                         delay={200}
                     />
                 </div>

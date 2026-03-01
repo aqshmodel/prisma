@@ -4,14 +4,14 @@ import { getAllArticles } from '../features/articles/utils/mdx';
 import { ArticleSection } from '../features/welcome/components/ArticleSection';
 
 export const metadata: Metadata = {
-    title: 'Aqsh Prisma | 無料16タイプ診断 ソシオニクス × ビジネス心理学',
-    description: 'ソシオニクスとビジネス心理学に基づき、あなたのリーダーシップ特性と潜在リスクを可視化する次世代の組織診断ツール。',
+    title: 'Aqsh Prisma | 16タイプ×エニアグラム 無料性格診断・自己分析',
+    description: 'あなたの「脳のOS」と「心のエンジン」を科学する無料性格診断。16タイプ（ソシオニクス）とエニアグラムを用いて、人間関係の摩擦、恋愛のすれ違い、キャリアの迷いの根本原因を精緻に言語化します。',
     alternates: {
         canonical: 'https://prisma.aqsh.co.jp',
     },
     openGraph: {
-        title: 'Aqsh Prisma | 無料16タイプ診断 ソシオニクス × ビジネス心理学',
-        description: 'ソシオニクスとビジネス心理学に基づき、あなたのリーダーシップ特性と潜在リスクを可視化する次世代の組織診断ツール。',
+        title: 'Aqsh Prisma | 16タイプ×エニアグラム 無料性格診断・自己分析',
+        description: 'あなたの「脳のOS」と「心のエンジン」を科学する無料性格診断。16タイプ（ソシオニクス）とエニアグラムを用いて、人間関係の摩擦、恋愛のすれ違い、キャリアの迷いの根本原因を精緻に言語化します。',
         url: 'https://prisma.aqsh.co.jp/',
         siteName: 'Aqsh Prisma',
         images: [
@@ -41,9 +41,9 @@ export default function Home() {
      */
     const jsonLd = {
         "@context": "https://schema.org",
-        "@type": "SoftwareApplication",
-        "name": "Aqsh Prisma",
-        "applicationCategory": "BusinessApplication",
+        "@type": "WebApplication",
+        "name": "Aqsh Prisma 性格診断テスト",
+        "applicationCategory": "LifestyleApplication",
         "operatingSystem": "Web Browser",
         "offers": {
             "@type": "Offer",
@@ -51,12 +51,12 @@ export default function Home() {
             "priceCurrency": "JPY",
             "availability": "https://schema.org/InStock"
         },
-        "description": "ソシオニクスとビジネス心理学に基づき、リーダーシップ特性と潜在リスクを可視化する次世代の組織診断ツール。",
+        "description": "あなたの「脳のOS」と「心のエンジン」を科学する無料性格診断。16タイプ（ソシオニクス）とエニアグラムを用いて、生きづらさの根本原因を言語化します。",
         "featureList": [
-            "16タイプの基本特性分析",
-            "モチベーションエンジンの特定",
-            "バイアスリスクの検知",
-            "組織マトリクスによる配置最適化"
+            "16タイプ診断による認知パターンの特定",
+            "エニアグラムによる無意識のモチベーション分析",
+            "恋愛・キャリア・人間関係の摩擦原因の可視化",
+            "自分専用の取扱説明書（トリセツ）の生成"
         ],
         "screenshot": "https://prisma.aqsh.co.jp/hero-image.png"
     };

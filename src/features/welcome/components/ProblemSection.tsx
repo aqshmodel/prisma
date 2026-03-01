@@ -4,18 +4,18 @@ import { BatteryWarning, HelpCircle, Frown } from 'lucide-react';
 const problems = [
     {
         icon: <HelpCircle className="w-8 h-8 transition-colors" />,
-        title: "伝わらない",
-        desc: "論理的に説明しても、なぜか相手には響かない。あるいは感情論ばかりで話が進まない。"
+        title: "わかりあえない",
+        desc: "「なんでそんな言い方をするの？」「どうして分かってくれないの？」恋愛や職場の人間関係で、いつも同じすれ違いを繰り返してしまう。"
     },
     {
         icon: <BatteryWarning className="w-8 h-8 transition-colors" />,
-        title: "噛み合わない",
-        desc: "お互いに良かれと思ってやっていることが、なぜか裏目に出てトラブルになる。"
+        title: "見つからない",
+        desc: "今の仕事が向いていない気がするけれど、本当にやりたいことも分からない。「自分らしさ」が迷子になっている。"
     },
     {
         icon: <Frown className="w-8 h-8 transition-colors" />,
-        title: "評価されない",
-        desc: "自分の強みが活かせる仕事が回ってこない。チーム内での立ち位置が見つからない。"
+        title: "満たされない",
+        desc: "誰かの期待に応えようと頑張りすぎて、得体のしれない疲れが抜けない。休日も心から休まらない。"
     },
 ];
 
@@ -33,12 +33,12 @@ export const ProblemSection: React.FC = () => {
                         The Problem
                     </span>
                     <h2 className="text-3xl md:text-5xl font-serif font-medium text-slate-900 leading-[1.4] md:leading-[1.3] tracking-tight text-balance">
-                        <span className="inline-block">優秀なメンバーが集まっても、</span><br className="hidden md:block" />
-                        <span className="inline-block"><span className="text-prisma-600">成果が出ない</span>理由。</span>
+                        <span className="inline-block">あなたがいつも抱えている、</span><br className="hidden md:block" />
+                        <span className="inline-block">その<span className="text-prisma-600">生きづらさ</span>の理由。</span>
                     </h2>
                     <p className="text-slate-600 text-base md:text-lg leading-[1.8] md:leading-loose tracking-wide font-medium">
-                        <span className="inline-block">組織の停滞を生むのは「能力不足」ではありません。</span><br className="hidden md:block" />
-                        <span className="inline-block">それは、お互いの<span className="text-slate-900 font-bold border-b-2 border-prisma-300/50 inline-block leading-snug">「認知のズレ」</span>が原因かもしれません。</span>
+                        <span className="inline-block">人生のモヤモヤを生むのは、あなたの「性格の欠陥」ではありません。</span><br className="hidden md:block" />
+                        <span className="inline-block">それは、あなたと世界の<span className="text-slate-900 font-bold border-b-2 border-prisma-300/50 inline-block leading-snug">「認知のズレ」</span>が原因かもしれないのです。</span>
                     </p>
                 </div>
 
@@ -68,8 +68,8 @@ export const ProblemSection: React.FC = () => {
                                 Key Insight
                             </span>
                             <h3 className="text-xl md:text-2xl font-serif text-slate-800 leading-relaxed">
-                                <span className="inline-block">これらの摩擦は、性格の不一致ではなく</span><br className="hidden md:block" />
-                                <span className="inline-block"><span className="text-prisma-600 font-bold">「情報処理タイプ」</span>と<span className="text-amber-500 font-bold">「モチベーション」</span>の</span><br className="hidden md:block" />
+                                <span className="inline-block">これらの摩擦や悩みは、努力不足ではなく</span><br className="hidden md:block" />
+                                <span className="inline-block"><span className="text-prisma-600 font-bold">「情報処理タイプ（脳のOS）」</span>と<span className="text-amber-500 font-bold">「欲求（心のエンジン）」</span>の</span><br className="hidden md:block" />
                                 <span className="inline-block">構造的なミスマッチから生まれています。</span>
                             </h3>
                         </div>

@@ -28,12 +28,12 @@ export const TrustSection: React.FC = () => {
                     <TrustCard
                         icon={<Users className="w-6 h-6 text-prisma-300" />}
                         title="Socionics"
-                        desc={<>タイプ間の「情報代謝」をモデル化したソシオニクス理論を採用。<span className="text-prisma-200 font-bold">相性のメカニズム</span>を論理的に解明します。</>}
+                        desc={<>16タイプ間の相性をモデル化したソシオニクス理論を採用。<span className="text-prisma-200 font-bold">恋愛や人間関係の摩擦メカニズム</span>を論理的に解明します。</>}
                     />
                     <TrustCard
                         icon={<Scale className="w-6 h-6 text-prisma-300" />}
-                        title="Business Psychology"
-                        desc={<>現代の組織論と行動経済学を統合。理論を実務で使える<span className="text-prisma-200 font-bold">マネジメント指標</span>へと昇華させました。</>}
+                        title="Enneagram"
+                        desc={<>古代から伝わるエニアグラム理論を統合。行動の裏にある<span className="text-prisma-200 font-bold">無意識の欲求・恐れ</span>という心のエンジンを描き出します。</>}
                     />
                 </div>
 
@@ -48,9 +48,9 @@ export const TrustSection: React.FC = () => {
                                 <div>
                                     <h3 className="text-2xl font-serif font-bold mb-4 text-white">Why it works</h3>
                                     <p className="text-slate-300 leading-relaxed text-lg">
-                                        多くの適性検査が「行動」や「発言」という<span className="text-white font-bold border-b border-prisma-500/50">表面的な現象</span>を測定するのに対し、
-                                        Aqsh Prismaはその源泉となる<span className="text-white font-bold border-b border-prisma-500/50">「思考回路」</span>を特定します。
-                                        そのため、環境が変わってもブレない本質的な特性を理解することができます。
+                                        多くの性格診断が「よくある行動」や「気分」という<span className="text-white font-bold border-b border-prisma-500/50">表面的な現象</span>だけを測定するのに対し、
+                                        Aqsh Prismaはその源泉となる<span className="text-white font-bold border-b border-prisma-500/50">「脳のOS」</span>と<span className="text-white font-bold border-b border-prisma-500/50">「心のエンジン」</span>を特定します。
+                                        そのため、環境や気分で結果がブレにくく、本質的なあなたの自己理解を助けます。
                                     </p>
                                 </div>
                             </div>

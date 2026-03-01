@@ -38,7 +38,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onStart, onResume, onV
                     <h1 className="font-serif text-3xl sm:text-5xl md:text-6xl lg:text-7xl text-slate-900 leading-tight lg:leading-[1.2] tracking-wide font-medium">
                         <br className="hidden lg:block" />
                         <span className="italic relative inline-block mr-2">
-                            <span className="relative z-10 text-prisma-600 inline-block">真の駆動力</span>
+                            <span className="relative z-10 text-prisma-600 inline-block">あなたの生きづらさ</span>
                             <span className="absolute bottom-2 left-0 w-full h-2 lg:h-3 bg-prisma-200/40 -z-10 -rotate-1 rounded-sm"></span>
                         </span>
                         を、<br className="lg:hidden" />
@@ -47,11 +47,11 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onStart, onResume, onV
 
                     <div className="max-w-lg lg:max-w-2xl text-left mx-auto lg:mx-0 space-y-6 md:space-y-8">
                         <p className="text-slate-600 text-base lg:text-lg leading-[1.8] md:leading-[2.2] font-normal tracking-wide">
-                            <span className="inline-block">なぜ、あの人とは話が合わないのか。</span>
-                            <span className="inline-block">優秀なメンバーが集まっても、なぜ<span className="text-prisma-600 font-bold">成果が出ない</span>のか。</span>
+                            <span className="inline-block">なぜ、あの人とは分かり合えないのか。</span>
+                            <span className="inline-block">なぜ、いつも同じパターンで<span className="text-prisma-600 font-bold">疲れてしまう</span>のか。</span>
                             <br className="block my-2" />
-                            <span className="inline-block">Aqsh Prismaは、ソシオニクスとビジネス心理学に基づき、</span>
-                            <span className="inline-block">あなたの「認知パターン」と「モチベーションエンジン」を紐解きます。</span>
+                            <span className="inline-block">Aqsh Prismaは、16タイプ性格診断とエニアグラムの力で、</span>
+                            <span className="inline-block">あなたの「脳のOS」と「心のエンジン」を紐解く自己分析ツールです。</span>
                         </p>
                     </div>
 
