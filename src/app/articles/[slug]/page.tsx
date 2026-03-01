@@ -6,6 +6,7 @@ import { MDXRemote } from 'next-mdx-remote/rsc';
 import { getArticleBySlug, getArticleSlugs } from '../../../features/articles/utils/mdx';
 import { ArrowLeft, Calendar, User, Tag } from 'lucide-react';
 import { ShareButtons } from '../../../components/common/ShareButtons';
+import { DiagnosisCTA } from '@/features/articles/components/DiagnosisCTA';
 
 /**
  * SSG（静的生成）のためのパス一覧をNext.jsに提供します。
@@ -66,6 +67,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 const components = {
     // 例: h2タグにカスタムスタイルを適用する場合
     // h2: (props: any) => <h2 className="text-2xl font-bold text-slate-800 mt-8 mb-4 border-l-4 border-prisma-500 pl-4" {...props} />,
+    DiagnosisCTA,
 };
 
 /**
