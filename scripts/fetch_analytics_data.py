@@ -131,15 +131,18 @@ def fetch_gsc_data(service, dimension="query", days=30):
 
 def save_to_markdown(ga4_data, gsc_query_data, gsc_page_data, out_dir):
     # GA4
-    if ga4_data:
+    if ga4_data is not None:
         md_path = os.path.join(out_dir, "ga4_summary.md")
         sorted_data = sorted(ga4_data, key=lambda x: x['page_views'], reverse=True)
         with open(md_path, "w", encoding="utf-8") as f:
             f.write(f"# GA4 Analytics Summary ({datetime.now().strftime('%Y-%m')})\n\n")
             f.write("| Page Path | Page Views | Active Users | Avg Session (s) |\n")
             f.write("|---|---|---|---|\n")
-            for row in sorted_data[:50]:
-                f.write(f"| {row['page_path']} | {row['page_views']} | {row['users']} | {row['avg_session_duration']:.1f} |\n")
+            if len(sorted_data) == 0:
+                f.write("| (No data) | 0 | 0 | 0.0 |\n")
+            else:
+                for row in sorted_data[:50]:
+                    f.write(f"| {row['page_path']} | {row['page_views']} | {row['users']} | {row['avg_session_duration']:.1f} |\n")
         print(f"Saved GA4 markdown summary to {md_path}")
 
     # GSC Queries
@@ -167,7 +170,9 @@ def main():
     # GA4
     print("Fetching GA4 data...")
     ga4_data = fetch_ga4_data()
-    if ga4_data:
+    if ga4_data is not None:
+        if len(ga4_data) == 0:
+            print("Note: GA4 fetch succeeded, but returned 0 rows (no traffic in the last 30 days).")
         with open(os.path.join(out_dir, "ga4_raw_data.json"), "w", encoding="utf-8") as f:
             json.dump(ga4_data, f, indent=2, ensure_ascii=False)
             
