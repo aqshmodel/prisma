@@ -29,11 +29,11 @@ jobs:
         run: pip install -r scripts/requirements.txt
 
       - name: Create Google Credentials File
-        # GitHub SecretsにあるBase64エンコード済みのJSONをデコードして一時ファイルとして書き出す
+        # macOS等で生成したBase64文字列（改行を含む）を確実にデコードするためPythonを使用します
         env:
           GOOGLE_CREDENTIALS_B64: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS_B64 }}
         run: |
-          echo "$GOOGLE_CREDENTIALS_B64" | base64 -d > google-key.json
+          python -c "import os, base64; open('google-key.json', 'wb').write(base64.b64decode(os.environ.get('GOOGLE_CREDENTIALS_B64', '')))"
 
       - name: Fetch Analytics Data
         env:
