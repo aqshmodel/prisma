@@ -28,17 +28,18 @@ jobs:
       - name: Install dependencies
         run: pip install -r scripts/requirements.txt
 
-      - name: Create Google Credentials File
-        # macOS等で生成したBase64文字列（改行を含む）を確実にデコードするためPythonを使用します
-        env:
-          GOOGLE_CREDENTIALS_B64: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS_B64 }}
-        run: |
-          python -c "import os, base64; open('google-key.json', 'wb').write(base64.b64decode(os.environ.get('GOOGLE_CREDENTIALS_B64', '')))"
+      - name: Authenticate to Google Cloud
+        id: auth
+        uses: google-github-actions/auth@v2
+        with:
+          credentials_json: '${{ secrets.GOOGLE_APPLICATION_CREDENTIALS_JSON }}'
+          create_credentials_file: true
+          # このActionが自動で生成したJSONファイルのパスを、以後のステップ向けに出力します
 
       - name: Fetch Analytics Data
         env:
-          # 書き出したJSONファイルのパスと、その他のSecretsをスクリプトの環境変数に渡す
-          GOOGLE_APPLICATION_CREDENTIALS: google-key.json
+          # google-github-actions/auth が自動生成したファイルのパスを使用する
+          GOOGLE_APPLICATION_CREDENTIALS: ${{ env.GOOGLE_APPLICATION_CREDENTIALS }}
           GA4_PROPERTY_ID: ${{ secrets.GA4_PROPERTY_ID }}
           GSC_SITE_URL: ${{ secrets.GSC_SITE_URL }}
         run: python scripts/fetch_analytics_data.py
