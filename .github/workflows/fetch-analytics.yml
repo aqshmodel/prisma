@@ -38,8 +38,8 @@ jobs:
 
       - name: Fetch Analytics Data
         env:
-          # google-github-actions/auth が自動生成したファイルのパスを使用する
-          GOOGLE_APPLICATION_CREDENTIALS: ${{ env.GOOGLE_APPLICATION_CREDENTIALS }}
+          # google-github-actions/auth が自動生成したファイルのパス出力を正しく取得します
+          GOOGLE_APPLICATION_CREDENTIALS: ${{ steps.auth.outputs.credentials_file_path }}
           GA4_PROPERTY_ID: ${{ secrets.GA4_PROPERTY_ID }}
           GSC_SITE_URL: ${{ secrets.GSC_SITE_URL }}
         run: python scripts/fetch_analytics_data.py
