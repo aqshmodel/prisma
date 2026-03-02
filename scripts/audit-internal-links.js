@@ -8,8 +8,8 @@ const __dirname = path.dirname(__filename);
 const articlesDir = path.join(__dirname, '../content/articles');
 const pillarSlugs = [
   'understanding-16types-for-career',   // ピラー9
-  'understanding-socionics-matching',   // ピラー4
-  'understanding-enneagram-motivation', // ピラー6
+  'socionics-os-compatibility',         // ピラー4
+  'enneagram-motivation-engine',        // ピラー6
   'mbti-vs-socionics-beyond-16types',   // ピラー17
 ];
 
