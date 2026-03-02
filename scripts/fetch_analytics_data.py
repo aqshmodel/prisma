@@ -79,7 +79,18 @@ def fetch_ga4_data():
 
 def build_gsc_service():
     if not CREDENTIALS_PATH or not os.path.exists(CREDENTIALS_PATH):
+        print(f"DEBUG: GSC CREDENTIALS_PATH is missing or does not exist: {CREDENTIALS_PATH}")
         return None
+        
+    print(f"DEBUG: Using GSC CREDENTIALS_PATH: {CREDENTIALS_PATH}")
+    try:
+        with open(CREDENTIALS_PATH, 'r') as f:
+            content = f.read()
+            print("DEBUG: First 100 characters of credentials file:")
+            print(content[:100])
+    except Exception as e:
+        print(f"DEBUG: Error reading credentials file directly: {e}")
+
     scopes = ['https://www.googleapis.com/auth/webmasters.readonly']
     credentials = ServiceAccountCredentials.from_json_keyfile_name(CREDENTIALS_PATH, scopes)
     http = credentials.authorize(httplib2.Http())
