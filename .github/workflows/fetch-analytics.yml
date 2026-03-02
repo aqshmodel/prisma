@@ -32,7 +32,10 @@ jobs:
         # GitHub SecretsにあるJSON文字列を一時ファイルとして書き出す
         env:
           GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS_JSON }}
-        run: echo "$GOOGLE_CREDENTIALS" > google-key.json
+        run: |
+          cat <<EOF > google-key.json
+          $GOOGLE_CREDENTIALS
+          EOF
 
       - name: Fetch Analytics Data
         env:
