@@ -29,13 +29,12 @@ jobs:
         run: pip install -r scripts/requirements.txt
 
       - name: Create Google Credentials File
-        # GitHub SecretsにあるJSON文字列を一時ファイルとして書き出す
+        # GitHub SecretsにあるJSON文字列を解析して一時ファイルとして書き出す
+        # シークレット自体のフォーマット崩れを防ぎ、エラーを可視化するためPythonで処理します
         env:
           GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS_JSON }}
         run: |
-          cat <<EOF > google-key.json
-          $GOOGLE_CREDENTIALS
-          EOF
+          python -c "import os, json; creds=os.environ.get('GOOGLE_CREDENTIALS', ''); open('google-key.json', 'w').write(json.dumps(json.loads(creds)))"
 
       - name: Fetch Analytics Data
         env:
