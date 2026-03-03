@@ -69,7 +69,7 @@ export const ProblemSection: React.FC = () => {
                             </span>
                             <h3 className="text-xl md:text-2xl font-serif text-slate-800 leading-relaxed">
                                 <span className="inline-block">これらの摩擦や悩みは、努力不足ではなく</span><br className="hidden md:block" />
-                                <span className="inline-block"><span className="text-prisma-600 font-bold">「情報処理タイプ（脳のOS）」</span>と<span className="text-amber-500 font-bold">「欲求（心のエンジン）」</span>の</span><br className="hidden md:block" />
+                                <span className="inline-block"><span className="text-prisma-600 font-bold">「情報処理タイプ（思考のクセ）」</span>と<span className="text-amber-500 font-bold">「欲求（心のエンジン）」</span>の</span><br className="hidden md:block" />
                                 <span className="inline-block">構造的なミスマッチから生まれています。</span>
                             </h3>
                         </div>

@@ -5,13 +5,13 @@ import { ArticleSection } from '../features/welcome/components/ArticleSection';
 
 export const metadata: Metadata = {
     title: 'Aqsh Prisma | 16タイプ×エニアグラム 無料性格診断・自己分析',
-    description: 'あなたの「脳のOS」と「心のエンジン」を科学する無料性格診断。16タイプ（ソシオニクス）とエニアグラムを用いて、人間関係の摩擦、恋愛のすれ違い、キャリアの迷いの根本原因を精緻に言語化します。',
+    description: 'あなたの「性格の構造」と「無意識の欲求」を科学する無料性格診断。16タイプ（ソシオニクス）とエニアグラムを用いて、人間関係の摩擦、恋愛のすれ違い、キャリアの迷いの根本原因を精緻に言語化します。',
     alternates: {
         canonical: 'https://prisma.aqsh.co.jp',
     },
     openGraph: {
         title: 'Aqsh Prisma | 16タイプ×エニアグラム 無料性格診断・自己分析',
-        description: 'あなたの「脳のOS」と「心のエンジン」を科学する無料性格診断。16タイプ（ソシオニクス）とエニアグラムを用いて、人間関係の摩擦、恋愛のすれ違い、キャリアの迷いの根本原因を精緻に言語化します。',
+        description: 'あなたの「性格の構造」と「無意識の欲求」を科学する無料性格診断。16タイプ（ソシオニクス）とエニアグラムを用いて、人間関係の摩擦、恋愛のすれ違い、キャリアの迷いの根本原因を精緻に言語化します。',
         url: 'https://prisma.aqsh.co.jp/',
         siteName: 'Aqsh Prisma',
         images: [
@@ -51,7 +51,7 @@ export default function Home() {
             "priceCurrency": "JPY",
             "availability": "https://schema.org/InStock"
         },
-        "description": "あなたの「脳のOS」と「心のエンジン」を科学する無料性格診断。16タイプ（ソシオニクス）とエニアグラムを用いて、生きづらさの根本原因を言語化します。",
+        "description": "あなたの「性格の構造」と「無意識の欲求」を科学する無料性格診断。16タイプ（ソシオニクス）とエニアグラムを用いて、生きづらさの根本原因を言語化します。",
         "featureList": [
             "16タイプ診断による認知パターンの特定",
             "エニアグラムによる無意識のモチベーション分析",

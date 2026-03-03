@@ -42,7 +42,7 @@ const templates = {
     bottom: `- 🔗 キャリアにおける性格診断の活用法については、『[16タイプ性格診断で分かる才能と適職](/articles/understanding-16types-for-career)』もぜひご覧ください。`
   },
   'socionics-os-compatibility': {
-    top: `> 💡 **関連記事**: 脳のOSの違いによる人間関係のメカニズムについては、『[ソシオニクスで解く人間関係の謎（相性の仕組み）](/articles/socionics-os-compatibility)』で詳しく解説しています。`,
+    top: `> 💡 **関連記事**: 思考のクセの違いによる人間関係のメカニズムについては、『[ソシオニクスで解く人間関係の謎（相性の仕組み）](/articles/socionics-os-compatibility)』で詳しく解説しています。`,
     bottom: `- 🔗 ソシオニクスの相性理論についてさらに深く知りたい方は、『[ソシオニクスで解く人間関係の謎（相性の仕組み）](/articles/socionics-os-compatibility)』もぜひご覧ください。`
   },
   'enneagram-motivation-engine': {

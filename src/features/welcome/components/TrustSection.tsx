@@ -49,7 +49,7 @@ export const TrustSection: React.FC = () => {
                                     <h3 className="text-2xl font-serif font-bold mb-4 text-white">Why it works</h3>
                                     <p className="text-slate-300 leading-relaxed text-lg">
                                         多くの性格診断が「よくある行動」や「気分」という<span className="text-white font-bold border-b border-prisma-500/50">表面的な現象</span>だけを測定するのに対し、
-                                        Aqsh Prismaはその源泉となる<span className="text-white font-bold border-b border-prisma-500/50">「脳のOS」</span>と<span className="text-white font-bold border-b border-prisma-500/50">「心のエンジン」</span>を特定します。
+                                        Aqsh Prismaはその源泉となる<span className="text-white font-bold border-b border-prisma-500/50">「思考のクセ」</span>と<span className="text-white font-bold border-b border-prisma-500/50">「心のエンジン」</span>を特定します。
                                         そのため、環境や気分で結果がブレにくく、本質的なあなたの自己理解を助けます。
                                     </p>
                                 </div>

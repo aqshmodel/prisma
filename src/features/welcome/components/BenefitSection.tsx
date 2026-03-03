@@ -38,7 +38,7 @@ export const BenefitSection: React.FC = () => {
                         icon={<TrendingUp className="w-8 h-8" />}
                         title="Life Hack"
                         subtitle="才能の最大化"
-                        description="無理に自分を変えるのではなく、持って生まれた「脳のOS」を活かしきることで、仕事も恋愛も本来の力を発揮できるようになります。"
+                        description="無理に自分を変えるのではなく、持って生まれた「思考のクセ」を活かしきることで、仕事も恋愛も本来の力を発揮できるようになります。"
                         delay={200}
                     />
                 </div>
