@@ -9,6 +9,7 @@ export interface ArticleMetadata {
     title: string;
     description: string;
     date: string;
+    updatedAt?: string;
     coverImage: string;
     author: string;
     category: string;
@@ -58,6 +59,7 @@ export const getArticleBySlug = (slug: string): Article | null => {
                 title: data.title || '',
                 description: data.description || '',
                 date: data.date || '',
+                updatedAt: data.updatedAt || undefined,
                 coverImage: data.coverImage || '',
                 author: data.author || '',
                 category: data.category || '',

@@ -42,7 +42,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     const allArticles = getAllArticles();
     const articleRoutes: MetadataRoute.Sitemap = allArticles.map((article) => ({
         url: `${baseUrl}/articles/${article.slug}`,
-        lastModified: new Date(article.date), // MDXの実際の更新日を使用（SEOベストプラクティス）
+        lastModified: new Date(article.updatedAt || article.date), // MDXの更新日（なければ投稿日）を使用（SEOベストプラクティス）
         changeFrequency: 'monthly',
         priority: 0.7,
     }));

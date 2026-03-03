@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import { getArticleBySlug, getArticleSlugs } from '../../../features/articles/utils/mdx';
-import { ArrowLeft, Calendar, User, Tag } from 'lucide-react';
+import { ArrowLeft, Calendar, User, Tag, RefreshCw } from 'lucide-react';
 import { ShareButtons } from '../../../components/common/ShareButtons';
 import { DiagnosisCTA } from '@/features/articles/components/DiagnosisCTA';
 
@@ -42,6 +42,10 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
             description: article.metadata.description,
             url: canonicalUrl,
             type: 'article',
+            publishedTime: new Date(article.metadata.date).toISOString(),
+            ...(article.metadata.updatedAt && {
+                modifiedTime: new Date(article.metadata.updatedAt).toISOString(),
+            }),
             images: [
                 {
                     url: imageUrl,
@@ -97,6 +101,7 @@ export default async function ArticleDetailPage({ params }: { params: Promise<{ 
         description: metadata.description,
         image: metadata.coverImage ? [`${baseUrl}${metadata.coverImage}`] : [],
         datePublished: new Date(metadata.date).toISOString(),
+        dateModified: new Date(metadata.updatedAt || metadata.date).toISOString(),
         author: {
             '@type': 'Organization',
             name: metadata.author || 'Aqsh Prisma',
@@ -166,10 +171,18 @@ export default async function ArticleDetailPage({ params }: { params: Promise<{ 
                                     {metadata.author}
                                 </span>
                             )}
-                            <span className="flex items-center gap-1.5">
-                                <Calendar size={14} />
-                                {metadata.date}
-                            </span>
+                            <div className="flex items-center gap-4">
+                                <span className="flex items-center gap-1.5" title="公開日">
+                                    <Calendar size={14} />
+                                    <time dateTime={metadata.date}>{metadata.date}</time>
+                                </span>
+                                {metadata.updatedAt && metadata.updatedAt !== metadata.date && (
+                                    <span className="flex items-center gap-1.5" title="最終更新日">
+                                        <RefreshCw size={14} />
+                                        <time dateTime={metadata.updatedAt}>{metadata.updatedAt}</time>
+                                    </span>
+                                )}
+                            </div>
 
                             {(metadata.category || (metadata.tags && metadata.tags.length > 0)) && (
                                 <div className="flex items-center gap-2 flex-wrap md:ml-auto">

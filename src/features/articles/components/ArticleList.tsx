@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { Calendar } from 'lucide-react';
+import { Calendar, RefreshCw } from 'lucide-react';
 import type { ArticleMetadata } from '@/features/articles/utils/mdx';
 import { Pagination } from './Pagination';
 
@@ -44,14 +44,22 @@ export function ArticleList({ articles, currentPage, totalPages, basePath, defau
                             )}
                         </div>
                         <div className="p-6 flex flex-col flex-grow">
-                            <div className="flex items-center gap-2 text-xs text-slate-500 font-medium mb-3">
+                            <div className="flex items-center flex-wrap gap-x-4 gap-y-2 text-xs text-slate-500 font-medium mb-3">
                                 <span className="bg-prisma-50 text-prisma-700 px-2 py-1 rounded-md">
                                     {article.category || 'コラム'}
                                 </span>
-                                <span className="flex items-center gap-1">
-                                    <Calendar size={12} />
-                                    {article.date}
-                                </span>
+                                <div className="flex items-center gap-3">
+                                    <span className="flex items-center gap-1" title="公開日">
+                                        <Calendar size={12} />
+                                        <time dateTime={article.date}>{article.date}</time>
+                                    </span>
+                                    {article.updatedAt && article.updatedAt !== article.date && (
+                                        <span className="flex items-center gap-1" title="最終更新日">
+                                            <RefreshCw size={12} />
+                                            <time dateTime={article.updatedAt}>{article.updatedAt}</time>
+                                        </span>
+                                    )}
+                                </div>
                             </div>
                             <h2 className="text-xl font-bold text-slate-800 leading-tight mb-3 group-hover:text-prisma-600 transition-colors line-clamp-2">
                                 {article.title}
