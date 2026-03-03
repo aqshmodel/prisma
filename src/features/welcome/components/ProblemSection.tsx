@@ -44,7 +44,7 @@ export const ProblemSection: React.FC = () => {
 
                 <div className="grid md:grid-cols-3 gap-8 mb-20">
                     {problems.map((problem, idx) => (
-                        <div key={idx} className="group relative h-full" style={{ animationDelay: `${idx * 150}ms` }}>
+                        <div key={problem.title} className="group relative h-full" style={{ animationDelay: `${idx * 150}ms` }}>
                             <div className="h-full glass-panel rounded-apple p-8 md:p-10 flex flex-col items-start text-left md:items-center md:text-center transition-all duration-500 ease-apple hover:scale-[1.02] hover:shadow-lg hover:shadow-slate-200/50">
                                 <div className="mb-6 p-4 bg-slate-50 rounded-2xl shadow-sm text-slate-400 group-hover:bg-prisma-500 group-hover:text-white transition-colors duration-500">
                                     {problem.icon}

@@ -109,8 +109,13 @@ export const ResultPage: React.FC = () => {
 
             try {
                 // Dynamic import to avoid SSR issues
-                const { db } = await import('@/lib/firebase');
-                const { collection, addDoc, serverTimestamp } = await import('firebase/firestore');
+                const [
+                    { db },
+                    { collection, addDoc, serverTimestamp }
+                ] = await Promise.all([
+                    import('@/lib/firebase'),
+                    import('firebase/firestore')
+                ]);
 
                 // Save only necessary data
                 await addDoc(collection(db, 'diagnosis_results'), {

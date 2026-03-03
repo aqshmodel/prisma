@@ -42,28 +42,53 @@ interface Stats {
     typeDistribution: Record<string, number>;
 }
 
+interface AdminState {
+    user: User | null;
+    loading: boolean;
+    dataLoading: boolean;
+    logs: DiagnosisLog[];
+    stats: Stats;
+}
+
+type AdminAction =
+    | { type: 'AUTH_STATE_CHANGED'; payload: User | null }
+    | { type: 'FETCH_START' }
+    | { type: 'FETCH_SUCCESS'; payload: { logs: DiagnosisLog[]; stats: Stats } }
+    | { type: 'FETCH_ERROR'; payload?: unknown };
+
+function adminReducer(state: AdminState, action: AdminAction): AdminState {
+    switch (action.type) {
+        case 'AUTH_STATE_CHANGED':
+            return { ...state, user: action.payload, loading: false };
+        case 'FETCH_START':
+            return { ...state, dataLoading: true };
+        case 'FETCH_SUCCESS':
+            return { ...state, dataLoading: false, logs: action.payload.logs, stats: action.payload.stats };
+        case 'FETCH_ERROR':
+            return { ...state, dataLoading: false };
+        default:
+            return state;
+    }
+}
+
 export const AdminPage: React.FC = () => {
-    // Auth State
-    const [user, setUser] = useState<User | null>(null);
-    const [loading, setLoading] = useState(true);
+    const [state, dispatch] = React.useReducer(adminReducer, {
+        user: null,
+        loading: true,
+        dataLoading: false,
+        logs: [],
+        stats: { total: 0, today: 0, typeDistribution: {} }
+    });
+
+    // Form State (kept as useState for simple form handling)
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [authError, setAuthError] = useState('');
 
-    // Dashboard State
-    const [dataLoading, setDataLoading] = useState(false);
-    const [logs, setLogs] = useState<DiagnosisLog[]>([]);
-    const [stats, setStats] = useState<Stats>({
-        total: 0,
-        today: 0,
-        typeDistribution: {}
-    });
-
     // Handle Authentication
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-            setUser(currentUser);
-            setLoading(false);
+            dispatch({ type: 'AUTH_STATE_CHANGED', payload: currentUser });
             if (currentUser) {
                 fetchData();
             }
@@ -76,7 +101,7 @@ export const AdminPage: React.FC = () => {
         setAuthError('');
         try {
             await signInWithEmailAndPassword(auth, email, password);
-        } catch (err: any) {
+        } catch (err: unknown) {
             console.error(err);
             setAuthError('ログインに失敗しました。IDまたはパスワードを確認してください。');
         }
@@ -88,7 +113,7 @@ export const AdminPage: React.FC = () => {
 
     // Fetch Data from Firestore
     const fetchData = async () => {
-        setDataLoading(true);
+        dispatch({ type: 'FETCH_START' });
         try {
             const resultsRef = collection(db, 'diagnosis_results');
 
@@ -111,11 +136,6 @@ export const AdminPage: React.FC = () => {
                 };
                 fetchedLogs.push(log);
 
-                // Stats calculation (simplified: only from fetched logs for now)
-                // For accurate total stats, we should use aggregation queries or separate counters
-                // But for now, we'll calculate from the fetched batch or fetch all specifically for stats if needed
-                // Warning: Fetching ALL docs is expensive. For this MVP, we might just fetch a larger batch.
-
                 const typeCode = data.type?.os?.code || 'Unknown';
                 typeDist[typeCode] = (typeDist[typeCode] || 0) + 1;
 
@@ -124,28 +144,25 @@ export const AdminPage: React.FC = () => {
                 }
             });
 
-            // If we need logic for TOTAL count beyond the limit, we'd need a separate aggregation query.
-            // For MVP, assuming the limit(100) is just for the list, but for stats we might want more.
-            // Let's stick to the latest 100 for now to be safe on quotas, 
-            // but for "Total Count", we can just display "Latest 100 analyzed". 
-            // Or, we can use count() aggregation which is efficient.
-
-            // To keep it simple and safe for MVP:
-            setLogs(fetchedLogs);
-            setStats({
-                total: querySnapshot.size, // This is just the fetched amount
-                today: todayCount,
-                typeDistribution: typeDist
+            dispatch({
+                type: 'FETCH_SUCCESS',
+                payload: {
+                    logs: fetchedLogs,
+                    stats: {
+                        total: querySnapshot.size,
+                        today: todayCount,
+                        typeDistribution: typeDist
+                    }
+                }
             });
 
         } catch (error) {
             console.error("Error fetching data:", error);
-        } finally {
-            setDataLoading(false);
+            dispatch({ type: 'FETCH_ERROR', payload: error });
         }
     };
 
-    if (loading) {
+    if (state.loading) {
         return (
             <div className="min-h-screen flex items-center justify-center bg-slate-50">
                 <Loader2 className="animate-spin text-prisma-500 w-10 h-10" />
@@ -153,7 +170,7 @@ export const AdminPage: React.FC = () => {
         );
     }
 
-    if (!user) {
+    if (!state.user) {
         return (
             <div className="min-h-screen flex items-center justify-center bg-slate-50 p-4">
                 <div className="bg-white p-8 rounded-2xl shadow-xl w-full max-w-md border border-slate-100">
@@ -164,8 +181,9 @@ export const AdminPage: React.FC = () => {
 
                     <form onSubmit={handleLogin} className="space-y-4">
                         <div>
-                            <label className="block text-sm font-medium text-slate-700 mb-1">Email ID</label>
+                            <label htmlFor="email" className="block text-sm font-medium text-slate-700 mb-1">Email ID</label>
                             <input
+                                id="email"
                                 type="email"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
@@ -175,8 +193,9 @@ export const AdminPage: React.FC = () => {
                             />
                         </div>
                         <div>
-                            <label className="block text-sm font-medium text-slate-700 mb-1">Password</label>
+                            <label htmlFor="password" className="block text-sm font-medium text-slate-700 mb-1">Password</label>
                             <input
+                                id="password"
                                 type="password"
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
@@ -211,7 +230,7 @@ export const AdminPage: React.FC = () => {
                         <span className="text-xs bg-slate-100 text-slate-500 px-2 py-1 rounded">Dashboard</span>
                     </div>
                     <div className="flex items-center gap-4">
-                        <span className="text-sm text-slate-600 hidden sm:inline">{user.email}</span>
+                        <span className="text-sm text-slate-600 hidden sm:inline">{state.user?.email}</span>
                         <button
                             onClick={handleLogout}
                             className="p-2 text-slate-400 hover:text-red-500 transition-colors"
@@ -232,7 +251,7 @@ export const AdminPage: React.FC = () => {
                         </div>
                         <div>
                             <p className="text-sm text-slate-500 font-medium">表示中の診断データ</p>
-                            <p className="text-3xl font-bold text-slate-800">{stats.total}</p>
+                            <p className="text-3xl font-bold text-slate-800">{state.stats.total}</p>
                         </div>
                     </div>
                     <div className="bg-white p-6 rounded-xl shadow-sm border border-slate-100 flex items-center gap-4">
@@ -241,7 +260,7 @@ export const AdminPage: React.FC = () => {
                         </div>
                         <div>
                             <p className="text-sm text-slate-500 font-medium">本日の診断数</p>
-                            <p className="text-3xl font-bold text-slate-800">{stats.today}</p>
+                            <p className="text-3xl font-bold text-slate-800">{state.stats.today}</p>
                         </div>
                     </div>
                     <div className="bg-white p-6 rounded-xl shadow-sm border border-slate-100 flex items-center gap-4">
@@ -250,7 +269,7 @@ export const AdminPage: React.FC = () => {
                         </div>
                         <div>
                             <p className="text-sm text-slate-500 font-medium">タイプ種類数</p>
-                            <p className="text-3xl font-bold text-slate-800">{Object.keys(stats.typeDistribution).length}</p>
+                            <p className="text-3xl font-bold text-slate-800">{Object.keys(state.stats.typeDistribution).length}</p>
                         </div>
                     </div>
                 </div>
@@ -265,7 +284,7 @@ export const AdminPage: React.FC = () => {
                                 className="text-slate-400 hover:text-prisma-500 transition-colors"
                                 title="Refresh"
                             >
-                                <RefreshCw size={18} className={dataLoading ? "animate-spin" : ""} />
+                                <RefreshCw size={18} className={state.dataLoading ? "animate-spin" : ""} />
                             </button>
                         </div>
                         <div className="overflow-x-auto">
@@ -279,7 +298,7 @@ export const AdminPage: React.FC = () => {
                                     </tr>
                                 </thead>
                                 <tbody className="divide-y divide-slate-100">
-                                    {logs.map((log) => (
+                                    {state.logs.map((log) => (
                                         <tr key={log.id} className="hover:bg-slate-50/50">
                                             <td className="px-6 py-4 text-slate-600">
                                                 {log.timestamp?.toDate().toLocaleString('ja-JP')}
@@ -297,7 +316,7 @@ export const AdminPage: React.FC = () => {
                                             </td>
                                         </tr>
                                     ))}
-                                    {logs.length === 0 && (
+                                    {state.logs.length === 0 && (
                                         <tr>
                                             <td colSpan={4} className="px-6 py-8 text-center text-slate-400">
                                                 データがありません
@@ -316,7 +335,7 @@ export const AdminPage: React.FC = () => {
                         </div>
                         <div className="p-6">
                             <div className="space-y-4">
-                                {Object.entries(stats.typeDistribution)
+                                {Object.entries(state.stats.typeDistribution)
                                     .sort(([, a], [, b]) => b - a)
                                     .map(([type, count]) => (
                                         <div key={type} className="flex items-center gap-3">
@@ -324,7 +343,7 @@ export const AdminPage: React.FC = () => {
                                             <div className="flex-1 h-2 bg-slate-100 rounded-full overflow-hidden">
                                                 <div
                                                     className="h-full bg-prisma-500 rounded-full"
-                                                    style={{ width: `${(count / stats.total) * 100}%` }}
+                                                    style={{ width: `${(count / state.stats.total) * 100}%` }}
                                                 />
                                             </div>
                                             <div className="w-8 text-right text-sm text-slate-500">{count}</div>

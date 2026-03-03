@@ -9,7 +9,7 @@ const parseBoldText = (text: string | undefined | null) => {
     return parts.map((part, index) => {
         if (part.startsWith('**') && part.endsWith('**')) {
             return (
-                <span key={index} className="bg-prisma-100 text-prisma-900 px-1.5 py-0.5 rounded font-bold mx-0.5">
+                <span key={`bold-${index}`} className="bg-prisma-100 text-prisma-900 px-1.5 py-0.5 rounded font-bold mx-0.5">
                     {part.slice(2, -2)}
                 </span>
             );
@@ -118,8 +118,8 @@ export const AboutEnneagramPage = () => {
                         </p>
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        {enneagramFeatures.map((feature, idx) => (
-                            <div key={idx} className="bg-white rounded-2xl p-6 shadow-sm border border-slate-100">
+                        {enneagramFeatures.map((feature) => (
+                            <div key={feature.title} className="bg-white rounded-2xl p-6 shadow-sm border border-slate-100">
                                 <div className="w-12 h-12 rounded-full bg-slate-50 flex items-center justify-center mb-4">
                                     {feature.icon}
                                 </div>
@@ -172,7 +172,7 @@ export const AboutEnneagramPage = () => {
                                                 </h4>
                                                 <ul className="space-y-2 text-sm text-slate-600">
                                                     {engine.strengths.map((str, i) => (
-                                                        <li key={i} className="flex items-start">
+                                                        <li key={`str-${i}`} className="flex items-start">
                                                             <span className="mr-2 text-prisma-400 font-bold leading-relaxed">•</span>
                                                             <span className="leading-relaxed">{parseBoldText(str)}</span>
                                                         </li>

@@ -114,8 +114,8 @@ export const TorisetsuPrintLayout = forwardRef<HTMLDivElement, TorisetsuPrintLay
                                 <div>
                                     <h4 className="text-sm font-bold text-slate-500 mb-2">推奨される主な役割 (適職)</h4>
                                     <ul className="text-sm space-y-2">
-                                        {osData.workStyle.bestRoles.map((role, i) => (
-                                            <li key={i} className="flex items-start gap-2">
+                                        {osData.workStyle.bestRoles.map((role) => (
+                                            <li key={role.title} className="flex items-start gap-2">
                                                 <span className="text-slate-400 shrink-0 mt-0.5">•</span>
                                                 <div>
                                                     <span className="font-bold text-slate-800">{role.title}</span>

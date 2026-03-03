@@ -9,7 +9,7 @@ interface PrintLayoutProps {
     result: DiagnosisResult;
     osData: OSContent;
     engineData: EngineContent;
-    biasRisks: any[];
+    biasRisks: Array<{ name: string; level: string; description: string }>;
     themeColor: string;
 }
 
@@ -102,8 +102,8 @@ export const PrintLayout = forwardRef<HTMLDivElement, PrintLayoutProps>(
                         <div>
                             <h4 className="font-bold text-sm text-slate-700 mb-2">適職例</h4>
                             <ul className="text-xs space-y-2">
-                                {osData.workStyle.bestRoles.map((role, i) => (
-                                    <li key={i} className="flex gap-2">
+                                {osData.workStyle.bestRoles.map((role) => (
+                                    <li key={role.title} className="flex gap-2">
                                         <span className="font-bold text-slate-900 shrink-0">• {role.title}:</span>
                                         <span className="text-slate-600">{role.reason}</span>
                                     </li>
@@ -134,8 +134,8 @@ export const PrintLayout = forwardRef<HTMLDivElement, PrintLayoutProps>(
                 <section className="print-break-inside-avoid mb-8">
                     <h2 className="text-xl font-bold border-l-4 border-slate-900 pl-3 mb-4">注意すべきバイアス (Risks)</h2>
                     <div className="grid grid-cols-1 gap-4">
-                        {biasRisks.map((risk, index) => (
-                            <div key={index} className="border border-slate-200 rounded-lg p-3 bg-slate-50">
+                        {biasRisks.map((risk) => (
+                            <div key={risk.name} className="border border-slate-200 rounded-lg p-3 bg-slate-50">
                                 <div className="flex justify-between items-center mb-1">
                                     <h4 className="font-bold text-slate-700 text-sm">{risk.name}</h4>
                                     <span className={`text-[10px] px-2 py-0.5 rounded-full font-bold ${risk.level === 'high' ? 'bg-red-100 text-red-700' : 'bg-yellow-100 text-yellow-700'

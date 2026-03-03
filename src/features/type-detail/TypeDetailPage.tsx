@@ -182,8 +182,8 @@ export const TypeDetailPage: React.FC = () => {
                             <div className="bg-slate-50 p-4 rounded-lg">
                                 <h4 className="font-bold text-slate-700 mb-2 text-sm">適職例</h4>
                                 <ul className="list-disc list-inside text-slate-600 space-y-1">
-                                    {osData.workStyle.bestRoles.map((role, i) => (
-                                        <li key={i}>
+                                    {osData.workStyle.bestRoles.map((role) => (
+                                        <li key={role.title}>
                                             <span className="font-bold text-slate-800">{role.title}</span>: {role.reason}
                                         </li>
                                     ))}

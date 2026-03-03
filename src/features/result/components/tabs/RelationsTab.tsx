@@ -46,8 +46,8 @@ export const RelationsTab: React.FC<RelationsTabProps> = ({ osData }) => {
                             効果的な接し方 (DOs)
                         </h5>
                         <ul className="space-y-2">
-                            {osData.doCommunication.map((item, idx) => (
-                                <li key={idx} className="flex gap-2 text-sm text-cyan-900">
+                            {osData.doCommunication.map((item) => (
+                                <li key={item} className="flex gap-2 text-sm text-cyan-900">
                                     <span className="text-cyan-500 font-bold">•</span>
                                     <FormattedText text={item} />
                                 </li>
@@ -61,8 +61,8 @@ export const RelationsTab: React.FC<RelationsTabProps> = ({ osData }) => {
                             避けるべき接し方 (DON'Ts)
                         </h5>
                         <ul className="space-y-2">
-                            {osData.dontCommunication.map((item, idx) => (
-                                <li key={idx} className="flex gap-2 text-sm text-rose-900">
+                            {osData.dontCommunication.map((item) => (
+                                <li key={item} className="flex gap-2 text-sm text-rose-900">
                                     <span className="text-rose-400 font-bold">•</span>
                                     <FormattedText text={item} />
                                 </li>

@@ -17,7 +17,7 @@ export const FAQSection: React.FC = () => {
 
                 <div className="space-y-4">
                     {faqs.map((faq, idx) => (
-                        <div key={idx} className="animate-fade-in-up" style={{ animationDelay: `${idx * 100}ms` }}>
+                        <div key={faq.question} className="animate-fade-in-up" style={{ animationDelay: `${idx * 100}ms` }}>
                             <FAQItem question={faq.question} answer={faq.answer} />
                         </div>
                     ))}

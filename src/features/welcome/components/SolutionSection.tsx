@@ -25,7 +25,7 @@ export const SolutionSection: React.FC = () => {
                 <BentoGrid className="max-w-6xl mx-auto">
                     {items.map((item, i) => (
                         <BentoGridItem
-                            key={i}
+                            key={item.title}
                             title={item.title}
                             description={item.description}
                             header={item.header}
@@ -53,7 +53,7 @@ const items = [
             <Skeleton className="flex items-center justify-center bg-slate-50/50">
                 <div className="grid grid-cols-4 gap-3 opacity-60 transform scale-90">
                     {[...Array(16)].map((_, i) => (
-                        <div key={i} className={`w-6 h-6 rounded-md ${i === 5 ? 'bg-prisma-400 shadow-md shadow-prisma-200' : 'bg-slate-200'}`} />
+                        <div key={`box-${i}`} className={`w-6 h-6 rounded-md ${i === 5 ? 'bg-prisma-400 shadow-md shadow-prisma-200' : 'bg-slate-200'}`} />
                     ))}
                 </div>
             </Skeleton>
@@ -90,7 +90,7 @@ const items = [
         header: (
             <Skeleton className="flex items-center justify-center bg-slate-50 relative overflow-hidden">
                 <div className="absolute inset-0 grid grid-cols-8 grid-rows-4 gap-px opacity-[0.03]">
-                    {[...Array(32)].map((_, i) => <div key={i} className="bg-slate-900" />)}
+                    {[...Array(32)].map((_, i) => <div key={`grid-${i}`} className="bg-slate-900" />)}
                 </div>
                 <div className="relative z-10 flex -space-x-4">
                     <div className="w-12 h-12 rounded-full bg-gradient-to-br from-prisma-400 to-prisma-500 border-4 border-white shadow-lg z-30" />

@@ -90,8 +90,8 @@ export const AnalysisTab: React.FC<AnalysisTabProps> = ({ osData, themeColor, bi
                         注意すべき思考のバイアス
                     </h3>
                     <div className="space-y-6">
-                        {biasRisks.map((bias, idx) => (
-                            <div key={idx} className="bg-red-50/50 rounded-xl p-5 border border-red-100">
+                        {biasRisks.map((bias) => (
+                            <div key={bias.name} className="bg-red-50/50 rounded-xl p-5 border border-red-100">
                                 <h4 className="font-bold text-red-800 text-lg mb-2 flex items-center gap-2">
                                     {bias.name}
                                     <span className={`text-xs px-2 py-0.5 rounded-full ${bias.level === 'high' ? 'bg-red-200 text-red-900' : 'bg-orange-200 text-orange-900'

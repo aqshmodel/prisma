@@ -70,8 +70,8 @@ export const GrowthTab: React.FC<GrowthTabProps> = ({ osData, engineData, themeC
 
                                     {levelActions.length > 0 && (
                                         <div className="grid gap-3 sm:grid-cols-2">
-                                            {levelActions.map((action, i) => (
-                                                <div key={i} className="bg-white p-4 rounded-xl border border-slate-100 shadow-sm hover:shadow-md transition-shadow group">
+                                            {levelActions.map((action) => (
+                                                <div key={action.title} className="bg-white p-4 rounded-xl border border-slate-100 shadow-sm hover:shadow-md transition-shadow group">
                                                     <div className="flex items-start gap-3">
                                                         <CheckCircle2
                                                             size={18}

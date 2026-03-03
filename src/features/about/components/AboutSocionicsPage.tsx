@@ -8,7 +8,7 @@ const parseBoldText = (text: string) => {
     return parts.map((part, index) => {
         if (part.startsWith('**') && part.endsWith('**')) {
             return (
-                <span key={index} className="bg-prisma-100 text-prisma-900 px-1.5 py-0.5 rounded font-bold mx-0.5">
+                <span key={`bold-${index}`} className="bg-prisma-100 text-prisma-900 px-1.5 py-0.5 rounded font-bold mx-0.5">
                     {part.slice(2, -2)}
                 </span>
             );
@@ -28,7 +28,7 @@ const renderTextWithBullets = (text: string) => {
     return (
         <ul className="space-y-3 mt-2">
             {items.map((item, idx) => (
-                <li key={idx} className="flex items-start">
+                <li key={`bullet-${idx}`} className="flex items-start">
                     <span className="mr-2 text-prisma-400 font-bold leading-relaxed text-sm">•</span>
                     <span className="text-slate-600 leading-relaxed text-sm">
                         {parseBoldText(item.trim())}
@@ -138,8 +138,8 @@ export const AboutSocionicsPage = () => {
                         </p>
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        {features.map((feature, idx) => (
-                            <div key={idx} className="bg-white rounded-2xl p-6 shadow-sm border border-slate-100">
+                        {features.map((feature) => (
+                            <div key={feature.title} className="bg-white rounded-2xl p-6 shadow-sm border border-slate-100">
                                 <div className="w-12 h-12 rounded-full bg-slate-50 flex items-center justify-center mb-4">
                                     {feature.icon}
                                 </div>

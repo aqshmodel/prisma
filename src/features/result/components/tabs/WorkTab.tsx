@@ -53,8 +53,8 @@ export const WorkTab: React.FC<WorkTabProps> = ({ osData, themeColor }) => {
                     適職・キャリアパス
                 </h3>
                 <div className="grid md:grid-cols-3 gap-4">
-                    {osData.workStyle.bestRoles.map((role, idx) => (
-                        <div key={idx} className="bg-white border border-slate-200 rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow">
+                    {osData.workStyle.bestRoles.map((role) => (
+                        <div key={role.title} className="bg-white border border-slate-200 rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow">
                             <h4 className="font-bold text-slate-800 mb-2 text-sm border-b pb-2">{role.title}</h4>
                             <p className="text-xs text-slate-600 leading-relaxed">
                                 <FormattedText text={role.reason} />

@@ -61,8 +61,7 @@ export const RadarChart = React.memo<RadarChartProps>(({ data, color }) => {
 
     // Calculate polygon points
     const points = LABELS.map((item, i) => {
-        // @ts-ignore
-        const val = data[item.key] || 0;
+        const val = data[item.key as keyof typeof data] || 0;
         const { x, y } = getPoint(val, i, LABELS.length);
         return `${x},${y}`;
     }).join(' ');
@@ -101,11 +100,11 @@ export const RadarChart = React.memo<RadarChartProps>(({ data, color }) => {
                 ))}
 
                 {/* Axis Lines */}
-                {LABELS.map((_, i) => {
+                {LABELS.map((item, i) => {
                     const { x, y } = getPoint(10, i, LABELS.length);
                     return (
                         <line
-                            key={i}
+                            key={item.key}
                             x1={center}
                             y1={center}
                             x2={x}
@@ -131,12 +130,11 @@ export const RadarChart = React.memo<RadarChartProps>(({ data, color }) => {
 
                 {/* Data Points */}
                 {LABELS.map((item, i) => {
-                    // @ts-ignore
-                    const val = data[item.key] || 0;
+                    const val = data[item.key as keyof typeof data] || 0;
                     const { x, y } = getPoint(val, i, LABELS.length);
                     return (
                         <circle
-                            key={i}
+                            key={item.key}
                             cx={x}
                             cy={y}
                             r="5"
@@ -152,7 +150,7 @@ export const RadarChart = React.memo<RadarChartProps>(({ data, color }) => {
                 {/* Labels */}
                 {labelPoints.map((p, i) => (
                     <text
-                        key={i}
+                        key={p.label}
                         x={p.x}
                         y={p.y}
                         textAnchor={p.align}

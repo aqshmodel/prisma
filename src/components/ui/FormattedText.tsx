@@ -26,12 +26,12 @@ export const FormattedText: React.FC<FormattedTextProps> = ({ text, className })
             {parts.map((part, index) => {
                 if (part.startsWith('**') && part.endsWith('**') && part.length >= 4) {
                     return (
-                        <strong key={index} className="font-bold text-slate-900 bg-prisma-100/50 px-1 rounded mx-0.5">
+                        <strong key={`strong-${index}`} className="font-bold text-slate-900 bg-prisma-100/50 px-1 rounded mx-0.5">
                             {part.slice(2, -2)}
                         </strong>
                     );
                 }
-                return <React.Fragment key={index}>{part}</React.Fragment>;
+                return <React.Fragment key={`frag-${index}`}>{part}</React.Fragment>;
             })}
         </span>
     );
