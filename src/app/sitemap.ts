@@ -28,6 +28,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
             changeFrequency: 'weekly',
             priority: 0.8,
         },
+        {
+            url: `${baseUrl}/about/socionics`,
+            lastModified: currentDate,
+            changeFrequency: 'monthly',
+            priority: 0.9,
+        },
+        {
+            url: `${baseUrl}/about/enneagram`,
+            lastModified: currentDate,
+            changeFrequency: 'monthly',
+            priority: 0.9,
+        },
     ];
 
     // Dynamic Routes (16 Types)

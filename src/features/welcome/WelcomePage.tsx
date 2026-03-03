@@ -9,6 +9,7 @@ import { SolutionSection } from './components/SolutionSection';
 import { TypeSection } from './components/TypeSection';
 import { BenefitSection } from './components/BenefitSection';
 import { TrustSection } from './components/TrustSection';
+import { TheoryLinksSection } from './components/TheoryLinksSection';
 import { HowToSection } from './components/HowToSection';
 import { FAQSection } from './components/FAQSection';
 import { CTASection } from './components/CTASection';
@@ -54,6 +55,7 @@ export const WelcomePage: React.FC<WelcomePageProps> = ({ articleSlot }) => {
             <TypeSection />
             <BenefitSection />
             <TrustSection />
+            <TheoryLinksSection />
             <HowToSection />
             <FAQSection />
 
