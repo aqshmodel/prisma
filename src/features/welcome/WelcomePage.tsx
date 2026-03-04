@@ -1,18 +1,20 @@
 'use client';
 
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import { useRouter } from 'next/navigation';
 import { useDiagnosisStore } from '../../stores/useDiagnosisStore';
 import { HeroSection } from './components/HeroSection';
-import { ProblemSection } from './components/ProblemSection';
-import { SolutionSection } from './components/SolutionSection';
-import { TypeSection } from './components/TypeSection';
-import { BenefitSection } from './components/BenefitSection';
-import { TrustSection } from './components/TrustSection';
-import { TheoryLinksSection } from './components/TheoryLinksSection';
-import { HowToSection } from './components/HowToSection';
-import { FAQSection } from './components/FAQSection';
-import { CTASection } from './components/CTASection';
+
+// ファーストビュー外のセクションを遅延読み込み（TBT改善）
+const ProblemSection = lazy(() => import('./components/ProblemSection').then(m => ({ default: m.ProblemSection })));
+const SolutionSection = lazy(() => import('./components/SolutionSection').then(m => ({ default: m.SolutionSection })));
+const TypeSection = lazy(() => import('./components/TypeSection').then(m => ({ default: m.TypeSection })));
+const BenefitSection = lazy(() => import('./components/BenefitSection').then(m => ({ default: m.BenefitSection })));
+const TrustSection = lazy(() => import('./components/TrustSection').then(m => ({ default: m.TrustSection })));
+const TheoryLinksSection = lazy(() => import('./components/TheoryLinksSection').then(m => ({ default: m.TheoryLinksSection })));
+const HowToSection = lazy(() => import('./components/HowToSection').then(m => ({ default: m.HowToSection })));
+const FAQSection = lazy(() => import('./components/FAQSection').then(m => ({ default: m.FAQSection })));
+const CTASection = lazy(() => import('./components/CTASection').then(m => ({ default: m.CTASection })));
 
 interface WelcomePageProps {
     articleSlot?: React.ReactNode;
@@ -50,18 +52,20 @@ export const WelcomePage: React.FC<WelcomePageProps> = ({ articleSlot }) => {
                 hasResult={hasResult}
             />
 
-            <ProblemSection />
-            <SolutionSection />
-            <TypeSection />
-            <BenefitSection />
-            <TrustSection />
-            <TheoryLinksSection />
-            <HowToSection />
-            <FAQSection />
+            <Suspense fallback={null}>
+                <ProblemSection />
+                <SolutionSection />
+                <TypeSection />
+                <BenefitSection />
+                <TrustSection />
+                <TheoryLinksSection />
+                <HowToSection />
+                <FAQSection />
 
-            {articleSlot}
+                {articleSlot}
 
-            <CTASection onStart={handleStart} />
+                <CTASection onStart={handleStart} />
+            </Suspense>
         </div>
     );
 };

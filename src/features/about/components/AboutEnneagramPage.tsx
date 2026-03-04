@@ -52,7 +52,7 @@ export const AboutEnneagramPage = () => {
             name: 'Aqsh Prisma',
             logo: {
                 '@type': 'ImageObject',
-                url: 'https://prisma.aqsh.co.jp/logo.png'
+                url: 'https://prisma.aqsh.co.jp/logo.webp'
             }
         }
     };

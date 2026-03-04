@@ -29,7 +29,7 @@ export const PrintLayout = forwardRef<HTMLDivElement, PrintLayoutProps>(
                 {/* Header / Cover */}
                 <header className="text-center border-b-2 border-slate-900 pb-6 mb-8">
                     <div className="flex justify-between items-end mb-4">
-                        <img src="/logo.png" alt="Aqsh" className="h-8 object-contain grayscale" />
+                        <img src="/logo.webp" alt="Aqsh" className="h-8 object-contain grayscale" />
                         <span className="text-xs text-slate-400">Prisma Diagnosis Result</span>
                     </div>
                     <h1 className="text-4xl font-bold mb-2">{osData.name.split('(')[0].trim()}</h1>

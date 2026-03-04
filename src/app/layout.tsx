@@ -1,15 +1,10 @@
 import type { Metadata } from 'next';
-import { Inter, Noto_Serif_JP } from 'next/font/google';
+import { Inter } from 'next/font/google';
 import './globals.css';
 import { Layout } from '../components/layout/Layout';
 import { GoogleAnalytics } from '../components/GoogleAnalytics';
 
-const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
-const notoSerif = Noto_Serif_JP({
-    subsets: ['latin'],
-    weight: ['400', '700'],
-    variable: '--font-serif'
-});
+const inter = Inter({ subsets: ['latin'], variable: '--font-inter', display: 'swap' });
 
 /**
  * プロジェクト全体のフォールバックとなるデフォルトメタデータ
@@ -74,7 +69,7 @@ export default function RootLayout({
             '@type': 'Organization',
             name: 'Aqsh Prisma',
             url: 'https://prisma.aqsh.co.jp/',
-            logo: 'https://prisma.aqsh.co.jp/logo.png',
+            logo: 'https://prisma.aqsh.co.jp/logo.webp',
             sameAs: [
                 'https://aqsh.co.jp/',
             ],
@@ -82,7 +77,16 @@ export default function RootLayout({
     ];
 
     return (
-        <html lang="ja" className={`${inter.variable} ${notoSerif.variable}`} suppressHydrationWarning={true}>
+        <html lang="ja" className={inter.variable} suppressHydrationWarning={true}>
+            <head>
+                {/* Google Fonts CDN: Noto Serif JP (自前ホスティングの58KiB CSS削減のため) */}
+                <link rel="preconnect" href="https://fonts.googleapis.com" />
+                <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+                <link
+                    href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&display=swap"
+                    rel="stylesheet"
+                />
+            </head>
             <body className="font-sans antialiased text-slate-800 bg-prisma-50 selection:bg-prisma-200 selection:text-prisma-900" suppressHydrationWarning={true}>
                 <GoogleAnalytics />
                 <script
@@ -90,7 +94,7 @@ export default function RootLayout({
                     dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
                 />
                 {/* Noise Texture Overlay */}
-                <div className="fixed inset-0 z-0 pointer-events-none opacity-[0.4]" style={{ backgroundImage: 'url(/noise.svg)' }}></div>
+                <div className="fixed inset-0 z-0 pointer-events-none opacity-[0.4]" style={{ backgroundImage: 'url(/noise.svg)', willChange: 'transform' }}></div>
 
                 <div className="relative z-10">
                     <Layout>{children}</Layout>

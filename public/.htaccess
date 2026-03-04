@@ -5,9 +5,76 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^(.*)\.html$ /$1/ [R=301,L]
 
 # 2. スラッシュなしのURLにアクセスが来た場合、末尾にスラッシュをつける
+#    ただし、静的アセット（拡張子のあるファイル）はリダイレクトしない
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_URI} !(.*)/$
+RewriteCond %{REQUEST_URI} !\.(css|js|json|xml|txt|map|ico|png|jpg|jpeg|webp|svg|gif|woff|woff2|ttf|eot)$ [NC]
 RewriteRule ^(.*)$ /$1/ [R=301,L]
 
 # 3. 存在しないファイルやディレクトリへのアクセスを Next.js の 404 にルーティング
 ErrorDocument 404 /404.html
+
+# ============================================================
+# パフォーマンス最適化 (Lighthouse スコア改善)
+# ============================================================
+
+# 4. gzip 圧縮 — テキストベースのアセットを圧縮して転送サイズを削減
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html
+  AddOutputFilterByType DEFLATE text/css
+  AddOutputFilterByType DEFLATE application/javascript
+  AddOutputFilterByType DEFLATE application/json
+  AddOutputFilterByType DEFLATE image/svg+xml
+  AddOutputFilterByType DEFLATE application/xml
+  AddOutputFilterByType DEFLATE text/plain
+</IfModule>
+
+# 5. ブラウザキャッシュ — 静的アセットに長期間のキャッシュを設定
+#    Next.js のハッシュ付きファイル名により、キャッシュバスティングは自動的に行われる
+<IfModule mod_expires.c>
+  ExpiresActive On
+
+  # デフォルト: 1週間
+  ExpiresDefault "access plus 1 week"
+
+  # HTML: キャッシュしない（常に最新版を取得）
+  ExpiresByType text/html "access plus 0 seconds"
+
+  # CSS / JavaScript: 1年（ハッシュ付きファイル名で自動バスティング）
+  ExpiresByType text/css "access plus 1 year"
+  ExpiresByType application/javascript "access plus 1 year"
+
+  # 画像: 1年
+  ExpiresByType image/webp "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType image/svg+xml "access plus 1 year"
+  ExpiresByType image/x-icon "access plus 1 year"
+
+  # フォント: 1年
+  ExpiresByType font/woff2 "access plus 1 year"
+  ExpiresByType font/woff "access plus 1 year"
+  ExpiresByType application/font-woff2 "access plus 1 year"
+
+  # JSON-LD / マニフェスト: 1日
+  ExpiresByType application/json "access plus 1 day"
+  ExpiresByType application/manifest+json "access plus 1 day"
+</IfModule>
+
+# 6. Cache-Control ヘッダー（mod_expires の補完）
+<IfModule mod_headers.c>
+  # ハッシュ付き静的アセット（_next/static/）にイミュータブルキャッシュを設定
+  <FilesMatch "\.(css|js|woff2|woff|webp|png|jpg|jpeg|svg)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+
+  # HTML は常に再検証
+  <FilesMatch "\.html$">
+    Header set Cache-Control "public, max-age=0, must-revalidate"
+  </FilesMatch>
+
+  # セキュリティヘッダー
+  Header set X-Content-Type-Options "nosniff"
+  Header set X-Frame-Options "SAMEORIGIN"
+  Header set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>

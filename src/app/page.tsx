@@ -58,7 +58,7 @@ export default function Home() {
             "恋愛・キャリア・人間関係の摩擦原因の可視化",
             "自分専用の取扱説明書（トリセツ）の生成"
         ],
-        "screenshot": "https://prisma.aqsh.co.jp/hero-image.png"
+        "screenshot": "https://prisma.aqsh.co.jp/hero-image.webp"
     };
 
     return (

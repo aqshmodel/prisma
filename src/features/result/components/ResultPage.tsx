@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, Suspense, lazy } from 'react';
 import { useRouter } from 'next/navigation';
 import {
     LayoutDashboard,
@@ -23,12 +23,12 @@ import { useReactToPrint } from 'react-to-print';
 import { useRef } from 'react';
 import { PrintLayout } from './PrintLayout';
 
-// Tab Components
-import { OverviewTab } from './tabs/OverviewTab';
-import { AnalysisTab } from './tabs/AnalysisTab';
-import { WorkTab } from './tabs/WorkTab';
-import { RelationsTab } from './tabs/RelationsTab';
-import { GrowthTab } from './tabs/GrowthTab';
+// Tab Components (lazy loading for code splitting)
+const OverviewTab = lazy(() => import('./tabs/OverviewTab').then(m => ({ default: m.OverviewTab })));
+const AnalysisTab = lazy(() => import('./tabs/AnalysisTab').then(m => ({ default: m.AnalysisTab })));
+const WorkTab = lazy(() => import('./tabs/WorkTab').then(m => ({ default: m.WorkTab })));
+const RelationsTab = lazy(() => import('./tabs/RelationsTab').then(m => ({ default: m.RelationsTab })));
+const GrowthTab = lazy(() => import('./tabs/GrowthTab').then(m => ({ default: m.GrowthTab })));
 
 // Color mapping for dynamic styles
 const COLOR_MAP: Record<string, string> = {
@@ -246,40 +246,46 @@ export const ResultPage: React.FC = () => {
             <div className="max-w-3xl md:max-w-5xl mx-auto px-2 sm:px-4 relative z-10 min-h-[500px]">
                 {/* Key changes trigger animation replay */}
                 <div key={activeTab} className="animate-fade-in-up stagger-2">
-                    {activeTab === 'overview' && (
-                        <OverviewTab
-                            osData={osData}
-                            engineData={engineData}
-                            themeColor={themeColor}
-                        />
-                    )}
+                    <Suspense fallback={
+                        <div className="flex items-center justify-center py-20">
+                            <div className="w-8 h-8 border-2 border-prisma-200 border-t-prisma-500 rounded-full animate-spin" />
+                        </div>
+                    }>
+                        {activeTab === 'overview' && (
+                            <OverviewTab
+                                osData={osData}
+                                engineData={engineData}
+                                themeColor={themeColor}
+                            />
+                        )}
 
-                    {activeTab === 'analysis' && (
-                        <AnalysisTab
-                            osData={osData}
-                            themeColor={themeColor}
-                            biasRisks={biasRisks}
-                        />
-                    )}
+                        {activeTab === 'analysis' && (
+                            <AnalysisTab
+                                osData={osData}
+                                themeColor={themeColor}
+                                biasRisks={biasRisks}
+                            />
+                        )}
 
-                    {activeTab === 'work' && (
-                        <WorkTab
-                            osData={osData}
-                            themeColor={themeColor}
-                        />
-                    )}
+                        {activeTab === 'work' && (
+                            <WorkTab
+                                osData={osData}
+                                themeColor={themeColor}
+                            />
+                        )}
 
-                    {activeTab === 'relations' && (
-                        <RelationsTab osData={osData} />
-                    )}
+                        {activeTab === 'relations' && (
+                            <RelationsTab osData={osData} />
+                        )}
 
-                    {activeTab === 'growth' && (
-                        <GrowthTab
-                            osData={osData}
-                            engineData={engineData}
-                            themeColor={themeColor}
-                        />
-                    )}
+                        {activeTab === 'growth' && (
+                            <GrowthTab
+                                osData={osData}
+                                engineData={engineData}
+                                themeColor={themeColor}
+                            />
+                        )}
+                    </Suspense>
                 </div>
 
                 {/* Footer Actions */}

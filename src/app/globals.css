@@ -16,7 +16,7 @@
   --color-prisma-950: #012020; /* Darkest shade */
   
   --font-sans: var(--font-inter), 'Helvetica Neue', Arial, sans-serif;
-  --font-serif: var(--font-serif), 'Hiragino Mincho ProN', 'Yu Mincho', serif;
+  --font-serif: 'Noto Serif JP', 'Hiragino Mincho ProN', 'Yu Mincho', serif;
 
   --animate-fade-in-up: fade-in-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   --animate-fade-in-up-delay-100: fade-in-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) 100ms forwards;
@@ -68,7 +68,6 @@
 .stagger-1 { animation-delay: 100ms; }
 .stagger-2 { animation-delay: 200ms; }
 .stagger-3 { animation-delay: 300ms; }
-.stagger-4 { animation-delay: 400ms; }
 .stagger-4 { animation-delay: 400ms; }
 .stagger-5 { animation-delay: 500ms; }
 
