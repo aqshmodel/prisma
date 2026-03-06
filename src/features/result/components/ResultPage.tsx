@@ -22,6 +22,7 @@ import { ShareButtons } from '../../../components/common/ShareButtons';
 import { useReactToPrint } from 'react-to-print';
 import { useRef } from 'react';
 import { PrintLayout } from './PrintLayout';
+import { RelatedArticlesForResult } from './RelatedArticlesForResult';
 
 // Tab Components (lazy loading for code splitting)
 const OverviewTab = lazy(() => import('./tabs/OverviewTab').then(m => ({ default: m.OverviewTab })));
@@ -287,6 +288,9 @@ export const ResultPage: React.FC = () => {
                         )}
                     </Suspense>
                 </div>
+
+                {/* Related Articles for this Type */}
+                <RelatedArticlesForResult typeCode={result.os.code} />
 
                 {/* Footer Actions */}
                 <div className="mt-12 flex flex-col items-center gap-6">

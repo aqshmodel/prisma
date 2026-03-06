@@ -3,6 +3,7 @@ import Link from 'next/link';
 import type { Metadata } from 'next';
 import { getAllArticles } from '../../features/articles/utils/mdx';
 import { ArticleList } from '../../features/articles/components/ArticleList';
+import { ArticleFilter } from '../../features/articles/components/ArticleFilter';
 import { ArrowLeft, BookOpen } from 'lucide-react';
 
 /**
@@ -74,15 +75,17 @@ export default function ArticlesPage() {
                     </div>
                 </div>
 
-                {/* Article List */}
+                {/* Article List with Filter */}
                 <div className="max-w-3xl md:max-w-5xl xl:max-w-[1200px] mx-auto px-4 mt-12">
-                    <ArticleList
-                        articles={articles.slice(0, 10)}
-                        currentPage={1}
-                        totalPages={Math.ceil(articles.length / 10)}
-                        basePath="/articles/page"
-                        defaultPath="/articles"
-                    />
+                    <ArticleFilter articles={articles}>
+                        <ArticleList
+                            articles={articles.slice(0, 10)}
+                            currentPage={1}
+                            totalPages={Math.ceil(articles.length / 10)}
+                            basePath="/articles/page"
+                            defaultPath="/articles"
+                        />
+                    </ArticleFilter>
                 </div>
             </div>
         </>
