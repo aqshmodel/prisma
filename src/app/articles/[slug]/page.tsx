@@ -94,31 +94,57 @@ export default async function ArticleDetailPage({ params }: { params: Promise<{ 
      */
     const baseUrl = 'https://prisma.aqsh.co.jp';
     const canonicalUrl = `${baseUrl}/articles/${slug}`;
-    const jsonLd = {
-        '@context': 'https://schema.org',
-        '@type': 'Article',
-        headline: metadata.title,
-        description: metadata.description,
-        image: metadata.coverImage ? [`${baseUrl}${metadata.coverImage}`] : [],
-        datePublished: new Date(metadata.date).toISOString(),
-        dateModified: new Date(metadata.updatedAt || metadata.date).toISOString(),
-        author: {
-            '@type': 'Organization',
-            name: metadata.author || 'Aqsh Prisma',
-        },
-        publisher: {
-            '@type': 'Organization',
-            name: 'Aqsh Prisma',
-            logo: {
-                '@type': 'ImageObject',
-                url: `${baseUrl}/icon.png`
+    const jsonLd = [
+        {
+            '@context': 'https://schema.org',
+            '@type': 'Article',
+            headline: metadata.title,
+            description: metadata.description,
+            image: metadata.coverImage ? [`${baseUrl}${metadata.coverImage}`] : [],
+            datePublished: new Date(metadata.date).toISOString(),
+            dateModified: new Date(metadata.updatedAt || metadata.date).toISOString(),
+            author: {
+                '@type': 'Organization',
+                name: metadata.author || 'Aqsh Prisma',
+            },
+            publisher: {
+                '@type': 'Organization',
+                name: 'Aqsh Prisma',
+                logo: {
+                    '@type': 'ImageObject',
+                    url: `${baseUrl}/icon.png`
+                }
+            },
+            mainEntityOfPage: {
+                '@type': 'WebPage',
+                '@id': canonicalUrl
             }
         },
-        mainEntityOfPage: {
-            '@type': 'WebPage',
-            '@id': canonicalUrl
+        {
+            '@context': 'https://schema.org',
+            '@type': 'BreadcrumbList',
+            itemListElement: [
+                {
+                    '@type': 'ListItem',
+                    position: 1,
+                    name: 'TOP',
+                    item: baseUrl
+                },
+                {
+                    '@type': 'ListItem',
+                    position: 2,
+                    name: 'コラム',
+                    item: `${baseUrl}/articles`
+                },
+                {
+                    '@type': 'ListItem',
+                    position: 3,
+                    name: metadata.title,
+                    item: canonicalUrl
+                }
+            ]
         }
-    };
+    ];
 
     return (
         <div className="min-h-screen bg-white pb-20">
