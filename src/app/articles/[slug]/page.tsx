@@ -7,6 +7,7 @@ import { getArticleBySlug, getArticleSlugs } from '../../../features/articles/ut
 import { ArrowLeft, Calendar, User, Tag, RefreshCw } from 'lucide-react';
 import { ShareButtons } from '../../../components/common/ShareButtons';
 import { DiagnosisCTA } from '@/features/articles/components/DiagnosisCTA';
+import { AuthorBio } from '@/features/articles/components/AuthorBio';
 
 /**
  * SSG（静的生成）のためのパス一覧をNext.jsに提供します。
@@ -104,8 +105,13 @@ export default async function ArticleDetailPage({ params }: { params: Promise<{ 
             datePublished: new Date(metadata.date).toISOString(),
             dateModified: new Date(metadata.updatedAt || metadata.date).toISOString(),
             author: {
-                '@type': 'Organization',
-                name: metadata.author || 'Aqsh Prisma',
+                '@type': 'Person',
+                name: '塚田 崇博',
+                jobTitle: '代表取締役',
+                worksFor: {
+                    '@type': 'Organization',
+                    name: 'Aqsh株式会社'
+                }
             },
             publisher: {
                 '@type': 'Organization',
@@ -243,6 +249,9 @@ export default async function ArticleDetailPage({ params }: { params: Promise<{ 
                             text={metadata.description}
                         />
                     </div>
+
+                    {/* Author Bio */}
+                    <AuthorBio />
                 </div>
             </article>
         </div>
