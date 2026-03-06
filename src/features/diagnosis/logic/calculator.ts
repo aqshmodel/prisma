@@ -1,4 +1,4 @@
-import { type Answers, type DiagnosisResult, type OSTypeCode, type EngineType, type BiasType, type Subtype } from '../../../types/diagnosis';
+import { type Answers, type DiagnosisResult, type OSTypeCode, type EngineType, type BiasType, type Subtype } from '@/types/diagnosis';
 
 // --- Constants & Config ---
 

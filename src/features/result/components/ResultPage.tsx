@@ -12,17 +12,18 @@ import {
     Download
 } from 'lucide-react';
 
-import { FormattedText } from '../../../components/ui/FormattedText';
-import { useDiagnosisStore } from '../../../stores/useDiagnosisStore';
+import { FormattedText } from '@/components/ui/FormattedText';
+import { useDiagnosisStore } from '@/stores/useDiagnosisStore';
 import { OS_CONTENT } from '../data/content-os';
 import { ENGINE_CONTENT } from '../data/content-engine';
 import { BIAS_CONTENT } from '../data/content-bias';
-import { Button } from '../../../components/ui/Button';
-import { ShareButtons } from '../../../components/common/ShareButtons';
+import { Button } from '@/components/ui/Button';
+import { ShareButtons } from '@/components/common/ShareButtons';
 import { useReactToPrint } from 'react-to-print';
 import { useRef } from 'react';
 import { PrintLayout } from './PrintLayout';
 import { RelatedArticlesForResult } from './RelatedArticlesForResult';
+import { resolveColor } from '@/lib/constants/color-map';
 
 // Tab Components (lazy loading for code splitting)
 const OverviewTab = lazy(() => import('./tabs/OverviewTab').then(m => ({ default: m.OverviewTab })));
@@ -31,26 +32,6 @@ const WorkTab = lazy(() => import('./tabs/WorkTab').then(m => ({ default: m.Work
 const RelationsTab = lazy(() => import('./tabs/RelationsTab').then(m => ({ default: m.RelationsTab })));
 const GrowthTab = lazy(() => import('./tabs/GrowthTab').then(m => ({ default: m.GrowthTab })));
 
-// Color mapping for dynamic styles
-const COLOR_MAP: Record<string, string> = {
-    'sky-500': '#0ea5e9',
-    'emerald-400': '#34d399',
-    'orange-400': '#fb923c',
-    'indigo-500': '#6366f1',
-    'rose-500': '#f43f5e',
-    'slate-600': '#475569',
-    'red-600': '#dc2626',
-    'violet-400': '#a78bfa',
-    'amber-500': '#f59e0b',
-    'blue-800': '#1e40af',
-    'blue-600': '#2563eb',
-    'teal-600': '#0ababa', // Updated to User's Teal
-    'cyan-700': '#078282', // Updated to User's Deep Teal
-    'prisma-500': '#0ABAB5', // User's Primary
-    'fuchsia-400': '#e879f9',
-    'yellow-400': '#facc15',
-    'gray-500': '#6b7280',
-};
 
 type TabType = 'overview' | 'analysis' | 'work' | 'relations' | 'growth';
 
@@ -152,7 +133,7 @@ export const ResultPage: React.FC = () => {
         return { ...content, level };
     }) || [];
 
-    const themeColor = COLOR_MAP[osData.color] || '#6366f1';
+    const themeColor = resolveColor(osData.color);
 
     const handleReset = () => {
         reset();

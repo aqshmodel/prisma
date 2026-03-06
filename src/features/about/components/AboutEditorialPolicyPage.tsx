@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { ArrowLeft, ArrowRight, FileText, Search, RefreshCw, Shield, Heart } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { SITE_CONFIG, PUBLISHER_JSON_LD } from '@/lib/constants/site-config';
 
 const PolicySection = ({ icon, title, children }: { icon: React.ReactNode; title: string; children: React.ReactNode }) => (
     <section className="bg-white rounded-3xl p-8 md:p-12 shadow-sm border border-slate-100 mb-12 md:mb-16">
@@ -20,19 +21,12 @@ export const AboutEditorialPolicyPage = () => {
         '@type': 'Article',
         headline: '編集方針 | Aqsh Prisma',
         description: 'Aqsh Prismaのコンテンツがどのような方針・プロセスで制作されているかを説明します。',
-        image: 'https://prisma.aqsh.co.jp/og-image.png',
+        image: `${SITE_CONFIG.baseUrl}${SITE_CONFIG.ogImage}`,
         author: {
             '@type': 'Organization',
-            name: 'Aqsh Prisma'
+            name: SITE_CONFIG.name
         },
-        publisher: {
-            '@type': 'Organization',
-            name: 'Aqsh Prisma',
-            logo: {
-                '@type': 'ImageObject',
-                url: 'https://prisma.aqsh.co.jp/logo.webp'
-            }
-        }
+        publisher: PUBLISHER_JSON_LD
     };
 
     return (

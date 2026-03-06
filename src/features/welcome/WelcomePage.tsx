@@ -24,13 +24,13 @@ export const WelcomePage: React.FC<WelcomePageProps> = ({ articleSlot }) => {
     const router = useRouter();
     const resetDiagnosis = useDiagnosisStore((state) => state.resetDiagnosis);
     const answers = useDiagnosisStore((state) => state.answers);
-    const currentStep = useDiagnosisStore((state) => state.currentStep);
     const result = useDiagnosisStore((state) => state.result);
     const history = useDiagnosisStore((state) => state.history);
 
-    // Check if there is an active incomplete session
-    const hasProgress = Object.keys(answers).length > 0 && currentStep < 8;
-    // Check if there is a completed result
+    // 回答が1問以上あり、まだ全問（72問）完了していない場合を「進行中」とみなす
+    const answeredCount = Object.keys(answers).length;
+    const hasProgress = answeredCount > 0 && answeredCount < 72 && !result;
+    // 完了済みの結果があるかどうか
     const hasResult = !!result || history.length > 0;
 
     const handleStart = () => {

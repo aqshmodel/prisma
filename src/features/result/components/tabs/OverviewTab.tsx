@@ -3,8 +3,8 @@
 import React from 'react';
 
 import { Zap, LayoutDashboard } from 'lucide-react';
-import { Card } from '../../../../components/ui/Card';
-import { FormattedText } from '../../../../components/ui/FormattedText';
+import { Card } from '@/components/ui/Card';
+import { FormattedText } from '@/components/ui/FormattedText';
 import { RadarChart } from '../RadarChart';
 import { MatrixChart } from '../MatrixChart';
 import type { OSContent } from '../../data/content-os';

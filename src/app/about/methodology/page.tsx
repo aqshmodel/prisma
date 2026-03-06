@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { SITE_CONFIG } from '@/lib/constants/site-config';
 import { AboutMethodologyPage } from '@/features/about/components/AboutMethodologyPage';
 
 export const metadata: Metadata = {
@@ -9,15 +10,15 @@ export const metadata: Metadata = {
         title: '診断ロジックの説明 | Aqsh Prismaの診断はどう作られているか',
         description: 'Aqsh Prismaの16タイプ×エニアグラム診断がどのようなロジックで結果を算出しているかを、透明性をもって解説します。',
         type: 'article',
-        url: 'https://aqsh.me/about/methodology',
+        url: `${SITE_CONFIG.baseUrl}/about/methodology`,
         locale: 'ja_JP',
-        siteName: 'Aqsh(アクシュ)',
+        siteName: SITE_CONFIG.name,
         images: [
             {
-                url: 'https://prisma.aqsh.co.jp/og-image.png',
+                url: `${SITE_CONFIG.baseUrl}${SITE_CONFIG.ogImage}`,
                 width: 1200,
                 height: 630,
-                alt: '診断ロジックの説明 | Aqsh'
+                alt: '診断ロジックの説明 | Aqsh Prisma'
             }
         ]
     },
@@ -25,10 +26,10 @@ export const metadata: Metadata = {
         card: 'summary_large_image',
         title: '診断ロジックの説明 | Aqsh Prismaの診断はどう作られているか',
         description: 'Aqsh Prismaの16タイプ×エニアグラム診断がどのようなロジックで結果を算出しているかを、透明性をもって解説します。',
-        images: ['https://prisma.aqsh.co.jp/og-image.png'],
+        images: [`${SITE_CONFIG.baseUrl}${SITE_CONFIG.ogImage}`],
     },
     alternates: {
-        canonical: 'https://aqsh.me/about/methodology',
+        canonical: `${SITE_CONFIG.baseUrl}/about/methodology`,
     },
 };
 

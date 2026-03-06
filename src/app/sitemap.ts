@@ -1,11 +1,12 @@
 import type { MetadataRoute } from 'next';
 import { OS_CONTENT } from '@/features/result/data/content-os';
 import { getAllArticles } from '@/features/articles/utils/mdx';
+import { SITE_CONFIG } from '@/lib/constants/site-config';
 
 export const dynamic = 'force-static';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-    const baseUrl = 'https://prisma.aqsh.co.jp';
+    const baseUrl = SITE_CONFIG.baseUrl;
     const currentDate = new Date();
 
     // Static Routes

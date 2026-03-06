@@ -1,15 +1,17 @@
 import { forwardRef } from 'react';
 import { type OSContent } from '../data/content-os';
 import { type EngineContent } from '../data/content-engine';
+import { type BiasContent } from '../data/content-bias';
 import { RadarChart } from './RadarChart';
-import { type DiagnosisResult } from '../../../types/diagnosis';
-import { FormattedText } from '../../../components/ui/FormattedText';
+import { type DiagnosisResult } from '@/types/diagnosis';
+import { FormattedText } from '@/components/ui/FormattedText';
 
 interface PrintLayoutProps {
     result: DiagnosisResult;
     osData: OSContent;
     engineData: EngineContent;
-    biasRisks: Array<{ name: string; level: string; description: string }>;
+    /** 検出されたバイアスリスク（BiasContentにリスクレベルを付与） */
+    biasRisks: Array<BiasContent & { level: string }>;
     themeColor: string;
 }
 
@@ -143,7 +145,7 @@ export const PrintLayout = forwardRef<HTMLDivElement, PrintLayoutProps>(
                                         {risk.level === 'high' ? 'High Risk' : 'Medium Risk'}
                                     </span>
                                 </div>
-                                <p className="text-xs text-slate-600">{risk.description}</p>
+                                <p className="text-xs text-slate-600">{risk.warning}</p>
                             </div>
                         ))}
                         {biasRisks.length === 0 && (

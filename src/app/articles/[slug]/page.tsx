@@ -1,10 +1,9 @@
-
 import Link from 'next/link';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { MDXRemote } from 'next-mdx-remote/rsc';
-import { getArticleBySlug, getArticleSlugs } from '../../../features/articles/utils/mdx';
-import { ArrowLeft, Calendar, User, Tag, RefreshCw, Clock } from 'lucide-react';
+import { getArticleBySlug, getArticleSlugs, getAllArticles } from '../../../features/articles/utils/mdx';
+import { ArrowLeft, Calendar, User, Tag, RefreshCw, Clock, ChevronRight, ArrowRight } from 'lucide-react';
 import { ShareButtons } from '../../../components/common/ShareButtons';
 import { DiagnosisCTA } from '@/features/articles/components/DiagnosisCTA';
 import { AuthorBio } from '@/features/articles/components/AuthorBio';
@@ -13,6 +12,7 @@ import { TableOfContents } from '@/features/articles/components/TableOfContents'
 import { getReadingTime } from '@/features/articles/utils/readingTime';
 import { extractHeadings } from '@/features/articles/utils/extractHeadings';
 import { extractFaqJsonLd } from '@/features/articles/utils/faqExtractor';
+import { SITE_CONFIG, PUBLISHER_JSON_LD } from '@/lib/constants/site-config';
 
 /**
  * SSG（静的生成）のためのパス一覧をNext.jsに提供します。
@@ -33,7 +33,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     const article = getArticleBySlug(slug);
     if (!article) return { title: 'Not Found' };
 
-    const baseUrl = 'https://prisma.aqsh.co.jp';
+    const baseUrl = SITE_CONFIG.baseUrl;
     const canonicalUrl = `${baseUrl}/articles/${slug}`;
     const imageUrl = article.metadata.coverImage ? `${baseUrl}${article.metadata.coverImage}` : `${baseUrl}/og-image.png`;
 
@@ -98,6 +98,12 @@ export default async function ArticleDetailPage({ params }: { params: Promise<{ 
 
     const { metadata, content } = article;
 
+    // 前後記事を取得
+    const allArticles = getAllArticles();
+    const currentIndex = allArticles.findIndex(a => a.slug === slug);
+    const prevArticle = currentIndex < allArticles.length - 1 ? allArticles[currentIndex + 1] : null;
+    const nextArticle = currentIndex > 0 ? allArticles[currentIndex - 1] : null;
+
     // 読了時間を算出
     const readingTime = getReadingTime(content);
 
@@ -111,7 +117,7 @@ export default async function ArticleDetailPage({ params }: { params: Promise<{ 
      * Article (JSON-LD)
      * 検索エンジンに対して、このページがブログ記事であることを構造化データで伝えます。
      */
-    const baseUrl = 'https://prisma.aqsh.co.jp';
+    const baseUrl = SITE_CONFIG.baseUrl;
     const canonicalUrl = `${baseUrl}/articles/${slug}`;
     const jsonLd = [
         {
@@ -131,14 +137,7 @@ export default async function ArticleDetailPage({ params }: { params: Promise<{ 
                     name: 'Aqsh株式会社'
                 }
             },
-            publisher: {
-                '@type': 'Organization',
-                name: 'Aqsh Prisma',
-                logo: {
-                    '@type': 'ImageObject',
-                    url: `${baseUrl}/icon.png`
-                }
-            },
+            publisher: PUBLISHER_JSON_LD,
             mainEntityOfPage: {
                 '@type': 'WebPage',
                 '@id': canonicalUrl
@@ -198,6 +197,16 @@ export default async function ArticleDetailPage({ params }: { params: Promise<{ 
             </div>
 
             <article className="w-full mt-0">
+                {/* Breadcrumb UI */}
+                <nav aria-label="パンくずリスト" className="max-w-4xl md:max-w-6xl xl:max-w-[1200px] mx-auto px-4 py-3">
+                    <ol className="flex items-center gap-1 text-xs text-slate-400 flex-wrap">
+                        <li><Link href="/" className="hover:text-prisma-600 transition-colors">TOP</Link></li>
+                        <li><ChevronRight size={12} /></li>
+                        <li><Link href="/articles" className="hover:text-prisma-600 transition-colors">コラム</Link></li>
+                        <li><ChevronRight size={12} /></li>
+                        <li className="text-slate-600 font-medium truncate max-w-[200px] md:max-w-[400px]">{metadata.title}</li>
+                    </ol>
+                </nav>
                 {/* Hero Image (Full Width) */}
                 {metadata.coverImage && (
                     <div className="w-full relative h-[40vh] min-h-[300px] md:h-[50vh] md:min-h-[400px] bg-slate-100 mb-8 md:mb-12">
@@ -292,6 +301,40 @@ export default async function ArticleDetailPage({ params }: { params: Promise<{ 
                         category={metadata.category}
                         tags={metadata.tags}
                     />
+
+                    {/* Prev / Next Navigation */}
+                    {(prevArticle || nextArticle) && (
+                        <div className="mt-12 pt-8 border-t border-slate-100 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            {prevArticle ? (
+                                <Link
+                                    href={`/articles/${prevArticle.slug}`}
+                                    className="group flex flex-col gap-1 p-4 rounded-xl border border-slate-100 hover:border-prisma-200 hover:bg-prisma-50/30 transition-all"
+                                >
+                                    <span className="text-xs text-slate-400 flex items-center gap-1">
+                                        <ArrowLeft size={12} />
+                                        前の記事
+                                    </span>
+                                    <span className="text-sm font-bold text-slate-700 group-hover:text-prisma-600 transition-colors line-clamp-2">
+                                        {prevArticle.title}
+                                    </span>
+                                </Link>
+                            ) : <div />}
+                            {nextArticle && (
+                                <Link
+                                    href={`/articles/${nextArticle.slug}`}
+                                    className="group flex flex-col gap-1 p-4 rounded-xl border border-slate-100 hover:border-prisma-200 hover:bg-prisma-50/30 transition-all text-right sm:col-start-2"
+                                >
+                                    <span className="text-xs text-slate-400 flex items-center gap-1 justify-end">
+                                        次の記事
+                                        <ArrowRight size={12} />
+                                    </span>
+                                    <span className="text-sm font-bold text-slate-700 group-hover:text-prisma-600 transition-colors line-clamp-2">
+                                        {nextArticle.title}
+                                    </span>
+                                </Link>
+                            )}
+                        </div>
+                    )}
                 </div>
             </article>
         </div>

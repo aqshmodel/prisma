@@ -1,7 +1,7 @@
 import { forwardRef } from 'react';
-import { type OSContent } from '../../result/data/content-os';
-import { FormattedText } from '../../../components/ui/FormattedText';
-import { RadarChart } from '../../result/components/RadarChart';
+import { type OSContent } from '@/features/result/data/content-os';
+import { FormattedText } from '@/components/ui/FormattedText';
+import { RadarChart } from '@/features/result/components/RadarChart';
 import { CheckCircle2, AlertTriangle, Briefcase, Zap } from 'lucide-react';
 
 interface TorisetsuPrintLayoutProps {

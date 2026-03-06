@@ -2,31 +2,13 @@
 import React from 'react';
 
 import { OS_CONTENT } from '../data/content-os';
-import type { OSTypeCode } from '../../../types/diagnosis';
+import type { OSTypeCode } from '@/types/diagnosis';
+import { resolveColor } from '@/lib/constants/color-map';
 
 interface MatrixChartProps {
     highlightCode: OSTypeCode;
 }
 
-// Map Tailwind colors to Hex (Reuse from RadarChart or duplicate)
-const COLOR_MAP: Record<string, string> = {
-    'sky-500': '#0ea5e9',
-    'emerald-400': '#34d399',
-    'orange-400': '#fb923c',
-    'indigo-500': '#6366f1',
-    'rose-500': '#f43f5e',
-    'slate-600': '#475569',
-    'red-600': '#dc2626',
-    'violet-400': '#a78bfa',
-    'amber-500': '#f59e0b',
-    'blue-800': '#1e40af',
-    'blue-600': '#2563eb',
-    'teal-600': '#0d9488',
-    'cyan-700': '#0e7490',
-    'fuchsia-400': '#e879f9',
-    'yellow-400': '#facc15',
-    'gray-500': '#6b7280',
-};
 
 export const MatrixChart = React.memo<MatrixChartProps>(({ highlightCode }) => {
     const size = 300;
@@ -40,7 +22,7 @@ export const MatrixChart = React.memo<MatrixChartProps>(({ highlightCode }) => {
         // Y: Innovation (Intuition) -> Top
         x: (os.params.analysis / 10) * plotSize + padding,
         y: size - ((os.params.innovation / 10) * plotSize + padding), // Flip Y because SVG 0 is top
-        color: COLOR_MAP[os.color] || '#cbd5e1',
+        color: resolveColor(os.color),
         isTarget: os.code === highlightCode
     }));
 

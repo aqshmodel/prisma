@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { TypeDetailPage } from '../../../features/type-detail/TypeDetailPage';
 import { OS_CONTENT } from '../../../features/result/data/content-os';
+import { SITE_CONFIG } from '@/lib/constants/site-config';
 
 type Props = {
     params: Promise<{ code: string }>;
@@ -62,13 +63,13 @@ export default async function Page({ params }: Props) {
                 '@type': 'ListItem',
                 'position': 1,
                 'name': 'ホーム',
-                'item': 'https://prisma.aqsh.co.jp/'
+                'item': SITE_CONFIG.baseUrl + '/'
             },
             {
                 '@type': 'ListItem',
                 'position': 2,
                 'name': `${data.name} (${data.code})`,
-                'item': `https://prisma.aqsh.co.jp/types/${code}`
+                'item': `${SITE_CONFIG.baseUrl}/types/${code}`
             }
         ]
     };

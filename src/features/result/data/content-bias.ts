@@ -1,4 +1,4 @@
-import { type BiasType } from '../../../types/diagnosis';
+import { type BiasType } from '@/types/diagnosis';
 
 export interface BiasContent {
     type: BiasType;

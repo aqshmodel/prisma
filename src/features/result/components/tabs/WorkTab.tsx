@@ -2,8 +2,8 @@
 import React from 'react';
 
 import { Briefcase, Target } from 'lucide-react';
-import { Card } from '../../../../components/ui/Card';
-import { FormattedText } from '../../../../components/ui/FormattedText';
+import { Card } from '@/components/ui/Card';
+import { FormattedText } from '@/components/ui/FormattedText';
 import type { OSContent } from '../../data/content-os';
 
 interface WorkTabProps {

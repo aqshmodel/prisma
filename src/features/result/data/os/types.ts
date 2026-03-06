@@ -1,5 +1,5 @@
 
-import type { OSTypeCode } from '../../../../types/diagnosis';
+import type { OSTypeCode } from '@/types/diagnosis';
 
 export interface OSParams {
     analysis: number;     // 分析・論理 (Logic)

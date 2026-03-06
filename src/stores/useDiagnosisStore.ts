@@ -3,21 +3,28 @@ import { persist } from 'zustand/middleware';
 import { type Answers, type DiagnosisResult } from '../types/diagnosis';
 
 interface State {
+    /** 各設問への回答（キー: 設問ID, 値: 'A' | 'B'） */
     answers: Answers;
-    currentStep: number;
+    /** 診断結果 */
     result: DiagnosisResult | null;
+    /** 過去の診断結果（現在は最新1件のみ保持） */
     history: DiagnosisResult[];
+    /** 結果がFirebaseに未保存かどうかのフラグ */
     isNewResult: boolean;
 }
 
 interface Action {
+    /** 特定の設問に回答する */
     setAnswer: (questionId: number, value: 'A' | 'B') => void;
-    nextStep: () => void;
-    prevStep: () => void;
+    /** 診断をリセット（全回答・結果をクリア） */
     resetDiagnosis: () => void;
+    /** 診断結果を設定 */
     setResult: (result: DiagnosisResult) => void;
+    /** 履歴から最新の結果を復元 */
     restoreLastResult: () => void;
+    /** 結果を保存済みとしてマーク */
     markResultAsSaved: () => void;
+    /** 履歴をクリア */
     clearHistory: () => void;
 }
 
@@ -25,14 +32,6 @@ export const useDiagnosisStore = create<State & Action>()(
     persist(
         (set) => ({
             answers: {},
-            currentStep: 0, // 0 means Introduction/Top page, 1 means Question 1? Or 0 index? Let's say 1-based step for questions for clarity, or 0 for landing.
-            // Let's stick to: 0 = Landing, 1 = Q1-Q10, 2 = Q11-Q20... (Page based)
-            // Actually, finer control: `currentQuestionIndex` or just a step phase.
-            // To match wizard logic:
-            // Step 0: Landing
-            // Step 1: Q1-Q10
-            // ...
-            // Step 8: Results (calculated)
             result: null,
             history: [],
             isNewResult: false,
@@ -41,32 +40,32 @@ export const useDiagnosisStore = create<State & Action>()(
                 answers: { ...state.answers, [id]: value }
             })),
 
-            nextStep: () => set((state) => ({ currentStep: state.currentStep + 1 })),
-            prevStep: () => set((state) => ({ currentStep: Math.max(0, state.currentStep - 1) })),
-
-            resetDiagnosis: () => set({ answers: {}, currentStep: 0, result: null, isNewResult: false }),
+            resetDiagnosis: () => set({ answers: {}, result: null, isNewResult: false }),
 
             setResult: (result) => set(() => ({
                 result: result,
-                history: [result], // Keep only the latest one
-                isNewResult: true, // Mark as new result
+                history: [result], // 最新1件のみ保持
+                isNewResult: true,
             })),
 
             restoreLastResult: () => set((state) => ({
                 result: state.history.length > 0 ? state.history[0] : null,
-                isNewResult: false // Restored results are not "new"
+                isNewResult: false,
             })),
 
-            markResultAsSaved: () => set({ isNewResult: false }), // Action to reset the flag
+            markResultAsSaved: () => set({ isNewResult: false }),
 
-            clearHistory: () => set({ history: [] })
+            clearHistory: () => set({ history: [] }),
         }),
         {
             name: 'aqsh-prisma-storage',
+            /**
+             * LocalStorageに永続化するフィールドを制限。
+             * answers は再開時に必要、history は結果復元用。
+             */
             partialize: (state) => ({
                 history: state.history,
                 answers: state.answers,
-                currentStep: state.currentStep
             }),
         }
     )

@@ -1,34 +1,35 @@
 import type { Metadata } from 'next';
+import { SITE_CONFIG } from '@/lib/constants/site-config';
 import { AboutEnneagramPage } from '@/features/about/components/AboutEnneagramPage';
 
 export const metadata: Metadata = {
-    title: 'エニアグラムとは？ | 9つの欲求と心のエンジン | Aqsh(アクシュ)',
+    title: 'エニアグラムとは？ | 9つの欲求と心のエンジン | Aqsh Prisma',
     description: '同じ行動の裏にある本当の理由とは。あなたの行動を無意識に支配する9タイプのエニアグラム（心のエンジン）について、専門的にわかりやすく解説します。',
-    keywords: 'エニアグラム, 9タイプ, 性格診断, 欲求, ストレス行動, 心理学, Aqsh, アクシュ',
+    keywords: 'エニアグラム, 9タイプ, 性格診断, 欲求, ストレス行動, 心理学, Aqsh',
     openGraph: {
-        title: 'エニアグラムとは？ | 9つの欲求と心のエンジン | Aqsh',
+        title: 'エニアグラムとは？ | 9つの欲求と心のエンジン | Aqsh Prisma',
         description: '同じ行動の裏にある本当の理由とは。あなたの行動を無意識に支配する9タイプのエニアグラム（心のエンジン）について、専門的にわかりやすく解説します。',
         type: 'article',
-        url: 'https://aqsh.me/about/enneagram',
+        url: `${SITE_CONFIG.baseUrl}/about/enneagram`,
         locale: 'ja_JP',
-        siteName: 'Aqsh(アクシュ)',
+        siteName: SITE_CONFIG.name,
         images: [
             {
-                url: 'https://prisma.aqsh.co.jp/og-image.png',
+                url: `${SITE_CONFIG.baseUrl}${SITE_CONFIG.ogImage}`,
                 width: 1200,
                 height: 630,
-                alt: 'エニアグラムとは？ | 9つの欲求と心のエンジン | Aqsh(アクシュ)'
+                alt: 'エニアグラムとは？ | Aqsh Prisma'
             }
         ]
     },
     twitter: {
         card: 'summary_large_image',
-        title: 'エニアグラムとは？ | 9つの欲求と心のエンジン | Aqsh(アクシュ)',
+        title: 'エニアグラムとは？ | 9つの欲求と心のエンジン | Aqsh Prisma',
         description: '同じ行動の裏にある本当の理由とは。あなたの行動を無意識に支配する9タイプのエニアグラム（心のエンジン）について、専門的にわかりやすく解説します。',
-        images: ['https://prisma.aqsh.co.jp/og-image.png'],
+        images: [`${SITE_CONFIG.baseUrl}${SITE_CONFIG.ogImage}`],
     },
     alternates: {
-        canonical: 'https://aqsh.me/about/enneagram',
+        canonical: `${SITE_CONFIG.baseUrl}/about/enneagram`,
     },
 };
 

@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google';
 import './globals.css';
 import { Layout } from '../components/layout/Layout';
 import { GoogleAnalytics } from '../components/GoogleAnalytics';
+import { SITE_CONFIG } from '@/lib/constants/site-config';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter', display: 'swap' });
 
@@ -11,14 +12,14 @@ const inter = Inter({ subsets: ['latin'], variable: '--font-inter', display: 'sw
  * 各ページで上書き（override）されない項目には、ここに定義された内容が反映されます。
  */
 export const metadata: Metadata = {
-    metadataBase: new URL('https://prisma.aqsh.co.jp'),
+    metadataBase: new URL(SITE_CONFIG.baseUrl),
     title: 'Aqsh Prisma | ソシオニクス×エニアグラム 無料性格診断',
     description: 'ソシオニクス16タイプとエニアグラム9タイプを組み合わせた無料性格診断。あなたの思考のクセと無意識の欲求を言語化し、人間関係・恋愛・キャリアの悩みに具体的な手がかりを提供します。',
     openGraph: {
         title: 'Aqsh Prisma | ソシオニクス×エニアグラム 無料性格診断',
         description: 'ソシオニクス16タイプとエニアグラム9タイプを組み合わせた無料性格診断。あなたの思考のクセと無意識の欲求を言語化し、人間関係・恋愛・キャリアの悩みに具体的な手がかりを提供します。',
-        url: 'https://prisma.aqsh.co.jp/',
-        siteName: 'Aqsh Prisma',
+        url: SITE_CONFIG.baseUrl + '/',
+        siteName: SITE_CONFIG.name,
         images: [
             {
                 url: '/og-image.png',
@@ -59,17 +60,17 @@ export default function RootLayout({
         {
             '@context': 'https://schema.org',
             '@type': 'WebSite',
-            name: 'Aqsh Prisma',
-            url: 'https://prisma.aqsh.co.jp/',
+            name: SITE_CONFIG.name,
+            url: SITE_CONFIG.baseUrl + '/',
             alternateName: ['Aqsh Prisma', 'Aqsh プリスマ'],
             description: 'ソシオニクスとビジネス心理学に基づき、あなたのリーダーシップ特性と潜在リスクを可視化する次世代の組織診断ツール。',
         },
         {
             '@context': 'https://schema.org',
             '@type': 'Organization',
-            name: 'Aqsh Prisma',
-            url: 'https://prisma.aqsh.co.jp/',
-            logo: 'https://prisma.aqsh.co.jp/logo.webp',
+            name: SITE_CONFIG.name,
+            url: SITE_CONFIG.baseUrl + '/',
+            logo: `${SITE_CONFIG.baseUrl}${SITE_CONFIG.logo}`,
             sameAs: [
                 'https://aqsh.co.jp/',
             ],

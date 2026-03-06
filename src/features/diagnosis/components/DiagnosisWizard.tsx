@@ -2,11 +2,11 @@
 
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { Button } from '../../../components/ui/Button';
-import { ProgressBar } from '../../../components/ui/ProgressBar';
+import { Button } from '@/components/ui/Button';
+import { ProgressBar } from '@/components/ui/ProgressBar';
 import { QuestionCard } from './QuestionCard';
 import { LoadingAnalysis } from './LoadingAnalysis';
-import { useDiagnosisStore } from '../../../stores/useDiagnosisStore';
+import { useDiagnosisStore } from '@/stores/useDiagnosisStore';
 import { QUESTIONS } from '../data/questions';
 import { calculateDiagnosis } from '../logic/calculator';
 import { ArrowLeft, ArrowRight, CheckCircle } from 'lucide-react';

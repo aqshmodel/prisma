@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { calculateDiagnosis } from './calculator';
-import { type Answers, type OSTypeCode } from '../../../types/diagnosis';
+import { type Answers, type OSTypeCode } from '@/types/diagnosis';
 
 // --- Helper Functions ---
 

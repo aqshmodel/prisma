@@ -74,9 +74,18 @@ export const getArticleBySlug = (slug: string): Article | null => {
 };
 
 /**
+ * モジュールレベルキャッシュ
+ * SSGビルド中は同一プロセスでこの関数が複数ページから呼ばれるため、
+ * 全MDXファイルの読み込み・パースを1回に削減する。
+ */
+let articlesCache: ArticleMetadata[] | null = null;
+
+/**
  * 全記事のメタデータ一覧を日付順（新しい順）で取得
  */
 export const getAllArticles = (): ArticleMetadata[] => {
+    if (articlesCache) return articlesCache;
+
     if (!fs.existsSync(contentDirectory)) return [];
 
     const fileNames = fs.readdirSync(contentDirectory);
@@ -84,7 +93,6 @@ export const getAllArticles = (): ArticleMetadata[] => {
     const allArticlesData = fileNames
         .filter(fileName => fileName.endsWith('.mdx') || fileName.endsWith('.md'))
         .map(fileName => {
-            // メタデータのみ抽出するためgetArticleBySlugを利用
             const slug = getSlug(fileName);
             const article = getArticleBySlug(slug);
             return article ? article.metadata : null;
@@ -92,11 +100,9 @@ export const getAllArticles = (): ArticleMetadata[] => {
         .filter((article): article is ArticleMetadata => article !== null);
 
     // 日付の降順でソート
-    return allArticlesData.sort((a, b) => {
-        if (a.date < b.date) {
-            return 1;
-        } else {
-            return -1;
-        }
-    });
+    articlesCache = allArticlesData.sort((a, b) =>
+        a.date < b.date ? 1 : -1
+    );
+
+    return articlesCache;
 };

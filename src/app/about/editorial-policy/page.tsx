@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { SITE_CONFIG } from '@/lib/constants/site-config';
 import { AboutEditorialPolicyPage } from '@/features/about/components/AboutEditorialPolicyPage';
 
 export const metadata: Metadata = {
@@ -9,12 +10,12 @@ export const metadata: Metadata = {
         title: '編集方針 | Aqsh Prisma',
         description: 'Aqsh Prismaのコンテンツ制作方針、情報ソースの基準、更新ポリシー、免責事項について説明します。',
         type: 'article',
-        url: 'https://aqsh.me/about/editorial-policy',
+        url: `${SITE_CONFIG.baseUrl}/about/editorial-policy`,
         locale: 'ja_JP',
-        siteName: 'Aqsh(アクシュ)',
+        siteName: SITE_CONFIG.name,
         images: [
             {
-                url: 'https://prisma.aqsh.co.jp/og-image.png',
+                url: `${SITE_CONFIG.baseUrl}${SITE_CONFIG.ogImage}`,
                 width: 1200,
                 height: 630,
                 alt: '編集方針 | Aqsh Prisma'
@@ -25,10 +26,10 @@ export const metadata: Metadata = {
         card: 'summary_large_image',
         title: '編集方針 | Aqsh Prisma',
         description: 'Aqsh Prismaのコンテンツ制作方針、情報ソースの基準、更新ポリシー、免責事項について説明します。',
-        images: ['https://prisma.aqsh.co.jp/og-image.png'],
+        images: [`${SITE_CONFIG.baseUrl}${SITE_CONFIG.ogImage}`],
     },
     alternates: {
-        canonical: 'https://aqsh.me/about/editorial-policy',
+        canonical: `${SITE_CONFIG.baseUrl}/about/editorial-policy`,
     },
 };
 

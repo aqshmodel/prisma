@@ -1,4 +1,5 @@
 import type { MetadataRoute } from 'next';
+import { SITE_CONFIG } from '@/lib/constants/site-config';
 
 export const dynamic = 'force-static';
 
@@ -9,6 +10,6 @@ export default function robots(): MetadataRoute.Robots {
             allow: '/',
             disallow: ['/private/', '/admin/'],
         },
-        sitemap: 'https://prisma.aqsh.co.jp/sitemap.xml',
+        sitemap: `${SITE_CONFIG.baseUrl}/sitemap.xml`,
     };
 }

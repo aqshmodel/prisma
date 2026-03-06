@@ -1,7 +1,6 @@
 import React from 'react';
-import Link from 'next/link';
-import Image from 'next/image';
 import { getAllArticles, type ArticleMetadata } from '../utils/mdx';
+import { ArticleCardSmall } from './ArticleCard';
 
 interface RelatedArticlesProps {
     currentSlug: string;
@@ -54,33 +53,14 @@ export const RelatedArticles: React.FC<RelatedArticlesProps> = ({
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {articles.map(article => (
-                    <Link
+                    <ArticleCardSmall
                         key={article.slug}
-                        href={`/articles/${article.slug}`}
-                        className="group flex gap-3 bg-slate-50 rounded-xl p-3 border border-slate-100 hover:border-prisma-200 hover:bg-prisma-50/30 transition-all duration-200"
-                    >
-                        <div className="w-20 h-20 flex-shrink-0 rounded-lg overflow-hidden bg-slate-200 relative">
-                            {article.coverImage ? (
-                                <Image
-                                    src={article.coverImage}
-                                    alt={article.title}
-                                    fill
-                                    sizes="80px"
-                                    className="object-cover"
-                                />
-                            ) : (
-                                <div className="absolute inset-0 bg-gradient-to-br from-prisma-500/20 to-indigo-500/20" />
-                            )}
-                        </div>
-                        <div className="flex-1 min-w-0">
-                            <span className="text-[10px] text-prisma-600 font-medium bg-prisma-50 px-1.5 py-0.5 rounded">
-                                {article.category}
-                            </span>
-                            <h4 className="text-sm font-bold text-slate-800 mt-1 leading-snug line-clamp-2 group-hover:text-prisma-600 transition-colors">
-                                {article.title}
-                            </h4>
-                        </div>
-                    </Link>
+                        slug={article.slug}
+                        title={article.title}
+                        coverImage={article.coverImage}
+                        category={article.category}
+                        className="bg-slate-50 hover:bg-prisma-50/30"
+                    />
                 ))}
             </div>
         </div>

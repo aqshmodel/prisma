@@ -2,21 +2,8 @@ import Link from 'next/link';
 import { ArrowLeft, Flame, Shield, Heart, Eye, Layout, ArrowRight } from 'lucide-react';
 import { ENGINE_CONTENT } from '@/features/result/data/content-engine';
 import { cn } from '@/lib/utils';
-
-const parseBoldText = (text: string | undefined | null) => {
-    if (!text) return null;
-    const parts = text.split(/(\*\*.*?\*\*)/g);
-    return parts.map((part, index) => {
-        if (part.startsWith('**') && part.endsWith('**')) {
-            return (
-                <span key={`bold-${index}`} className="bg-prisma-100 text-prisma-900 px-1.5 py-0.5 rounded font-bold mx-0.5">
-                    {part.slice(2, -2)}
-                </span>
-            );
-        }
-        return part;
-    });
-};
+import { SITE_CONFIG, PUBLISHER_JSON_LD } from '@/lib/constants/site-config';
+import { parseBoldText } from '@/lib/utils/parse-bold-text';
 
 const enneagramFeatures = [
     {
@@ -40,21 +27,14 @@ export const AboutEnneagramPage = () => {
     const jsonLd = {
         '@context': 'https://schema.org',
         '@type': 'Article',
-        headline: 'エニアグラムとは？ | 9つの欲求と心のエンジン | Aqsh(アクシュ)',
+        headline: 'エニアグラムとは？ | 9つの欲求と心のエンジン | Aqsh Prisma',
         description: '同じ行動の裏にある本当の理由とは。あなたの行動を無意識に支配する9タイプのエニアグラム（心のエンジン）について、専門的にわかりやすく解説します。',
-        image: 'https://prisma.aqsh.co.jp/og-image.png',
+        image: `${SITE_CONFIG.baseUrl}${SITE_CONFIG.ogImage}`,
         author: {
             '@type': 'Organization',
-            name: 'Aqsh Prisma'
+            name: SITE_CONFIG.name
         },
-        publisher: {
-            '@type': 'Organization',
-            name: 'Aqsh Prisma',
-            logo: {
-                '@type': 'ImageObject',
-                url: 'https://prisma.aqsh.co.jp/logo.webp'
-            }
-        }
+        publisher: PUBLISHER_JSON_LD
     };
 
     return (

@@ -2,20 +2,8 @@ import Link from 'next/link';
 import { ArrowLeft, Brain, Compass, Users, Target, ArrowRight } from 'lucide-react';
 import { OS_CONTENT } from '@/features/result/data/content-os';
 import { cn } from '@/lib/utils';
-
-const parseBoldText = (text: string) => {
-    const parts = text.split(/(\*\*.*?\*\*)/g);
-    return parts.map((part, index) => {
-        if (part.startsWith('**') && part.endsWith('**')) {
-            return (
-                <span key={`bold-${index}`} className="bg-prisma-100 text-prisma-900 px-1.5 py-0.5 rounded font-bold mx-0.5">
-                    {part.slice(2, -2)}
-                </span>
-            );
-        }
-        return part;
-    });
-};
+import { SITE_CONFIG, PUBLISHER_JSON_LD } from '@/lib/constants/site-config';
+import { parseBoldText } from '@/lib/utils/parse-bold-text';
 
 const renderTextWithBullets = (text: string) => {
     if (!text) return null;
@@ -61,21 +49,14 @@ export const AboutSocionicsPage = () => {
     const jsonLd = {
         '@context': 'https://schema.org',
         '@type': 'Article',
-        headline: 'ソシオニクスとは？ | 16タイプの性格構造を解明 | Aqsh(アクシュ)',
+        headline: 'ソシオニクスとは？ | 16タイプの性格構造を解明 | Aqsh Prisma',
         description: 'なぜあの人とは話が合わないのか。ロシア発祥の緻密な性格類型学「ソシオニクス」で、16タイプの思考パターンや相性をわかりやすく解説します。',
-        image: 'https://prisma.aqsh.co.jp/og-image.png',
+        image: `${SITE_CONFIG.baseUrl}${SITE_CONFIG.ogImage}`,
         author: {
             '@type': 'Organization',
-            name: 'Aqsh Prisma'
+            name: SITE_CONFIG.name
         },
-        publisher: {
-            '@type': 'Organization',
-            name: 'Aqsh Prisma',
-            logo: {
-                '@type': 'ImageObject',
-                url: 'https://prisma.aqsh.co.jp/logo.webp'
-            }
-        }
+        publisher: PUBLISHER_JSON_LD
     };
 
     return (

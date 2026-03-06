@@ -2,18 +2,19 @@ import { WelcomePage } from '../features/welcome/WelcomePage';
 import type { Metadata } from 'next';
 import { getAllArticles } from '../features/articles/utils/mdx';
 import { ArticleSection } from '../features/welcome/components/ArticleSection';
+import { SITE_CONFIG } from '@/lib/constants/site-config';
 
 export const metadata: Metadata = {
     title: 'Aqsh Prisma | 16タイプ×エニアグラム 無料性格診断・自己分析',
     description: 'ソシオニクス診断とエニアグラムを組み合わせた無料の性格診断テスト。あなたの思考のクセ（16タイプ）と無意識の欲求（9タイプ）を可視化し、人間関係・恋愛・キャリアの悩みの根本原因を言語化します。',
     alternates: {
-        canonical: 'https://prisma.aqsh.co.jp',
+        canonical: SITE_CONFIG.baseUrl,
     },
     openGraph: {
         title: 'Aqsh Prisma | 16タイプ×エニアグラム 無料性格診断・自己分析',
         description: 'ソシオニクス診断とエニアグラムを組み合わせた無料の性格診断テスト。あなたの思考のクセ（16タイプ）と無意識の欲求（9タイプ）を可視化し、人間関係・恋愛・キャリアの悩みの根本原因を言語化します。',
-        url: 'https://prisma.aqsh.co.jp/',
-        siteName: 'Aqsh Prisma',
+        url: SITE_CONFIG.baseUrl + '/',
+        siteName: SITE_CONFIG.name,
         images: [
             {
                 url: '/og-image.png',
@@ -39,27 +40,48 @@ export default function Home() {
      * SoftwareApplication (JSON-LD)
      * Webアプリケーションとしてのメタデータを検索エンジンにアピールします。
      */
-    const jsonLd = {
-        "@context": "https://schema.org",
-        "@type": "WebApplication",
-        "name": "Aqsh Prisma 性格診断テスト",
-        "applicationCategory": "LifestyleApplication",
-        "operatingSystem": "Web Browser",
-        "offers": {
-            "@type": "Offer",
-            "price": "0",
-            "priceCurrency": "JPY",
-            "availability": "https://schema.org/InStock"
+    const jsonLd = [
+        {
+            "@context": "https://schema.org",
+            "@type": "WebApplication",
+            "name": "Aqsh Prisma 性格診断テスト",
+            "applicationCategory": "LifestyleApplication",
+            "operatingSystem": "Web Browser",
+            "offers": {
+                "@type": "Offer",
+                "price": "0",
+                "priceCurrency": "JPY",
+                "availability": "https://schema.org/InStock"
+            },
+            "description": "あなたの「性格の構造」と「無意識の欲求」を科学する無料性格診断。16タイプ（ソシオニクス）とエニアグラムを用いて、生きづらさの根本原因を言語化します。",
+            "featureList": [
+                "16タイプ診断による認知パターンの特定",
+                "エニアグラムによる無意識のモチベーション分析",
+                "恋愛・キャリア・人間関係の摩擦原因の可視化",
+                "自分専用の取扱説明書（トリセツ）の生成"
+            ],
+            "screenshot": SITE_CONFIG.baseUrl + "/hero-image.webp"
         },
-        "description": "あなたの「性格の構造」と「無意識の欲求」を科学する無料性格診断。16タイプ（ソシオニクス）とエニアグラムを用いて、生きづらさの根本原因を言語化します。",
-        "featureList": [
-            "16タイプ診断による認知パターンの特定",
-            "エニアグラムによる無意識のモチベーション分析",
-            "恋愛・キャリア・人間関係の摩擦原因の可視化",
-            "自分専用の取扱説明書（トリセツ）の生成"
-        ],
-        "screenshot": "https://prisma.aqsh.co.jp/hero-image.webp"
-    };
+        {
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            "name": "Aqsh Prisma",
+            "url": SITE_CONFIG.baseUrl,
+            "description": "ソシオニクス診断とエニアグラムを組み合わせた無料の性格診断テスト",
+            "publisher": {
+                "@type": "Organization",
+                "name": SITE_CONFIG.organization
+            },
+            "potentialAction": {
+                "@type": "SearchAction",
+                "target": {
+                    "@type": "EntryPoint",
+                    "urlTemplate": SITE_CONFIG.baseUrl + "/articles?q={search_term_string}"
+                },
+                "query-input": "required name=search_term_string"
+            }
+        }
+    ];
 
     return (
         <>

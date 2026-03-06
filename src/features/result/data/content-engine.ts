@@ -1,4 +1,4 @@
-import { type EngineType } from '../../../types/diagnosis';
+import { type EngineType } from '@/types/diagnosis';
 
 export interface EngineContent {
     type: EngineType;

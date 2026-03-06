@@ -28,11 +28,18 @@ const articles = files.map(fileName => {
     slug,
     title: data.title || '',
     description: data.description || '',
+    date: data.date || '',
     coverImage: data.coverImage || '',
     category: data.category || '',
     tags: data.tags || [],
   };
-}).sort((a, b) => a.title.localeCompare(b.title));
+}).sort((a, b) => {
+  // 日付の降順（新しい記事が先頭）
+  if (!a.date && !b.date) return 0;
+  if (!a.date) return 1;
+  if (!b.date) return -1;
+  return b.date.localeCompare(a.date);
+});
 
 fs.writeFileSync(outputPath, JSON.stringify(articles, null, 0));
 console.log(`✅ Generated articles-meta.json (${articles.length} articles)`);

@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { ArrowLeft, ArrowRight, Brain, Gauge, Cpu, Shield, AlertTriangle, BookOpen, CheckCircle } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { SITE_CONFIG, PUBLISHER_JSON_LD } from '@/lib/constants/site-config';
 
 const Section = ({ children, className }: { children: React.ReactNode; className?: string }) => (
     <section className={cn("bg-white rounded-3xl p-8 md:p-12 shadow-sm border border-slate-100 mb-12 md:mb-16", className)}>
@@ -40,19 +41,12 @@ export const AboutMethodologyPage = () => {
         '@type': 'Article',
         headline: '診断ロジックの説明 | Aqsh Prisma の診断はどう作られているか',
         description: 'Aqsh Prismaの16タイプ×エニアグラム診断がどのようなロジックで結果を算出しているかを、透明性をもって解説します。72問の設問設計から判定アルゴリズムまで。',
-        image: 'https://prisma.aqsh.co.jp/og-image.png',
+        image: `${SITE_CONFIG.baseUrl}${SITE_CONFIG.ogImage}`,
         author: {
             '@type': 'Organization',
-            name: 'Aqsh Prisma'
+            name: SITE_CONFIG.name
         },
-        publisher: {
-            '@type': 'Organization',
-            name: 'Aqsh Prisma',
-            logo: {
-                '@type': 'ImageObject',
-                url: 'https://prisma.aqsh.co.jp/logo.webp'
-            }
-        }
+        publisher: PUBLISHER_JSON_LD
     };
 
     return (

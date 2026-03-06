@@ -1,10 +1,10 @@
-
-import Link from 'next/link';
 import type { Metadata } from 'next';
-import { getAllArticles } from '../../features/articles/utils/mdx';
-import { ArticleList } from '../../features/articles/components/ArticleList';
-import { ArticleFilter } from '../../features/articles/components/ArticleFilter';
-import { ArrowLeft, BookOpen } from 'lucide-react';
+import { getAllArticles } from '@/features/articles/utils/mdx';
+import { ArticleList } from '@/features/articles/components/ArticleList';
+import { ArticleFilter } from '@/features/articles/components/ArticleFilter';
+import { ArticlesPageLayout } from '@/features/articles/components/ArticlesPageLayout';
+import { SITE_CONFIG } from '@/lib/constants/site-config';
+import { ARTICLES_PER_PAGE } from '@/lib/constants/articles';
 
 /**
  * 記事一覧ページの静的メタデータ
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     title: 'コラム一覧 | Aqsh Prisma - 16性格診断で才能と適職を見つける',
     description: '16性格診断（ソシオニクス）を活用した自己分析、チームビルディング、適職探しに役立つコラムや記事の一覧です。',
     alternates: {
-        canonical: 'https://prisma.aqsh.co.jp/articles',
+        canonical: SITE_CONFIG.baseUrl + '/articles',
     },
 };
 
@@ -35,7 +35,7 @@ export default function ArticlesPage() {
         "itemListElement": articles.map((article, index) => ({
             "@type": "ListItem",
             "position": index + 1,
-            "url": `https://prisma.aqsh.co.jp/articles/${article.slug}`
+            "url": `${SITE_CONFIG.baseUrl}/articles/${article.slug}`
         }))
     };
 
@@ -45,49 +45,17 @@ export default function ArticlesPage() {
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
             />
-            <div className="min-h-screen bg-slate-50 pb-20">
-                {/* Header */}
-                <div className="bg-white border-b border-slate-200 sticky top-0 z-50">
-                    {/* 背景だけを画面幅いっぱいに引き延ばすフルブリードハック */}
-                    <div className="absolute inset-0 bg-white border-b border-slate-200 w-screen left-1/2 -translate-x-1/2 -z-10" aria-hidden="true" />
-
-                    <div className="max-w-4xl md:max-w-6xl xl:max-w-[1200px] mx-auto px-4 h-16 flex items-center justify-between">
-                        <Link href="/" className="text-slate-500 hover:text-slate-800 flex items-center gap-2 font-medium">
-                            <ArrowLeft size={20} />
-                            TOP
-                        </Link>
-                        <span className="font-bold text-slate-800 flex items-center gap-2">
-                            <BookOpen size={18} />
-                            Articles
-                        </span>
-                    </div>
-                </div>
-
-                {/* Hero */}
-                <div className="bg-white pb-12 pt-12 px-4 border-b border-slate-100">
-                    <div className="max-w-3xl md:max-w-5xl xl:max-w-[1200px] mx-auto text-center">
-                        <h1 className="text-3xl md:text-5xl font-bold text-slate-900 leading-tight mb-4">
-                            コラム・記事一覧
-                        </h1>
-                        <p className="text-lg text-slate-600">
-                            自己理解と他者理解を深め、才能を仕事に活かすためのヒントをお届けします。
-                        </p>
-                    </div>
-                </div>
-
-                {/* Article List with Filter */}
-                <div className="max-w-3xl md:max-w-5xl xl:max-w-[1200px] mx-auto px-4 mt-12">
-                    <ArticleFilter articles={articles}>
-                        <ArticleList
-                            articles={articles.slice(0, 10)}
-                            currentPage={1}
-                            totalPages={Math.ceil(articles.length / 10)}
-                            basePath="/articles/page"
-                            defaultPath="/articles"
-                        />
-                    </ArticleFilter>
-                </div>
-            </div>
+            <ArticlesPageLayout>
+                <ArticleFilter articles={articles}>
+                    <ArticleList
+                        articles={articles.slice(0, ARTICLES_PER_PAGE)}
+                        currentPage={1}
+                        totalPages={Math.ceil(articles.length / ARTICLES_PER_PAGE)}
+                        basePath="/articles/page"
+                        defaultPath="/articles"
+                    />
+                </ArticleFilter>
+            </ArticlesPageLayout>
         </>
     );
 }

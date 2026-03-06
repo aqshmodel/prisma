@@ -1,4 +1,6 @@
-import React from 'react';
+'use client';
+
+import React, { useState, useEffect } from 'react';
 import { List } from 'lucide-react';
 import type { Heading } from '../utils/extractHeadings';
 
@@ -9,9 +11,48 @@ interface TableOfContentsProps {
 /**
  * h2見出しベースの目次コンポーネント。
  * h2が3つ未満の場合は非表示。
+ * スムーズスクロール + 現在位置ハイライト対応。
  */
 export const TableOfContents: React.FC<TableOfContentsProps> = ({ headings }) => {
+    const [activeId, setActiveId] = useState<string>('');
+
+    useEffect(() => {
+        if (headings.length < 3) return;
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                // 画面内に入った見出しのうち最初のものをアクティブに
+                for (const entry of entries) {
+                    if (entry.isIntersecting) {
+                        setActiveId(entry.target.id);
+                        break;
+                    }
+                }
+            },
+            { rootMargin: '-80px 0px -60% 0px', threshold: 0 }
+        );
+
+        const elements = headings
+            .map(h => document.getElementById(h.id))
+            .filter(Boolean) as HTMLElement[];
+
+        elements.forEach(el => observer.observe(el));
+
+        return () => observer.disconnect();
+    }, [headings]);
+
     if (headings.length < 3) return null;
+
+    const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+        e.preventDefault();
+        const el = document.getElementById(id);
+        if (el) {
+            el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            // URLハッシュも更新
+            window.history.pushState(null, '', `#${id}`);
+            setActiveId(id);
+        }
+    };
 
     return (
         <nav
@@ -27,9 +68,14 @@ export const TableOfContents: React.FC<TableOfContentsProps> = ({ headings }) =>
                     <li key={heading.id}>
                         <a
                             href={`#${heading.id}`}
-                            className="flex items-start gap-2 text-sm text-slate-600 hover:text-prisma-600 transition-colors leading-snug"
+                            onClick={(e) => handleClick(e, heading.id)}
+                            className={`flex items-start gap-2 text-sm transition-colors leading-snug ${activeId === heading.id
+                                    ? 'text-prisma-600 font-semibold'
+                                    : 'text-slate-600 hover:text-prisma-600'
+                                }`}
                         >
-                            <span className="text-prisma-400 font-medium flex-shrink-0 mt-px">
+                            <span className={`font-medium flex-shrink-0 mt-px ${activeId === heading.id ? 'text-prisma-600' : 'text-prisma-400'
+                                }`}>
                                 {index + 1}.
                             </span>
                             <span>{heading.text}</span>
