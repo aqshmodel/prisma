@@ -22,7 +22,7 @@ import { Card } from '@/components/ui/Card';
 import { FormattedText } from '@/components/ui/FormattedText';
 import { Button } from '@/components/ui/Button';
 import { resolveColor } from '@/lib/constants/color-map';
-import { getCompatibility, getAllCompatibilities } from '@/lib/constants/compatibility';
+import { getCompatibility, getAllCompatibilities, getPairConcreteTip } from '@/lib/constants/compatibility';
 import { CompatibilityCard } from './CompatibilityCard';
 
 interface CompatibilityPageProps {
@@ -141,17 +141,15 @@ export const CompatibilityPage: React.FC<CompatibilityPageProps> = ({
             </Card>
 
             {/* ③-b 具体的なシーン例 */}
-            {relation.concreteTip && (
-                <Card className="p-6 sm:p-8 mb-8 bg-violet-50/50 border-violet-100">
-                    <h3 className="text-base font-bold text-violet-800 mb-3 flex items-center gap-2">
-                        <Lightbulb size={18} />
-                        具体的なシーン例
-                    </h3>
-                    <p className="text-sm text-violet-900 leading-[1.9]">
-                        <FormattedText text={relation.concreteTip} />
-                    </p>
-                </Card>
-            )}
+            <Card className="p-6 sm:p-8 mb-8 bg-violet-50/50 border-violet-100">
+                <h3 className="text-base font-bold text-violet-800 mb-3 flex items-center gap-2">
+                    <Lightbulb size={18} />
+                    具体的なシーン例
+                </h3>
+                <p className="text-sm text-violet-900 leading-[1.9]">
+                    <FormattedText text={getPairConcreteTip(sourceCode, targetCode)} />
+                </p>
+            </Card>
 
             {/* ③-c 方向性の解説（Benefit/Supervision） */}
             {relation.directionNote && (

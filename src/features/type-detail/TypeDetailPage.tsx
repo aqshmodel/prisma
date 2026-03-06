@@ -20,6 +20,9 @@ import { ShareButtons } from '@/components/common/ShareButtons';
 import { useReactToPrint } from 'react-to-print';
 import { TorisetsuPrintLayout } from './components/TorisetsuPrintLayout';
 import { resolveColor } from '@/lib/constants/color-map';
+import { getAllCompatibilities } from '@/lib/constants/compatibility';
+import { CompatibilityCard } from '@/features/compatibility/components/CompatibilityCard';
+import type { OSTypeCode } from '@/types/diagnosis';
 
 
 export const TypeDetailPage: React.FC = () => {
@@ -238,6 +241,22 @@ export const TypeDetailPage: React.FC = () => {
                             {isPrinting ? 'PDFを準備中...' : 'このタイプの取扱説明書（PDF）を作成'}
                         </Button>
                         <p className="text-xs text-slate-400 mt-2">※ A4サイズで綺麗に印刷・保存できます</p>
+                    </div>
+                </section>
+
+                {/* All Compatibilities */}
+                <section className="border-t border-slate-200 pt-12 mb-16">
+                    <h3 className="text-center font-bold text-slate-700 mb-2">他タイプとの相性一覧</h3>
+                    <p className="text-center text-sm text-slate-500 mb-8">それぞれのタイプとの詳細な相性関係を確認できます</p>
+                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                        {getAllCompatibilities(code as OSTypeCode).map(({ targetCode: tc, relation: rel }) => (
+                            <CompatibilityCard
+                                key={tc}
+                                sourceCode={code as OSTypeCode}
+                                targetCode={tc}
+                                relation={rel}
+                            />
+                        ))}
                     </div>
                 </section>
 

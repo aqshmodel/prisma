@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { OS_CONTENT } from '@/features/result/data/content-os';
 import { CompatibilityPage } from '@/features/compatibility/components/CompatibilityPage';
-import { getCompatibility } from '@/lib/constants/compatibility';
+import { getCompatibility, getPairConcreteTip } from '@/lib/constants/compatibility';
 import { SITE_CONFIG } from '@/lib/constants/site-config';
 import type { OSTypeCode } from '@/types/diagnosis';
 
@@ -44,8 +44,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const relation = getCompatibility(code as OSTypeCode, target as OSTypeCode);
     const starText = '★'.repeat(relation.stars) + '☆'.repeat(5 - relation.stars);
 
+    const pairTip = getPairConcreteTip(code as OSTypeCode, target as OSTypeCode);
     const title = `${sourceData.name}×${targetData.name}の相性【${relation.name}】| Aqsh Prisma`;
-    const description = `${sourceData.name}(${code})と${targetData.name}(${target})の相性は「${relation.name}」（${starText}）。仕事・恋愛での相性パターンとコミュニケーションのコツを解説。ソシオニクス理論に基づく16タイプ相性診断。`;
+    const description = `${sourceData.name}(${code})と${targetData.name}(${target})の相性は「${relation.name}」（${starText}）。${pairTip.slice(0, 50)}… ソシオニクス理論に基づく16タイプ相性診断。`;
 
     return {
         title,
@@ -113,7 +114,7 @@ export default async function Page({ params }: Props) {
                     'name': `${sourceData.name}と${targetData.name}の相性は？`,
                     'acceptedAnswer': {
                         '@type': 'Answer',
-                        'text': `${sourceData.name}と${targetData.name}の相性は「${relation.name}」です。${relation.summary}`,
+                        'text': `${sourceData.name}と${targetData.name}の相性は「${relation.name}」です。${relation.summary} ${getPairConcreteTip(code as OSTypeCode, target as OSTypeCode)}`,
                     },
                 },
                 {

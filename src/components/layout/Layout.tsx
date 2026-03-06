@@ -1,10 +1,11 @@
 'use client';
 
-import React, { type ReactNode } from 'react';
+import React, { useState, type ReactNode } from 'react';
 
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
+import { CompatibilitySearchModal } from '@/components/common/CompatibilitySearchModal';
 
 interface LayoutProps {
     children: ReactNode;
@@ -13,6 +14,7 @@ interface LayoutProps {
 export const Layout: React.FC<LayoutProps> = ({ children }) => {
     const pathname = usePathname();
     const isTopPage = pathname === '/';
+    const [isCompatibilityModalOpen, setIsCompatibilityModalOpen] = useState(false);
 
     return (
         <div className="min-h-screen bg-slate-50 text-slate-800 font-sans selection:bg-prisma-200 flex flex-col">
@@ -23,6 +25,12 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
                         Aqsh <span className="text-prisma-600">PRISMA</span>
                     </Link>
                     <nav className="flex items-center gap-6 text-sm font-medium">
+                        <button
+                            onClick={() => setIsCompatibilityModalOpen(true)}
+                            className="text-slate-600 hover:text-prisma-600 transition-colors focus:outline-none"
+                        >
+                            相性診断
+                        </button>
                         <Link href="/articles" className="text-slate-600 hover:text-prisma-600 transition-colors">
                             コラム
                         </Link>
@@ -56,6 +64,12 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
                             </p>
                         </div>
                         <div className="flex flex-wrap justify-center md:justify-end gap-6 text-sm text-slate-400 font-medium">
+                            <button
+                                onClick={() => setIsCompatibilityModalOpen(true)}
+                                className="hover:text-white transition-colors focus:outline-none"
+                            >
+                                相性診断
+                            </button>
                             <Link href="/articles" className="hover:text-white transition-colors">コラム</Link>
                             <Link href="/types/ENTp" className="hover:text-white transition-colors">タイプ一覧</Link>
                             <Link href="/about/methodology" className="hover:text-white transition-colors">診断ロジック</Link>
@@ -72,6 +86,11 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
                     </div>
                 </div>
             </footer>
+
+            <CompatibilitySearchModal
+                isOpen={isCompatibilityModalOpen}
+                onClose={() => setIsCompatibilityModalOpen(false)}
+            />
         </div>
     );
 };

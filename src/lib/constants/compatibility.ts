@@ -1,4 +1,5 @@
 import type { OSTypeCode } from '@/types/diagnosis';
+import { PAIR_CONCRETE_TIPS } from './compatibility-tips';
 
 // --- 相性関係の種類定義 ---
 
@@ -443,4 +444,13 @@ export function getAllCompatibilities(typeCode: OSTypeCode): { targetCode: OSTyp
             relation: getCompatibility(typeCode, targetCode),
         }))
         .sort((a, b) => b.relation.stars - a.relation.stars);
+}
+
+/**
+ * ペア固有の concreteTip を取得する。
+ * 固有テキストが存在しない場合は、関係種の共通テキストにフォールバック。
+ */
+export function getPairConcreteTip(typeA: OSTypeCode, typeB: OSTypeCode): string {
+    const key = `${typeA}-${typeB}` as `${OSTypeCode}-${OSTypeCode}`;
+    return PAIR_CONCRETE_TIPS[key] ?? getCompatibility(typeA, typeB).concreteTip;
 }

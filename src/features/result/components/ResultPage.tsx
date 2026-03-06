@@ -23,6 +23,7 @@ import { useReactToPrint } from 'react-to-print';
 import { useRef } from 'react';
 import { PrintLayout } from './PrintLayout';
 import { RelatedArticlesForResult } from './RelatedArticlesForResult';
+import { ResultCompatibilityCTA } from './ResultCompatibilityCTA';
 import { resolveColor } from '@/lib/constants/color-map';
 import { SITE_CONFIG } from '@/lib/constants/site-config';
 import { encodeResult, decodeResult, buildSharedResult } from '@/lib/utils/share-result';
@@ -289,6 +290,9 @@ export const ResultPage: React.FC = () => {
                         )}
                     </Suspense>
                 </div>
+
+                {/* Compatibility CTA (Best Match & Challenge Match) */}
+                <ResultCompatibilityCTA typeCode={result.os.code} />
 
                 {/* Related Articles for this Type */}
                 <RelatedArticlesForResult typeCode={result.os.code} />
