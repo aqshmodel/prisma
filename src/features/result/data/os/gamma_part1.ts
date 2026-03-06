@@ -31,7 +31,7 @@ export const GammaOS_Part1: Record<string, OSContent> = {
         leadershipStyle: '親分・姉御肌型リーダー: 個人的な信頼関係とカリスマ性で人を動かすスタイル。面倒見が良く、部下を可愛がるが、絶対的な忠誠を求める。',
         decisionMaking: '「自分が欲しいか」「人間関係に有利か」が判断基準。論理よりも、自分の直感や好き嫌いを優先する。即断即決だが、後で変わることも多い。',
         bestMatch: 'INTp',
-        worstMatch: 'INTj',
+        worstMatch: 'ESFj',
         doCommunication: [
             '彼らの外見、ファッション、持ち物を褒める',
             '「すごいですね！」「面白い！」とリアクションを大きく取り、話を盛り上げる',
@@ -125,7 +125,7 @@ export const GammaOS_Part1: Record<string, OSContent> = {
         leadershipStyle: '戦略的アドバイザー: 前面に立って旗を振るのではなく、リーダーの横で囁く黒幕タイプ。データと論理で進むべき道を指し示す。',
         decisionMaking: '「利益が出るか」「リスクは許容範囲か」が判断基準。感情や希望的観測を排除し、冷徹な計算に基づいて判断する。決断には時間をかける。',
         bestMatch: 'ESFp',
-        worstMatch: 'ESFj',
+        worstMatch: 'INTj',
         doCommunication: [
             '彼らの予測や分析が当たった時に、「君の言った通りだった」と高く評価する',
             '一人で静かに思考する時間を邪魔せず、適度な距離感を保つ',

@@ -63,6 +63,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
         priority: 0.7,
     }));
 
+    // Dynamic Routes (Compatibility: 16×15=240 pages)
+    const typeCodes = Object.keys(OS_CONTENT);
+    const compatibilityRoutes: MetadataRoute.Sitemap = typeCodes.flatMap((code) =>
+        typeCodes
+            .filter((target) => target !== code)
+            .map((target) => ({
+                url: `${baseUrl}/types/${code}/compatibility/${target}`,
+                lastModified: currentDate,
+                changeFrequency: 'monthly' as const,
+                priority: 0.6,
+            }))
+    );
+
     // Dynamic Routes (Articles)
     const allArticles = getAllArticles();
     const articleRoutes: MetadataRoute.Sitemap = allArticles.map((article) => ({
@@ -72,5 +85,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
         priority: 0.7,
     }));
 
-    return [...staticRoutes, ...typeRoutes, ...articleRoutes];
+    return [...staticRoutes, ...typeRoutes, ...compatibilityRoutes, ...articleRoutes];
 }

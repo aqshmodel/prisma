@@ -31,7 +31,7 @@ export const AlphaOS_Part2: Record<string, OSContent> = {
         leadershipStyle: 'チアリーダー型リーダー: 先頭に立って旗を振り、メンバーを熱く鼓舞するスタイル。「一緒に頑張ろう！」と声をかけ、家族的な一体感を作る。',
         decisionMaking: '「みんなが喜ぶか」「盛り上がるか」が判断基準。データよりも、その場の熱量や勢いでGOサインを出すことが多い。',
         bestMatch: 'INTj',
-        worstMatch: 'INTp',
+        worstMatch: 'ESFp',
         doCommunication: [
             '彼らの話には大きく頷き、表情豊かにリアクションを取る',
             'イベントや飲み会の幹事など、場を仕切る役割を任せて感謝する',
@@ -125,7 +125,7 @@ export const AlphaOS_Part2: Record<string, OSContent> = {
         leadershipStyle: 'アーキテクト型リーダー: 完璧な戦略と公平なルールを策定し、組織が自動的に回るシステムを構築するスタイル。部下のモチベーション管理には興味がない。',
         decisionMaking: '「論理的に正しいか」「公平か」が判断基準。情実は一切挟まない。結論が出るまで情報を集め、熟考するため、即決は苦手。',
         bestMatch: 'ESFj',
-        worstMatch: 'ESFp',
+        worstMatch: 'INTp',
         doCommunication: [
             '議論の際は、事前にアジェンダと資料を共有し、彼らが考える時間を確保する',
             '彼らの分析や指摘の鋭さを評価し、複雑な問題の解決を依頼する',

@@ -9,6 +9,7 @@ import { HeroSection } from './components/HeroSection';
 const ProblemSection = lazy(() => import('./components/ProblemSection').then(m => ({ default: m.ProblemSection })));
 const SolutionSection = lazy(() => import('./components/SolutionSection').then(m => ({ default: m.SolutionSection })));
 const TypeSection = lazy(() => import('./components/TypeSection').then(m => ({ default: m.TypeSection })));
+const CompatibilitySection = lazy(() => import('./components/CompatibilitySection').then(m => ({ default: m.CompatibilitySection })));
 const BenefitSection = lazy(() => import('./components/BenefitSection').then(m => ({ default: m.BenefitSection })));
 const TrustSection = lazy(() => import('./components/TrustSection').then(m => ({ default: m.TrustSection })));
 const TheoryLinksSection = lazy(() => import('./components/TheoryLinksSection').then(m => ({ default: m.TheoryLinksSection })));
@@ -56,6 +57,7 @@ export const WelcomePage: React.FC<WelcomePageProps> = ({ articleSlot }) => {
                 <ProblemSection />
                 <SolutionSection />
                 <TypeSection />
+                <CompatibilitySection />
                 <BenefitSection />
                 <TrustSection />
                 <TheoryLinksSection />

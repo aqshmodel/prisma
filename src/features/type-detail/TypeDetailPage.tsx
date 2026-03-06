@@ -182,34 +182,36 @@ export const TypeDetailPage: React.FC = () => {
                     </h2>
                     <Card className="p-6">
                         <div className="grid md:grid-cols-2 gap-6 mb-6">
-                            <div className="bg-indigo-50 p-4 rounded-lg border border-indigo-100">
+                            <Link href={`/types/${code}/compatibility/${osData.bestMatch}`} className="bg-indigo-50 p-4 rounded-lg border border-indigo-100 hover:shadow-md transition-shadow block">
                                 <h4 className="font-bold text-indigo-900 mb-1">最高の相性</h4>
-                                <Link href={`/types/${osData.bestMatch}`} className="text-lg font-bold text-indigo-600 hover:underline block">
+                                <div className="text-lg font-bold text-indigo-600">
                                     {OS_CONTENT[osData.bestMatch]?.name ? (
                                         <>
                                             <span className="text-2xl mr-2">{OS_CONTENT[osData.bestMatch].name.split('(')[0]}</span>
                                             <span className="text-sm opacity-80">({osData.bestMatch})</span>
                                         </>
                                     ) : osData.bestMatch}
-                                </Link>
+                                </div>
                                 <p className="text-xs text-indigo-700 mt-2">
                                     補完し合い、共に成長できるパートナー
                                 </p>
-                            </div>
-                            <div className="bg-orange-50 p-4 rounded-lg border border-orange-100">
+                                <span className="text-xs text-indigo-500 mt-2 inline-block">→ 相性の詳細を見る</span>
+                            </Link>
+                            <Link href={`/types/${code}/compatibility/${osData.worstMatch}`} className="bg-orange-50 p-4 rounded-lg border border-orange-100 hover:shadow-md transition-shadow block">
                                 <h4 className="font-bold text-orange-900 mb-1">要注意な相性</h4>
-                                <Link href={`/types/${osData.worstMatch}`} className="text-lg font-bold text-orange-600 hover:underline block">
+                                <div className="text-lg font-bold text-orange-600">
                                     {OS_CONTENT[osData.worstMatch]?.name ? (
                                         <>
                                             <span className="text-2xl mr-2">{OS_CONTENT[osData.worstMatch].name.split('(')[0]}</span>
                                             <span className="text-sm opacity-80">({osData.worstMatch})</span>
                                         </>
                                     ) : osData.worstMatch}
-                                </Link>
+                                </div>
                                 <p className="text-xs text-orange-700 mt-2">
                                     誤解が生じやすく、ストレスを感じやすい相手
                                 </p>
-                            </div>
+                                <span className="text-xs text-orange-500 mt-2 inline-block">→ 相性の詳細を見る</span>
+                            </Link>
                         </div>
                         <div className="text-slate-600 leading-relaxed">
                             <h4 className="font-bold text-slate-800 mb-2">コミュニケーションのヒント</h4>

@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect, useState, Suspense, lazy } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import {
     LayoutDashboard,
     Microscope,
@@ -24,6 +24,8 @@ import { useRef } from 'react';
 import { PrintLayout } from './PrintLayout';
 import { RelatedArticlesForResult } from './RelatedArticlesForResult';
 import { resolveColor } from '@/lib/constants/color-map';
+import { SITE_CONFIG } from '@/lib/constants/site-config';
+import { encodeResult, decodeResult, buildSharedResult } from '@/lib/utils/share-result';
 
 // Tab Components (lazy loading for code splitting)
 const OverviewTab = lazy(() => import('./tabs/OverviewTab').then(m => ({ default: m.OverviewTab })));
@@ -37,9 +39,13 @@ type TabType = 'overview' | 'analysis' | 'work' | 'relations' | 'growth';
 
 export const ResultPage: React.FC = () => {
     const router = useRouter();
+    const searchParams = useSearchParams();
     const result = useDiagnosisStore((state) => state.result);
+    const setResult = useDiagnosisStore((state) => state.setResult);
     const reset = useDiagnosisStore((state) => state.resetDiagnosis);
     const [activeTab, setActiveTab] = useState<TabType>('overview');
+    /** 共有URLからの閲覧かどうか（Firestore保存をスキップ、CTAを表示） */
+    const [isSharedView, setIsSharedView] = useState(false);
 
     // Print logic state and ref
     const [isPrinting, setIsPrinting] = useState(false);
@@ -76,7 +82,19 @@ export const ResultPage: React.FC = () => {
 
     useEffect(() => {
         if (!result) {
-            // Try to restore from history if available
+            // 1. URLの共有パラメータから復元を試みる
+            const sharedCode = searchParams.get('r');
+            if (sharedCode) {
+                const decoded = decodeResult(sharedCode);
+                if (decoded) {
+                    const sharedResult = buildSharedResult(decoded);
+                    setResult(sharedResult);
+                    setIsSharedView(true);
+                    return;
+                }
+            }
+
+            // 2. ローカル履歴から復元を試みる
             if (history.length > 0) {
                 restore();
             } else {
@@ -86,6 +104,8 @@ export const ResultPage: React.FC = () => {
         }
 
         const saveResult = async () => {
+            // 共有閲覧時はFirestoreに保存しない
+            if (isSharedView) return;
             // Only save if it's a new result and hasn't been saved in this session yet
             if (!isNewResult || dataSavedRef.current) return;
 
@@ -117,7 +137,7 @@ export const ResultPage: React.FC = () => {
         };
 
         saveResult();
-    }, [result, history, restore, router, isNewResult, markResultAsSaved]);
+    }, [result, history, restore, router, isNewResult, markResultAsSaved, searchParams, setResult, isSharedView]);
 
     if (!result) return null;
 
@@ -280,8 +300,9 @@ export const ResultPage: React.FC = () => {
                     </p>
 
                     <ShareButtons
+                        url={`${SITE_CONFIG.baseUrl}/result?r=${encodeResult(result)}`}
                         title={`【16性格診断】私の基本タイプは『${osData.name}』(${osData.code})でした！`}
-                        text={`サブタイプ: ${osData.code} / ${osData.catchphrase}`}
+                        text={`私の基本タイプは「${osData.name}」でした！あなたのタイプも診断してみませんか？`}
                         hashtags={['16性格診断', '性格診断', '自己分析']}
                     />
 
@@ -305,6 +326,21 @@ export const ResultPage: React.FC = () => {
                             トップに戻る
                         </Button>
                     </div>
+
+                    {/* 共有閲覧者向けCTA */}
+                    {isSharedView && (
+                        <div className="mt-8 bg-gradient-to-r from-prisma-50 to-indigo-50 border border-prisma-200 rounded-2xl p-6 text-center max-w-md">
+                            <p className="text-slate-700 font-medium mb-3">
+                                あなたのタイプも気になりませんか？
+                            </p>
+                            <Button
+                                onClick={() => router.push('/diagnosis')}
+                                className="bg-prisma-600 hover:bg-prisma-700 text-white px-8 py-3 text-base font-bold"
+                            >
+                                無料で診断する（3分）
+                            </Button>
+                        </div>
+                    )}
                 </div>
             </div>
 
