@@ -5,13 +5,13 @@ import { ArticleSection } from '../features/welcome/components/ArticleSection';
 
 export const metadata: Metadata = {
     title: 'Aqsh Prisma | 16タイプ×エニアグラム 無料性格診断・自己分析',
-    description: 'あなたの「性格の構造」と「無意識の欲求」を科学する無料性格診断。16タイプ（ソシオニクス）とエニアグラムを用いて、人間関係の摩擦、恋愛のすれ違い、キャリアの迷いの根本原因を精緻に言語化します。',
+    description: 'ソシオニクス診断とエニアグラムを組み合わせた無料の性格診断テスト。あなたの思考のクセ（16タイプ）と無意識の欲求（9タイプ）を可視化し、人間関係・恋愛・キャリアの悩みの根本原因を言語化します。',
     alternates: {
         canonical: 'https://prisma.aqsh.co.jp',
     },
     openGraph: {
         title: 'Aqsh Prisma | 16タイプ×エニアグラム 無料性格診断・自己分析',
-        description: 'あなたの「性格の構造」と「無意識の欲求」を科学する無料性格診断。16タイプ（ソシオニクス）とエニアグラムを用いて、人間関係の摩擦、恋愛のすれ違い、キャリアの迷いの根本原因を精緻に言語化します。',
+        description: 'ソシオニクス診断とエニアグラムを組み合わせた無料の性格診断テスト。あなたの思考のクセ（16タイプ）と無意識の欲求（9タイプ）を可視化し、人間関係・恋愛・キャリアの悩みの根本原因を言語化します。',
         url: 'https://prisma.aqsh.co.jp/',
         siteName: 'Aqsh Prisma',
         images: [

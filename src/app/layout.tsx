@@ -12,11 +12,11 @@ const inter = Inter({ subsets: ['latin'], variable: '--font-inter', display: 'sw
  */
 export const metadata: Metadata = {
     metadataBase: new URL('https://prisma.aqsh.co.jp'),
-    title: 'Aqsh Prisma | 無料16タイプ診断 ソシオニクス × ビジネス心理学',
-    description: 'ソシオニクスとビジネス心理学に基づき、あなたのリーダーシップ特性と潜在リスクを可視化する次世代の組織診断ツール。',
+    title: 'Aqsh Prisma | ソシオニクス×エニアグラム 無料性格診断',
+    description: 'ソシオニクス16タイプとエニアグラム9タイプを組み合わせた無料性格診断。あなたの思考のクセと無意識の欲求を言語化し、人間関係・恋愛・キャリアの悩みに具体的な手がかりを提供します。',
     openGraph: {
-        title: 'Aqsh Prisma | 無料16タイプ診断 ソシオニクス × ビジネス心理学',
-        description: 'ソシオニクスとビジネス心理学に基づき、あなたのリーダーシップ特性と潜在リスクを可視化する次世代の組織診断ツール。',
+        title: 'Aqsh Prisma | ソシオニクス×エニアグラム 無料性格診断',
+        description: 'ソシオニクス16タイプとエニアグラム9タイプを組み合わせた無料性格診断。あなたの思考のクセと無意識の欲求を言語化し、人間関係・恋愛・キャリアの悩みに具体的な手がかりを提供します。',
         url: 'https://prisma.aqsh.co.jp/',
         siteName: 'Aqsh Prisma',
         images: [
@@ -31,8 +31,8 @@ export const metadata: Metadata = {
     },
     twitter: {
         card: 'summary_large_image',
-        title: 'Aqsh Prisma | 無料16タイプ診断 ソシオニクス × ビジネス心理学',
-        description: 'ソシオニクスとビジネス心理学に基づき、あなたのリーダーシップ特性と潜在リスクを可視化する次世代の組織診断ツール。',
+        title: 'Aqsh Prisma | ソシオニクス×エニアグラム 無料性格診断',
+        description: 'ソシオニクス16タイプとエニアグラム9タイプを組み合わせた無料性格診断。あなたの思考のクセと無意識の欲求を言語化し、人間関係・恋愛・キャリアの悩みに具体的な手がかりを提供します。',
         images: ['/og-image.png'],
     },
     icons: {
