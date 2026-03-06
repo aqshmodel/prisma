@@ -1,5 +1,5 @@
 import { forwardRef } from 'react';
-import { type OSContent } from '@/features/result/data/content-os';
+import { type OSContent, OS_CONTENT } from '@/features/result/data/content-os';
 import { FormattedText } from '@/components/ui/FormattedText';
 import { RadarChart } from '@/features/result/components/RadarChart';
 import { CheckCircle2, AlertTriangle, Briefcase, Zap } from 'lucide-react';
@@ -45,7 +45,7 @@ export const TorisetsuPrintLayout = forwardRef<HTMLDivElement, TorisetsuPrintLay
                             </div>
                             <h1 className="text-4xl font-black text-slate-900 tracking-tight flex items-baseline gap-3">
                                 {osData.name.split('(')[0].trim()}
-                                <span className="text-2xl font-bold text-slate-400">({osData.code})</span>
+                                <span className="text-2xl font-bold text-slate-400">({osData.name.match(/\((.+)\)/)?.[1]} / {osData.code})</span>
                             </h1>
                             <p className="mt-2 text-lg font-bold" style={{ color: themeColor }}>
                                 {osData.catchphrase}
@@ -139,11 +139,11 @@ export const TorisetsuPrintLayout = forwardRef<HTMLDivElement, TorisetsuPrintLay
                         <div className="grid grid-cols-2 gap-4 mb-4">
                             <div className="border border-indigo-200 bg-indigo-50/50 p-4 rounded-xl text-center">
                                 <p className="text-xs font-bold text-indigo-500 mb-1">最高の相性 (共鳴)</p>
-                                <p className="text-xl font-black text-indigo-700">{osData.bestMatch}</p>
+                                <p className="text-xl font-black text-indigo-700">{OS_CONTENT[osData.bestMatch]?.name || osData.bestMatch}</p>
                             </div>
                             <div className="border border-orange-200 bg-orange-50/50 p-4 rounded-xl text-center">
                                 <p className="text-xs font-bold text-orange-500 mb-1">要注意の相性 (摩擦)</p>
-                                <p className="text-xl font-black text-orange-700">{osData.worstMatch}</p>
+                                <p className="text-xl font-black text-orange-700">{OS_CONTENT[osData.worstMatch]?.name || osData.worstMatch}</p>
                             </div>
                         </div>
 

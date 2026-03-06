@@ -27,7 +27,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
     return {
         title: `${data.name}（${mbti}）に関する記事一覧 | Aqsh Prisma`,
-        description: `${data.name}（${mbti}/${code}）タイプの性格・仕事・恋愛・人間関係に関するコラム記事の一覧です。`,
+        description: `${data.name}（${mbti}）タイプの性格・仕事・恋愛・人間関係に関するコラム記事の一覧です。`,
         alternates: {
             canonical: `${SITE_CONFIG.baseUrl}/types/${code}/articles`,
         },
@@ -66,7 +66,7 @@ export default async function TypeArticlesPage({ params }: Props) {
             {/* Hero */}
             <div className="bg-white pb-12 pt-12 px-4 border-b border-slate-100">
                 <div className="max-w-3xl md:max-w-5xl xl:max-w-[1200px] mx-auto text-center">
-                    <p className="text-sm text-prisma-600 font-medium mb-2 tracking-wider">{code} / {mbti}</p>
+                    <p className="text-sm text-prisma-600 font-medium mb-2 tracking-wider">{data.name.match(/\((.+)\)/)?.[1]} / {mbti}</p>
                     <h1 className="text-3xl md:text-4xl font-bold text-slate-900 leading-tight mb-4">
                         {data.name}に関する記事
                     </h1>

@@ -1,5 +1,5 @@
 import { forwardRef } from 'react';
-import { type OSContent } from '../data/content-os';
+import { type OSContent, OS_CONTENT } from '../data/content-os';
 import { type EngineContent } from '../data/content-engine';
 import { type BiasContent } from '../data/content-bias';
 import { RadarChart } from './RadarChart';
@@ -35,7 +35,7 @@ export const PrintLayout = forwardRef<HTMLDivElement, PrintLayoutProps>(
                         <span className="text-xs text-slate-400">Prisma Diagnosis Result</span>
                     </div>
                     <h1 className="text-4xl font-bold mb-2">{osData.name.split('(')[0].trim()}</h1>
-                    <div className="text-2xl font-bold text-slate-500 mb-4">({osData.code})</div>
+                    <div className="text-2xl font-bold text-slate-500 mb-4">({osData.name.match(/\((.+)\)/)?.[1]} / {osData.code})</div>
                     <p className="text-sm border border-slate-200 inline-block px-4 py-1 rounded-full">
                         {osData.catchphrase}
                     </p>
@@ -120,11 +120,11 @@ export const PrintLayout = forwardRef<HTMLDivElement, PrintLayoutProps>(
                     <div className="grid grid-cols-2 gap-4 mb-4">
                         <div className="border p-3 rounded text-center">
                             <span className="block text-xs text-slate-400 mb-1">Best Match</span>
-                            <span className="block text-lg font-bold text-indigo-600">{osData.bestMatch}</span>
+                            <span className="block text-lg font-bold text-indigo-600">{OS_CONTENT[osData.bestMatch]?.name || osData.bestMatch}</span>
                         </div>
                         <div className="border p-3 rounded text-center">
                             <span className="block text-xs text-slate-400 mb-1">Worst Match</span>
-                            <span className="block text-lg font-bold text-orange-600">{osData.worstMatch}</span>
+                            <span className="block text-lg font-bold text-orange-600">{OS_CONTENT[osData.worstMatch]?.name || osData.worstMatch}</span>
                         </div>
                     </div>
                     <div className="text-xs text-slate-600 leading-relaxed border p-4 rounded bg-slate-50">

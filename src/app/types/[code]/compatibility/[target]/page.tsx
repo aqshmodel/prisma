@@ -42,19 +42,26 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     }
 
     const relation = getCompatibility(code as OSTypeCode, target as OSTypeCode);
-    const starText = '★'.repeat(relation.stars) + '☆'.repeat(5 - relation.stars);
 
     const pairTip = getPairConcreteTip(code as OSTypeCode, target as OSTypeCode);
     const title = `${sourceData.name}×${targetData.name}の相性【${relation.name}】| Aqsh Prisma`;
-    const description = `${sourceData.name}(${code})と${targetData.name}(${target})の相性は「${relation.name}」（${starText}）。${pairTip.slice(0, 50)}… ソシオニクス理論に基づく16タイプ相性診断。`;
+    const baseDesc = `${sourceData.name}と${targetData.name}の相性は${relation.name}。`;
+    const tipEnd = pairTip.indexOf('。', 30);
+    const tipSlice = tipEnd > 0 ? pairTip.slice(0, tipEnd + 1) : pairTip.slice(0, 60);
+    const description = `${baseDesc}${tipSlice} ソシオニクス理論に基づく16タイプ相性診断。`;
+    const pageUrl = `${SITE_CONFIG.baseUrl}/types/${code}/compatibility/${target}`;
 
     return {
         title,
         description,
+        alternates: {
+            canonical: pageUrl,
+        },
         openGraph: {
             title,
             description,
-            url: `${SITE_CONFIG.baseUrl}/types/${code}/compatibility/${target}`,
+            url: pageUrl,
+            images: [{ url: '/og-image.png', width: 1200, height: 630 }],
         },
         twitter: {
             card: 'summary_large_image',
@@ -102,6 +109,7 @@ export default async function Page({ params }: Props) {
                     '@type': 'ListItem',
                     'position': 3,
                     'name': `× ${targetData.name} の相性`,
+                    'item': `${SITE_CONFIG.baseUrl}/types/${code}/compatibility/${target}`,
                 },
             ],
         },

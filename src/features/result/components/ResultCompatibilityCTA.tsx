@@ -70,7 +70,7 @@ export const ResultCompatibilityCTA: React.FC<ResultCompatibilityCTAProps> = ({ 
                         </div>
 
                         <h3 className="text-xl font-bold text-slate-800 mb-1 group-hover:text-prisma-700 transition-colors">
-                            {bestMatchOs.name} ({bestMatchOs.code})
+                            {bestMatchOs.name}
                         </h3>
                         <p className="text-sm text-slate-600 mb-6 line-clamp-2">
                             {bestMatchRel.relation.summary}
@@ -108,7 +108,7 @@ export const ResultCompatibilityCTA: React.FC<ResultCompatibilityCTAProps> = ({ 
                         </div>
 
                         <h3 className="text-xl font-bold text-slate-800 mb-1 group-hover:text-prisma-700 transition-colors">
-                            {challengeMatchOs.name} ({challengeMatchOs.code})
+                            {challengeMatchOs.name}
                         </h3>
                         <p className="text-sm text-slate-600 mb-6 line-clamp-2">
                             価値観が根本的に異なり摩擦が起きやすい反面、自分にない視点を学べる成長の鍵となる相手です。

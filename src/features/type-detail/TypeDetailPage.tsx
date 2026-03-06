@@ -99,7 +99,7 @@ export const TypeDetailPage: React.FC = () => {
                             {osData.name.split('(')[0].trim()}
                         </h1>
                         <span className="text-2xl md:text-4xl font-black text-slate-300 tracking-wider">
-                            ({osData.code})
+                            ({osData.name.match(/\((.+)\)/)?.[1]} / {osData.code})
                         </span>
                     </div>
 
@@ -191,7 +191,7 @@ export const TypeDetailPage: React.FC = () => {
                                     {OS_CONTENT[osData.bestMatch]?.name ? (
                                         <>
                                             <span className="text-2xl mr-2">{OS_CONTENT[osData.bestMatch].name.split('(')[0]}</span>
-                                            <span className="text-sm opacity-80">({osData.bestMatch})</span>
+                                            <span className="text-sm opacity-80">({OS_CONTENT[osData.bestMatch]?.name?.match(/\((.+)\)/)?.[1]} / {osData.bestMatch})</span>
                                         </>
                                     ) : osData.bestMatch}
                                 </div>
@@ -206,7 +206,7 @@ export const TypeDetailPage: React.FC = () => {
                                     {OS_CONTENT[osData.worstMatch]?.name ? (
                                         <>
                                             <span className="text-2xl mr-2">{OS_CONTENT[osData.worstMatch].name.split('(')[0]}</span>
-                                            <span className="text-sm opacity-80">({osData.worstMatch})</span>
+                                            <span className="text-sm opacity-80">({OS_CONTENT[osData.worstMatch]?.name?.match(/\((.+)\)/)?.[1]} / {osData.worstMatch})</span>
                                         </>
                                     ) : osData.worstMatch}
                                 </div>
@@ -227,7 +227,7 @@ export const TypeDetailPage: React.FC = () => {
                 <section className="text-center pt-8 pb-12">
                     <h3 className="font-bold text-slate-700 mb-4">このタイプをシェアする</h3>
                     <ShareButtons
-                        title={`【16性格診断】${osData.name} (${osData.code}) の詳細`}
+                        title={`【16性格診断】${osData.name} の詳細`}
                         text={`${osData.catchphrase} #16性格診断`}
                     />
                     <div className="mt-8">

@@ -20,7 +20,6 @@ import { OS_CONTENT } from '@/features/result/data/content-os';
 import { RadarChart } from '@/features/result/components/RadarChart';
 import { Card } from '@/components/ui/Card';
 import { FormattedText } from '@/components/ui/FormattedText';
-import { Button } from '@/components/ui/Button';
 import { resolveColor } from '@/lib/constants/color-map';
 import { getCompatibility, getAllCompatibilities, getPairConcreteTip } from '@/lib/constants/compatibility';
 import { CompatibilityCard } from './CompatibilityCard';
@@ -85,6 +84,11 @@ export const CompatibilityPage: React.FC<CompatibilityPageProps> = ({
                     × {targetData.name} の相性
                 </span>
             </nav>
+
+            {/* h1: SEO用のメイン見出し */}
+            <h1 className="text-lg sm:text-xl font-bold text-slate-700 text-center mb-6 font-serif">
+                {sourceData.name}と{targetData.name}の相性
+            </h1>
 
             {/* ② ヘッダー: 2タイプ + 星評価 */}
             <div className="bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 mb-8 shadow-sm">
@@ -333,21 +337,20 @@ export const CompatibilityPage: React.FC<CompatibilityPageProps> = ({
                     意識的な工夫をすることで、どんな関係も改善できます。
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4">
-                    <Button
-                        onClick={() => { }}
-                        className="bg-prisma-600 hover:bg-prisma-700 text-white px-8 py-3 text-base font-bold"
+                    <Link
+                        href="/diagnosis"
+                        className="inline-flex items-center justify-center gap-2 bg-prisma-600 hover:bg-prisma-700 text-white px-8 py-3 text-base font-bold rounded-lg transition-colors"
                     >
-                        <Link href="/diagnosis" className="flex items-center gap-2">
-                            <Sparkles size={18} />
-                            自分のタイプを診断する
-                        </Link>
-                    </Button>
-                    <Button variant="outline" className="text-slate-500 hover:text-slate-700">
-                        <Link href={`/types/${sourceCode}`} className="flex items-center gap-2">
-                            <ArrowLeft size={16} />
-                            {sourceData.name} の詳細に戻る
-                        </Link>
-                    </Button>
+                        <Sparkles size={18} />
+                        自分のタイプを診断する
+                    </Link>
+                    <Link
+                        href={`/types/${sourceCode}`}
+                        className="inline-flex items-center justify-center gap-2 border border-slate-300 text-slate-500 hover:text-slate-700 hover:border-slate-400 px-8 py-3 text-base font-bold rounded-lg transition-colors"
+                    >
+                        <ArrowLeft size={16} />
+                        {sourceData.name} の詳細に戻る
+                    </Link>
                 </div>
             </div>
         </div>

@@ -3,6 +3,7 @@
 import React from 'react';
 
 import { Zap, LayoutDashboard } from 'lucide-react';
+import { OS_CONTENT } from '@/features/result/data/content-os';
 import { Card } from '@/components/ui/Card';
 import { FormattedText } from '@/components/ui/FormattedText';
 import { RadarChart } from '../RadarChart';
@@ -70,7 +71,7 @@ export const OverviewTab: React.FC<OverviewTabProps> = ({ osData, engineData, th
                                 <span className="text-lg font-semibold text-slate-400">({osData.code})</span>
                             </div>
                             <p className="text-slate-500 text-xs mt-2">
-                                相性最高: <span className="font-semibold">{osData.bestMatch}</span> / 要注意: <span className="font-semibold">{osData.worstMatch}</span>
+                                相性最高: <span className="font-semibold">{OS_CONTENT[osData.bestMatch]?.name || osData.bestMatch}</span> / 要注意: <span className="font-semibold">{OS_CONTENT[osData.worstMatch]?.name || osData.worstMatch}</span>
                             </p>
                             <div className="mt-4">
                                 <a href={`/types/${osData.code}`} className="text-sm text-indigo-600 font-bold hover:underline flex items-center gap-1">

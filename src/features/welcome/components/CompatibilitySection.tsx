@@ -54,7 +54,7 @@ export const CompatibilitySection: React.FC = () => {
                         <option value="">自分のタイプを選択</option>
                         {typeOptions.map(({ code, name }) => (
                             <option key={code} value={code}>
-                                {name} ({code})
+                                {name}
                             </option>
                         ))}
                     </select>
@@ -69,7 +69,7 @@ export const CompatibilitySection: React.FC = () => {
                         <option value="">相手のタイプを選択</option>
                         {typeOptions.map(({ code, name }) => (
                             <option key={code} value={code}>
-                                {name} ({code})
+                                {name}
                             </option>
                         ))}
                     </select>
@@ -79,8 +79,8 @@ export const CompatibilitySection: React.FC = () => {
                     onClick={handleCheck}
                     disabled={!canNavigate}
                     className={`px-8 py-3 text-base font-bold transition-all ${canNavigate
-                            ? 'bg-prisma-600 hover:bg-prisma-700 text-white shadow-lg shadow-prisma-200'
-                            : 'bg-slate-200 text-slate-400 cursor-not-allowed'
+                        ? 'bg-prisma-600 hover:bg-prisma-700 text-white shadow-lg shadow-prisma-200'
+                        : 'bg-slate-200 text-slate-400 cursor-not-allowed'
                         }`}
                 >
                     <span className="flex items-center gap-2">

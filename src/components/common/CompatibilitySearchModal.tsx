@@ -135,7 +135,7 @@ export const CompatibilitySearchModal: React.FC<CompatibilitySearchModalProps> =
                             <option value="">自分のタイプを選択</option>
                             {typeOptions.map(({ code, name }) => (
                                 <option key={code} value={code}>
-                                    {name} ({code})
+                                    {name}
                                 </option>
                             ))}
                         </select>
@@ -153,7 +153,7 @@ export const CompatibilitySearchModal: React.FC<CompatibilitySearchModalProps> =
                             <option value="">相手のタイプを選択</option>
                             {typeOptions.map(({ code, name }) => (
                                 <option key={code} value={code}>
-                                    {name} ({code})
+                                    {name}
                                 </option>
                             ))}
                         </select>

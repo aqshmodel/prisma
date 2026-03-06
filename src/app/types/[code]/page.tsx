@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         .replace(/\n/g, '')
         .slice(0, 80);
 
-    const title = `${data.name} (${data.code}) の性格と適職・相性 - 無料16タイプ診断 | Aqsh Prisma`;
+    const title = `${data.name} の性格と適職・相性 - 無料16タイプ診断 | Aqsh Prisma`;
     const description = `${data.catchphrase} ${plainDescription}… 組織での見えない摩擦を解明する無料診断ツール『Aqsh Prisma』であなたの性格的特徴やリーダーシップ特性を発見しましょう。`;
 
     return {
@@ -68,7 +68,7 @@ export default async function Page({ params }: Props) {
             {
                 '@type': 'ListItem',
                 'position': 2,
-                'name': `${data.name} (${data.code})`,
+                'name': `${data.name}`,
                 'item': `${SITE_CONFIG.baseUrl}/types/${code}`
             }
         ]

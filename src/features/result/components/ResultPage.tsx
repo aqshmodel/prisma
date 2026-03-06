@@ -305,7 +305,7 @@ export const ResultPage: React.FC = () => {
 
                     <ShareButtons
                         url={`${SITE_CONFIG.baseUrl}/result?r=${encodeResult(result)}`}
-                        title={`【16性格診断】私の基本タイプは『${osData.name}』(${osData.code})でした！`}
+                        title={`【16性格診断】私の基本タイプは『${osData.name}』でした！`}
                         text={`私の基本タイプは「${osData.name}」でした！あなたのタイプも診断してみませんか？`}
                         hashtags={['16性格診断', '性格診断', '自己分析']}
                     />

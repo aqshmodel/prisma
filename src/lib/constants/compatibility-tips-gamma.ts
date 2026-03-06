@@ -3,131 +3,131 @@ import type { OSTypeCode } from '@/types/diagnosis';
 type PairKey = `${OSTypeCode}-${OSTypeCode}`;
 
 export const GAMMA_PAIR_TIPS: Partial<Record<PairKey, string>> = {
-    // ===== ESFp (SEE) 起点 =====
-    // Se(ESFp) × Ne(ENTp) — 超自我関係
+    // ===== 政治家(SEE/ESFp) 起点 =====
+    // 政治家(SEE/ESFp) × 発明家(ILE/ENTp) — 超自我関係
     'ESFp-ENTp': 'ENTpが理論的に説明を始めるとESFpは退屈を隠せない。ESFpの直感的な判断力をENTpは根拠がないと疑問視する。短時間なら互いの視点の違いから得るものがあるが長時間は精神的に重い。',
-    // Se(ESFp) × Si(ISFp) — 相反関係
+    // 政治家(SEE/ESFp) × 調停者(SEI/ISFp) — 相反関係
     'ESFp-ISFp': 'ESFpが新しい体験を求めて動き回る横で、ISFpは居心地の良い空間を守っている。同じ感覚型でも外向と内向の差がはっきりで、ESFpは退屈にISFpは疲労を感じやすい。',
-    // Se(ESFp) × Fe(ESFj) — 準同一関係
+    // 政治家(SEE/ESFp) × 供応者(ESE/ESFj) — 準同一関係
     'ESFp-ESFj': 'パーティーでは二人とも場の華になる。ただしESFjはみんなの楽しさを、ESFpは自分の目標達成を優先しており、表面の華やかさの奥で優先順位がずれていることに後から気づく。',
-    // Se(ESFp) × Ti(INTj) — 衝突関係
+    // 政治家(SEE/ESFp) × 分析家(LII/INTj) — 衝突関係
     'ESFp-INTj': 'INTjの慎重な計画立てをESFpは「考えすぎだ」と思い、ESFpの勢いをINTjは「無謀すぎる」と退く。認知機能が正反対で、互いの長所が相手にとっては理解不能。仲裁者が不可欠。',
-    // Se(ESFp) ← Fe(ENFj) — 恩恵関係（逆）
+    // 政治家(SEE/ESFp) ← 教育者(EIE/ENFj) — 恩恵関係（逆）
     'ESFp-ENFj': 'ENFjの壮大なビジョンにESFpが無意識に動かされる。ENFjの方向付けでESFpの行動力が最大化するが、ESFpの現場感覚はENFjの耳にあまり届かず、関係は片方に傾きがち。',
-    // Se(ESFp) ← Ti(ISTj) — 監督関係（逆）
+    // 政治家(SEE/ESFp) ← 管理者(LSI/ISTj) — 監督関係（逆）
     'ESFp-ISTj': 'ISTjのルール遵守の姿勢がESFpの自由を縛る。ISTjがマニュアルについて説明するほどESFpはストレスを感じ、ISTjの求める秩序がESFpの一番苦手な領域に直撃する。',
-    // Se(ESFp) × Se(ESTp) — 同類関係
+    // 政治家(SEE/ESFp) × 発起人(SLE/ESTp) — 同類関係
     'ESFp-ESTp': 'Se全開のアクションペア。登山でもビジネスでも二人で突っ込むとすさまじい突破力を見せる。ただし冷静な判断が後回しになりがちで、暴走注意の組み合わせでもある。',
-    // Se(ESFp) × Ni(INFp) — 準双対関係
+    // 政治家(SEE/ESFp) × 心理学者(IEI/INFp) — 準双対関係
     'ESFp-INFp': 'INFpの静かな直感がESFpの行動に深みを与えてくれる。双対に近い心地よさがあるが、ESFpのペースにINFpが追いつけなかったり、ESFpがINFpの沈黙を物足りなく感じる場面がある。',
-    // Se(ESFp) × Ni(INTp) — 双対関係
+    // 政治家(SEE/ESFp) × 批評家(ILI/INTp) — 双対関係
     'ESFp-INTp': 'ESFpが瞬時に状況を読み取り行動に移すとき、INTpがその先の展開を静かに予測している。ESFpの直感とINTpの分析が噛み合うと、二人の間に他では得られない静かな信頼が芽生える。',
-    // Se(ESFp) × Te(ENTj) — 活性化関係
+    // 政治家(SEE/ESFp) × 開拓者(LIE/ENTj) — 活性化関係
     'ESFp-ENTj': '二人が組むとプロジェクトは一気に加速する。ESFpの対人スキルとENTjの戦略が合わされば営業チームとして無敵だが、その高テンションは持続しにくい。要所で力を集中するのがコツ。',
-    // Se(ESFp) × Fi(ISFj) — 鏡像関係
+    // 政治家(SEE/ESFp) × 守護者(ESI/ISFj) — 鏡像関係
     'ESFp-ISFj': 'ESFpが攻めの姿勢で前に出るときISFjが守りでチームを支える。同じFiとSeを持つが順序が逆で、互いのやり方から学びを得る反面、主導権争いが起きることもある。',
-    // Se(ESFp) → Te(ESTj) — 恩恵関係
+    // 政治家(SEE/ESFp) → 監督者(LSE/ESTj) — 恩恵関係
     'ESFp-ESTj': 'ESFpのカリスマ的な対人力がESTjの実務チームに活気を注入する。ESFpの提案でESTjが動くことは多いが、ESTjの効率化提案にESFpが共感することは少なく一方的な影響になりがち。',
-    // Se(ESFp) → Fi(INFj) — 監督関係
+    // 政治家(SEE/ESFp) → 人道主義者(EII/INFj) — 監督関係
     'ESFp-INFj': 'ESFpの直接的なコミュニケーションがINFjの繊細な内面に刺さることがある。ESFpは率直に話しているだけなのに、INFjは自分の理想が否定されたと受け取りやすい。',
-    // Se(ESFp) × Ne(ENFp) — ビジネス関係
+    // 政治家(SEE/ESFp) × 伝道者(IEE/ENFp) — ビジネス関係
     'ESFp-ENFp': 'お互いに社交的でアクティブ。チームの雰囲気づくりでは息が合うが、ESFpは具体的な結果をENFpは人の可能性を追い求める。アプローチの違いが表面化すると微妙な空気に。',
-    // Se(ESFp) × Si(ISTp) — 幻想関係
+    // 政治家(SEE/ESFp) × 職人(SLI/ISTp) — 幻想関係
     'ESFp-ISTp': 'ISTpの職人的な腕前をESFpは素直に尊敬し、ESFpの社交力にISTpは助けられる。感覚的な楽しみは共有しやすいが、互いの本質的な動機を理解しようとすると蜃気楼のようにすれ違う。',
 
-    // ===== INTp (ILI) 起点 =====
-    // Ni(INTp) × Ne(ENTp) — 相反関係
+    // ===== 批評家(ILI/INTp) 起点 =====
+    // 批評家(ILI/INTp) × 発明家(ILE/ENTp) — 相反関係
     'INTp-ENTp': '二人ともN系の知的探求者だが、ENTpが可能性を広げるほどINTpはリスクを精査したくなる。建設的に使えばアイデアの品質管理になるが、結論がいつも真逆で平行線になりやすい。',
-    // Ni(INTp) × Si(ISFp) — 超自我関係
+    // 批評家(ILI/INTp) × 調停者(SEI/ISFp) — 超自我関係
     'INTp-ISFp': 'ISFpの感覚的な気遣いが心地よいときもあるが、INTpの冷徹な分析がISFpの繊細さを傷つけてしまうことがある。互いに学ぶことはあるが精神的な消耗も大きく、適度な距離感が必要。',
-    // Ni(INTp) × Fe(ESFj) — 衝突関係
+    // 批評家(ILI/INTp) × 供応者(ESE/ESFj) — 衝突関係
     'INTp-ESFj': 'ESFjの感情の波とINTpの冷静な批評眼が真正面から衝突する。ESFjは無視されていると感じ、INTpは感情論に巻き込まれたくないと引く。妥協点を見つけるのに苦労する組み合わせ。',
-    // Ni(INTp) × Ti(INTj) — 準同一関係
+    // 批評家(ILI/INTp) × 分析家(LII/INTj) — 準同一関係
     'INTp-INTj': '長時間の知的議論が楽しめるペア。似た分析力を持つがINTpは未来予測にINTjは体系構築に関心があり、「惜しい」感じが常に漂う。互いのこだわりポイントが微妙にずれている。',
-    // Ni(INTp) ← Fe(ENFj) — 監督関係（逆）
+    // 批評家(ILI/INTp) ← 教育者(EIE/ENFj) — 監督関係（逆）
     'INTp-ENFj': 'ENFjの感情的な圧力がINTpの冷静な分析回路を混乱させる。ENFjの善意は理解しているが、その熱量自体がINTpの苦手な領域に踏み込んでくる。距離を保つのが双方にとって楽。',
-    // Ni(INTp) ← Ti(ISTj) — 恩恵関係（逆）
+    // 批評家(ILI/INTp) ← 管理者(LSI/ISTj) — 恩恵関係（逆）
     'INTp-ISTj': 'ISTjの几帳面なプロセス管理を見て、INTpは自分の抽象的な思考を実務に変換するヒントを得る。ISTjの存在が良い見本になるが、INTpのフィードバックはISTjに十分伝わらないことも。',
-    // Ni(INTp) × Se(ESTp) — 準双対関係
+    // 批評家(ILI/INTp) × 発起人(SLE/ESTp) — 準双対関係
     'INTp-ESTp': 'INTpが戦略を練り、ESTpが現場で即断即決する。双対に近い役割分担が自然にできるが、ESTpの行動が速すぎてINTpの分析が追いつかない場面があり、やや歯がゆさが残る。',
-    // Ni(INTp) × Ni(INFp) — 同類関係
+    // 批評家(ILI/INTp) × 心理学者(IEI/INFp) — 同類関係
     'INTp-INFp': 'Ni同士で未来を感じ取る直感が共鳴し、黙っていても互いの考えがなんとなくわかる。居心地はいいが二人とも行動に移すのが苦手で、結局何も始まらないまま夜が明けることもある。',
-    // Ni(INTp) × Se(ESFp) — 双対関係
+    // 批評家(ILI/INTp) × 政治家(SEE/ESFp) — 双対関係
     'INTp-ESFp': 'ESFpが果敢に行動している隣で、INTpがその帰結を冷静に読んでいる。ESFpのバイタリティとINTpの先見性が噛み合うと、リスクを取りつつ致命傷は避ける絶妙なチームになる。',
-    // Ni(INTp) × Te(ENTj) — 鏡像関係
+    // 批評家(ILI/INTp) × 開拓者(LIE/ENTj) — 鏡像関係
     'INTp-ENTj': 'INTpが長期的なリスクを指摘し、ENTjがその対策を即座にシステム化する。鏡のように補い合う議論ができるが、INTpのペースが遅く感じるENTjとスピードについていけないINTpの間に微妙な緊張も。',
-    // Ni(INTp) × Fi(ISFj) — 活性化関係
+    // 批評家(ILI/INTp) × 守護者(ESI/ISFj) — 活性化関係
     'INTp-ISFj': 'ISFjの義務感あふれる献身に、INTpは予想外の安心感を覚える。ISFjもINTpの知的な深さに惹かれる。短時間の交流は刺激的だが、長時間になるとISFjの求めるケアにINTpが応えきれない。',
-    // Ni(INTp) × Te(ESTj) — 監督関係（逆方向）
+    // 批評家(ILI/INTp) × 監督者(LSE/ESTj) — 監督関係（逆方向）
     'INTp-ESTj': 'ESTjの実務的な効率要請がINTpの思索のペースを乱す。ESTjは普通に仕事を進めているだけなのに、INTpにとっては内面の自由を脅かされる感覚になることがある。',
-    // Ni(INTp) × Fi(INFj) — 恩恵関係（逆方向）
+    // 批評家(ILI/INTp) × 人道主義者(EII/INFj) — 恩恵関係（逆方向）
     'INTp-INFj': 'INFjの価値観に根ざした判断基準に触れると、INTpは自分の分析に新たな軸が加わるのを感じる。INFjの影響は静かだが確実に視野を広げてくれる。逆方向の影響力は弱め。',
-    // Ni(INTp) × Ne(ENFp) — 幻想関係
+    // 批評家(ILI/INTp) × 伝道者(IEE/ENFp) — 幻想関係
     'INTp-ENFp': 'ENFpの拡散する発想にINTpが知的好奇心を刺激される瞬間がある。初対面では面白い化学反応が起きるが、ENFpの楽観とINTpの悲観が噛み合わず、深い協業はすれ違いやすい。',
-    // Ni(INTp) × Si(ISTp) — ビジネス関係
+    // 批評家(ILI/INTp) × 職人(SLI/ISTp) — ビジネス関係
     'INTp-ISTp': '二人とも寡黙で専門家気質。互いの領域を侵さない距離感で仕事ができるが、INTpは戦略的な予測をISTpは実務的な最適化を重視し、同じ目標でもアプローチが根本的に違う。',
 
-    // ===== ENTj (LIE) 起点 =====
-    // Te(ENTj) × Ne(ENTp) — 準同一関係
+    // ===== 開拓者(LIE/ENTj) 起点 =====
+    // 開拓者(LIE/ENTj) × 発明家(ILE/ENTp) — 準同一関係
     'ENTj-ENTp': '似た知的好奇心でプロジェクト初期は意気投合する。だがENTjは成果を出すことに執着し、ENTpは探索を楽しみたい。実行フェーズに入ると互いの優先順位の差に気づき始める。',
-    // Te(ENTj) × Si(ISFp) — 衝突関係
+    // 開拓者(LIE/ENTj) × 調停者(SEI/ISFp) — 衝突関係
     'ENTj-ISFp': 'ENTjが成果指向で推進するほど、ISFpの繊細さが置き去りになる。ISFpの控えめな提案はENTjには回りくどく映り、噛み合わない。第三者の橋渡しが関係存続の条件になりやすい。',
-    // Te(ENTj) × Fe(ESFj) — 超自我関係
+    // 開拓者(LIE/ENTj) × 供応者(ESE/ESFj) — 超自我関係
     'ENTj-ESFj': 'ENTjの効率第一の姿勢をESFjは冷たいと感じ、ESFjの感情重視をENTjは遠回りだと思う。互いに持っていないものを相手が体現しているため、尊敬と消耗が同居する関係。',
-    // Te(ENTj) × Ti(INTj) — 相反関係
+    // 開拓者(LIE/ENTj) × 分析家(LII/INTj) — 相反関係
     'ENTj-INTj': 'ENTjが「早く実装しよう」と急かすとINTjは「まだ理論が完成していない」と抵抗する。知的好奇心は共有しているのにテンポが真逆で、互いに「なぜわかってくれない」と思いやすい。',
-    // Te(ENTj) × Fe(ENFj) — 同類関係
+    // 開拓者(LIE/ENTj) × 教育者(EIE/ENFj) — 同類関係
     'ENTj-ENFj': 'ビジョン志向で大きな構想を語り合う楽しさは抜群。ただしENTjはシステムで、ENFjは人の心で組織を動かそうとする。手段の違いが明確になると表面的な合意の裏に深い溝が見える。',
-    // Te(ENTj) × Ti(ISTj) — 準双対関係
+    // 開拓者(LIE/ENTj) × 管理者(LSI/ISTj) — 準双対関係
     'ENTj-ISTj': 'ENTjの戦略をISTjが実務に落とし込んでくれる。双対に近い安心感があるが、ENTjの急な方針変更にISTjの几帳面さが追いつかない場面があり、完全にはフィットしない惜しさがある。',
-    // Te(ENTj) ← Se(ESTp) — 恩恵関係（逆）
+    // 開拓者(LIE/ENTj) ← 発起人(SLE/ESTp) — 恩恵関係（逆）
     'ENTj-ESTp': 'ESTpの現場での実行力にENTjは頼もしさを感じる。ESTpの行動で自分の戦略が試されるのは有意義だが、ESTpの直感的な判断はENTjの綿密な計画と食い違うこともある。',
-    // Te(ENTj) → Ni(INFp) — 監督関係
+    // 開拓者(LIE/ENTj) → 心理学者(IEI/INFp) — 監督関係
     'ENTj-INFp': 'ENTjが何気なく求める結果報告や効率化が、INFpの内面世界への圧迫になっている。ENTjは普通にマネジメントしているだけなのに、INFpにとっては最も苦手な領域を突かれる感覚。',
-    // Te(ENTj) × Se(ESFp) — 活性化関係
+    // 開拓者(LIE/ENTj) × 政治家(SEE/ESFp) — 活性化関係
     'ENTj-ESFp': 'ESFpの行動力とENTjの戦略眼が短期的には爆発的な推進力を生む。交渉やプレゼンでは最強タッグだが、長期プロジェクトでは二人のペースが合わなくなりやすい。',
-    // Te(ENTj) × Ni(INTp) — 鏡像関係
+    // 開拓者(LIE/ENTj) × 批評家(ILI/INTp) — 鏡像関係
     'ENTj-INTp': 'ENTjが前に進む推進力を持ち、INTpがその先に潜むリスクを読む。鏡のように補い合えるが、ENTjのスピードにINTpの分析が追いつかない場面があり、微妙な不満が蓄積しやすい。',
-    // Te(ENTj) × Fi(ISFj) — 双対関係
+    // 開拓者(LIE/ENTj) × 守護者(ESI/ISFj) — 双対関係
     'ENTj-ISFj': 'ENTjが大きく稼ぎISFjが家庭を守るような、伝統的だが強固なパートナーシップが自然にでき上がる。ISFjの道徳観がENTjの突っ走りすぎを制御し、ENTjの決断力がISFjに安心感を与える。',
-    // Te(ENTj) × Te(ESTj) — ビジネス関係
+    // 開拓者(LIE/ENTj) × 監督者(LSE/ESTj) — ビジネス関係
     'ENTj-ESTj': '二人ともTe使いの実務派。目標設定と実行力で共鳴するが、ENTjは新規事業にESTjは既存業務の最適化に関心がある。同じ言語を使っていながらゴールが違い、方向性でぶつかりやすい。',
-    // Te(ENTj) × Fi(INFj) — 幻想関係
+    // 開拓者(LIE/ENTj) × 人道主義者(EII/INFj) — 幻想関係
     'ENTj-INFj': 'INFjの深い洞察にENTjが知的な刺激を受け、ENTjの実行力にINFjが頼もしさを感じる。表面的には理想のペアだが、価値判断の基準が効率か倫理かで根本的にすれ違う蜃気楼。',
-    // Te(ENTj) → Ne(ENFp) — 恩恵関係
+    // 開拓者(LIE/ENTj) → 伝道者(IEE/ENFp) — 恩恵関係
     'ENTj-ENFp': 'ENTjの戦略的な提言がENFpの行動に方向性を与える。ENFpは無意識にENTjの影響を受けて動くが、ENFpの人間関係重視のフィードバックはENTjの効率脳にはあまり刺さらない。',
-    // Te(ENTj) → Si(ISTp) — 監督関係
+    // 開拓者(LIE/ENTj) → 職人(SLI/ISTp) — 監督関係
     'ENTj-ISTp': 'ENTjの成果要求がISTpのマイペースな職人気質を脅かす。ENTjは効率的に進めたいだけなのに、ISTpにとっては自分のリズムを壊されるストレスになりやすい。',
 
-    // ===== ISFj (ESI) 起点 =====
-    // Fi(ISFj) × Ne(ENTp) — 衝突関係
+    // ===== 守護者(ESI/ISFj) 起点 =====
+    // 守護者(ESI/ISFj) × 発明家(ILE/ENTp) — 衝突関係
     'ISFj-ENTp': 'ENTpの大胆な発想にISFjは「人の気持ちが置き去りだ」と感じ、ISFjの慎重さをENTpは足かせに感じる。第三者の仲介なしでは建設的な会話が成立しにくい組み合わせ。',
-    // Fi(ISFj) × Si(ISFp) — 準同一関係
+    // 守護者(ESI/ISFj) × 調停者(SEI/ISFp) — 準同一関係
     'ISFj-ISFp': '穏やかさとケアの精神を共有するが、ISFjは義務と信念で動き、ISFpはその場の空気で動く。表面的には合うが「なぜそう判断するの？」という根本で食い違いが生じやすい。',
-    // Fi(ISFj) × Fe(ESFj) — 相反関係
+    // 守護者(ESI/ISFj) × 供応者(ESE/ESFj) — 相反関係
     'ISFj-ESFj': '両者ともケア志向だが、ISFjの静かな義務感とESFjの声高な情熱がすれ違う。ISFjには「うるさい」、ESFjには「暗い」と映ることがある。互いの真意を言葉にすると改善する。',
-    // Fi(ISFj) × Ti(INTj) — 超自我関係
+    // 守護者(ESI/ISFj) × 分析家(LII/INTj) — 超自我関係
     'ISFj-INTj': 'ISFjの道徳的な直感とINTjの論理的な分析は、根っこの誠実さでは一致するのに手段が正反対。互いにリスペクトはあるが「なぜそのやり方で？」という疑問が常に付きまとう。',
-    // Fi(ISFj) × Fe(ENFj) — 準双対関係
+    // 守護者(ESI/ISFj) × 教育者(EIE/ENFj) — 準双対関係
     'ISFj-ENFj': 'ENFjの方向性にISFjが献身的についていく構図は自然にできる。かなり心地よい関係だが、ENFjのペースの速さにISFjが追いつけず息切れする場面があり、あと一歩の惜しさがある。',
-    // Fi(ISFj) × Ti(ISTj) — 同類関係
+    // 守護者(ESI/ISFj) × 管理者(LSI/ISTj) — 同類関係
     'ISFj-ISTj': '堅実さとルールを重んじる価値観が似ており、安定した関係を築きやすい。マニュアル整備や品質管理では最高のペアだが、二人とも変化を嫌うため外部の刺激がないと停滞しがち。',
-    // Fi(ISFj) → Se(ESTp) — 監督関係
+    // 守護者(ESI/ISFj) → 発起人(SLE/ESTp) — 監督関係
     'ISFj-ESTp': 'ISFjの道徳的な基準をESTpに何気なく求めると、ESTpの行動の自由を縛ることになる。ISFjに悪意はなく正しいことを言っているだけだが、ESTpにとっては急所への一撃に。',
-    // Fi(ISFj) → Ni(INFp) — 恩恵関係
+    // 守護者(ESI/ISFj) → 心理学者(IEI/INFp) — 恩恵関係
     'ISFj-INFp': 'ISFjの日常的なケアがINFpの生活を支え、INFpはその安心感の中でビジョンに集中できる。ISFjが与える側の関係だが、INFpの夢想的な発言にISFjが癒やされる瞬間も確かにある。',
-    // Fi(ISFj) × Se(ESFp) — 鏡像関係
+    // 守護者(ESI/ISFj) × 政治家(SEE/ESFp) — 鏡像関係
     'ISFj-ESFp': 'ISFjが守りの姿勢でチームを支え、ESFpが攻めの姿勢で切り込む。同じFiとSeの使い手だが表出のさせ方が鏡のように反対で、互いの方法に新鮮な気づきを与え合う。',
-    // Fi(ISFj) × Ni(INTp) — 活性化関係
+    // 守護者(ESI/ISFj) × 批評家(ILI/INTp) — 活性化関係
     'ISFj-INTp': 'INTpの知的な洞察にISFjが新鮮な刺激を受け、ISFjの安定感にINTpが安心を覚える。短時間の交流は互いに良い影響があるが、長時間だとケアの求め方で温度差が出やすい。',
-    // Fi(ISFj) × Te(ENTj) — 双対関係
+    // 守護者(ESI/ISFj) × 開拓者(LIE/ENTj) — 双対関係
     'ISFj-ENTj': 'ENTjの大胆な意思決定をISFjの道徳観がバランスよく制御する。ISFjが作り出す安定した基盤の上でENTjが思い切り勝負できる。互いにないものを自然と補い合う強固なペア。',
-    // Fi(ISFj) × Te(ESTj) — 幻想関係
+    // 守護者(ESI/ISFj) × 監督者(LSE/ESTj) — 幻想関係
     'ISFj-ESTj': 'ESTjの頼もしい実務力にISFjは安心し、ISFjの細やかな配慮にESTjは癒やされる。初対面からの好感度は高いが、深層の判断基準が倫理か効率かで微妙に食い違うことに後から気づく。',
-    // Fi(ISFj) × Fi(INFj) — ビジネス関係
+    // 守護者(ESI/ISFj) × 人道主義者(EII/INFj) — ビジネス関係
     'ISFj-INFj': '二人ともFi使いで価値観を大切にする。人の気持ちへの敏感さでは似ているが、ISFjは具体的な行動でINFjは理想のビジョンでケアと向き合う。手段の違いが協業時のボトルネックに。',
-    // Fi(ISFj) × Ne(ENFp) — 監督関係（逆方向）
+    // 守護者(ESI/ISFj) × 伝道者(IEE/ENFp) — 監督関係（逆方向）
     'ISFj-ENFp': 'ENFpの自由な発想がISFjの秩序を揺さぶる。ENFpに悪意はないがISFjにとっては自分の積み上げた安定を壊される不安を覚える。ENFpのペースに合わせすぎないことが自衛のコツ。',
-    // Fi(ISFj) × Si(ISTp) — 恩恵関係（逆方向）
+    // 守護者(ESI/ISFj) × 職人(SLI/ISTp) — 恩恵関係（逆方向）
     'ISFj-ISTp': 'ISTpの堅実な実務能力にISFjは安定感を感じる。ISTpの手堅い仕事ぶりがISFjの不安を和らげるが、ISFjの感情面のケアはISTpにはあまり響かず一方的な安心感になることも。',
 };
