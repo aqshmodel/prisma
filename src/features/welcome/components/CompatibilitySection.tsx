@@ -78,7 +78,7 @@ export const CompatibilitySection: React.FC = () => {
                 <Button
                     onClick={handleCheck}
                     disabled={!canNavigate}
-                    className={`px-8 py-3 text-base font-bold transition-all ${canNavigate
+                    className={`px-8 py-3 text-base font-bold transition-all mx-auto ${canNavigate
                         ? 'bg-prisma-600 hover:bg-prisma-700 text-white shadow-lg shadow-prisma-200'
                         : 'bg-slate-200 text-slate-400 cursor-not-allowed'
                         }`}

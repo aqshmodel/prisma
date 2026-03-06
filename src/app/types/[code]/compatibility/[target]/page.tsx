@@ -133,6 +133,22 @@ export default async function Page({ params }: Props) {
                         'text': relation.workCompatibility.roleAdvice,
                     },
                 },
+                {
+                    '@type': 'Question',
+                    'name': `${sourceData.name}と${targetData.name}の恋愛相性は？`,
+                    'acceptedAnswer': {
+                        '@type': 'Answer',
+                        'text': `${relation.loveCompatibility.attraction} ${relation.loveCompatibility.longevityTip}`,
+                    },
+                },
+                {
+                    '@type': 'Question',
+                    'name': `${sourceData.name}と${targetData.name}で注意すべきことは？`,
+                    'acceptedAnswer': {
+                        '@type': 'Answer',
+                        'text': `${relation.loveCompatibility.challenge} 仕事面では、${relation.workCompatibility.frictionPoint}`,
+                    },
+                },
                 ...(relation.faq ?? []).map((faqItem) => ({
                     '@type': 'Question' as const,
                     'name': faqItem.question,
@@ -142,6 +158,16 @@ export default async function Page({ params }: Props) {
                     },
                 })),
             ],
+        },
+        {
+            '@context': 'https://schema.org',
+            '@type': 'HowTo',
+            'name': `${sourceData.name}と${targetData.name}の関係を良くする3つのコツ`,
+            'step': relation.dos.map((tip, i) => ({
+                '@type': 'HowToStep',
+                'position': i + 1,
+                'text': tip,
+            })),
         },
     ];
 
