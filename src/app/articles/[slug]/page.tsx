@@ -4,10 +4,15 @@ import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import { getArticleBySlug, getArticleSlugs } from '../../../features/articles/utils/mdx';
-import { ArrowLeft, Calendar, User, Tag, RefreshCw } from 'lucide-react';
+import { ArrowLeft, Calendar, User, Tag, RefreshCw, Clock } from 'lucide-react';
 import { ShareButtons } from '../../../components/common/ShareButtons';
 import { DiagnosisCTA } from '@/features/articles/components/DiagnosisCTA';
 import { AuthorBio } from '@/features/articles/components/AuthorBio';
+import { RelatedArticles } from '@/features/articles/components/RelatedArticles';
+import { TableOfContents } from '@/features/articles/components/TableOfContents';
+import { getReadingTime } from '@/features/articles/utils/readingTime';
+import { extractHeadings } from '@/features/articles/utils/extractHeadings';
+import { extractFaqJsonLd } from '@/features/articles/utils/faqExtractor';
 
 /**
  * SSG（静的生成）のためのパス一覧をNext.jsに提供します。
@@ -67,13 +72,17 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 /**
  * MDX内で使用できるReactコンポーネントのマッピング。
- * プレーンなMarkdownのタグをカスタムUIコンポーネントに上書きできます。
+ * h2に自動でidを付与し、目次からのページ内リンクを実現する。
  */
-const components = {
-    // 例: h2タグにカスタムスタイルを適用する場合
-    // h2: (props: any) => <h2 className="text-2xl font-bold text-slate-800 mt-8 mb-4 border-l-4 border-prisma-500 pl-4" {...props} />,
+const createComponents = (headings: { id: string; text: string }[]) => ({
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    h2: (props: any) => {
+        const text = String(props.children || '').replace(/[*_`]/g, '').trim();
+        const heading = headings.find(h => h.text === text);
+        return <h2 id={heading?.id} {...props} />;
+    },
     DiagnosisCTA,
-};
+});
 
 /**
  * 記事詳細ページ (Server Component)
@@ -88,6 +97,15 @@ export default async function ArticleDetailPage({ params }: { params: Promise<{ 
     }
 
     const { metadata, content } = article;
+
+    // 読了時間を算出
+    const readingTime = getReadingTime(content);
+
+    // h2見出しを抽出（目次 + h2へのid付与に使用）
+    const headings = extractHeadings(content);
+
+    // FAQPage JSON-LDを生成（疑問形見出しが2つ以上ある場合のみ）
+    const faqJsonLd = extractFaqJsonLd(content);
 
     /**
      * Article (JSON-LD)
@@ -152,6 +170,14 @@ export default async function ArticleDetailPage({ params }: { params: Promise<{ 
         }
     ];
 
+    // FAQPage JSON-LDがあれば追加
+    if (faqJsonLd) {
+        (jsonLd as object[]).push(faqJsonLd);
+    }
+
+    // h2にidを付与するためのカスタムcomponents
+    const components = createComponents(headings);
+
     return (
         <div className="min-h-screen bg-white pb-20">
             <script
@@ -214,6 +240,10 @@ export default async function ArticleDetailPage({ params }: { params: Promise<{ 
                                         <time dateTime={metadata.updatedAt}>{metadata.updatedAt}</time>
                                     </span>
                                 )}
+                                <span className="flex items-center gap-1.5" title="読了時間">
+                                    <Clock size={14} />
+                                    約{readingTime}分で読めます
+                                </span>
                             </div>
 
                             {(metadata.category || (metadata.tags && metadata.tags.length > 0)) && (
@@ -234,6 +264,9 @@ export default async function ArticleDetailPage({ params }: { params: Promise<{ 
                         </div>
                     </header>
 
+                    {/* Table of Contents */}
+                    <TableOfContents headings={headings} />
+
                     {/* MDX Body with Typography plugin */}
                     <div className="prose prose-slate prose-lg md:prose-xl max-w-none prose-headings:font-bold prose-h2:border-b prose-h2:pb-2 prose-h2:border-slate-100 prose-a:text-prisma-600 prose-p:leading-loose prose-img:rounded-xl">
                         <MDXRemote source={content} components={components} />
@@ -252,6 +285,13 @@ export default async function ArticleDetailPage({ params }: { params: Promise<{ 
 
                     {/* Author Bio */}
                     <AuthorBio />
+
+                    {/* Related Articles */}
+                    <RelatedArticles
+                        currentSlug={slug}
+                        category={metadata.category}
+                        tags={metadata.tags}
+                    />
                 </div>
             </article>
         </div>
