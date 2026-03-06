@@ -1,6 +1,13 @@
 [
   {
     "query": "lie entj",
+    "clicks": 3,
+    "impressions": 5,
+    "ctr": 0.6,
+    "position": 3.4
+  },
+  {
+    "query": "infp 仕事 辞めたい",
     "clicks": 1,
     "impressions": 2,
     "ctr": 0.5,
@@ -12,6 +19,20 @@
     "impressions": 1,
     "ctr": 0,
     "position": 7
+  },
+  {
+    "query": "enfp iee",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 9
+  },
+  {
+    "query": "enfp 飽き性",
+    "clicks": 0,
+    "impressions": 3,
+    "ctr": 0,
+    "position": 11.666666666666666
   },
   {
     "query": "esiタイプ",
@@ -37,9 +58,9 @@
   {
     "query": "ili intp",
     "clicks": 0,
-    "impressions": 5,
+    "impressions": 11,
     "ctr": 0,
-    "position": 8
+    "position": 7.454545454545454
   },
   {
     "query": "infj 身内 に厳しい",
@@ -49,6 +70,27 @@
     "position": 18
   },
   {
+    "query": "infp やめたい",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 10
+  },
+  {
+    "query": "infp 社会不適合",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 20
+  },
+  {
+    "query": "intj ライン 冷たい",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 10
+  },
+  {
     "query": "intj 公務員",
     "clicks": 0,
     "impressions": 1,
@@ -56,11 +98,18 @@
     "position": 42
   },
   {
+    "query": "intj 感情的",
+    "clicks": 0,
+    "impressions": 2,
+    "ctr": 0,
+    "position": 10.5
+  },
+  {
     "query": "intp ili",
     "clicks": 0,
-    "impressions": 4,
+    "impressions": 6,
     "ctr": 0,
-    "position": 9
+    "position": 7.833333333333333
   },
   {
     "query": "intp 投資家",
@@ -84,9 +133,16 @@
     "position": 11
   },
   {
-    "query": "site:aqsh.co.jp",
+    "query": "mbti ソシオニクス 一致 しない",
     "clicks": 0,
     "impressions": 1,
+    "ctr": 0,
+    "position": 21
+  },
+  {
+    "query": "site:aqsh.co.jp",
+    "clicks": 0,
+    "impressions": 2,
     "ctr": 0,
     "position": 1
   },
@@ -98,11 +154,18 @@
     "position": 16
   },
   {
+    "query": "ソシオニクス 本",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 16
+  },
+  {
     "query": "ソシオニクス診断 無料",
     "clicks": 0,
-    "impressions": 14,
+    "impressions": 21,
     "ctr": 0,
-    "position": 7.642857142857143
+    "position": 7.809523809523809
   },
   {
     "query": "政治マトリクス",
@@ -110,5 +173,19 @@
     "impressions": 2,
     "ctr": 0,
     "position": 17
+  },
+  {
+    "query": "自己分析 つらい",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 42
+  },
+  {
+    "query": "配属発表 泣く",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 9
   }
 ]
