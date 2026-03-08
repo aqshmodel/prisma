@@ -9,15 +9,15 @@ text = re.sub(r'✅ 執筆済み（全59記事）', '✅ 執筆済み（全69記
 # テーブルへの追加
 table_row_old = r'\| micro-saving-fatigue-by-personality-type \| micro-saving-fatigue-by-personality-type \| ポイ活疲れ×性格タイプ \|.*?\n'
 new_rows = """| micro-saving-fatigue-by-personality-type | micro-saving-fatigue-by-personality-type | ポイ活疲れ×性格タイプ |
-| infp-new-assignment-anxiety | infp-new-assignment-anxiety | INFP×配属ガチャ |
-| isfj-burnout-after-holidays | isfj-burnout-after-holidays | ISFJ×5月病 |
+| infp-new-assignment-anxiety | infp-new-assignment-anxiety | INFp×配属ガチャ |
+| isfj-burnout-after-holidays | isfj-burnout-after-holidays | ISFj×5月病 |
 | human-strengths-in-ai-era-by-type | human-strengths-in-ai-era-by-type | AI時代の強み×性格タイプ |
-| intj-desire-for-independence | intj-desire-for-independence | INTJ×独立志向 |
-| intp-stress-from-unreasonable-boss | intp-stress-from-unreasonable-boss | INTP×理不尽な上司 |
-| estj-loneliness-of-competence | estj-loneliness-of-competence | ESTJ×優秀ゆえの孤独 |
-| entp-boredom-in-relationships | entp-boredom-in-relationships | ENTP×恋愛蛙化現象 |
-| isfp-loss-of-passion-at-work | isfp-loss-of-passion-at-work | ISFP×やりがい迷子 |
-| infj-empathy-fatigue-protection | infj-empathy-fatigue-protection | INFJ×共感疲労 |
+| intj-desire-for-independence | intj-desire-for-independence | INTj×独立志向 |
+| intp-stress-from-unreasonable-boss | intp-stress-from-unreasonable-boss | INTp×理不尽な上司 |
+| estj-loneliness-of-competence | estj-loneliness-of-competence | ESTj×優秀ゆえの孤独 |
+| entp-boredom-in-relationships | entp-boredom-in-relationships | ENTp×恋愛蛙化現象 |
+| isfp-loss-of-passion-at-work | isfp-loss-of-passion-at-work | ISFp×やりがい迷子 |
+| infj-empathy-fatigue-protection | infj-empathy-fatigue-protection | INFj×共感疲労 |
 | intronverts-need-for-alone-time | intronverts-need-for-alone-time | 内向型×一人の時間 |
 """
 text = re.sub(table_row_old, new_rows, text)
@@ -26,12 +26,12 @@ text = re.sub(table_row_old, new_rows, text)
 article_old = r'(## 59\..*?重要性を説く。)'
 new_articles = r"""\1
 
-## 60. INFP × 配属ガチャ（時事・ロングテール特化）
+## 60. INFp × 配属ガチャ（時事・ロングテール特化）
 **タイトル：配属ガチャで絶望したINFPへ──「この会社、絶対ムリ」から抜け出す生存戦略**
 * **ファイル名:** `infp-new-assignment-anxiety.mdx`
 * **テーマ概要:** 新社会人の配属直後の不安に寄り添い、INFPの理想と現実のギャップ（Fi-Ne）を分析。今すぐ辞めるべきかどうかの見極め方と、心をすり減らさずに適応するステップを解説。
 
-## 61. ISFJ × 5月病・バーンアウト（時事・ロングテール特化）
+## 61. ISFj × 5月病・バーンアウト（時事・ロングテール特化）
 **タイトル：連休明け、なぜか涙が出るISFJへ──「いい人」をやめて5月病から抜け出す処方箋**
 * **ファイル名:** `isfj-burnout-after-holidays.mdx`
 * **テーマ概要:** 5月の連休明けに一気に訪れる虚無感とバーンアウト。ISFJの過剰適応（Fe-Si）による「断れない連鎖」を紐解き、自己犠牲から抜け出して本来の自分を取り戻す方法を提案。
@@ -41,32 +41,32 @@ new_articles = r"""\1
 * **ファイル名:** `human-strengths-in-ai-era-by-type.mdx`
 * **テーマ概要:** AI台頭による漠然としたキャリア不安に対し、各性格タイプの認知プロセスの違いから、AIには代替できない人間独自の強み（直感、共感、手触り感のある実行力など）の見つけ方を解説。
 
-## 63. INTJ × 独立志向（ロングテール特化）
+## 63. INTj × 独立志向（ロングテール特化）
 **タイトル：組織の論理に殺される前に──INTJが最速で「独り立ち」するためのキャリア戦略**
 * **ファイル名:** `intj-desire-for-independence.mdx`
 * **テーマ概要:** 組織の非効率や忖度に苦しむINTJに向け、Te-Niの特性を活かした独立キャリアのロードマップを提示。会社を使い倒しながら戦略的にフリーランスや起業を目指すアプローチ。
 
-## 64. INTP × 理不尽な上司（ロングテール特化）
+## 64. INTp × 理不尽な上司（ロングテール特化）
 **タイトル：感情論でキレる上司が理解不能──INTPが職場で正気を保つための防衛術**
 * **ファイル名:** `intp-stress-from-unreasonable-boss.mdx`
 * **テーマ概要:** 論理破綻した指示や感情的な上司に辟易するINTPへ。相手の感情を「1つの変数」としてシステマティックに処理するTi的な防衛術と、エネルギーを温存する働き方を解説。
 
-## 65. ESTJ × 優秀ゆえの孤独（ロングテール特化）
+## 65. ESTj × 優秀ゆえの孤独（ロングテール特化）
 **タイトル：なぜ自分ばかりが尻拭いを？──「仕事ができるESTJ」が抱える孤独と処方箋**
 * **ファイル名:** `estj-loneliness-of-competence.mdx`
 * **テーマ概要:** 責任感が強く成果を出すESTJが陥りがちな「部下がついてこない」「冷酷に見られる」孤独感。Te-Siの暴走を抑え、他者の感情を組み込む引き算のマネジメントを提案。
 
-## 66. ENTP × 恋愛で飽きやすい・蛙化現象（ロングテール特化）
+## 66. ENTp × 恋愛で飽きやすい・蛙化現象（ロングテール特化）
 **タイトル：「好き」があっという間に醒める──ENTPの恋愛が長続きしない本当の理由**
 * **ファイル名:** `entp-boredom-in-relationships.mdx`
 * **テーマ概要:** 手に入れた瞬間に退屈してしまうENTPの蛙化現象を分析。Neの「まだ見ぬ可能性」への渇望とTiの「知的スパーリング」の欲求から、本当に必要としているパートナー像や関係性を解説。
 
-## 67. ISFP × やりがい迷子（ロングテール特化）
+## 67. ISFp × やりがい迷子（ロングテール特化）
 **タイトル：「やりがい」って何ですか？──ISFPが転職を繰り返す本当の理由**
 * **ファイル名:** `isfp-loss-of-passion-at-work.mdx`
 * **テーマ概要:** 「この仕事、なんか違う」と違和感を抱えやすいISFPへ。Fiの個人的価値観とSeの手触り感の欠如がもたらす「やりがい迷子」の構造を解明し、等身大の働き方を見つける生存戦略。
 
-## 68. INFJ × 共感疲労（ロングテール特化）
+## 68. INFj × 共感疲労（ロングテール特化）
 **タイトル：他人の感情に殺されそうになるINFJへ──「優しすぎる魂」を守る境界線の引き方**
 * **ファイル名:** `infj-empathy-fatigue-protection.mdx`
 * **テーマ概要:** 職場で他者の負の感情をスポンジのように吸い取ってしまうINFJ（共感疲労）に向け、Fe-Niの暴走を食い止める「課題の分離」と、物理的・心理的な境界線の引き方を解説。
@@ -91,12 +91,12 @@ with open("documents/プロジェクト戦略/記事テーマサマリ.md", "w",
 with open("documents/プロジェクト戦略/ロングテールキーワード.md", "r", encoding="utf-8") as f:
     text2 = f.read()
 
-text2 = re.sub(r'(`INTP 上司 理不尽 ストレス`)', r'\1 ✅ 執筆済み（#64 intp-stress-from-unreasonable-boss）', text2)
-text2 = re.sub(r'(`ISFP 仕事 やりがい ない 原因`)', r'\1 ✅ 執筆済み（#67 isfp-loss-of-passion-at-work）', text2)
-text2 = re.sub(r'(`INTJ 独り立ち したい 転職`)', r'\1 ✅ 執筆済み（#63 intj-desire-for-independence）', text2)
-text2 = re.sub(r'(`ENTP 恋愛 飽きやすい 対処法`)', r'\1 ✅ 執筆済み（#66 entp-boredom-in-relationships）', text2)
-text2 = re.sub(r'(`INFJ 共感疲労 対処法`)', r'\1 ✅ 執筆済み（#68 infj-empathy-fatigue-protection）', text2)
-text2 = re.sub(r'(`INTP 一人の時間 必要 ストレス`)', r'\1 ✅ 執筆済み（#69 intronverts-need-for-alone-time）', text2)
+text2 = re.sub(r'(`INTp 上司 理不尽 ストレス`)', r'\1 ✅ 執筆済み（#64 intp-stress-from-unreasonable-boss）', text2)
+text2 = re.sub(r'(`ISFp 仕事 やりがい ない 原因`)', r'\1 ✅ 執筆済み（#67 isfp-loss-of-passion-at-work）', text2)
+text2 = re.sub(r'(`INTj 独り立ち したい 転職`)', r'\1 ✅ 執筆済み（#63 intj-desire-for-independence）', text2)
+text2 = re.sub(r'(`ENTp 恋愛 飽きやすい 対処法`)', r'\1 ✅ 執筆済み（#66 entp-boredom-in-relationships）', text2)
+text2 = re.sub(r'(`INFj 共感疲労 対処法`)', r'\1 ✅ 執筆済み（#68 infj-empathy-fatigue-protection）', text2)
+text2 = re.sub(r'(`INTp 一人の時間 必要 ストレス`)', r'\1 ✅ 執筆済み（#69 intronverts-need-for-alone-time）', text2)
 
 text2 = text2.replace("| キャリア・仕事 | 20 | 8 | 12 |", "| キャリア・仕事 | 20 | 11 | 9 |")
 text2 = text2.replace("| 恋愛・パートナーシップ | 13 | 4 | 9 |", "| 恋愛・パートナーシップ | 13 | 5 | 8 |")

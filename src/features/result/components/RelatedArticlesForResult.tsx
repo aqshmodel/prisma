@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { BookOpen } from 'lucide-react';
-import { OS_TO_MBTI } from '@/lib/constants/type-mapping';
+import { OS_TO_TYPE } from '@/lib/constants/type-mapping';
 import { filterArticlesByType } from '@/lib/utils/article-filter';
 import { ArticleCardSmall } from '@/features/articles/components/ArticleCard';
 
@@ -29,8 +29,8 @@ export const RelatedArticlesForResult: React.FC<RelatedArticlesForResultProps> =
                 const res = await fetch('/data/articles-meta.json');
                 const allArticles: ArticleMeta[] = await res.json();
 
-                const mbtiCode = OS_TO_MBTI[typeCode] || typeCode;
-                const matched = filterArticlesByType(allArticles, mbtiCode);
+                const label = OS_TO_TYPE[typeCode] || typeCode;
+                const matched = filterArticlesByType(allArticles, label);
 
                 // マッチ4件、なければ最新4件
                 setArticles(matched.length > 0 ? matched.slice(0, 4) : allArticles.slice(0, 4));

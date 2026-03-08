@@ -27,11 +27,11 @@ headers = {
 images = [
     {
         "slug": "infp-new-assignment-anxiety",
-        "prompt": "An artistic and conceptual illustration representing a young Japanese business woman feeling overwhelmed and melancholic in an office setting. She is an INFP personality type. Soft, pastel aesthetics, anime or watercolor style, melancholic but beautiful, wide shot 16:9."
+        "prompt": "An artistic and conceptual illustration representing a young Japanese business woman feeling overwhelmed and melancholic in an office setting. She is an INFp personality type. Soft, pastel aesthetics, anime or watercolor style, melancholic but beautiful, wide shot 16:9."
     },
     {
         "slug": "isfj-burnout-after-holidays",
-        "prompt": "An artistic and conceptual illustration representing a young Japanese business woman feeling extremely exhausted and burnt out. She is an ISFJ personality type. A sense of over-adaptation and running out of battery. Soft, pastel aesthetics, anime or watercolor style, melancholic but beautiful, wide shot 16:9."
+        "prompt": "An artistic and conceptual illustration representing a young Japanese business woman feeling extremely exhausted and burnt out. She is an ISFj personality type. A sense of over-adaptation and running out of battery. Soft, pastel aesthetics, anime or watercolor style, melancholic but beautiful, wide shot 16:9."
     },
     {
         "slug": "human-strengths-in-ai-era-by-type",

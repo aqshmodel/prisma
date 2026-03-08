@@ -27,8 +27,8 @@ VALID_OS_CODES = {
 }
 
 MBTI_TYPES = {
-    'INTJ', 'INTP', 'ENTJ', 'ENTP', 'INFJ', 'INFP', 'ENFJ', 'ENFP',
-    'ISTJ', 'ISTP', 'ESTJ', 'ESTP', 'ISFJ', 'ISFP', 'ESFJ', 'ESFP'
+    'INTj', 'INTp', 'ENTj', 'ENTp', 'INFj', 'INFp', 'ENFj', 'ENFp',
+    'ISTj', 'ISTp', 'ESTj', 'ESTp', 'ISFj', 'ISFp', 'ESFj', 'ESFp'
 }
 
 # 恋愛・対人関係系のカテゴリ/タグキーワード

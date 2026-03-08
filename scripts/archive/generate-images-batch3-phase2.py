@@ -27,15 +27,15 @@ headers = {
 images = [
     {
         "slug": "intj-desire-for-independence",
-        "prompt": "An artistic and conceptual illustration representing a highly intelligent young Japanese business woman, an INTJ personality type, feeling detached and confined within a rigid corporate office. She dreams of independence and building her own logical systems outside the box. Soft, pastel aesthetics, anime or watercolor style, melancholic but beautiful, wide shot 16:9."
+        "prompt": "An artistic and conceptual illustration representing a highly intelligent young Japanese business woman, an INTj personality type, feeling detached and confined within a rigid corporate office. She dreams of independence and building her own logical systems outside the box. Soft, pastel aesthetics, anime or watercolor style, melancholic but beautiful, wide shot 16:9."
     },
     {
         "slug": "intp-stress-from-unreasonable-boss",
-        "prompt": "An artistic and conceptual illustration representing a young Japanese business man, an INTP personality type, feeling extremely stressed and dead inside while a boss is yelling emotional and illogical complaints at him. Soft, pastel aesthetics, anime or watercolor style, melancholic but beautiful, wide shot 16:9."
+        "prompt": "An artistic and conceptual illustration representing a young Japanese business man, an INTp personality type, feeling extremely stressed and dead inside while a boss is yelling emotional and illogical complaints at him. Soft, pastel aesthetics, anime or watercolor style, melancholic but beautiful, wide shot 16:9."
     },
     {
         "slug": "estj-loneliness-of-competence",
-        "prompt": "An artistic and conceptual illustration representing a highly competent young Japanese business woman, an ESTJ personality type, standing alone at the top of a corporate ladder. She achieved perfect results but everyone else has left her because she was too strict and logical. Soft, pastel aesthetics, anime or watercolor style, lonely but beautiful, wide shot 16:9."
+        "prompt": "An artistic and conceptual illustration representing a highly competent young Japanese business woman, an ESTj personality type, standing alone at the top of a corporate ladder. She achieved perfect results but everyone else has left her because she was too strict and logical. Soft, pastel aesthetics, anime or watercolor style, lonely but beautiful, wide shot 16:9."
     }
 ]
 

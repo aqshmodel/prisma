@@ -52,7 +52,7 @@ export const ArticleFilter: React.FC<ArticleFilterProps> = ({ articles, children
                     <Search size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" />
                     <input
                         type="text"
-                        placeholder="キーワードで検索（例: INFP、仕事、恋愛）"
+                        placeholder="キーワードで検索（例: INFp、仕事、恋愛）"
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
                         className="w-full pl-12 pr-4 py-3 bg-white border border-slate-200 rounded-xl text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-prisma-300 focus:border-prisma-300 transition-all"

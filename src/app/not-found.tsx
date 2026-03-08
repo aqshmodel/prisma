@@ -6,7 +6,7 @@ export default function NotFound() {
     const popularArticles = [
         { slug: 'intj-struggle-with-emotions', title: 'INTJは冷たい？──感情論が通じず孤立する理由' },
         { slug: 'mbti-vs-socionics-beyond-16types', title: 'MBTIとソシオニクスの違い──16タイプの「その先」' },
-        { slug: 'infp-want-to-quit-job', title: 'INFP「仕事辞めたい」が止まらない本当の理由' },
+        { slug: 'infp-want-to-quit-job', title: 'INFp「仕事辞めたい」が止まらない本当の理由' },
     ];
 
     return (
