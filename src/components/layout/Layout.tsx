@@ -88,7 +88,7 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
 
                             {/* About */}
                             <div className="flex flex-col gap-4">
-                                <h4 className="text-white font-bold tracking-wider mb-2">アバウト</h4>
+                                <h4 className="text-white font-bold tracking-wider mb-2">About</h4>
                                 <Link href="/about/methodology" className="text-slate-400 hover:text-prisma-400 transition-colors">診断ロジック</Link>
                                 <Link href="/about/enneagram" className="text-slate-400 hover:text-prisma-400 transition-colors">エニアグラムとは</Link>
                                 <Link href="/about/socionics" className="text-slate-400 hover:text-prisma-400 transition-colors">ソシオニクスとは</Link>

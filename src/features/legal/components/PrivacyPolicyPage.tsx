@@ -46,7 +46,7 @@ export const PrivacyPolicyPage = () => {
                 </div>
             </div>
 
-            <main className="max-w-[800px] mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
+            <main className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
                 {/* Hero Title */}
                 <div className="mb-12 md:mb-16">
                     <div className="flex items-center gap-3 mb-6">
