@@ -74,8 +74,8 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
                             <Link href="/types/ENTp" className="hover:text-white transition-colors">タイプ一覧</Link>
                             <Link href="/about/methodology" className="hover:text-white transition-colors">診断ロジック</Link>
                             <Link href="/about/editorial-policy" className="hover:text-white transition-colors">編集方針</Link>
-                            <Link href="https://aqsh.co.jp/privacypolicy/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Privacy Policy</Link>
-                            <Link href="https://aqsh.co.jp/aqsh-termofservice/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Terms of Service</Link>
+                            <Link href="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link>
+                            <Link href="/terms" className="hover:text-white transition-colors">Terms of Service</Link>
                             <Link href="https://aqsh.co.jp/contact/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Contact</Link>
                         </div>
                     </div>
