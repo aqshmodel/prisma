@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
@@ -13,6 +15,16 @@ export const DiagnosisCTA: React.FC<DiagnosisCTAProps> = ({
     description,
     buttonText = '無料で診断する',
 }) => {
+    const handleClick = () => {
+        if (typeof window !== 'undefined' && (window as any).gtag) {
+            (window as any).gtag('event', 'cta_click', {
+                event_category: 'engagement',
+                event_label: 'DiagnosisCTA',
+                location: window.location.pathname,
+            });
+        }
+    };
+
     return (
         <div className="my-10 flex flex-col items-center justify-center not-prose w-full">
             {description && (
@@ -22,6 +34,7 @@ export const DiagnosisCTA: React.FC<DiagnosisCTAProps> = ({
             )}
             <Link
                 href="/diagnosis"
+                onClick={handleClick}
                 className="group relative flex flex-col items-center justify-center bg-[#00B5AD] !text-white !no-underline px-12 py-5 rounded-[40px] shadow-[0_8px_30px_rgb(0,181,173,0.3)] hover:shadow-[0_12px_40px_rgb(0,181,173,0.4)] hover:-translate-y-1 transition-all duration-300 w-full max-w-sm sm:max-w-md"
             >
                 <div className="absolute inset-0 bg-white/20 rounded-[40px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />

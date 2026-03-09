@@ -23,8 +23,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         .replace(/\n/g, '')
         .slice(0, 80);
 
-    const title = `${data.name} の性格と適職・相性 - 無料16タイプ診断 | Aqsh Prisma`;
-    const description = `${data.catchphrase} ${plainDescription}… 組織での見えない摩擦を解明する無料診断ツール『Aqsh Prisma』であなたの性格的特徴やリーダーシップ特性を発見しましょう。`;
+    const title = `${data.name} - ${code}の性格・適職・相性 | 無料16タイプ診断 | Aqsh Prisma`;
+    const description = `${data.catchphrase} ${plainDescription}… ${code}の性格的特徴やリーダーシップ特性を発見しましょう。組織での見えない摩擦を解明する無料診断ツール『Aqsh Prisma』。`;
 
     return {
         title,
