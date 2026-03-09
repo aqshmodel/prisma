@@ -9,7 +9,7 @@ export const TypeSection: React.FC = () => {
     const types = Object.values(OS_CONTENT);
 
     return (
-        <section className="py-24 md:py-32 bg-slate-50 border-t border-slate-200/60 relative overflow-hidden">
+        <section id="types" className="py-24 md:py-32 bg-slate-50 border-t border-slate-200/60 relative overflow-hidden">
             <div className="max-w-7xl mx-auto px-6 relative z-10">
                 <div className="text-left md:text-center max-w-3xl mx-auto mb-12 md:mb-20 space-y-6 animate-fade-in-up">
                     <span className="inline-block text-xs font-serif tracking-[0.2em] text-slate-400 uppercase mb-2">

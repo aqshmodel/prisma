@@ -49,40 +49,66 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
                 </div>
             </main>
 
-            <footer className="bg-[#0B0F17] text-white py-12 border-t border-white/5 relative overflow-hidden">
-                <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+            <footer className="bg-[#0B0F17] text-slate-300 py-16 md:py-24 border-t border-white/5 relative overflow-hidden">
+                <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-prisma-500/20 to-transparent" />
+                <div className="absolute -top-24 -right-24 w-96 h-96 bg-prisma-500/5 rounded-full blur-3xl pointer-events-none" />
 
                 <div className="max-w-7xl mx-auto px-6 relative z-10">
-                    <div className="flex flex-col md:flex-row justify-between items-center gap-8 mb-8">
-                        <div className="text-center md:text-left">
-                            <Link href="/" className="text-2xl font-serif font-bold tracking-tight mb-2 inline-block">
+                    <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8 mb-16">
+                        {/* Brand & Concept */}
+                        <div className="md:col-span-5 flex flex-col items-center md:items-start text-center md:text-left">
+                            <Link href="/" className="text-3xl font-serif font-bold tracking-tight mb-4 inline-block hover:opacity-80 transition-opacity">
                                 Aqsh <span className="text-prisma-400">PRISMA</span>
                             </Link>
-                            <p className="text-slate-400 text-sm">
-                                科学的な組織診断で、<br className="md:hidden" />
-                                チームの可能性を最大化する。
+                            <p className="text-slate-400 text-sm leading-relaxed max-w-sm mb-8">
+                                科学的な組織診断と性格分析で、<br />
+                                チームの可能性を最大化し、個人の生きづらさを解消する。
                             </p>
+                            <div className="flex gap-4">
+                                <a href="https://aqsh.co.jp/" target="_blank" rel="noopener noreferrer" className="text-xs font-medium px-4 py-2 rounded-full border border-white/10 hover:bg-white/5 hover:text-white transition-all">
+                                    運営会社: Aqsh株式会社
+                                </a>
+                            </div>
                         </div>
-                        <div className="flex flex-wrap justify-center md:justify-end gap-6 text-sm text-slate-400 font-medium">
-                            <button
-                                onClick={() => setIsCompatibilityModalOpen(true)}
-                                className="hover:text-white transition-colors focus:outline-none"
-                            >
-                                相性診断
-                            </button>
-                            <Link href="/articles" className="hover:text-white transition-colors">コラム</Link>
-                            <Link href="/types/ENTp" className="hover:text-white transition-colors">タイプ一覧</Link>
-                            <Link href="/about/methodology" className="hover:text-white transition-colors">診断ロジック</Link>
-                            <Link href="/about/editorial-policy" className="hover:text-white transition-colors">編集方針</Link>
-                            <Link href="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link>
-                            <Link href="/terms" className="hover:text-white transition-colors">Terms of Service</Link>
-                            <Link href="https://aqsh.co.jp/contact/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Contact</Link>
+
+                        {/* Navigation Columns */}
+                        <div className="md:col-span-7 grid grid-cols-2 sm:grid-cols-3 gap-8 text-sm">
+                            {/* Service */}
+                            <div className="flex flex-col gap-4">
+                                <h4 className="text-white font-bold tracking-wider mb-2">サービス</h4>
+                                <button
+                                    onClick={() => setIsCompatibilityModalOpen(true)}
+                                    className="text-left text-slate-400 hover:text-prisma-400 transition-colors focus:outline-none"
+                                >
+                                    相性診断
+                                </button>
+                                <Link href="/#types" className="text-slate-400 hover:text-prisma-400 transition-colors">タイプ一覧</Link>
+                                <Link href="/articles" className="text-slate-400 hover:text-prisma-400 transition-colors">コラム一覧</Link>
+                            </div>
+
+                            {/* About */}
+                            <div className="flex flex-col gap-4">
+                                <h4 className="text-white font-bold tracking-wider mb-2">アバウト</h4>
+                                <Link href="/about/methodology" className="text-slate-400 hover:text-prisma-400 transition-colors">診断ロジック</Link>
+                                <Link href="/about/enneagram" className="text-slate-400 hover:text-prisma-400 transition-colors">エニアグラムとは</Link>
+                                <Link href="/about/socionics" className="text-slate-400 hover:text-prisma-400 transition-colors">ソシオニクスとは</Link>
+                                <Link href="/about/editorial-policy" className="text-slate-400 hover:text-prisma-400 transition-colors">編集方針</Link>
+                            </div>
+
+                            {/* Legal */}
+                            <div className="flex flex-col gap-4">
+                                <h4 className="text-white font-bold tracking-wider mb-2">規約・サポート</h4>
+                                <Link href="/terms" className="text-slate-400 hover:text-prisma-400 transition-colors">利用規約</Link>
+                                <Link href="/privacy" className="text-slate-400 hover:text-prisma-400 transition-colors">プライバシーポリシー</Link>
+                                <Link href="https://aqsh.co.jp/contact/" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-prisma-400 transition-colors">お問い合わせ</Link>
+                            </div>
                         </div>
                     </div>
 
-                    <div className="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-500">
-                        <p>© 2026 Aqsh PRISMA. All rights reserved.</p>
-                        <p className="font-serif tracking-wider opacity-50">DESIGNED BY ANTIGRAVITY</p>
+                    {/* Bottom Copyright */}
+                    <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-500">
+                        <p>© {new Date().getFullYear()} Aqsh PRISMA. All rights reserved.</p>
+                        <p className="font-serif tracking-widest opacity-50">DESIGNED BY ANTIGRAVITY</p>
                     </div>
                 </div>
             </footer>
