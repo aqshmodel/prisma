@@ -9,9 +9,30 @@
   {
     "query": "infp 仕事 辞めたい",
     "clicks": 1,
+    "impressions": 4,
+    "ctr": 0.25,
+    "position": 4.25
+  },
+  {
+    "query": "ソシオニクス mbti 対応",
+    "clicks": 1,
+    "impressions": 1,
+    "ctr": 1,
+    "position": 7
+  },
+  {
+    "query": "ソシオニクス診断 無料",
+    "clicks": 1,
+    "impressions": 25,
+    "ctr": 0.04,
+    "position": 8.04
+  },
+  {
+    "query": "守護者 相性",
+    "clicks": 1,
     "impressions": 2,
     "ctr": 0.5,
-    "position": 3.5
+    "position": 8
   },
   {
     "query": "e sfj",
@@ -30,9 +51,37 @@
   {
     "query": "enfp 飽き性",
     "clicks": 0,
-    "impressions": 3,
+    "impressions": 5,
     "ctr": 0,
-    "position": 11.666666666666666
+    "position": 9.6
+  },
+  {
+    "query": "entj 起業家",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 61
+  },
+  {
+    "query": "entp iee",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 7
+  },
+  {
+    "query": "entp ile",
+    "clicks": 0,
+    "impressions": 2,
+    "ctr": 0,
+    "position": 7.5
+  },
+  {
+    "query": "ese lii",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 8
   },
   {
     "query": "esiタイプ",
@@ -44,9 +93,9 @@
   {
     "query": "estp",
     "clicks": 0,
-    "impressions": 11,
+    "impressions": 26,
     "ctr": 0,
-    "position": 51.72727272727273
+    "position": 62.84615384615385
   },
   {
     "query": "estp 最強",
@@ -56,11 +105,39 @@
     "position": 11.333333333333334
   },
   {
+    "query": "iee enfp",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 8
+  },
+  {
+    "query": "ile iee",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 9
+  },
+  {
     "query": "ili intp",
     "clicks": 0,
     "impressions": 11,
     "ctr": 0,
     "position": 7.454545454545454
+  },
+  {
+    "query": "infj シャットダウン",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 11
+  },
+  {
+    "query": "infj ストレス 限界",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 16
   },
   {
     "query": "infj 身内 に厳しい",
@@ -72,23 +149,23 @@
   {
     "query": "infp やめたい",
     "clicks": 0,
-    "impressions": 1,
+    "impressions": 3,
     "ctr": 0,
-    "position": 10
+    "position": 8.666666666666668
   },
   {
     "query": "infp 社会不適合",
     "clicks": 0,
-    "impressions": 1,
+    "impressions": 4,
     "ctr": 0,
-    "position": 20
+    "position": 35.5
   },
   {
     "query": "intj ライン 冷たい",
     "clicks": 0,
-    "impressions": 1,
+    "impressions": 2,
     "ctr": 0,
-    "position": 10
+    "position": 13.5
   },
   {
     "query": "intj 公務員",
@@ -100,9 +177,9 @@
   {
     "query": "intj 感情的",
     "clicks": 0,
-    "impressions": 2,
+    "impressions": 4,
     "ctr": 0,
-    "position": 10.5
+    "position": 8.75
   },
   {
     "query": "intp ili",
@@ -117,6 +194,20 @@
     "impressions": 1,
     "ctr": 0,
     "position": 22
+  },
+  {
+    "query": "intx",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 4
+  },
+  {
+    "query": "intx 性格",
+    "clicks": 0,
+    "impressions": 3,
+    "ctr": 0,
+    "position": 7
   },
   {
     "query": "istp sli",
@@ -147,11 +238,46 @@
     "position": 1
   },
   {
-    "query": "ソシオニクス",
+    "query": "sns しんどい",
     "clicks": 0,
     "impressions": 1,
     "ctr": 0,
-    "position": 16
+    "position": 84
+  },
+  {
+    "query": "sns疲れ",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 77
+  },
+  {
+    "query": "エニアグラム 根源的欲求",
+    "clicks": 0,
+    "impressions": 2,
+    "ctr": 0,
+    "position": 10
+  },
+  {
+    "query": "ソシオニクス",
+    "clicks": 0,
+    "impressions": 2,
+    "ctr": 0,
+    "position": 12
+  },
+  {
+    "query": "ソシオニクス とは",
+    "clicks": 0,
+    "impressions": 2,
+    "ctr": 0,
+    "position": 10
+  },
+  {
+    "query": "ソシオニクス タイプ",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 39
   },
   {
     "query": "ソシオニクス 本",
@@ -161,11 +287,32 @@
     "position": 16
   },
   {
-    "query": "ソシオニクス診断 無料",
+    "query": "ソシオニクス 診断",
     "clicks": 0,
-    "impressions": 21,
+    "impressions": 1,
     "ctr": 0,
-    "position": 7.809523809523809
+    "position": 44
+  },
+  {
+    "query": "ソシオニクスとは",
+    "clicks": 0,
+    "impressions": 3,
+    "ctr": 0,
+    "position": 16
+  },
+  {
+    "query": "即断即決 性格",
+    "clicks": 0,
+    "impressions": 2,
+    "ctr": 0,
+    "position": 10
+  },
+  {
+    "query": "守護者タイプ",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 12
   },
   {
     "query": "政治マトリクス",
@@ -175,6 +322,13 @@
     "position": 17
   },
   {
+    "query": "献身者",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 46
+  },
+  {
     "query": "自己分析 つらい",
     "clicks": 0,
     "impressions": 1,
@@ -182,7 +336,21 @@
     "position": 42
   },
   {
+    "query": "自己分析 エニアグラム",
+    "clicks": 0,
+    "impressions": 3,
+    "ctr": 0,
+    "position": 27.333333333333332
+  },
+  {
     "query": "配属発表 泣く",
+    "clicks": 0,
+    "impressions": 2,
+    "ctr": 0,
+    "position": 8
+  },
+  {
+    "query": "鏡像関係",
     "clicks": 0,
     "impressions": 1,
     "ctr": 0,
