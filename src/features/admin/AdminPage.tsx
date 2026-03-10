@@ -301,7 +301,7 @@ export const AdminPage: React.FC = () => {
                                     {state.logs.map((log) => (
                                         <tr key={log.id} className="hover:bg-slate-50/50">
                                             <td className="px-6 py-4 text-slate-600">
-                                                {log.timestamp?.toDate().toLocaleString('ja-JP')}
+                                                {log.timestamp?.toDate().toLocaleString('ja-JP', { timeZone: 'Asia/Tokyo' })}
                                             </td>
                                             <td className="px-6 py-4">
                                                 <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-prisma-50 text-prisma-700 border border-prisma-100">
