@@ -110,6 +110,9 @@ export const ResultPage: React.FC = () => {
             // Only save if it's a new result and hasn't been saved in this session yet
             if (!isNewResult || dataSavedRef.current) return;
 
+            // 競合（Race Condition）を防ぐため、非同期処理の「前」に同期的にロックをかける
+            dataSavedRef.current = true;
+
             try {
                 // Dynamic import to avoid SSR issues
                 const [
@@ -129,10 +132,11 @@ export const ResultPage: React.FC = () => {
                     userAgent: window.navigator.userAgent,
                 });
 
-                dataSavedRef.current = true;
                 markResultAsSaved(); // Reset flag so it won't be saved again
                 console.log('Diagnosis result saved to Firestore');
             } catch (error) {
+                // 保存に失敗した場合はロックを解除し、次回以降のレンダリングで再試行できるようにする
+                dataSavedRef.current = false;
                 console.error('Error saving diagnosis result:', error);
             }
         };
