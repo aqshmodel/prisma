@@ -13,6 +13,8 @@ import { getReadingTime } from '@/features/articles/utils/readingTime';
 import { extractHeadings } from '@/features/articles/utils/extractHeadings';
 import { extractFaqJsonLd } from '@/features/articles/utils/faqExtractor';
 import { SITE_CONFIG, PUBLISHER_JSON_LD } from '@/lib/constants/site-config';
+import rehypeSanitize from 'rehype-sanitize';
+import { rehypePreserveMdx, rehypeRestoreMdx, mdxSanitizeSchema } from '@/features/articles/utils/rehype-preserve-mdx';
 
 /**
  * SSG（静的生成）のためのパス一覧をNext.jsに提供します。
@@ -278,7 +280,19 @@ export default async function ArticleDetailPage({ params }: { params: Promise<{ 
 
                     {/* MDX Body with Typography plugin */}
                     <div className="prose prose-slate prose-lg md:prose-xl max-w-none prose-headings:font-bold prose-h2:border-b prose-h2:pb-2 prose-h2:border-slate-100 prose-a:text-prisma-600 prose-p:leading-loose prose-img:rounded-xl">
-                        <MDXRemote source={content} components={components} />
+                        <MDXRemote
+                            source={content}
+                            components={components}
+                            options={{
+                                mdxOptions: {
+                                    rehypePlugins: [
+                                        rehypePreserveMdx,
+                                        [rehypeSanitize, mdxSanitizeSchema],
+                                        rehypeRestoreMdx
+                                    ]
+                                }
+                            }}
+                        />
                     </div>
 
                     {/* Article Footer & Share */}
