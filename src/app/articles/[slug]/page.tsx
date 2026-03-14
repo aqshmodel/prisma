@@ -186,7 +186,7 @@ export default async function ArticleDetailPage({ params }: { params: Promise<{ 
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
             />
             {/* Header Nav */}
-            <div className="bg-white/90 backdrop-blur-md sticky top-0 z-50">
+            <div className="bg-white/90 backdrop-blur-md sticky top-0 z-50" data-pagefind-ignore>
                 {/* 背景だけを画面幅いっぱいに引き延ばすフルブリードハック */}
                 <div className="absolute inset-0 bg-white/90 backdrop-blur-md border-b border-slate-100 w-screen left-1/2 -translate-x-1/2 -z-10" aria-hidden="true" />
 
@@ -198,9 +198,9 @@ export default async function ArticleDetailPage({ params }: { params: Promise<{ 
                 </div>
             </div>
 
-            <article className="w-full mt-0">
+            <article className="w-full mt-0" data-pagefind-body>
                 {/* Breadcrumb UI */}
-                <nav aria-label="パンくずリスト" className="max-w-4xl md:max-w-6xl xl:max-w-[1200px] mx-auto px-4 py-3">
+                <nav aria-label="パンくずリスト" className="max-w-4xl md:max-w-6xl xl:max-w-[1200px] mx-auto px-4 py-3" data-pagefind-ignore>
                     <ol className="flex items-center gap-1 text-xs text-slate-400 flex-wrap">
                         <li><Link href="/" className="hover:text-prisma-600 transition-colors">TOP</Link></li>
                         <li><ChevronRight size={12} /></li>
@@ -318,7 +318,7 @@ export default async function ArticleDetailPage({ params }: { params: Promise<{ 
 
                     {/* Prev / Next Navigation */}
                     {(prevArticle || nextArticle) && (
-                        <div className="mt-12 pt-8 border-t border-slate-100 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div className="mt-12 pt-8 border-t border-slate-100 grid grid-cols-1 sm:grid-cols-2 gap-4" data-pagefind-ignore>
                             {prevArticle ? (
                                 <Link
                                     href={`/articles/${prevArticle.slug}`}

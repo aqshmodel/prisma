@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "TZ=Asia/Tokyo next dev",
     "prebuild": "TZ=Asia/Tokyo node scripts/generate-articles-meta.cjs",
-    "build": "TZ=Asia/Tokyo next build",
+    "build": "TZ=Asia/Tokyo next build && npx -y pagefind --site out/",
     "start": "TZ=Asia/Tokyo next start",
     "lint": "next lint",
     "test": "vitest",
