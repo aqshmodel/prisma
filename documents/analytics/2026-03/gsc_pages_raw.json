@@ -2,23 +2,23 @@
   {
     "page": "https://prisma.aqsh.co.jp/",
     "clicks": 10,
-    "impressions": 152,
-    "ctr": 0.06578947368421052,
-    "position": 7.782894736842105
+    "impressions": 153,
+    "ctr": 0.06535947712418301,
+    "position": 7.777777777777778
+  },
+  {
+    "page": "https://prisma.aqsh.co.jp/articles/entp-boredom-in-relationships/",
+    "clicks": 6,
+    "impressions": 31,
+    "ctr": 0.1935483870967742,
+    "position": 9.258064516129032
   },
   {
     "page": "https://prisma.aqsh.co.jp/articles/infp-want-to-quit-job",
     "clicks": 6,
-    "impressions": 36,
-    "ctr": 0.16666666666666666,
-    "position": 9.13888888888889
-  },
-  {
-    "page": "https://prisma.aqsh.co.jp/articles/entp-boredom-in-relationships/",
-    "clicks": 5,
-    "impressions": 21,
-    "ctr": 0.23809523809523808,
-    "position": 9.19047619047619
+    "impressions": 38,
+    "ctr": 0.15789473684210525,
+    "position": 9.157894736842104
   },
   {
     "page": "https://prisma.aqsh.co.jp/articles/intj-struggle-with-emotions",
@@ -28,32 +28,32 @@
     "position": 6.829268292682927
   },
   {
-    "page": "https://prisma.aqsh.co.jp/types/ENTj/",
+    "page": "https://prisma.aqsh.co.jp/articles/intp-stress-from-unreasonable-boss/",
     "clicks": 4,
-    "impressions": 26,
-    "ctr": 0.15384615384615385,
-    "position": 9.192307692307692
+    "impressions": 16,
+    "ctr": 0.25,
+    "position": 17.375
   },
   {
-    "page": "https://prisma.aqsh.co.jp/articles/intp-stress-from-unreasonable-boss/",
-    "clicks": 3,
-    "impressions": 12,
-    "ctr": 0.25,
-    "position": 20.75
+    "page": "https://prisma.aqsh.co.jp/types/ENTj/",
+    "clicks": 4,
+    "impressions": 28,
+    "ctr": 0.14285714285714285,
+    "position": 9.035714285714286
   },
   {
     "page": "https://prisma.aqsh.co.jp/types/ISFj/",
     "clicks": 3,
-    "impressions": 66,
-    "ctr": 0.045454545454545456,
-    "position": 8.196969696969697
+    "impressions": 67,
+    "ctr": 0.04477611940298507,
+    "position": 8.223880597014926
   },
   {
     "page": "https://prisma.aqsh.co.jp/articles/enfp-job-hopping-reasons/",
     "clicks": 2,
-    "impressions": 16,
-    "ctr": 0.125,
-    "position": 8.125
+    "impressions": 17,
+    "ctr": 0.11764705882352941,
+    "position": 8
   },
   {
     "page": "https://prisma.aqsh.co.jp/articles/estj-loneliness-of-competence",
@@ -61,6 +61,13 @@
     "impressions": 5,
     "ctr": 0.4,
     "position": 8.4
+  },
+  {
+    "page": "https://prisma.aqsh.co.jp/articles/intj-workplace-isolation/",
+    "clicks": 2,
+    "impressions": 24,
+    "ctr": 0.08333333333333333,
+    "position": 14.916666666666666
   },
   {
     "page": "https://prisma.aqsh.co.jp/articles/understanding-16types-for-career/",
@@ -79,9 +86,9 @@
   {
     "page": "https://prisma.aqsh.co.jp/about/enneagram/",
     "clicks": 1,
-    "impressions": 9,
-    "ctr": 0.1111111111111111,
-    "position": 21.77777777777778
+    "impressions": 10,
+    "ctr": 0.1,
+    "position": 20.4
   },
   {
     "page": "https://prisma.aqsh.co.jp/articles/dealing-with-difficult-people-by-socionics/",
@@ -107,23 +114,51 @@
   {
     "page": "https://prisma.aqsh.co.jp/articles/infj-empathy-fatigue-protection/",
     "clicks": 1,
-    "impressions": 16,
-    "ctr": 0.0625,
-    "position": 8.1875
+    "impressions": 17,
+    "ctr": 0.058823529411764705,
+    "position": 7.882352941176471
   },
   {
     "page": "https://prisma.aqsh.co.jp/articles/intj-not-feeling-lonely-reasons/",
     "clicks": 1,
-    "impressions": 16,
-    "ctr": 0.0625,
-    "position": 5.5625
+    "impressions": 19,
+    "ctr": 0.05263157894736842,
+    "position": 6.7894736842105265
+  },
+  {
+    "page": "https://prisma.aqsh.co.jp/articles/intj-type5-lonely-genius",
+    "clicks": 1,
+    "impressions": 1,
+    "ctr": 1,
+    "position": 3
+  },
+  {
+    "page": "https://prisma.aqsh.co.jp/articles/isfj-bottled-up-stress-limit/",
+    "clicks": 1,
+    "impressions": 11,
+    "ctr": 0.09090909090909091,
+    "position": 16.18181818181818
   },
   {
     "page": "https://prisma.aqsh.co.jp/articles/isfj-cannot-say-no-at-work/",
     "clicks": 1,
-    "impressions": 1,
-    "ctr": 1,
-    "position": 7
+    "impressions": 7,
+    "ctr": 0.14285714285714285,
+    "position": 3.7142857142857144
+  },
+  {
+    "page": "https://prisma.aqsh.co.jp/articles/istj-change-stress-at-work/",
+    "clicks": 1,
+    "impressions": 13,
+    "ctr": 0.07692307692307693,
+    "position": 11.076923076923077
+  },
+  {
+    "page": "https://prisma.aqsh.co.jp/articles/istj-stress-from-sudden-changes/",
+    "clicks": 1,
+    "impressions": 7,
+    "ctr": 0.14285714285714285,
+    "position": 5.285714285714286
   },
   {
     "page": "https://prisma.aqsh.co.jp/articles/istp-not-suited-for-office-work/",
@@ -133,18 +168,32 @@
     "position": 7
   },
   {
+    "page": "https://prisma.aqsh.co.jp/articles/j-type-reliability-in-love/",
+    "clicks": 1,
+    "impressions": 4,
+    "ctr": 0.25,
+    "position": 7.25
+  },
+  {
+    "page": "https://prisma.aqsh.co.jp/articles/mbti-compatibility-scientific-evidence",
+    "clicks": 1,
+    "impressions": 3,
+    "ctr": 0.3333333333333333,
+    "position": 5
+  },
+  {
     "page": "https://prisma.aqsh.co.jp/articles/mbti-vs-socionics-beyond-16types/",
     "clicks": 1,
-    "impressions": 51,
-    "ctr": 0.0196078431372549,
-    "position": 7.1568627450980395
+    "impressions": 53,
+    "ctr": 0.018867924528301886,
+    "position": 7.132075471698113
   },
   {
     "page": "https://prisma.aqsh.co.jp/articles/perfectionism-burnout-by-personality-type/",
     "clicks": 1,
-    "impressions": 30,
-    "ctr": 0.03333333333333333,
-    "position": 7.866666666666666
+    "impressions": 31,
+    "ctr": 0.03225806451612903,
+    "position": 7.967741935483871
   },
   {
     "page": "https://prisma.aqsh.co.jp/articles/right-to-disconnect-by-personality-type",
@@ -198,9 +247,9 @@
   {
     "page": "https://prisma.aqsh.co.jp/types/ENTj/compatibility/ISFp",
     "clicks": 1,
-    "impressions": 1,
-    "ctr": 1,
-    "position": 2
+    "impressions": 2,
+    "ctr": 0.5,
+    "position": 3.5
   },
   {
     "page": "https://prisma.aqsh.co.jp/types/ENTp/compatibility/INFj",
@@ -238,6 +287,13 @@
     "position": 10
   },
   {
+    "page": "https://prisma.aqsh.co.jp/types/INFp/compatibility/ENTj/",
+    "clicks": 1,
+    "impressions": 1,
+    "ctr": 1,
+    "position": 17
+  },
+  {
     "page": "https://prisma.aqsh.co.jp/types/INFp/compatibility/INTp",
     "clicks": 1,
     "impressions": 7,
@@ -247,9 +303,9 @@
   {
     "page": "https://prisma.aqsh.co.jp/types/INFp/compatibility/ISFj",
     "clicks": 1,
-    "impressions": 1,
-    "ctr": 1,
-    "position": 11
+    "impressions": 2,
+    "ctr": 0.5,
+    "position": 9
   },
   {
     "page": "https://prisma.aqsh.co.jp/types/INTj/compatibility/ESFp",
@@ -257,6 +313,20 @@
     "impressions": 8,
     "ctr": 0.125,
     "position": 8.375
+  },
+  {
+    "page": "https://prisma.aqsh.co.jp/types/INTj/compatibility/INFj/",
+    "clicks": 1,
+    "impressions": 1,
+    "ctr": 1,
+    "position": 6
+  },
+  {
+    "page": "https://prisma.aqsh.co.jp/types/INTj/compatibility/ISFp/",
+    "clicks": 1,
+    "impressions": 6,
+    "ctr": 0.16666666666666666,
+    "position": 5.333333333333333
   },
   {
     "page": "https://prisma.aqsh.co.jp/types/INTp/",
@@ -280,11 +350,18 @@
     "position": 10.166666666666666
   },
   {
+    "page": "https://prisma.aqsh.co.jp/types/ISTj/compatibility/ISFj/",
+    "clicks": 1,
+    "impressions": 7,
+    "ctr": 0.14285714285714285,
+    "position": 8.714285714285715
+  },
+  {
     "page": "https://prisma.aqsh.co.jp/types/ISTp/",
     "clicks": 1,
-    "impressions": 37,
-    "ctr": 0.02702702702702703,
-    "position": 5.918918918918919
+    "impressions": 38,
+    "ctr": 0.02631578947368421,
+    "position": 5.921052631578948
   },
   {
     "page": "https://prisma.aqsh.co.jp/types/ISTp/compatibility/ESFp",
@@ -296,16 +373,16 @@
   {
     "page": "https://prisma.aqsh.co.jp/about/socionics/",
     "clicks": 0,
-    "impressions": 59,
+    "impressions": 64,
     "ctr": 0,
-    "position": 13.203389830508474
+    "position": 13.578125
   },
   {
     "page": "https://prisma.aqsh.co.jp/articles/",
     "clicks": 0,
-    "impressions": 5,
+    "impressions": 9,
     "ctr": 0,
-    "position": 2.6
+    "position": 4.666666666666666
   },
   {
     "page": "https://prisma.aqsh.co.jp/articles/ai-tiredness-letter-for-feelers",
@@ -338,16 +415,23 @@
   {
     "page": "https://prisma.aqsh.co.jp/articles/breaking-free-from-likes-addiction",
     "clicks": 0,
-    "impressions": 1,
+    "impressions": 4,
     "ctr": 0,
-    "position": 7
+    "position": 6.5
   },
   {
     "page": "https://prisma.aqsh.co.jp/articles/breaking-free-from-likes-addiction/",
     "clicks": 0,
+    "impressions": 3,
+    "ctr": 0,
+    "position": 49
+  },
+  {
+    "page": "https://prisma.aqsh.co.jp/articles/cant-keep-job-personality/",
+    "clicks": 0,
     "impressions": 1,
     "ctr": 0,
-    "position": 132
+    "position": 9
   },
   {
     "page": "https://prisma.aqsh.co.jp/articles/couple-communication-by-socionics",
@@ -380,16 +464,44 @@
   {
     "page": "https://prisma.aqsh.co.jp/articles/decision-making-by-personality-type/",
     "clicks": 0,
-    "impressions": 14,
+    "impressions": 15,
     "ctr": 0,
-    "position": 7.642857142857143
+    "position": 7.933333333333334
+  },
+  {
+    "page": "https://prisma.aqsh.co.jp/articles/dont-know-yourself-best-personality-test",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 2
+  },
+  {
+    "page": "https://prisma.aqsh.co.jp/articles/dont-know-yourself-best-personality-test/",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 4
   },
   {
     "page": "https://prisma.aqsh.co.jp/articles/door-slam-and-self-defense/",
     "clicks": 0,
-    "impressions": 24,
+    "impressions": 29,
     "ctr": 0,
-    "position": 6.208333333333333
+    "position": 6.551724137931035
+  },
+  {
+    "page": "https://prisma.aqsh.co.jp/articles/easily-bored-personality-career",
+    "clicks": 0,
+    "impressions": 2,
+    "ctr": 0,
+    "position": 10.5
+  },
+  {
+    "page": "https://prisma.aqsh.co.jp/articles/easily-bored-personality-career/",
+    "clicks": 0,
+    "impressions": 2,
+    "ctr": 0,
+    "position": 8.5
   },
   {
     "page": "https://prisma.aqsh.co.jp/articles/enfj-burnout-by-exploitation",
@@ -408,9 +520,9 @@
   {
     "page": "https://prisma.aqsh.co.jp/articles/engineer-burnout-personality-type",
     "clicks": 0,
-    "impressions": 3,
+    "impressions": 7,
     "ctr": 0,
-    "position": 3.3333333333333335
+    "position": 3.142857142857143
   },
   {
     "page": "https://prisma.aqsh.co.jp/articles/engineer-burnout-personality-type/",
@@ -422,30 +534,121 @@
   {
     "page": "https://prisma.aqsh.co.jp/articles/enneagram-mbti-combination-guide",
     "clicks": 0,
-    "impressions": 1,
+    "impressions": 6,
     "ctr": 0,
-    "position": 18
+    "position": 13
   },
   {
-    "page": "https://prisma.aqsh.co.jp/articles/enneagram-type4-meaningless-work/",
+    "page": "https://prisma.aqsh.co.jp/articles/enneagram-mbti-combination-guide/",
     "clicks": 0,
     "impressions": 2,
+    "ctr": 0,
+    "position": 12.5
+  },
+  {
+    "page": "https://prisma.aqsh.co.jp/articles/enneagram-type1-anger-management",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 10
+  },
+  {
+    "page": "https://prisma.aqsh.co.jp/articles/enneagram-type1-anger-management/",
+    "clicks": 0,
+    "impressions": 1,
     "ctr": 0,
     "position": 6
   },
   {
-    "page": "https://prisma.aqsh.co.jp/articles/esfj-tired-of-over-giving",
+    "page": "https://prisma.aqsh.co.jp/articles/enneagram-type1-perfectionism-exhaustion",
     "clicks": 0,
-    "impressions": 2,
+    "impressions": 3,
+    "ctr": 0,
+    "position": 2.333333333333333
+  },
+  {
+    "page": "https://prisma.aqsh.co.jp/articles/enneagram-type1-perfectionism-exhaustion/",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 11
+  },
+  {
+    "page": "https://prisma.aqsh.co.jp/articles/enneagram-type2-love-codependency",
+    "clicks": 0,
+    "impressions": 3,
     "ctr": 0,
     "position": 7
   },
   {
-    "page": "https://prisma.aqsh.co.jp/articles/esfj-tired-of-over-giving/",
+    "page": "https://prisma.aqsh.co.jp/articles/enneagram-type2-workplace-burnout",
     "clicks": 0,
     "impressions": 1,
     "ctr": 0,
-    "position": 27
+    "position": 4
+  },
+  {
+    "page": "https://prisma.aqsh.co.jp/articles/enneagram-type2-workplace-burnout/",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 2
+  },
+  {
+    "page": "https://prisma.aqsh.co.jp/articles/enneagram-type3-success-emptiness/",
+    "clicks": 0,
+    "impressions": 4,
+    "ctr": 0,
+    "position": 15.75
+  },
+  {
+    "page": "https://prisma.aqsh.co.jp/articles/enneagram-type4-meaningless-work",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 2
+  },
+  {
+    "page": "https://prisma.aqsh.co.jp/articles/enneagram-type4-meaningless-work/",
+    "clicks": 0,
+    "impressions": 3,
+    "ctr": 0,
+    "position": 6
+  },
+  {
+    "page": "https://prisma.aqsh.co.jp/articles/enneagram-type8-love-control-pattern/",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 11
+  },
+  {
+    "page": "https://prisma.aqsh.co.jp/articles/enneagram-type9-love-losing-self",
+    "clicks": 0,
+    "impressions": 2,
+    "ctr": 0,
+    "position": 13
+  },
+  {
+    "page": "https://prisma.aqsh.co.jp/articles/esfj-tired-of-over-giving",
+    "clicks": 0,
+    "impressions": 3,
+    "ctr": 0,
+    "position": 7.666666666666667
+  },
+  {
+    "page": "https://prisma.aqsh.co.jp/articles/esfj-tired-of-over-giving/",
+    "clicks": 0,
+    "impressions": 2,
+    "ctr": 0,
+    "position": 42.5
+  },
+  {
+    "page": "https://prisma.aqsh.co.jp/articles/esfj-workplace-caught-in-middle/",
+    "clicks": 0,
+    "impressions": 2,
+    "ctr": 0,
+    "position": 10.5
   },
   {
     "page": "https://prisma.aqsh.co.jp/articles/esfp-job-boredom-cant-stick",
@@ -455,18 +658,39 @@
     "position": 10
   },
   {
-    "page": "https://prisma.aqsh.co.jp/articles/estp-hate-being-restricted/",
+    "page": "https://prisma.aqsh.co.jp/articles/esfp-job-boredom-cant-stick/",
     "clicks": 0,
     "impressions": 2,
     "ctr": 0,
-    "position": 7.5
+    "position": 9
+  },
+  {
+    "page": "https://prisma.aqsh.co.jp/articles/estj-loneliness-of-competence/",
+    "clicks": 0,
+    "impressions": 2,
+    "ctr": 0,
+    "position": 8
+  },
+  {
+    "page": "https://prisma.aqsh.co.jp/articles/estp-desk-work-not-suited/",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 8
+  },
+  {
+    "page": "https://prisma.aqsh.co.jp/articles/estp-hate-being-restricted/",
+    "clicks": 0,
+    "impressions": 3,
+    "ctr": 0,
+    "position": 6
   },
   {
     "page": "https://prisma.aqsh.co.jp/articles/habit-formation-by-personality-type",
     "clicks": 0,
-    "impressions": 1,
+    "impressions": 4,
     "ctr": 0,
-    "position": 10
+    "position": 9
   },
   {
     "page": "https://prisma.aqsh.co.jp/articles/human-strengths-in-ai-era-by-type",
@@ -478,16 +702,23 @@
   {
     "page": "https://prisma.aqsh.co.jp/articles/human-strengths-in-ai-era-by-type/",
     "clicks": 0,
-    "impressions": 9,
+    "impressions": 10,
     "ctr": 0,
-    "position": 7.111111111111111
+    "position": 7.2
   },
   {
     "page": "https://prisma.aqsh.co.jp/articles/infj-empathy-fatigue-protection",
     "clicks": 0,
-    "impressions": 4,
+    "impressions": 5,
     "ctr": 0,
-    "position": 7
+    "position": 6.8
+  },
+  {
+    "page": "https://prisma.aqsh.co.jp/articles/infj-type2-compassion-fatigue/",
+    "clicks": 0,
+    "impressions": 3,
+    "ctr": 0,
+    "position": 8.666666666666668
   },
   {
     "page": "https://prisma.aqsh.co.jp/articles/infp-new-assignment-anxiety",
@@ -506,72 +737,72 @@
   {
     "page": "https://prisma.aqsh.co.jp/articles/infp-struggle-to-live/",
     "clicks": 0,
-    "impressions": 1,
+    "impressions": 9,
     "ctr": 0,
-    "position": 80
+    "position": 21.555555555555557
   },
   {
     "page": "https://prisma.aqsh.co.jp/articles/infp-type4-struggle-to-find-identity/",
     "clicks": 0,
-    "impressions": 1,
+    "impressions": 6,
     "ctr": 0,
-    "position": 4
+    "position": 7.166666666666667
   },
   {
     "page": "https://prisma.aqsh.co.jp/articles/intj-awkward-in-love",
     "clicks": 0,
-    "impressions": 9,
+    "impressions": 19,
     "ctr": 0,
-    "position": 6.888888888888889
+    "position": 8.31578947368421
   },
   {
     "page": "https://prisma.aqsh.co.jp/articles/intj-awkward-in-love/",
     "clicks": 0,
-    "impressions": 2,
+    "impressions": 5,
     "ctr": 0,
-    "position": 9
+    "position": 10.2
   },
   {
     "page": "https://prisma.aqsh.co.jp/articles/intj-not-feeling-lonely-reasons",
     "clicks": 0,
-    "impressions": 8,
+    "impressions": 17,
     "ctr": 0,
-    "position": 17.125
+    "position": 12.235294117647058
   },
   {
     "page": "https://prisma.aqsh.co.jp/articles/intj-struggle-with-emotions/",
     "clicks": 0,
-    "impressions": 49,
+    "impressions": 51,
     "ctr": 0,
-    "position": 7.1020408163265305
+    "position": 7.117647058823529
+  },
+  {
+    "page": "https://prisma.aqsh.co.jp/articles/intj-type5-lonely-genius/",
+    "clicks": 0,
+    "impressions": 3,
+    "ctr": 0,
+    "position": 13.333333333333334
   },
   {
     "page": "https://prisma.aqsh.co.jp/articles/intj-workplace-isolation",
     "clicks": 0,
-    "impressions": 1,
+    "impressions": 2,
     "ctr": 0,
-    "position": 9
-  },
-  {
-    "page": "https://prisma.aqsh.co.jp/articles/intj-workplace-isolation/",
-    "clicks": 0,
-    "impressions": 10,
-    "ctr": 0,
-    "position": 6.8
+    "position": 7
   },
   {
     "page": "https://prisma.aqsh.co.jp/articles/intp-cant-express-love",
     "clicks": 0,
-    "impressions": 4,
+    "impressions": 5,
     "ctr": 0,
-    "position": 38
+    "position": 32.4
   },
   {
     "page": "https://prisma.aqsh.co.jp/articles/intp-cant-express-love/",
     "clicks": 0,
-    "impressions": 4,
+    "impressions": 8,
     "ctr": 0,
-    "position": 7
+    "position": 6.25
   },
   {
     "page": "https://prisma.aqsh.co.jp/articles/intp-stress-from-unreasonable-boss",
@@ -590,16 +821,9 @@
   {
     "page": "https://prisma.aqsh.co.jp/articles/intronverts-need-for-alone-time/",
     "clicks": 0,
-    "impressions": 11,
+    "impressions": 12,
     "ctr": 0,
-    "position": 7.090909090909091
-  },
-  {
-    "page": "https://prisma.aqsh.co.jp/articles/isfj-bottled-up-stress-limit/",
-    "clicks": 0,
-    "impressions": 4,
-    "ctr": 0,
-    "position": 10
+    "position": 7.083333333333333
   },
   {
     "page": "https://prisma.aqsh.co.jp/articles/isfj-burnout-after-holidays",
@@ -611,16 +835,30 @@
   {
     "page": "https://prisma.aqsh.co.jp/articles/isfj-burnout-after-holidays/",
     "clicks": 0,
-    "impressions": 3,
+    "impressions": 4,
     "ctr": 0,
-    "position": 4.333333333333334
+    "position": 4
+  },
+  {
+    "page": "https://prisma.aqsh.co.jp/articles/isfj-love-over-adapting",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 8
   },
   {
     "page": "https://prisma.aqsh.co.jp/articles/isfj-love-over-adapting/",
     "clicks": 0,
-    "impressions": 4,
+    "impressions": 12,
     "ctr": 0,
-    "position": 7.75
+    "position": 7.583333333333333
+  },
+  {
+    "page": "https://prisma.aqsh.co.jp/articles/isfj-type2-over-giving-limit/",
+    "clicks": 0,
+    "impressions": 3,
+    "ctr": 0,
+    "position": 7
   },
   {
     "page": "https://prisma.aqsh.co.jp/articles/isfp-loss-of-passion-at-work",
@@ -630,32 +868,25 @@
     "position": 5.75
   },
   {
-    "page": "https://prisma.aqsh.co.jp/articles/istj-change-stress-at-work/",
+    "page": "https://prisma.aqsh.co.jp/articles/leadership-style-by-personality-type/",
     "clicks": 0,
-    "impressions": 10,
+    "impressions": 3,
     "ctr": 0,
-    "position": 11.4
-  },
-  {
-    "page": "https://prisma.aqsh.co.jp/articles/istj-stress-from-sudden-changes/",
-    "clicks": 0,
-    "impressions": 1,
-    "ctr": 0,
-    "position": 11
+    "position": 31.333333333333332
   },
   {
     "page": "https://prisma.aqsh.co.jp/articles/love-fatigue-personality/",
     "clicks": 0,
-    "impressions": 4,
+    "impressions": 7,
     "ctr": 0,
-    "position": 8.5
+    "position": 9.428571428571429
   },
   {
     "page": "https://prisma.aqsh.co.jp/articles/mbti-compatibility-scientific-evidence/",
     "clicks": 0,
-    "impressions": 1,
+    "impressions": 3,
     "ctr": 0,
-    "position": 8
+    "position": 6.666666666666667
   },
   {
     "page": "https://prisma.aqsh.co.jp/articles/mbti-vs-socionics-beyond-16types",
@@ -679,11 +910,25 @@
     "position": 12.142857142857142
   },
   {
-    "page": "https://prisma.aqsh.co.jp/articles/parent-child-relationship-by-personality-type",
+    "page": "https://prisma.aqsh.co.jp/articles/micro-saving-fatigue-by-personality-type/",
     "clicks": 0,
     "impressions": 1,
     "ctr": 0,
-    "position": 10
+    "position": 2
+  },
+  {
+    "page": "https://prisma.aqsh.co.jp/articles/p-type-flexibility-in-love/",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 5
+  },
+  {
+    "page": "https://prisma.aqsh.co.jp/articles/parent-child-relationship-by-personality-type",
+    "clicks": 0,
+    "impressions": 2,
+    "ctr": 0,
+    "position": 6.5
   },
   {
     "page": "https://prisma.aqsh.co.jp/articles/parent-child-relationship-by-personality-type/",
@@ -714,11 +959,18 @@
     "position": 12
   },
   {
+    "page": "https://prisma.aqsh.co.jp/articles/pressure-resilience-by-personality-type/",
+    "clicks": 0,
+    "impressions": 2,
+    "ctr": 0,
+    "position": 4.5
+  },
+  {
     "page": "https://prisma.aqsh.co.jp/articles/quiet-quitting-personality-type/",
     "clicks": 0,
-    "impressions": 1,
+    "impressions": 2,
     "ctr": 0,
-    "position": 3
+    "position": 5
   },
   {
     "page": "https://prisma.aqsh.co.jp/articles/right-to-disconnect-by-personality-type/",
@@ -726,6 +978,13 @@
     "impressions": 6,
     "ctr": 0,
     "position": 9.5
+  },
+  {
+    "page": "https://prisma.aqsh.co.jp/articles/romantic-compatibility-by-socionics/",
+    "clicks": 0,
+    "impressions": 2,
+    "ctr": 0,
+    "position": 9
   },
   {
     "page": "https://prisma.aqsh.co.jp/articles/self-analysis-for-job-hunting/",
@@ -737,9 +996,9 @@
   {
     "page": "https://prisma.aqsh.co.jp/articles/sns-fatigue-by-personality-type",
     "clicks": 0,
-    "impressions": 30,
+    "impressions": 36,
     "ctr": 0,
-    "position": 12.733333333333333
+    "position": 12.13888888888889
   },
   {
     "page": "https://prisma.aqsh.co.jp/articles/sns-fatigue-by-personality-type/",
@@ -751,16 +1010,16 @@
   {
     "page": "https://prisma.aqsh.co.jp/articles/socionics-compatibility-how-to-check",
     "clicks": 0,
-    "impressions": 1,
+    "impressions": 3,
     "ctr": 0,
-    "position": 58
+    "position": 36.666666666666664
   },
   {
     "page": "https://prisma.aqsh.co.jp/articles/socionics-compatibility-how-to-check/",
     "clicks": 0,
-    "impressions": 1,
+    "impressions": 2,
     "ctr": 0,
-    "position": 2
+    "position": 11
   },
   {
     "page": "https://prisma.aqsh.co.jp/articles/socionics-os-compatibility",
@@ -786,9 +1045,9 @@
   {
     "page": "https://prisma.aqsh.co.jp/articles/socionics-vs-mbti-which-is-better/",
     "clicks": 0,
-    "impressions": 16,
+    "impressions": 19,
     "ctr": 0,
-    "position": 10
+    "position": 11.368421052631579
   },
   {
     "page": "https://prisma.aqsh.co.jp/articles/socionics-vs-mbti-which-to-use",
@@ -800,9 +1059,9 @@
   {
     "page": "https://prisma.aqsh.co.jp/articles/socionics-vs-mbti-which-to-use/",
     "clicks": 0,
-    "impressions": 2,
+    "impressions": 12,
     "ctr": 0,
-    "position": 9
+    "position": 5.75
   },
   {
     "page": "https://prisma.aqsh.co.jp/articles/stress-check-blind-spots-by-personality-type",
@@ -835,9 +1094,9 @@
   {
     "page": "https://prisma.aqsh.co.jp/articles/understanding-enneagram-motivation/",
     "clicks": 0,
-    "impressions": 19,
+    "impressions": 20,
     "ctr": 0,
-    "position": 5.684210526315789
+    "position": 5.65
   },
   {
     "page": "https://prisma.aqsh.co.jp/articles/understanding-socionics-matching",
@@ -863,9 +1122,9 @@
   {
     "page": "https://prisma.aqsh.co.jp/articles/unfiltered-self-and-bereal-courage/",
     "clicks": 0,
-    "impressions": 20,
+    "impressions": 24,
     "ctr": 0,
-    "position": 5.75
+    "position": 5.875
   },
   {
     "page": "https://prisma.aqsh.co.jp/articles/unnamed-mental-fatigue-in-twenties/",
@@ -877,9 +1136,9 @@
   {
     "page": "https://prisma.aqsh.co.jp/articles/work-without-meaning-is-fine/",
     "clicks": 0,
-    "impressions": 15,
+    "impressions": 20,
     "ctr": 0,
-    "position": 17.6
+    "position": 14.3
   },
   {
     "page": "https://prisma.aqsh.co.jp/compatibility/",
@@ -898,16 +1157,16 @@
   {
     "page": "https://prisma.aqsh.co.jp/types/ENFj/",
     "clicks": 0,
-    "impressions": 18,
+    "impressions": 19,
     "ctr": 0,
-    "position": 9.944444444444445
+    "position": 9.789473684210526
   },
   {
     "page": "https://prisma.aqsh.co.jp/types/ENFj/compatibility/ENFp/",
     "clicks": 0,
-    "impressions": 3,
+    "impressions": 4,
     "ctr": 0,
-    "position": 9.333333333333334
+    "position": 9.25
   },
   {
     "page": "https://prisma.aqsh.co.jp/types/ENFj/compatibility/ENTj",
@@ -919,7 +1178,7 @@
   {
     "page": "https://prisma.aqsh.co.jp/types/ENFj/compatibility/ENTj/",
     "clicks": 0,
-    "impressions": 1,
+    "impressions": 2,
     "ctr": 0,
     "position": 4
   },
@@ -933,9 +1192,9 @@
   {
     "page": "https://prisma.aqsh.co.jp/types/ENFj/compatibility/ESTp/",
     "clicks": 0,
-    "impressions": 4,
+    "impressions": 5,
     "ctr": 0,
-    "position": 8.75
+    "position": 9.2
   },
   {
     "page": "https://prisma.aqsh.co.jp/types/ENFj/compatibility/INTp/",
@@ -954,9 +1213,9 @@
   {
     "page": "https://prisma.aqsh.co.jp/types/ENFp/compatibility/ENFj",
     "clicks": 0,
-    "impressions": 2,
+    "impressions": 3,
     "ctr": 0,
-    "position": 10.5
+    "position": 7.666666666666667
   },
   {
     "page": "https://prisma.aqsh.co.jp/types/ENFp/compatibility/ENTp",
@@ -980,6 +1239,13 @@
     "position": 11
   },
   {
+    "page": "https://prisma.aqsh.co.jp/types/ENFp/compatibility/ESFj/",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 20
+  },
+  {
     "page": "https://prisma.aqsh.co.jp/types/ENFp/compatibility/ESFp",
     "clicks": 0,
     "impressions": 1,
@@ -989,9 +1255,16 @@
   {
     "page": "https://prisma.aqsh.co.jp/types/ENFp/compatibility/ESFp/",
     "clicks": 0,
+    "impressions": 2,
+    "ctr": 0,
+    "position": 9.5
+  },
+  {
+    "page": "https://prisma.aqsh.co.jp/types/ENFp/compatibility/INFj/",
+    "clicks": 0,
     "impressions": 1,
     "ctr": 0,
-    "position": 12
+    "position": 5
   },
   {
     "page": "https://prisma.aqsh.co.jp/types/ENFp/compatibility/INTp/",
@@ -1003,9 +1276,9 @@
   {
     "page": "https://prisma.aqsh.co.jp/types/ENFp/compatibility/ISTj/",
     "clicks": 0,
-    "impressions": 3,
+    "impressions": 4,
     "ctr": 0,
-    "position": 5
+    "position": 4.5
   },
   {
     "page": "https://prisma.aqsh.co.jp/types/ENTj",
@@ -1017,9 +1290,9 @@
   {
     "page": "https://prisma.aqsh.co.jp/types/ENTj/compatibility/ENFp",
     "clicks": 0,
-    "impressions": 2,
+    "impressions": 5,
     "ctr": 0,
-    "position": 7.5
+    "position": 10.6
   },
   {
     "page": "https://prisma.aqsh.co.jp/types/ENTj/compatibility/ENFp/",
@@ -1038,9 +1311,16 @@
   {
     "page": "https://prisma.aqsh.co.jp/types/ENTj/compatibility/INFp",
     "clicks": 0,
+    "impressions": 2,
+    "ctr": 0,
+    "position": 4
+  },
+  {
+    "page": "https://prisma.aqsh.co.jp/types/ENTj/compatibility/INTj",
+    "clicks": 0,
     "impressions": 1,
     "ctr": 0,
-    "position": 3
+    "position": 6
   },
   {
     "page": "https://prisma.aqsh.co.jp/types/ENTj/compatibility/ISFp/",
@@ -1129,9 +1409,9 @@
   {
     "page": "https://prisma.aqsh.co.jp/types/ENTp/compatibility/INTp/",
     "clicks": 0,
-    "impressions": 1,
+    "impressions": 3,
     "ctr": 0,
-    "position": 6
+    "position": 6.666666666666667
   },
   {
     "page": "https://prisma.aqsh.co.jp/types/ENTp/compatibility/ISFj",
@@ -1164,9 +1444,16 @@
   {
     "page": "https://prisma.aqsh.co.jp/types/ESFj/",
     "clicks": 0,
-    "impressions": 15,
+    "impressions": 16,
     "ctr": 0,
-    "position": 7.533333333333333
+    "position": 12.1875
+  },
+  {
+    "page": "https://prisma.aqsh.co.jp/types/ESFj/compatibility/ENTj/",
+    "clicks": 0,
+    "impressions": 2,
+    "ctr": 0,
+    "position": 11.5
   },
   {
     "page": "https://prisma.aqsh.co.jp/types/ESFj/compatibility/INTj/",
@@ -1206,9 +1493,9 @@
   {
     "page": "https://prisma.aqsh.co.jp/types/ESFp/compatibility/INTp/",
     "clicks": 0,
-    "impressions": 5,
+    "impressions": 8,
     "ctr": 0,
-    "position": 8.2
+    "position": 8.5
   },
   {
     "page": "https://prisma.aqsh.co.jp/types/ESTj/compatibility/ENTj/",
@@ -1216,6 +1503,13 @@
     "impressions": 3,
     "ctr": 0,
     "position": 8.333333333333332
+  },
+  {
+    "page": "https://prisma.aqsh.co.jp/types/ESTj/compatibility/ESFj/",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 4
   },
   {
     "page": "https://prisma.aqsh.co.jp/types/ESTj/compatibility/ESTp/",
@@ -1234,9 +1528,9 @@
   {
     "page": "https://prisma.aqsh.co.jp/types/ESTj/compatibility/INTj/",
     "clicks": 0,
-    "impressions": 2,
+    "impressions": 4,
     "ctr": 0,
-    "position": 7.5
+    "position": 6.5
   },
   {
     "page": "https://prisma.aqsh.co.jp/types/ESTj/compatibility/ISFp/",
@@ -1248,16 +1542,23 @@
   {
     "page": "https://prisma.aqsh.co.jp/types/ESTp/",
     "clicks": 0,
-    "impressions": 100,
+    "impressions": 116,
     "ctr": 0,
-    "position": 46.79
+    "position": 48.258620689655174
   },
   {
     "page": "https://prisma.aqsh.co.jp/types/ESTp/compatibility/ENFj/",
     "clicks": 0,
-    "impressions": 10,
+    "impressions": 11,
     "ctr": 0,
-    "position": 5.7
+    "position": 5.545454545454546
+  },
+  {
+    "page": "https://prisma.aqsh.co.jp/types/ESTp/compatibility/ENTp",
+    "clicks": 0,
+    "impressions": 2,
+    "ctr": 0,
+    "position": 6
   },
   {
     "page": "https://prisma.aqsh.co.jp/types/ESTp/compatibility/ENTp/",
@@ -1269,9 +1570,9 @@
   {
     "page": "https://prisma.aqsh.co.jp/types/ESTp/compatibility/ESTj",
     "clicks": 0,
-    "impressions": 2,
+    "impressions": 3,
     "ctr": 0,
-    "position": 11.5
+    "position": 8.666666666666668
   },
   {
     "page": "https://prisma.aqsh.co.jp/types/INFj",
@@ -1283,9 +1584,9 @@
   {
     "page": "https://prisma.aqsh.co.jp/types/INFj/compatibility/ENFj/",
     "clicks": 0,
-    "impressions": 1,
+    "impressions": 2,
     "ctr": 0,
-    "position": 10
+    "position": 20
   },
   {
     "page": "https://prisma.aqsh.co.jp/types/INFj/compatibility/ENTp",
@@ -1304,9 +1605,9 @@
   {
     "page": "https://prisma.aqsh.co.jp/types/INFj/compatibility/ESTj",
     "clicks": 0,
-    "impressions": 1,
+    "impressions": 2,
     "ctr": 0,
-    "position": 7
+    "position": 20.5
   },
   {
     "page": "https://prisma.aqsh.co.jp/types/INFj/compatibility/ESTj/",
@@ -1325,16 +1626,16 @@
   {
     "page": "https://prisma.aqsh.co.jp/types/INFj/compatibility/INTj",
     "clicks": 0,
-    "impressions": 1,
+    "impressions": 2,
     "ctr": 0,
-    "position": 10
+    "position": 11
   },
   {
     "page": "https://prisma.aqsh.co.jp/types/INFj/compatibility/INTj/",
     "clicks": 0,
-    "impressions": 2,
+    "impressions": 3,
     "ctr": 0,
-    "position": 10
+    "position": 9
   },
   {
     "page": "https://prisma.aqsh.co.jp/types/INFp",
@@ -1360,9 +1661,16 @@
   {
     "page": "https://prisma.aqsh.co.jp/types/INFp/compatibility/ENFp/",
     "clicks": 0,
-    "impressions": 3,
+    "impressions": 4,
     "ctr": 0,
-    "position": 8
+    "position": 8.5
+  },
+  {
+    "page": "https://prisma.aqsh.co.jp/types/INFp/compatibility/ESTp",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 10
   },
   {
     "page": "https://prisma.aqsh.co.jp/types/INFp/compatibility/ESTp/",
@@ -1374,9 +1682,9 @@
   {
     "page": "https://prisma.aqsh.co.jp/types/INFp/compatibility/INTp/",
     "clicks": 0,
-    "impressions": 1,
+    "impressions": 2,
     "ctr": 0,
-    "position": 5
+    "position": 5.5
   },
   {
     "page": "https://prisma.aqsh.co.jp/types/INFp/compatibility/ISFj/",
@@ -1395,23 +1703,23 @@
   {
     "page": "https://prisma.aqsh.co.jp/types/INFp/compatibility/ISFp/",
     "clicks": 0,
-    "impressions": 2,
+    "impressions": 5,
     "ctr": 0,
-    "position": 7
+    "position": 16.6
   },
   {
     "page": "https://prisma.aqsh.co.jp/types/INTj/compatibility/ENFj/",
     "clicks": 0,
-    "impressions": 1,
+    "impressions": 2,
     "ctr": 0,
-    "position": 12
+    "position": 8.5
   },
   {
     "page": "https://prisma.aqsh.co.jp/types/INTj/compatibility/ESFp/",
     "clicks": 0,
-    "impressions": 6,
+    "impressions": 7,
     "ctr": 0,
-    "position": 6.166666666666667
+    "position": 6.285714285714286
   },
   {
     "page": "https://prisma.aqsh.co.jp/types/INTj/compatibility/INFp",
@@ -1423,9 +1731,9 @@
   {
     "page": "https://prisma.aqsh.co.jp/types/INTj/compatibility/ISFj/",
     "clicks": 0,
-    "impressions": 2,
+    "impressions": 3,
     "ctr": 0,
-    "position": 6.5
+    "position": 7.333333333333333
   },
   {
     "page": "https://prisma.aqsh.co.jp/types/INTj/compatibility/ISFp",
@@ -1433,13 +1741,6 @@
     "impressions": 4,
     "ctr": 0,
     "position": 7.5
-  },
-  {
-    "page": "https://prisma.aqsh.co.jp/types/INTj/compatibility/ISFp/",
-    "clicks": 0,
-    "impressions": 2,
-    "ctr": 0,
-    "position": 7
   },
   {
     "page": "https://prisma.aqsh.co.jp/types/INTj/compatibility/ISTp",
@@ -1470,6 +1771,13 @@
     "position": 6
   },
   {
+    "page": "https://prisma.aqsh.co.jp/types/INTp/compatibility/ENTj/",
+    "clicks": 0,
+    "impressions": 3,
+    "ctr": 0,
+    "position": 9.333333333333334
+  },
+  {
     "page": "https://prisma.aqsh.co.jp/types/INTp/compatibility/INTj",
     "clicks": 0,
     "impressions": 1,
@@ -1479,9 +1787,9 @@
   {
     "page": "https://prisma.aqsh.co.jp/types/INTp/compatibility/INTj/",
     "clicks": 0,
-    "impressions": 2,
+    "impressions": 4,
     "ctr": 0,
-    "position": 12
+    "position": 10.75
   },
   {
     "page": "https://prisma.aqsh.co.jp/types/INTp/compatibility/ISTj",
@@ -1500,9 +1808,9 @@
   {
     "page": "https://prisma.aqsh.co.jp/types/ISFj/compatibility/ENFj",
     "clicks": 0,
-    "impressions": 2,
+    "impressions": 3,
     "ctr": 0,
-    "position": 10
+    "position": 8.666666666666668
   },
   {
     "page": "https://prisma.aqsh.co.jp/types/ISFj/compatibility/ENFj/",
@@ -1528,9 +1836,9 @@
   {
     "page": "https://prisma.aqsh.co.jp/types/ISFj/compatibility/ISFp/",
     "clicks": 0,
-    "impressions": 5,
+    "impressions": 15,
     "ctr": 0,
-    "position": 8
+    "position": 8.133333333333333
   },
   {
     "page": "https://prisma.aqsh.co.jp/types/ISFp/compatibility/ENFj",
@@ -1542,16 +1850,16 @@
   {
     "page": "https://prisma.aqsh.co.jp/types/ISFp/compatibility/ENFj/",
     "clicks": 0,
-    "impressions": 2,
+    "impressions": 3,
     "ctr": 0,
-    "position": 8
+    "position": 7.333333333333333
   },
   {
     "page": "https://prisma.aqsh.co.jp/types/ISFp/compatibility/ENTj",
     "clicks": 0,
-    "impressions": 2,
+    "impressions": 3,
     "ctr": 0,
-    "position": 9.5
+    "position": 8.666666666666668
   },
   {
     "page": "https://prisma.aqsh.co.jp/types/ISFp/compatibility/ENTj/",
@@ -1575,18 +1883,25 @@
     "position": 7.666666666666667
   },
   {
+    "page": "https://prisma.aqsh.co.jp/types/ISFp/compatibility/ESTj/",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 12
+  },
+  {
     "page": "https://prisma.aqsh.co.jp/types/ISFp/compatibility/INFj",
     "clicks": 0,
-    "impressions": 2,
+    "impressions": 6,
     "ctr": 0,
-    "position": 6
+    "position": 8.166666666666668
   },
   {
     "page": "https://prisma.aqsh.co.jp/types/ISFp/compatibility/INFj/",
     "clicks": 0,
-    "impressions": 3,
+    "impressions": 4,
     "ctr": 0,
-    "position": 6.333333333333333
+    "position": 5.75
   },
   {
     "page": "https://prisma.aqsh.co.jp/types/ISTj/",
@@ -1598,9 +1913,16 @@
   {
     "page": "https://prisma.aqsh.co.jp/types/ISTj/compatibility/ENFj/",
     "clicks": 0,
-    "impressions": 2,
+    "impressions": 3,
     "ctr": 0,
-    "position": 6.5
+    "position": 7
+  },
+  {
+    "page": "https://prisma.aqsh.co.jp/types/ISTj/compatibility/ESFj/",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 2
   },
   {
     "page": "https://prisma.aqsh.co.jp/types/ISTj/compatibility/ESTj",
@@ -1631,11 +1953,18 @@
     "position": 6
   },
   {
-    "page": "https://prisma.aqsh.co.jp/types/ISTj/compatibility/ISFj/",
+    "page": "https://prisma.aqsh.co.jp/types/ISTj/compatibility/INFp",
     "clicks": 0,
-    "impressions": 5,
+    "impressions": 1,
     "ctr": 0,
-    "position": 9.4
+    "position": 12
+  },
+  {
+    "page": "https://prisma.aqsh.co.jp/types/ISTj/compatibility/ISFj",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 19
   },
   {
     "page": "https://prisma.aqsh.co.jp/types/ISTp/compatibility/ENFp",
@@ -1654,9 +1983,9 @@
   {
     "page": "https://prisma.aqsh.co.jp/types/ISTp/compatibility/ESTj",
     "clicks": 0,
-    "impressions": 1,
+    "impressions": 3,
     "ctr": 0,
-    "position": 4
+    "position": 4.666666666666666
   },
   {
     "page": "https://prisma.aqsh.co.jp/types/ISTp/compatibility/ESTj/",
