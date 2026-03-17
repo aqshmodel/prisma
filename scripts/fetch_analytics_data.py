@@ -30,8 +30,8 @@ GA4_API_BASE = f"https://analyticsdata.googleapis.com/v1beta/properties/{GA4_PRO
 
 
 def setup_output_dir():
-    current_month = datetime.now().strftime("%Y-%m")
-    target_dir = os.path.join(OUTPUT_DIR, current_month)
+    today = datetime.now().strftime("%Y-%m-%d")
+    target_dir = os.path.join(OUTPUT_DIR, today)
     os.makedirs(target_dir, exist_ok=True)
     return target_dir
 
