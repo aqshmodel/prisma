@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { TypeDetailPage } from '../../../features/type-detail/TypeDetailPage';
 import { OS_CONTENT } from '../../../features/result/data/content-os';
-import { SITE_CONFIG } from '@/lib/constants/site-config';
+import { buildUrl } from '@/lib/constants/site-config';
 
 type Props = {
     params: Promise<{ code: string }>;
@@ -29,9 +29,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return {
         title,
         description,
+        alternates: {
+            canonical: buildUrl(`/types/${code}`),
+        },
         openGraph: {
             title,
             description,
+            url: buildUrl(`/types/${code}`),
         },
         twitter: {
             card: 'summary_large_image',
@@ -63,13 +67,13 @@ export default async function Page({ params }: Props) {
                 '@type': 'ListItem',
                 'position': 1,
                 'name': 'ホーム',
-                'item': SITE_CONFIG.baseUrl + '/'
+                'item': buildUrl('/')
             },
             {
                 '@type': 'ListItem',
                 'position': 2,
                 'name': `${data.name}`,
-                'item': `${SITE_CONFIG.baseUrl}/types/${code}`
+                'item': buildUrl(`/types/${code}`)
             }
         ]
     };

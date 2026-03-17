@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { SITE_CONFIG } from '@/lib/constants/site-config';
+import { SITE_CONFIG, buildUrl } from '@/lib/constants/site-config';
 import { AboutMethodologyPage } from '@/features/about/components/AboutMethodologyPage';
 
 export const metadata: Metadata = {
@@ -10,7 +10,7 @@ export const metadata: Metadata = {
         title: '診断ロジックの説明 | Aqsh Prismaの診断はどう作られているか',
         description: 'Aqsh Prismaの16タイプ×エニアグラム診断がどのようなロジックで結果を算出しているかを、透明性をもって解説します。',
         type: 'article',
-        url: `${SITE_CONFIG.baseUrl}/about/methodology`,
+        url: buildUrl('/about/methodology'),
         locale: 'ja_JP',
         siteName: SITE_CONFIG.name,
         images: [
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
         images: [`${SITE_CONFIG.baseUrl}${SITE_CONFIG.ogImage}`],
     },
     alternates: {
-        canonical: `${SITE_CONFIG.baseUrl}/about/methodology`,
+        canonical: buildUrl('/about/methodology'),
     },
 };
 

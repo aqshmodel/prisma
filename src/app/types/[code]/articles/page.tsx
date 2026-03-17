@@ -4,7 +4,7 @@ import { ArrowLeft, BookOpen } from 'lucide-react';
 import { OS_CONTENT } from '../../../../features/result/data/content-os';
 import { getAllArticles } from '../../../../features/articles/utils/mdx';
 import { toTypeLabel } from '@/lib/constants/type-mapping';
-import { SITE_CONFIG } from '@/lib/constants/site-config';
+import { buildUrl } from '@/lib/constants/site-config';
 import { filterArticlesByType } from '@/lib/utils/article-filter';
 import { ArticleCardLarge } from '@/features/articles/components/ArticleCard';
 
@@ -29,7 +29,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         title: `${data.name}（${typeLabel}）に関する記事一覧 | Aqsh Prisma`,
         description: `${data.name}（${typeLabel}）タイプの性格・仕事・恋愛・人間関係に関するコラム記事の一覧です。`,
         alternates: {
-            canonical: `${SITE_CONFIG.baseUrl}/types/${code}/articles`,
+            canonical: buildUrl(`/types/${code}/articles`),
         },
     };
 }

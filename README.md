@@ -49,7 +49,7 @@ rsync -avz --delete -e "ssh -p 2222" out/ boyfriend.jp-aqsh@ssh.lolipop.jp:/home
 ※ `out` フォルダ自体をアップロードするのではなく、`out` の**中にある** `index.html` や `_next` フォルダなどを、サーバーの公開ディレクトリ直下に配置するようにしてください。
 
 > ⚠️ **【重要】 ロリポップサーバーでのURLについて (.html の省略)**
-> 本プロジェクトは Next.js設定で `trailingSlash: false`（デフォルト）としてビルドされています。
+> 本プロジェクトは Next.js設定で `trailingSlash: true` としてビルドされています。
 > そのため、各記事のファイルは `out/articles/slug.html` という純粋なHTMLファイルとして生成されています。
 > 
 > ロリポップ等の共用サーバーでは、通常の設定のまま `https://prisma.aqsh.co.jp/articles/slug` にアクセスすると、サーバー側で `.html` をうまく補完できずに **404 Page Not Found** になる場合があります。

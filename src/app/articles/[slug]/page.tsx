@@ -12,7 +12,7 @@ import { TableOfContents } from '@/features/articles/components/TableOfContents'
 import { getReadingTime } from '@/features/articles/utils/readingTime';
 import { extractHeadings } from '@/features/articles/utils/extractHeadings';
 import { extractFaqJsonLd } from '@/features/articles/utils/faqExtractor';
-import { SITE_CONFIG, PUBLISHER_JSON_LD } from '@/lib/constants/site-config';
+import { SITE_CONFIG, PUBLISHER_JSON_LD, buildUrl } from '@/lib/constants/site-config';
 import rehypeSanitize from 'rehype-sanitize';
 import { rehypePreserveMdx, rehypeRestoreMdx, mdxSanitizeSchema } from '@/features/articles/utils/rehype-preserve-mdx';
 
@@ -36,7 +36,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     if (!article) return { title: 'Not Found' };
 
     const baseUrl = SITE_CONFIG.baseUrl;
-    const canonicalUrl = `${baseUrl}/articles/${slug}`;
+    const canonicalUrl = buildUrl(`/articles/${slug}`);
     const imageUrl = article.metadata.coverImage ? `${baseUrl}${article.metadata.coverImage}` : `${baseUrl}/og-image.png`;
 
     return {
@@ -120,7 +120,7 @@ export default async function ArticleDetailPage({ params }: { params: Promise<{ 
      * 検索エンジンに対して、このページがブログ記事であることを構造化データで伝えます。
      */
     const baseUrl = SITE_CONFIG.baseUrl;
-    const canonicalUrl = `${baseUrl}/articles/${slug}`;
+    const canonicalUrl = buildUrl(`/articles/${slug}`);
     const jsonLd = [
         {
             '@context': 'https://schema.org',
@@ -159,7 +159,7 @@ export default async function ArticleDetailPage({ params }: { params: Promise<{ 
                     '@type': 'ListItem',
                     position: 2,
                     name: 'コラム',
-                    item: `${baseUrl}/articles`
+                    item: buildUrl('/articles')
                 },
                 {
                     '@type': 'ListItem',

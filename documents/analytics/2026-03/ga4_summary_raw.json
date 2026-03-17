@@ -1,12 +1,12 @@
 {
   "period": "last_30_days",
-  "active_users": 134,
-  "new_users": 134,
-  "page_views": 652,
-  "sessions": 225,
-  "total_engagement_sec": 37288.0,
-  "avg_engagement_per_user_sec": 278.3,
-  "engagement_rate": 0.5556,
-  "bounce_rate": 0.4444,
-  "pages_per_session": 2.9
+  "active_users": 158,
+  "new_users": 156,
+  "page_views": 729,
+  "sessions": 257,
+  "total_engagement_sec": 41593.0,
+  "avg_engagement_per_user_sec": 263.2,
+  "engagement_rate": 0.5331,
+  "bounce_rate": 0.4669,
+  "pages_per_session": 2.84
 }

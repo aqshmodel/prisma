@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { SITE_CONFIG } from '@/lib/constants/site-config';
+import { SITE_CONFIG, buildUrl } from '@/lib/constants/site-config';
 import { PrivacyPolicyPage } from '@/features/legal/components/PrivacyPolicyPage';
 
 export const metadata: Metadata = {
@@ -9,7 +9,7 @@ export const metadata: Metadata = {
         title: 'プライバシーポリシー | Aqsh Prisma',
         description: 'Aqsh Prismaにおける個人情報および個人関連情報（診断結果・行動履歴等）の取り扱い方針について説明します。',
         type: 'website',
-        url: `${SITE_CONFIG.baseUrl}/privacy`,
+        url: buildUrl('/privacy'),
         locale: 'ja_JP',
         siteName: SITE_CONFIG.name,
         images: [
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
         images: [`${SITE_CONFIG.baseUrl}${SITE_CONFIG.ogImage}`],
     },
     alternates: {
-        canonical: `${SITE_CONFIG.baseUrl}/privacy`,
+        canonical: buildUrl('/privacy'),
     },
 };
 

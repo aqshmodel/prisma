@@ -2,18 +2,18 @@ import { WelcomePage } from '../features/welcome/WelcomePage';
 import type { Metadata } from 'next';
 import { getAllArticles } from '../features/articles/utils/mdx';
 import { ArticleSection } from '../features/welcome/components/ArticleSection';
-import { SITE_CONFIG } from '@/lib/constants/site-config';
+import { SITE_CONFIG, buildUrl } from '@/lib/constants/site-config';
 
 export const metadata: Metadata = {
     title: 'Aqsh Prisma | 16タイプ×エニアグラム 無料性格診断・自己分析',
     description: 'ソシオニクス診断とエニアグラムを組み合わせた無料の性格診断テスト。あなたの思考のクセ（16タイプ）と無意識の欲求（9タイプ）を可視化し、人間関係・恋愛・キャリアの悩みの根本原因を言語化します。',
     alternates: {
-        canonical: SITE_CONFIG.baseUrl,
+        canonical: buildUrl('/'),
     },
     openGraph: {
         title: 'Aqsh Prisma | 16タイプ×エニアグラム 無料性格診断・自己分析',
         description: 'ソシオニクス診断とエニアグラムを組み合わせた無料の性格診断テスト。あなたの思考のクセ（16タイプ）と無意識の欲求（9タイプ）を可視化し、人間関係・恋愛・キャリアの悩みの根本原因を言語化します。',
-        url: SITE_CONFIG.baseUrl + '/',
+        url: buildUrl('/'),
         siteName: SITE_CONFIG.name,
         images: [
             {
@@ -66,7 +66,7 @@ export default function Home() {
             "@context": "https://schema.org",
             "@type": "WebSite",
             "name": "Aqsh Prisma",
-            "url": SITE_CONFIG.baseUrl,
+            "url": buildUrl('/'),
             "description": "ソシオニクス診断とエニアグラムを組み合わせた無料の性格診断テスト",
             "publisher": {
                 "@type": "Organization",

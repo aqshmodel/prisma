@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { ArrowLeft, Lock } from 'lucide-react';
-import { SITE_CONFIG, PUBLISHER_JSON_LD } from '@/lib/constants/site-config';
+import { PUBLISHER_JSON_LD, buildUrl } from '@/lib/constants/site-config';
 
 export const PrivacyPolicyPage = () => {
     const jsonLd = {
@@ -8,7 +8,7 @@ export const PrivacyPolicyPage = () => {
         '@type': 'WebPage',
         name: '個人情報・個人関連情報保護方針（プライバシーポリシー） | Aqsh Prisma',
         description: 'Aqsh Prismaにおける個人情報および個人関連情報（診断結果・行動履歴等）の取り扱い方針について説明します。',
-        url: `${SITE_CONFIG.baseUrl}/privacy`,
+        url: buildUrl('/privacy'),
         publisher: PUBLISHER_JSON_LD,
         breadcrumb: {
             '@type': 'BreadcrumbList',
@@ -17,13 +17,13 @@ export const PrivacyPolicyPage = () => {
                     '@type': 'ListItem',
                     position: 1,
                     name: 'TOP',
-                    item: SITE_CONFIG.baseUrl,
+                    item: buildUrl('/'),
                 },
                 {
                     '@type': 'ListItem',
                     position: 2,
                     name: 'プライバシーポリシー',
-                    item: `${SITE_CONFIG.baseUrl}/privacy`,
+                    item: buildUrl('/privacy'),
                 },
             ],
         },

@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { ArrowLeft, ShieldCheck } from 'lucide-react';
-import { SITE_CONFIG, PUBLISHER_JSON_LD } from '@/lib/constants/site-config';
+import { PUBLISHER_JSON_LD, buildUrl } from '@/lib/constants/site-config';
 
 export const TermsOfServicePage = () => {
     const jsonLd = {
@@ -8,7 +8,7 @@ export const TermsOfServicePage = () => {
         '@type': 'WebPage',
         name: '利用規約 | Aqsh Prisma',
         description: 'Aqsh Prismaが提供するアプリやサービスの利用条件、免責事項、権利帰属などを定めた利用規約です。',
-        url: `${SITE_CONFIG.baseUrl}/terms`,
+        url: buildUrl('/terms'),
         publisher: PUBLISHER_JSON_LD,
         breadcrumb: {
             '@type': 'BreadcrumbList',
@@ -17,13 +17,13 @@ export const TermsOfServicePage = () => {
                     '@type': 'ListItem',
                     position: 1,
                     name: 'TOP',
-                    item: SITE_CONFIG.baseUrl,
+                    item: buildUrl('/'),
                 },
                 {
                     '@type': 'ListItem',
                     position: 2,
                     name: '利用規約',
-                    item: `${SITE_CONFIG.baseUrl}/terms`,
+                    item: buildUrl('/terms'),
                 },
             ],
         },

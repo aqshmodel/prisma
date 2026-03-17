@@ -27,3 +27,17 @@ export const PUBLISHER_JSON_LD = {
         url: `${SITE_CONFIG.baseUrl}${SITE_CONFIG.logo}`,
     },
 };
+
+/**
+ * パスに末尾スラッシュを付けたフルURLを生成する。
+ * next.config.mjs の trailingSlash: true に合わせるため、
+ * canonical / sitemap / JSON-LD のURL生成は必ずこの関数を通すこと。
+ *
+ * @example
+ *   buildUrl('/articles/my-slug')  → 'https://prisma.aqsh.co.jp/articles/my-slug/'
+ *   buildUrl('/')                  → 'https://prisma.aqsh.co.jp/'
+ */
+export function buildUrl(path: string): string {
+    const normalized = path.endsWith('/') ? path : `${path}/`;
+    return `${SITE_CONFIG.baseUrl}${normalized}`;
+}

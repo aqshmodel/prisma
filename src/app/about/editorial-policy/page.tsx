@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { SITE_CONFIG } from '@/lib/constants/site-config';
+import { SITE_CONFIG, buildUrl } from '@/lib/constants/site-config';
 import { AboutEditorialPolicyPage } from '@/features/about/components/AboutEditorialPolicyPage';
 
 export const metadata: Metadata = {
@@ -10,7 +10,7 @@ export const metadata: Metadata = {
         title: '編集方針 | Aqsh Prisma',
         description: 'Aqsh Prismaのコンテンツ制作方針、情報ソースの基準、更新ポリシー、免責事項について説明します。',
         type: 'article',
-        url: `${SITE_CONFIG.baseUrl}/about/editorial-policy`,
+        url: buildUrl('/about/editorial-policy'),
         locale: 'ja_JP',
         siteName: SITE_CONFIG.name,
         images: [
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
         images: [`${SITE_CONFIG.baseUrl}${SITE_CONFIG.ogImage}`],
     },
     alternates: {
-        canonical: `${SITE_CONFIG.baseUrl}/about/editorial-policy`,
+        canonical: buildUrl('/about/editorial-policy'),
     },
 };
 

@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { OS_CONTENT } from '@/features/result/data/content-os';
 import { CompatibilityPage } from '@/features/compatibility/components/CompatibilityPage';
 import { getCompatibility, getPairConcreteTip } from '@/lib/constants/compatibility';
-import { SITE_CONFIG } from '@/lib/constants/site-config';
+import { buildUrl } from '@/lib/constants/site-config';
 import type { OSTypeCode } from '@/types/diagnosis';
 
 type Props = {
@@ -49,7 +49,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const tipEnd = pairTip.indexOf('。', 30);
     const tipSlice = tipEnd > 0 ? pairTip.slice(0, tipEnd + 1) : pairTip.slice(0, 60);
     const description = `${baseDesc}${tipSlice} ソシオニクス理論に基づく16タイプ相性診断。`;
-    const pageUrl = `${SITE_CONFIG.baseUrl}/types/${code}/compatibility/${target}`;
+    const pageUrl = buildUrl(`/types/${code}/compatibility/${target}`);
 
     return {
         title,
@@ -97,19 +97,19 @@ export default async function Page({ params }: Props) {
                     '@type': 'ListItem',
                     'position': 1,
                     'name': 'TOP',
-                    'item': SITE_CONFIG.baseUrl,
+                    'item': buildUrl('/'),
                 },
                 {
                     '@type': 'ListItem',
                     'position': 2,
                     'name': sourceData.name,
-                    'item': `${SITE_CONFIG.baseUrl}/types/${code}`,
+                    'item': buildUrl(`/types/${code}`),
                 },
                 {
                     '@type': 'ListItem',
                     'position': 3,
                     'name': `× ${targetData.name} の相性`,
-                    'item': `${SITE_CONFIG.baseUrl}/types/${code}/compatibility/${target}`,
+                    'item': buildUrl(`/types/${code}/compatibility/${target}`),
                 },
             ],
         },

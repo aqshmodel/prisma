@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { SITE_CONFIG } from '@/lib/constants/site-config';
+import { SITE_CONFIG, buildUrl } from '@/lib/constants/site-config';
 import { TermsOfServicePage } from '@/features/legal/components/TermsOfServicePage';
 
 export const metadata: Metadata = {
@@ -9,7 +9,7 @@ export const metadata: Metadata = {
         title: '利用規約 | Aqsh Prisma',
         description: 'Aqsh Prismaが提供するアプリやサービスの利用条件、免責事項、権利帰属などを定めた利用規約です。',
         type: 'website',
-        url: `${SITE_CONFIG.baseUrl}/terms`,
+        url: buildUrl('/terms'),
         locale: 'ja_JP',
         siteName: SITE_CONFIG.name,
         images: [
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
         images: [`${SITE_CONFIG.baseUrl}${SITE_CONFIG.ogImage}`],
     },
     alternates: {
-        canonical: `${SITE_CONFIG.baseUrl}/terms`,
+        canonical: buildUrl('/terms'),
     },
 };
 

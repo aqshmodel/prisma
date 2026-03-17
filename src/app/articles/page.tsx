@@ -3,7 +3,7 @@ import { getAllArticles } from '@/features/articles/utils/mdx';
 import { ArticleList } from '@/features/articles/components/ArticleList';
 import { ArticleFilter } from '@/features/articles/components/ArticleFilter';
 import { ArticlesPageLayout } from '@/features/articles/components/ArticlesPageLayout';
-import { SITE_CONFIG } from '@/lib/constants/site-config';
+import { buildUrl } from '@/lib/constants/site-config';
 import { ARTICLES_PER_PAGE } from '@/lib/constants/articles';
 
 /**
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     title: 'コラム一覧 | Aqsh Prisma - 16性格診断で才能と適職を見つける',
     description: '16性格診断（ソシオニクス）を活用した自己分析、チームビルディング、適職探しに役立つコラムや記事の一覧です。',
     alternates: {
-        canonical: SITE_CONFIG.baseUrl + '/articles',
+        canonical: buildUrl('/articles'),
     },
 };
 
@@ -35,7 +35,7 @@ export default function ArticlesPage() {
         "itemListElement": articles.map((article, index) => ({
             "@type": "ListItem",
             "position": index + 1,
-            "url": `${SITE_CONFIG.baseUrl}/articles/${article.slug}`
+            "url": buildUrl(`/articles/${article.slug}`)
         }))
     };
 
