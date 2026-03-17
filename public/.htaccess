@@ -1,5 +1,8 @@
 RewriteEngine On
 
+# 0. 旧スラッグ → 新スラッグへの301リダイレクト（記事リネーム対応）
+RewriteRule ^articles/understanding-socionics-matching/?$ /articles/socionics-compatibility-how-to-check/ [R=301,L]
+
 # 1. 拡張子 .html を強制的に除去してスラッシュ付きにリダイレクト
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^(.*)\.html$ /$1/ [R=301,L]
