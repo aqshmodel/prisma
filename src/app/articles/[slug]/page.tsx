@@ -6,6 +6,7 @@ import { getArticleBySlug, getArticleSlugs, getAllArticles } from '../../../feat
 import { ArrowLeft, Calendar, User, Tag, RefreshCw, Clock, ChevronRight, ArrowRight } from 'lucide-react';
 import { ShareButtons } from '../../../components/common/ShareButtons';
 import { DiagnosisCTA } from '@/features/articles/components/DiagnosisCTA';
+import { CompatibilityCTA } from '@/features/articles/components/CompatibilityCTA';
 import { AuthorBio } from '@/features/articles/components/AuthorBio';
 import { RelatedArticles } from '@/features/articles/components/RelatedArticles';
 import { TableOfContents } from '@/features/articles/components/TableOfContents';
@@ -294,6 +295,11 @@ export default async function ArticleDetailPage({ params }: { params: Promise<{ 
                             }}
                         />
                     </div>
+
+                    {/* 相性ページ導線CTA（キャリア系記事のみ） */}
+                    {metadata.category && /キャリア|働き方|仕事|職場/.test(metadata.category) && (
+                        <CompatibilityCTA />
+                    )}
 
                     {/* Article Footer & Share */}
                     <div className="mt-16 md:mt-24 text-center pt-8 border-t border-slate-200">
