@@ -1,6 +1,7 @@
 import type { MetadataRoute } from 'next';
 import { OS_CONTENT } from '@/features/result/data/content-os';
 import { getAllArticles } from '@/features/articles/utils/mdx';
+import { getGlossarySlugs } from '@/features/glossary/utils/glossary';
 import { buildUrl } from '@/lib/constants/site-config';
 
 export const dynamic = 'force-static';
@@ -58,6 +59,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
             changeFrequency: 'monthly',
             priority: 0.6,
         },
+        {
+            url: buildUrl('/glossary'),
+            lastModified: currentDate,
+            changeFrequency: 'weekly',
+            priority: 0.7,
+        },
     ];
 
     // Dynamic Routes (16 Types)
@@ -66,6 +73,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
         lastModified: currentDate,
         changeFrequency: 'monthly',
         priority: 0.7,
+    }));
+
+    // Dynamic Routes (Type Articles: 16 pages)
+    const typeArticleRoutes: MetadataRoute.Sitemap = Object.keys(OS_CONTENT).map((code) => ({
+        url: buildUrl(`/types/${code}/articles`),
+        lastModified: currentDate,
+        changeFrequency: 'weekly',
+        priority: 0.6,
     }));
 
     // Dynamic Routes (Compatibility: 16×15=240 pages)
@@ -85,11 +100,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
     const allArticles = getAllArticles();
     const articleRoutes: MetadataRoute.Sitemap = allArticles.map((article) => ({
         url: buildUrl(`/articles/${article.slug}`),
-        lastModified: new Date(article.updatedAt || article.date), // MDXの更新日（なければ投稿日）を使用（SEOベストプラクティス）
+        lastModified: new Date(article.updatedAt || article.date),
         changeFrequency: 'monthly',
         priority: 0.7,
     }));
 
-    return [...staticRoutes, ...typeRoutes, ...compatibilityRoutes, ...articleRoutes];
+    // Dynamic Routes (Glossary)
+    const glossarySlugs = getGlossarySlugs();
+    const glossaryRoutes: MetadataRoute.Sitemap = glossarySlugs.map((slug) => ({
+        url: buildUrl(`/glossary/${slug}`),
+        lastModified: currentDate,
+        changeFrequency: 'monthly',
+        priority: 0.5,
+    }));
+
+    return [...staticRoutes, ...typeRoutes, ...typeArticleRoutes, ...compatibilityRoutes, ...articleRoutes, ...glossaryRoutes];
 }
 

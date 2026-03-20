@@ -9,7 +9,8 @@ import {
     Briefcase,
     Users,
     CheckCircle2,
-    AlertTriangle
+    AlertTriangle,
+    BookOpen
 } from 'lucide-react';
 import { OS_CONTENT } from '@/features/result/data/content-os';
 import { Button } from '@/components/ui/Button';
@@ -176,6 +177,20 @@ export const TypeDetailPage: React.FC = () => {
                         </Card>
                     </section>
                 )}
+
+                {/* Related Articles Link */}
+                <section className="text-center">
+                    <Link
+                        href={`/types/${code}/articles`}
+                        className="inline-flex items-center gap-3 px-8 py-4 bg-white border-2 border-prisma-200 rounded-2xl text-prisma-700 font-bold hover:bg-prisma-50 hover:border-prisma-400 transition-all shadow-sm hover:shadow-md group"
+                    >
+                        <BookOpen size={20} />
+                        <span>
+                            {osData.name.split('(')[0].trim()}に関するコラムを読む
+                        </span>
+                        <span className="text-prisma-400 group-hover:translate-x-1 transition-transform">&rarr;</span>
+                    </Link>
+                </section>
 
                 {/* Relationships */}
                 <section>

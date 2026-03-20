@@ -34,6 +34,9 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
                         <Link href="/articles" className="text-slate-600 hover:text-prisma-600 transition-colors">
                             コラム
                         </Link>
+                        <Link href="/glossary" className="text-slate-600 hover:text-prisma-600 transition-colors">
+                            用語集
+                        </Link>
                     </nav>
                 </div>
             </header>
@@ -84,6 +87,7 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
                                 </button>
                                 <Link href="/#types" className="text-slate-400 hover:text-prisma-400 transition-colors">タイプ一覧</Link>
                                 <Link href="/articles" className="text-slate-400 hover:text-prisma-400 transition-colors">コラム一覧</Link>
+                                <Link href="/glossary" className="text-slate-400 hover:text-prisma-400 transition-colors">用語集</Link>
                             </div>
 
                             {/* About */}

@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { ArrowLeft, BookOpen } from 'lucide-react';
+import { ArrowLeft, BookOpen, ArrowRight, User } from 'lucide-react';
 import { OS_CONTENT } from '../../../../features/result/data/content-os';
 import { getAllArticles } from '../../../../features/articles/utils/mdx';
 import { toTypeLabel } from '@/lib/constants/type-mapping';
@@ -25,13 +25,35 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         return { title: 'タイプが見つかりません | Aqsh Prisma' };
     }
 
+    const title = `${data.name}（${typeLabel}）に関する記事一覧 | Aqsh Prisma`;
+    const description = `${data.name}（${typeLabel}）タイプの性格・仕事・恋愛・人間関係に関するコラム記事の一覧です。`;
+    const url = buildUrl(`/types/${code}/articles`);
+
     return {
-        title: `${data.name}（${typeLabel}）に関する記事一覧 | Aqsh Prisma`,
-        description: `${data.name}（${typeLabel}）タイプの性格・仕事・恋愛・人間関係に関するコラム記事の一覧です。`,
+        title,
+        description,
         alternates: {
-            canonical: buildUrl(`/types/${code}/articles`),
+            canonical: url,
+        },
+        openGraph: {
+            title,
+            description,
+            url,
+        },
+        twitter: {
+            card: 'summary',
+            title,
+            description,
         },
     };
+}
+
+/** descriptionの先頭2文を抽出する */
+function extractDescriptionSummary(description: string): string {
+    const cleaned = description.replace(/\*\*/g, '').replace(/\n/g, ' ').trim();
+    const sentences = cleaned.match(/[^。]+。/g);
+    if (!sentences) return cleaned.slice(0, 120) + '…';
+    return sentences.slice(0, 2).join('');
 }
 
 export default async function TypeArticlesPage({ params }: Props) {
@@ -45,6 +67,7 @@ export default async function TypeArticlesPage({ params }: Props) {
 
     const allArticles = getAllArticles();
     const matchedArticles = filterArticlesByType(allArticles, typeLabel);
+    const descriptionSummary = extractDescriptionSummary(data.description);
 
     return (
         <div className="min-h-screen bg-slate-50 pb-20">
@@ -70,6 +93,25 @@ export default async function TypeArticlesPage({ params }: Props) {
                     <h1 className="text-3xl md:text-4xl font-bold text-slate-900 leading-tight mb-4">
                         {data.name}に関する記事
                     </h1>
+
+                    {/* タイプ概要セクション */}
+                    <div className="max-w-2xl mx-auto mt-6 mb-6">
+                        <p className="text-base text-prisma-700 font-medium italic mb-3">
+                            &ldquo;{data.catchphrase}&rdquo;
+                        </p>
+                        <p className="text-sm text-slate-500 leading-relaxed mb-4">
+                            {descriptionSummary}
+                        </p>
+                        <Link
+                            href={`/types/${code}`}
+                            className="inline-flex items-center gap-1.5 text-sm font-medium text-prisma-600 hover:text-prisma-700 transition-colors"
+                        >
+                            <User size={14} />
+                            {data.name}の詳細を見る
+                            <ArrowRight size={14} />
+                        </Link>
+                    </div>
+
                     <p className="text-lg text-slate-600">
                         {matchedArticles.length > 0
                             ? `${matchedArticles.length}件の記事が見つかりました`
@@ -97,14 +139,23 @@ export default async function TypeArticlesPage({ params }: Props) {
                     </div>
                 ) : (
                     <div className="text-center py-16">
-                        <p className="text-slate-500 mb-6">このタイプの記事は現在準備中です。</p>
-                        <Link
-                            href="/articles"
-                            className="inline-flex items-center gap-2 px-6 py-3 bg-prisma-500 text-white font-medium rounded-xl hover:bg-prisma-600 transition-colors"
-                        >
-                            <BookOpen size={16} />
-                            全記事一覧を見る
-                        </Link>
+                        <p className="text-slate-500 mb-8">このタイプに特化した記事を現在執筆準備中です。</p>
+                        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                            <Link
+                                href={`/types/${code}`}
+                                className="inline-flex items-center gap-2 px-6 py-3 bg-white border border-prisma-300 text-prisma-600 font-medium rounded-xl hover:bg-prisma-50 transition-colors"
+                            >
+                                <User size={16} />
+                                {data.name}の詳細を見る
+                            </Link>
+                            <Link
+                                href="/articles"
+                                className="inline-flex items-center gap-2 px-6 py-3 bg-prisma-500 text-white font-medium rounded-xl hover:bg-prisma-600 transition-colors"
+                            >
+                                <BookOpen size={16} />
+                                全記事一覧を見る
+                            </Link>
+                        </div>
                     </div>
                 )}
             </div>
