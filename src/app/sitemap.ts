@@ -114,6 +114,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
         priority: 0.5,
     }));
 
-    return [...staticRoutes, ...typeRoutes, ...typeArticleRoutes, ...compatibilityRoutes, ...articleRoutes, ...glossaryRoutes];
+    // Dynamic Routes (Share Result: 16 pages)
+    const shareResultRoutes: MetadataRoute.Sitemap = Object.keys(OS_CONTENT).map((code) => ({
+        url: buildUrl(`/result/share/${code}`),
+        lastModified: currentDate,
+        changeFrequency: 'monthly',
+        priority: 0.3,
+    }));
+
+    return [...staticRoutes, ...typeRoutes, ...typeArticleRoutes, ...compatibilityRoutes, ...articleRoutes, ...glossaryRoutes, ...shareResultRoutes];
 }
 

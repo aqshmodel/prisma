@@ -9,7 +9,8 @@ import {
     Briefcase,
     TrendingUp,
     RotateCcw,
-    Download
+    Download,
+    Share2
 } from 'lucide-react';
 
 import { FormattedText } from '@/components/ui/FormattedText';
@@ -26,7 +27,7 @@ import { RelatedArticlesForResult } from './RelatedArticlesForResult';
 import { ResultCompatibilityCTA } from './ResultCompatibilityCTA';
 import { resolveColor } from '@/lib/constants/color-map';
 import { SITE_CONFIG } from '@/lib/constants/site-config';
-import { encodeResult, decodeResult, buildSharedResult } from '@/lib/utils/share-result';
+import { decodeResult, buildSharedResult } from '@/lib/utils/share-result';
 
 // Tab Components (lazy loading for code splitting)
 const OverviewTab = lazy(() => import('./tabs/OverviewTab').then(m => ({ default: m.OverviewTab })));
@@ -221,6 +222,36 @@ export const ResultPage: React.FC = () => {
                         </div>
                     </div>
                 </div>
+
+                    {/* Hero直下のシェアボタン */}
+                    <div className="flex items-center justify-center gap-3 mt-6">
+                        <button
+                            onClick={() => {
+                                const shareUrl = `${SITE_CONFIG.baseUrl}/result/share/${result.os.code}`;
+                                const text = `私の基本タイプは「${osData.name}」でした！あなたのタイプも診断してみませんか？`;
+                                window.open(
+                                    `https://twitter.com/intent/tweet?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(text)}&hashtags=16性格診断,性格診断,自己分析`,
+                                    '_blank'
+                                );
+                            }}
+                            className="inline-flex items-center gap-1.5 px-4 py-2 bg-black/80 text-white text-xs font-medium rounded-full hover:bg-black transition-colors"
+                        >
+                            <Share2 size={13} />
+                            Xでシェア
+                        </button>
+                        <button
+                            onClick={() => {
+                                const shareUrl = `${SITE_CONFIG.baseUrl}/result/share/${result.os.code}`;
+                                window.open(
+                                    `https://social-plugins.line.me/lineit/share?url=${encodeURIComponent(shareUrl)}`,
+                                    '_blank'
+                                );
+                            }}
+                            className="inline-flex items-center gap-1.5 px-4 py-2 bg-[#06C755] text-white text-xs font-medium rounded-full hover:bg-[#05b34c] transition-colors"
+                        >
+                            LINE
+                        </button>
+                    </div>
             </div>
 
             {/* Tab Navigation */}
@@ -308,7 +339,7 @@ export const ResultPage: React.FC = () => {
                     </p>
 
                     <ShareButtons
-                        url={`${SITE_CONFIG.baseUrl}/result?r=${encodeResult(result)}`}
+                        url={`${SITE_CONFIG.baseUrl}/result/share/${result.os.code}`}
                         title={`【16性格診断】私の基本タイプは『${osData.name}』でした！`}
                         text={`私の基本タイプは「${osData.name}」でした！あなたのタイプも診断してみませんか？`}
                         hashtags={['16性格診断', '性格診断', '自己分析']}
