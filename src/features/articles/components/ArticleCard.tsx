@@ -26,7 +26,7 @@ export const ArticleCardLarge: React.FC<ArticleCardBaseProps> = ({
         href={`/articles/${slug}`}
         className="group bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden hover:shadow-md transition-all flex flex-col"
     >
-        <div className="h-48 bg-slate-200 relative overflow-hidden">
+        <div className="h-48 md:h-64 bg-slate-200 relative overflow-hidden">
             {coverImage ? (
                 <Image
                     src={coverImage}

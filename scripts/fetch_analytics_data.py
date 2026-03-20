@@ -155,6 +155,40 @@ def fetch_ga4_sources(token):
         return None
 
 
+def fetch_ga4_source_detail(token):
+    """sessionSource × sessionMedium で取得（X/Twitter等の個別ソース判別用）"""
+    body = {
+        "dateRanges": [{"startDate": "30daysAgo", "endDate": "yesterday"}],
+        "dimensions": [{"name": "sessionSource"}, {"name": "sessionMedium"}],
+        "metrics": [
+            {"name": "activeUsers"}, {"name": "sessions"},
+            {"name": "screenPageViews"}, {"name": "userEngagementDuration"},
+        ],
+        "orderBys": [{"metric": {"metricName": "sessions"}, "desc": True}],
+        "limit": 50
+    }
+    try:
+        result = ga4_request(token, body)
+        data = []
+        for row in result.get("rows", []):
+            dims = [d["value"] for d in row.get("dimensionValues", [])]
+            vals = [v["value"] for v in row.get("metricValues", [])]
+            users = int(vals[0])
+            engagement_sec = float(vals[3])
+            data.append({
+                "source": dims[0],
+                "medium": dims[1],
+                "active_users": users,
+                "sessions": int(vals[1]),
+                "page_views": int(vals[2]),
+                "avg_engagement_sec": round(engagement_sec / users, 1) if users > 0 else 0,
+            })
+        return data
+    except Exception as e:
+        print(f"  Error (source_detail): {e}")
+        return None
+
+
 # ── GSC ──────────────────────────────────────────────────
 def build_gsc_service():
     if not CREDENTIALS_PATH or not os.path.exists(CREDENTIALS_PATH):
@@ -192,7 +226,7 @@ def fmt_sec(sec):
     return f"{m}分{s:02d}秒"
 
 
-def save_ga4_markdown(summary, pages, sources, out_dir):
+def save_ga4_markdown(summary, pages, sources, out_dir, source_detail=None):
     md = os.path.join(out_dir, "ga4_summary.md")
     with open(md, "w", encoding="utf-8") as f:
         f.write(f"# GA4 Analytics Summary ({datetime.now().strftime('%Y-%m')})\n")
@@ -213,6 +247,21 @@ def save_ga4_markdown(summary, pages, sources, out_dir):
             f.write("## 流入経路\n\n| チャネル | ユーザー | セッション | PV | 平均エンゲージメント |\n|---|---|---|---|---|\n")
             for r in sources:
                 f.write(f"| {r['channel']} | {r['active_users']} | {r['sessions']} | {r['page_views']} | {fmt_sec(r['avg_engagement_sec'])} |\n")
+            f.write("\n")
+
+        if source_detail:
+            f.write("## ソース別（詳細）\n\n| Source | Medium | ユーザー | セッション | PV | 平均エンゲージメント |\n|---|---|---|---|---|---|\n")
+            for r in source_detail:
+                f.write(f"| {r['source']} | {r['medium']} | {r['active_users']} | {r['sessions']} | {r['page_views']} | {fmt_sec(r['avg_engagement_sec'])} |\n")
+            # X(Twitter) ハイライト
+            x_sources = [r for r in source_detail if r['source'] in ('t.co', 'twitter.com', 'x.com')]
+            if x_sources:
+                total_x_users = sum(r['active_users'] for r in x_sources)
+                total_x_sessions = sum(r['sessions'] for r in x_sources)
+                total_x_pv = sum(r['page_views'] for r in x_sources)
+                f.write(f"\n> **X(Twitter) 合計**: {total_x_users}ユーザー / {total_x_sessions}セッション / {total_x_pv} PV\n")
+            else:
+                f.write("\n> **X(Twitter) 経由**: 該当なし（t.co / x.com / twitter.com のソースが検出されませんでした）\n")
             f.write("\n")
 
         if pages:
@@ -270,7 +319,18 @@ def main():
             json.dump(ga4_sources, f, indent=2, ensure_ascii=False)
         print(f"  {len(ga4_sources)} channels fetched")
 
-    save_ga4_markdown(ga4_summary, ga4_pages, ga4_sources, out_dir)
+    ga4_source_detail = fetch_ga4_source_detail(token)
+    if ga4_source_detail:
+        with open(os.path.join(out_dir, "ga4_source_detail_raw.json"), "w", encoding="utf-8") as f:
+            json.dump(ga4_source_detail, f, indent=2, ensure_ascii=False)
+        x_sources = [r for r in ga4_source_detail if r['source'] in ('t.co', 'twitter.com', 'x.com')]
+        if x_sources:
+            total_x = sum(r['active_users'] for r in x_sources)
+            print(f"  {len(ga4_source_detail)} sources fetched (X/Twitter: {total_x} users)")
+        else:
+            print(f"  {len(ga4_source_detail)} sources fetched (X/Twitter: not detected)")
+
+    save_ga4_markdown(ga4_summary, ga4_pages, ga4_sources, out_dir, ga4_source_detail)
 
     # ── GSC ──
     print("\n[GSC] Fetching data...")
