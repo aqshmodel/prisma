@@ -5,15 +5,19 @@ import { Microscope, CheckCircle2, AlertTriangle, Sparkles, Lightbulb, Smile, Sh
 import { Card } from '@/components/ui/Card';
 import { FormattedText } from '@/components/ui/FormattedText';
 import type { OSContent } from '../../data/content-os';
+import type { EngineContent } from '../../data/content-engine';
 import type { BiasContent } from '../../data/content-bias';
+import { VerbalHabitsSection } from '../VerbalHabitsSection';
+import { StressManualSection } from '../StressManualSection';
 
 interface AnalysisTabProps {
     osData: OSContent;
+    engineData: EngineContent;
     themeColor: string;
     biasRisks: (BiasContent & { level: string })[];
 }
 
-export const AnalysisTab: React.FC<AnalysisTabProps> = ({ osData, themeColor, biasRisks }) => {
+export const AnalysisTab: React.FC<AnalysisTabProps> = ({ osData, engineData, themeColor, biasRisks }) => {
     const highCount = biasRisks.filter(b => b.level === 'high').length;
     const mediumCount = biasRisks.filter(b => b.level === 'medium').length;
 
@@ -67,6 +71,9 @@ export const AnalysisTab: React.FC<AnalysisTabProps> = ({ osData, themeColor, bi
                 </Card>
             )}
 
+            {/* 口ぐせ・思考パターン */}
+            <VerbalHabitsSection osData={osData} />
+
             {osData.psychology && (
                 <Card className="p-6">
                     <h3 className="text-lg font-bold text-slate-800 mb-4 flex items-center gap-2">
@@ -74,7 +81,7 @@ export const AnalysisTab: React.FC<AnalysisTabProps> = ({ osData, themeColor, bi
                         深層心理
                     </h3>
                     <div className="space-y-4">
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                             <div className="bg-slate-50 p-4 rounded-lg">
                                 <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">根源的欲求</h4>
                                 <p className="font-medium text-slate-800">
@@ -87,22 +94,19 @@ export const AnalysisTab: React.FC<AnalysisTabProps> = ({ osData, themeColor, bi
                                     <FormattedText text={osData.psychology.blindSpot} />
                                 </p>
                             </div>
-                        </div>
-                        <div className="bg-red-50 p-4 rounded-lg border border-red-100">
-                            <h4 className="font-bold text-red-800 mb-2 text-sm">ストレス反応</h4>
-                            <p className="text-sm text-red-900 leading-relaxed">
-                                <FormattedText text={osData.psychology.stressResponse} />
-                            </p>
-                        </div>
-                        <div className="bg-emerald-50 p-4 rounded-lg border border-emerald-100">
-                            <h4 className="font-bold text-emerald-800 mb-2 text-sm">回復方法</h4>
-                            <p className="text-sm text-emerald-900 leading-relaxed">
-                                <FormattedText text={osData.psychology.recoveryMethod} />
-                            </p>
+                            <div className="bg-indigo-50 p-4 rounded-lg">
+                                <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">フロー状態</h4>
+                                <p className="font-medium text-slate-800">
+                                    <FormattedText text={osData.psychology.flowState} />
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </Card>
             )}
+
+            {/* ストレス取扱マニュアル（OS + Engine 統合） */}
+            <StressManualSection osData={osData} engineData={engineData} />
 
             {/* バイアス検出セクション（強化版） */}
             {biasRisks.length > 0 && (

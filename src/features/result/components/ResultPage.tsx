@@ -294,6 +294,7 @@ export const ResultPage: React.FC = () => {
                         {activeTab === 'analysis' && (
                             <AnalysisTab
                                 osData={osData}
+                                engineData={engineData}
                                 themeColor={themeColor}
                                 biasRisks={biasRisks}
                             />
@@ -307,7 +308,7 @@ export const ResultPage: React.FC = () => {
                         )}
 
                         {activeTab === 'relations' && (
-                            <RelationsTab osData={osData} />
+                            <RelationsTab osData={osData} engineData={engineData} />
                         )}
 
                         {activeTab === 'growth' && (

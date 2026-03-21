@@ -74,4 +74,11 @@ export interface OSContent {
     psychology: Psychology;
     relationships: Relationships;
     growth: GrowthRoadmap;
+
+    // Phase: Result Page Enhancement
+    verbalHabits?: {
+        phrases: string[];       // よく言う口ぐせ（5つ）
+        innerVoice: string[];    // 心の中のつぶやき（3つ）
+        triggerWords: string[];  // 言われるとイラッとする一言（3つ）
+    };
 }

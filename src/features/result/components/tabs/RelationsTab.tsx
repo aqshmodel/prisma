@@ -7,12 +7,16 @@ import { Card } from '@/components/ui/Card';
 import { FormattedText } from '@/components/ui/FormattedText';
 import { OS_CONTENT } from '../../data/content-os';
 import type { OSContent } from '../../data/content-os';
+import type { EngineContent } from '../../data/content-engine';
+import { LoveStyleSection } from '../LoveStyleSection';
+import { CompatibilityScoreTable } from '../CompatibilityScoreTable';
 
 interface RelationsTabProps {
     osData: OSContent;
+    engineData: EngineContent;
 }
 
-export const RelationsTab: React.FC<RelationsTabProps> = ({ osData }) => {
+export const RelationsTab: React.FC<RelationsTabProps> = ({ osData, engineData }) => {
     const bestMatchOs = OS_CONTENT[osData.bestMatch];
     const worstMatchOs = OS_CONTENT[osData.worstMatch];
 
@@ -25,23 +29,6 @@ export const RelationsTab: React.FC<RelationsTabProps> = ({ osData }) => {
                     <Heart size={20} className="text-pink-500" />
                     人間関係とコミュニケーション
                 </h3>
-
-                {osData.relationships && (
-                    <div className="grid md:grid-cols-2 gap-4 mb-6">
-                        <div className="bg-pink-50 rounded-xl p-4 border border-pink-100">
-                            <h4 className="text-sm font-bold text-pink-800 mb-2">求めるパートナー像</h4>
-                            <p className="text-sm text-slate-700 leading-relaxed">
-                                <FormattedText text={osData.relationships.partnerQuality} />
-                            </p>
-                        </div>
-                        <div className="bg-slate-50 rounded-xl p-4 border border-slate-200">
-                            <h4 className="text-sm font-bold text-slate-700 mb-2">対立のトリガー</h4>
-                            <p className="text-sm text-slate-600 leading-relaxed">
-                                <FormattedText text={osData.relationships.conflictTrigger} />
-                            </p>
-                        </div>
-                    </div>
-                )}
 
                 <div className="space-y-4">
                     <h4 className="font-bold text-slate-700">周囲への取扱説明書</h4>
@@ -76,6 +63,12 @@ export const RelationsTab: React.FC<RelationsTabProps> = ({ osData }) => {
                     </div>
                 </div>
             </Card>
+
+            {/* 恋愛の傾向（OS + Engine 統合） */}
+            <LoveStyleSection osData={osData} engineData={engineData} />
+
+            {/* 相性スコア一覧 */}
+            <CompatibilityScoreTable typeCode={osData.code} />
 
             {/* 相性チェックへの導線 */}
             <Card className="p-6">
