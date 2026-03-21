@@ -1,9 +1,11 @@
 
 import React from 'react';
+import Link from 'next/link';
 
-import { Heart, ThumbsUp, ThumbsDown } from 'lucide-react';
+import { Heart, ThumbsUp, ThumbsDown, ArrowRight } from 'lucide-react';
 import { Card } from '@/components/ui/Card';
 import { FormattedText } from '@/components/ui/FormattedText';
+import { OS_CONTENT } from '../../data/content-os';
 import type { OSContent } from '../../data/content-os';
 
 interface RelationsTabProps {
@@ -11,6 +13,9 @@ interface RelationsTabProps {
 }
 
 export const RelationsTab: React.FC<RelationsTabProps> = ({ osData }) => {
+    const bestMatchOs = OS_CONTENT[osData.bestMatch];
+    const worstMatchOs = OS_CONTENT[osData.worstMatch];
+
     return (
         <div
             className="space-y-6"
@@ -43,7 +48,7 @@ export const RelationsTab: React.FC<RelationsTabProps> = ({ osData }) => {
                     <div className="bg-cyan-50 border border-cyan-100 rounded-xl p-5">
                         <h5 className="flex items-center gap-2 font-bold text-cyan-800 mb-3 text-sm">
                             <ThumbsUp size={16} />
-                            効果的な接し方 (DOs)
+                            効果的な接し方
                         </h5>
                         <ul className="space-y-2">
                             {osData.doCommunication.map((item) => (
@@ -58,7 +63,7 @@ export const RelationsTab: React.FC<RelationsTabProps> = ({ osData }) => {
                     <div className="bg-rose-50 border border-rose-100 rounded-xl p-5">
                         <h5 className="flex items-center gap-2 font-bold text-rose-800 mb-3 text-sm">
                             <ThumbsDown size={16} />
-                            避けるべき接し方 (DON'Ts)
+                            避けるべき接し方
                         </h5>
                         <ul className="space-y-2">
                             {osData.dontCommunication.map((item) => (
@@ -69,6 +74,45 @@ export const RelationsTab: React.FC<RelationsTabProps> = ({ osData }) => {
                             ))}
                         </ul>
                     </div>
+                </div>
+            </Card>
+
+            {/* 相性チェックへの導線 */}
+            <Card className="p-6">
+                <h3 className="text-lg font-bold text-slate-800 mb-4">相性をもっと詳しく</h3>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    {bestMatchOs && (
+                        <Link
+                            href={`/types/${osData.code}/compatibility/${osData.bestMatch}`}
+                            className="group flex items-center justify-between p-4 bg-prisma-50/50 rounded-xl border border-prisma-100 hover:border-prisma-300 transition-colors"
+                        >
+                            <div>
+                                <p className="text-xs font-bold text-prisma-600 mb-0.5">最高の相性</p>
+                                <p className="text-sm font-bold text-slate-800">{bestMatchOs.name}</p>
+                            </div>
+                            <ArrowRight size={16} className="text-prisma-400 group-hover:translate-x-1 transition-transform" />
+                        </Link>
+                    )}
+                    {worstMatchOs && (
+                        <Link
+                            href={`/types/${osData.code}/compatibility/${osData.worstMatch}`}
+                            className="group flex items-center justify-between p-4 bg-slate-50 rounded-xl border border-slate-200 hover:border-slate-300 transition-colors"
+                        >
+                            <div>
+                                <p className="text-xs font-bold text-slate-500 mb-0.5">要注意の相手</p>
+                                <p className="text-sm font-bold text-slate-800">{worstMatchOs.name}</p>
+                            </div>
+                            <ArrowRight size={16} className="text-slate-400 group-hover:translate-x-1 transition-transform" />
+                        </Link>
+                    )}
+                </div>
+                <div className="mt-4 text-center">
+                    <Link
+                        href={`/types/${osData.code}`}
+                        className="inline-flex items-center gap-1.5 text-sm font-bold text-prisma-600 hover:text-prisma-800 transition-colors"
+                    >
+                        全16タイプとの相性を見る <ArrowRight size={14} />
+                    </Link>
                 </div>
             </Card>
         </div>

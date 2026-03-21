@@ -50,6 +50,8 @@ export interface OSContent {
     code: OSTypeCode;
     name: string;
     catchphrase: string;
+    hashTag?: string;           // ハッシュタグ的キャッチコピー (例: "#知のトリックスター")
+    aruaru?: string[];          // あるあるリスト (5〜7個)
     description: string;      // 総合的な解説
     strength: string;         // 強み
     weakness: string;         // 弱み

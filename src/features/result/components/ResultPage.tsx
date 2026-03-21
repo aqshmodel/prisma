@@ -193,8 +193,8 @@ export const ResultPage: React.FC = () => {
             <div className="relative z-10 pt-20 pb-12 px-4 text-center animate-fade-in-up">
                 <div className="flex flex-col items-center">
                     <div className="inline-block mb-6 relative">
-                        <span className="relative z-10 px-4 py-1 text-xs font-serif tracking-[0.2em] uppercase text-prisma-800 border-b border-prisma-300">
-                            Diagnostics Result
+                        <span className="relative z-10 px-4 py-1 text-xs font-serif tracking-[0.2em] text-prisma-800 border-b border-prisma-300">
+                            あなたの診断結果
                         </span>
                     </div>
 
@@ -205,7 +205,6 @@ export const ResultPage: React.FC = () => {
                             {osData.name.split('(')[0].trim()}
                         </h1>
                         <div className="flex items-baseline gap-3 mt-2">
-                            <span className="text-sm font-serif italic text-slate-500 tracking-wider">Type</span>
                             <span className="text-3xl sm:text-4xl font-serif text-prisma-600 tracking-widest opacity-90">
                                 {osData.code}
                             </span>
@@ -213,11 +212,7 @@ export const ResultPage: React.FC = () => {
                     </div>
 
                     <div className="max-w-2xl mx-auto relative px-8 py-6">
-                        {/* Decorative Quotes */}
-                        <span className="absolute top-0 left-0 text-6xl text-prisma-200 font-serif leading-none opacity-50">“</span>
-                        <span className="absolute bottom-0 right-0 text-6xl text-prisma-200 font-serif leading-none opacity-50 rotate-180">“</span>
-
-                        <div className="text-lg sm:text-xl text-slate-700 font-medium opacity-90 leading-[2.2] font-serif tracking-wide">
+                        <div className="text-lg sm:text-xl text-slate-700 font-medium opacity-90 leading-[2.2] font-serif tracking-wide break-keep">
                             <FormattedText text={osData.catchphrase} />
                         </div>
                     </div>
@@ -293,7 +288,6 @@ export const ResultPage: React.FC = () => {
                             <OverviewTab
                                 osData={osData}
                                 engineData={engineData}
-                                themeColor={themeColor}
                             />
                         )}
 

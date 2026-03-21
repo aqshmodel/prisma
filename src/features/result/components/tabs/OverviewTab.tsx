@@ -2,12 +2,13 @@
 
 import React from 'react';
 
-import { Zap, LayoutDashboard } from 'lucide-react';
+import { Zap, LayoutDashboard, Blend } from 'lucide-react';
 import { OS_CONTENT } from '@/features/result/data/content-os';
 import { Card } from '@/components/ui/Card';
 import { FormattedText } from '@/components/ui/FormattedText';
 import { RadarChart } from '../RadarChart';
 import { MatrixChart } from '../MatrixChart';
+import { CROSS_CONTENT, getCrossKey } from '../../data/cross';
 import type { OSContent } from '../../data/content-os';
 import type { EngineContent } from '../../data/content-engine';
 
@@ -15,15 +16,17 @@ import type { EngineContent } from '../../data/content-engine';
 interface OverviewTabProps {
     osData: OSContent;
     engineData: EngineContent;
-    themeColor: string;
 }
 
-export const OverviewTab: React.FC<OverviewTabProps> = ({ osData, engineData, themeColor }) => {
+export const OverviewTab: React.FC<OverviewTabProps> = ({ osData, engineData }) => {
+    const crossKey = getCrossKey(osData.code, engineData.type);
+    const crossData = CROSS_CONTENT[crossKey];
+
     return (
         <div
             className="space-y-6"
         >
-            <Card className="p-6 shadow-lg border-t-4" style={{ borderTopColor: themeColor }}>
+            <Card className="p-6 shadow-lg">
                 <div className="grid md:grid-cols-2 gap-8 items-center">
                     <div className="flex justify-center">
                         <RadarChart data={osData.params} color={osData.color} />
@@ -31,7 +34,7 @@ export const OverviewTab: React.FC<OverviewTabProps> = ({ osData, engineData, th
                     <div className="space-y-6">
                         <div>
                             <div className="flex items-center justify-between mb-2">
-                                <h3 className="text-sm font-semibold text-slate-400 uppercase tracking-wider">Primary Engine</h3>
+                                <h3 className="text-sm font-semibold text-slate-400 tracking-wider">駆動エンジン</h3>
                             </div>
                             <p className="text-3xl font-bold text-slate-800 flex items-center gap-3">
                                 <span className={`p-2 rounded-lg bg-yellow-100/50 text-yellow-600`}>
@@ -63,7 +66,7 @@ export const OverviewTab: React.FC<OverviewTabProps> = ({ osData, engineData, th
                         </div>
 
                         <div className="pt-6 border-t border-slate-100">
-                            <h3 className="text-sm font-semibold text-slate-400 uppercase tracking-wider mb-2">Basic Type</h3>
+                            <h3 className="text-sm font-semibold text-slate-400 tracking-wider mb-2">基本タイプ</h3>
                             <div className="flex items-baseline gap-2">
                                 <p className="text-2xl font-bold text-slate-800">
                                     {osData.name.split('(')[0].trim()}
@@ -82,6 +85,30 @@ export const OverviewTab: React.FC<OverviewTabProps> = ({ osData, engineData, th
                     </div>
                 </div>
             </Card>
+
+            {/* ハッシュタグ + 掛け合わせ解説 */}
+            {crossData && (
+                <Card className="p-6">
+                    <h3 className="text-lg font-bold text-slate-800 mb-4 flex items-center gap-2">
+                        <Blend size={20} className="text-prisma-500" />
+                        あなただけの組み合わせ
+                    </h3>
+                    {osData.hashTag && (
+                        <p className="text-prisma-600 font-bold text-sm mb-3">{osData.hashTag}</p>
+                    )}
+                    <div className="bg-prisma-50/50 border border-prisma-100 rounded-xl p-5">
+                        <p className="text-xl font-bold text-slate-800 mb-3">
+                            {crossData.title}
+                        </p>
+                        <p className="text-sm text-slate-600 leading-relaxed">
+                            {crossData.description}
+                        </p>
+                    </div>
+                    <p className="text-xs text-slate-400 mt-3">
+                        {osData.name} × {engineData.name} の組み合わせ解説
+                    </p>
+                </Card>
+            )}
 
             <Card className="p-6">
                 <h3 className="text-lg font-bold text-slate-800 mb-4 flex items-center gap-2">

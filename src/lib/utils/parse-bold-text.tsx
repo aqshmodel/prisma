@@ -21,7 +21,7 @@ export const parseBoldText = (text: string | undefined | null): React.ReactNode 
             return (
                 <span
                     key={`bold-${index}`}
-                    className="bg-prisma-100 text-prisma-900 px-1.5 py-0.5 rounded font-bold mx-0.5"
+                    className="font-bold text-slate-900 underline decoration-prisma-300 decoration-2 underline-offset-2"
                 >
                     {part.slice(2, -2)}
                 </span>

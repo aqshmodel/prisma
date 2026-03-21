@@ -33,7 +33,7 @@ export const ResultCompatibilityCTA: React.FC<ResultCompatibilityCTAProps> = ({ 
             <div className="text-center mb-6">
                 <div className="inline-flex items-center gap-2 bg-prisma-100 text-prisma-700 px-4 py-1.5 rounded-full text-xs font-bold tracking-widest mb-4">
                     <Sparkles size={14} />
-                    SPECIAL COMPATIBILITY
+                    特別な相性
                 </div>
                 <h2 className="text-2xl font-bold text-slate-800 font-serif">特別な相性のパートナー</h2>
                 <p className="text-sm text-slate-500 mt-2">
@@ -45,22 +45,16 @@ export const ResultCompatibilityCTA: React.FC<ResultCompatibilityCTAProps> = ({ 
                 {/* Best Match */}
                 <Link
                     href={`/types/${typeCode}/compatibility/${bestMatchRel.targetCode}`}
-                    className="group relative bg-white rounded-2xl border border-slate-200 overflow-hidden hover:shadow-md hover:border-slate-300 transition-all duration-300 p-6 flex flex-col"
+                    className="group bg-white rounded-2xl border border-slate-200 overflow-hidden hover:border-prisma-300 transition-all duration-300 p-6 flex flex-col"
                 >
-                    {/* 背景グラデーション装飾 */}
-                    <div
-                        className="absolute -top-20 -right-20 w-48 h-48 opacity-[0.08] blur-3xl rounded-full transition-opacity group-hover:opacity-20"
-                        style={{ backgroundColor: bestColor }}
-                    />
-
-                    <div className="relative z-10 flex-grow">
+                    <div className="flex-grow">
                         <div className="flex items-center gap-2 mb-3">
                             <span
                                 className="text-xs font-bold px-2.5 py-1 rounded-full flex items-center gap-1"
                                 style={{ backgroundColor: `${bestColor}15`, color: bestColor }}
                             >
                                 <Sparkles size={12} />
-                                Best Match (双対関係)
+                                最高の相性（双対関係）
                             </span>
                             <div className="flex gap-0.5">
                                 {Array.from({ length: 5 }).map((_, i) => (
@@ -69,7 +63,7 @@ export const ResultCompatibilityCTA: React.FC<ResultCompatibilityCTAProps> = ({ 
                             </div>
                         </div>
 
-                        <h3 className="text-xl font-bold text-slate-800 mb-1 group-hover:text-prisma-700 transition-colors">
+                        <h3 className="text-xl font-bold text-slate-800 mb-1">
                             {bestMatchOs.name}
                         </h3>
                         <p className="text-sm text-slate-600 mb-6 line-clamp-2">
@@ -78,7 +72,7 @@ export const ResultCompatibilityCTA: React.FC<ResultCompatibilityCTAProps> = ({ 
                     </div>
 
                     <div
-                        className="relative z-10 flex items-center gap-1.5 text-sm font-bold transition-all group-hover:gap-2 mt-auto"
+                        className="flex items-center gap-1.5 text-sm font-bold transition-all group-hover:gap-2.5 mt-auto"
                         style={{ color: bestColor }}
                     >
                         最高の相性を見る <ArrowRight size={16} />
@@ -88,26 +82,20 @@ export const ResultCompatibilityCTA: React.FC<ResultCompatibilityCTAProps> = ({ 
                 {/* Challenge Match */}
                 <Link
                     href={`/types/${typeCode}/compatibility/${challengeMatchRel.targetCode}`}
-                    className="group relative bg-white rounded-2xl border border-slate-200 overflow-hidden hover:shadow-md hover:border-slate-300 transition-all duration-300 p-6 flex flex-col"
+                    className="group bg-white rounded-2xl border border-slate-200 overflow-hidden hover:border-prisma-300 transition-all duration-300 p-6 flex flex-col"
                 >
-                    {/* 背景グラデーション装飾 */}
-                    <div
-                        className="absolute -top-20 -right-20 w-48 h-48 opacity-[0.08] blur-3xl rounded-full transition-opacity group-hover:opacity-20"
-                        style={{ backgroundColor: challengeColor }}
-                    />
-
-                    <div className="relative z-10 flex-grow">
+                    <div className="flex-grow">
                         <div className="flex items-center gap-2 mb-3">
                             <span
                                 className="text-xs font-bold px-2.5 py-1 rounded-full flex items-center gap-1"
                                 style={{ backgroundColor: `${challengeColor}15`, color: challengeColor }}
                             >
                                 <Zap size={12} />
-                                Challenge Match (衝突関係)
+                                成長を促す相手（衝突関係）
                             </span>
                         </div>
 
-                        <h3 className="text-xl font-bold text-slate-800 mb-1 group-hover:text-prisma-700 transition-colors">
+                        <h3 className="text-xl font-bold text-slate-800 mb-1">
                             {challengeMatchOs.name}
                         </h3>
                         <p className="text-sm text-slate-600 mb-6 line-clamp-2">
@@ -116,11 +104,21 @@ export const ResultCompatibilityCTA: React.FC<ResultCompatibilityCTAProps> = ({ 
                     </div>
 
                     <div
-                        className="relative z-10 flex items-center gap-1.5 text-sm font-bold transition-all group-hover:gap-2 mt-auto"
+                        className="flex items-center gap-1.5 text-sm font-bold transition-all group-hover:gap-2.5 mt-auto"
                         style={{ color: challengeColor }}
                     >
                         接し方のコツを見る <ArrowRight size={16} />
                     </div>
+                </Link>
+            </div>
+
+            {/* 全タイプ相性一覧への導線 */}
+            <div className="mt-6 text-center">
+                <Link
+                    href={`/types/${typeCode}`}
+                    className="inline-flex items-center gap-2 text-sm font-bold text-prisma-600 hover:text-prisma-800 transition-colors"
+                >
+                    全16タイプとの相性を見る <ArrowRight size={14} />
                 </Link>
             </div>
         </section>
