@@ -18,6 +18,16 @@ export interface WorkStyle {
         title: string;
         reason: string;
     }[];
+    // Phase: Work Tab Enhancement
+    ngEnvironments?: string[];          // NGな職場環境（3つ）
+    idealBoss?: string;                 // こういう上司の下で活きる
+    idealSubordinate?: string;          // こういう部下と相性がいい
+    sideProjects?: {                    // 副業・サイドプロジェクト適性
+        title: string;
+        reason: string;
+    }[];
+    teamBehavior?: string;              // 会議・チームでの振る舞い
+    workEnergyPattern?: string;         // 仕事エネルギーのリズム
 }
 
 export interface Psychology {

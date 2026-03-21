@@ -303,6 +303,7 @@ export const ResultPage: React.FC = () => {
                         {activeTab === 'work' && (
                             <WorkTab
                                 osData={osData}
+                                engineData={engineData}
                                 themeColor={themeColor}
                             />
                         )}
