@@ -66,6 +66,7 @@ export default function Home() {
             "@context": "https://schema.org",
             "@type": "WebSite",
             "name": "Aqsh Prisma",
+            "alternateName": ["Aqsh プリスマ", "アクシュ プリスマ"],
             "url": buildUrl('/'),
             "description": "ソシオニクス診断とエニアグラムを組み合わせた無料の性格診断テスト",
             "publisher": {

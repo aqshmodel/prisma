@@ -56,26 +56,16 @@ export default function RootLayout({
      * WebSite および Organization の情報構造化データ
      * 検索エンジンがこのサイトを提供する運営元情報を正確にインデックスできるようにします。
      */
-    const jsonLd = [
-        {
-            '@context': 'https://schema.org',
-            '@type': 'WebSite',
-            name: SITE_CONFIG.name,
-            url: SITE_CONFIG.baseUrl + '/',
-            alternateName: ['Aqsh Prisma', 'Aqsh プリスマ'],
-            description: 'ソシオニクスとビジネス心理学に基づき、あなたのリーダーシップ特性と潜在リスクを可視化する次世代の組織診断ツール。',
-        },
-        {
-            '@context': 'https://schema.org',
-            '@type': 'Organization',
-            name: SITE_CONFIG.name,
-            url: SITE_CONFIG.baseUrl + '/',
-            logo: `${SITE_CONFIG.baseUrl}${SITE_CONFIG.logo}`,
-            sameAs: [
-                'https://aqsh.co.jp/',
-            ],
-        }
-    ];
+    const jsonLd = {
+        '@context': 'https://schema.org',
+        '@type': 'Organization',
+        name: SITE_CONFIG.name,
+        url: SITE_CONFIG.baseUrl + '/',
+        logo: `${SITE_CONFIG.baseUrl}${SITE_CONFIG.logo}`,
+        sameAs: [
+            'https://aqsh.co.jp/',
+        ],
+    };
 
     return (
         <html lang="ja" className={inter.variable} suppressHydrationWarning={true}>
