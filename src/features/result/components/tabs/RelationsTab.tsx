@@ -2,7 +2,7 @@
 import React from 'react';
 import Link from 'next/link';
 
-import { Heart, ThumbsUp, ThumbsDown, ArrowRight } from 'lucide-react';
+import { Heart, ThumbsUp, ThumbsDown, ArrowRight, Users } from 'lucide-react';
 import { Card } from '@/components/ui/Card';
 import { FormattedText } from '@/components/ui/FormattedText';
 import { OS_CONTENT } from '../../data/content-os';
@@ -63,6 +63,40 @@ export const RelationsTab: React.FC<RelationsTabProps> = ({ osData, engineData }
                     </div>
                 </div>
             </Card>
+
+            {/* 友人・家族の傾向 */}
+            {(osData.relationships.friendshipStyle || osData.relationships.familyRole) && (
+                <Card className="p-6">
+                    <h3 className="text-lg font-bold text-slate-800 mb-4 flex items-center gap-2">
+                        <Users size={20} className="text-prisma-500" />
+                        友人・家族の傾向
+                    </h3>
+                    <div className="grid md:grid-cols-2 gap-4">
+                        {osData.relationships.friendshipStyle && (
+                            <div className="bg-prisma-50/30 rounded-xl p-5 border border-prisma-100">
+                                <h4 className="text-sm font-bold text-prisma-700 mb-2 flex items-center gap-2">
+                                    <Heart size={14} className="text-prisma-500" />
+                                    友人関係の傾向
+                                </h4>
+                                <p className="text-sm text-slate-700 leading-relaxed">
+                                    <FormattedText text={osData.relationships.friendshipStyle} />
+                                </p>
+                            </div>
+                        )}
+                        {osData.relationships.familyRole && (
+                            <div className="bg-prisma-50/30 rounded-xl p-5 border border-prisma-100">
+                                <h4 className="text-sm font-bold text-prisma-700 mb-2 flex items-center gap-2">
+                                    <Users size={14} className="text-prisma-500" />
+                                    家族内での役割
+                                </h4>
+                                <p className="text-sm text-slate-700 leading-relaxed">
+                                    <FormattedText text={osData.relationships.familyRole} />
+                                </p>
+                            </div>
+                        )}
+                    </div>
+                </Card>
+            )}
 
             {/* 恋愛の傾向（OS + Engine 統合） */}
             <LoveStyleSection osData={osData} engineData={engineData} />

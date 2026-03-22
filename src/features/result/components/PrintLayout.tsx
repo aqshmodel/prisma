@@ -373,6 +373,24 @@ export const PrintLayout = forwardRef<HTMLDivElement, PrintLayoutProps>(
                         </div>
                     </div>
 
+                    {/* 友人・家族の傾向 */}
+                    {(osData.relationships.friendshipStyle || osData.relationships.familyRole) && (
+                        <div className="grid grid-cols-2 gap-4 mb-4">
+                            {osData.relationships.friendshipStyle && (
+                                <div className="p-3 bg-slate-50 rounded-lg border border-slate-200">
+                                    <SubTitle>友人関係の傾向</SubTitle>
+                                    <Prose text={osData.relationships.friendshipStyle} />
+                                </div>
+                            )}
+                            {osData.relationships.familyRole && (
+                                <div className="p-3 bg-slate-50 rounded-lg border border-slate-200">
+                                    <SubTitle>家族内での役割</SubTitle>
+                                    <Prose text={osData.relationships.familyRole} />
+                                </div>
+                            )}
+                        </div>
+                    )}
+
                     {/* Best / Worst Match */}
                     <div className="grid grid-cols-2 gap-4 mb-4">
                         <div className="border p-3 rounded text-center">

@@ -43,6 +43,9 @@ export interface Relationships {
     partnerQuality: string;     // パートナーに求めるもの
     conflictTrigger: string;    // トラブルの引き金
     advice: string;             // 対人関係のアドバイス
+    // Phase: Friendship & Family Enhancement
+    friendshipStyle?: string;   // 友人関係の傾向（距離感・グループ内の役割・連絡頻度等）
+    familyRole?: string;        // 家族内での役割・傾向（親/兄弟との関係・家庭を持った時の振る舞い等）
 }
 
 export interface GrowthRoadmap {
