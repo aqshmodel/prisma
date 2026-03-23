@@ -1,0 +1,30 @@
+[
+  {
+    "channel": "Organic Search",
+    "active_users": 242,
+    "sessions": 355,
+    "page_views": 942,
+    "avg_engagement_sec": 196.4
+  },
+  {
+    "channel": "Direct",
+    "active_users": 53,
+    "sessions": 99,
+    "page_views": 333,
+    "avg_engagement_sec": 437.9
+  },
+  {
+    "channel": "Organic Social",
+    "active_users": 15,
+    "sessions": 23,
+    "page_views": 68,
+    "avg_engagement_sec": 199.1
+  },
+  {
+    "channel": "Unassigned",
+    "active_users": 9,
+    "sessions": 10,
+    "page_views": 6,
+    "avg_engagement_sec": 143.4
+  }
+]
