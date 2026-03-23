@@ -7,6 +7,7 @@ import { HeroSection } from './components/HeroSection';
 
 // ファーストビュー外のセクションを遅延読み込み（TBT改善）
 const ProblemSection = lazy(() => import('./components/ProblemSection').then(m => ({ default: m.ProblemSection })));
+const MiniDiagnosisSection = lazy(() => import('./components/MiniDiagnosisSection').then(m => ({ default: m.MiniDiagnosisSection })));
 const SolutionSection = lazy(() => import('./components/SolutionSection').then(m => ({ default: m.SolutionSection })));
 const TypeSection = lazy(() => import('./components/TypeSection').then(m => ({ default: m.TypeSection })));
 const CompatibilitySection = lazy(() => import('./components/CompatibilitySection').then(m => ({ default: m.CompatibilitySection })));
@@ -54,6 +55,7 @@ export const WelcomePage: React.FC<WelcomePageProps> = ({ articleSlot }) => {
             />
 
             <Suspense fallback={null}>
+                <MiniDiagnosisSection />
                 <ProblemSection />
                 <SolutionSection />
                 <TypeSection />
