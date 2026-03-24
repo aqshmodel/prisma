@@ -12,7 +12,7 @@ import { Users, ArrowRight } from 'lucide-react';
 export const CompatibilityCTA: React.FC = () => {
     const handleClick = () => {
         if (typeof window !== 'undefined' && (window as any).gtag) {
-            (window as any).gtag('event', 'cta_click', {
+            (window as any).gtag('event', 'click_compatibility_diagnosis', {
                 event_category: 'engagement',
                 event_label: 'CompatibilityCTA',
                 location: window.location.pathname,

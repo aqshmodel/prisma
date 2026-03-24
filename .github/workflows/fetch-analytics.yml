@@ -42,6 +42,7 @@ jobs:
           GOOGLE_APPLICATION_CREDENTIALS: ${{ steps.auth.outputs.credentials_file_path }}
           GA4_PROPERTY_ID: ${{ secrets.GA4_PROPERTY_ID }}
           GSC_SITE_URL: ${{ secrets.GSC_SITE_URL }}
+          GA4_CV_EVENTS: ${{ vars.GA4_CV_EVENTS }}
         run: python scripts/fetch_analytics_data.py
 
       - name: Commit and Push changes

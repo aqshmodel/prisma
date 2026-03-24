@@ -4,8 +4,10 @@ import React from 'react';
 import { TrendingUp, CheckCircle2, ArrowRight } from 'lucide-react';
 import { Card } from '@/components/ui/Card';
 import { FormattedText } from '@/components/ui/FormattedText';
-import type { OSContent } from '../../data/content-os';
+import type { OSContent } from '../../data/os/types';
 import type { EngineContent } from '../../data/content-engine';
+import { useLocale } from '@/lib/i18n';
+import { getUIText } from '@/lib/i18n/ui-dictionary';
 
 interface GrowthTabProps {
     osData: OSContent;
@@ -13,13 +15,10 @@ interface GrowthTabProps {
     themeColor: string;
 }
 
-const LEVEL_META = [
-    { label: 'Lv.1 基礎', color: '#94a3b8', bgColor: 'bg-slate-50', borderColor: 'border-slate-200' },
-    { label: 'Lv.2 応用', color: '#0ABAB5', bgColor: 'bg-prisma-50/50', borderColor: 'border-prisma-200' },
-    { label: 'Lv.3 実践', color: '#eab308', bgColor: 'bg-amber-50/50', borderColor: 'border-amber-200' },
-] as const;
-
 export const GrowthTab: React.FC<GrowthTabProps> = ({ osData, engineData }) => {
+    const locale = useLocale();
+    const t = getUIText(locale).growthTab;
+
     if (!osData.growth) return null;
 
     const levels = [
@@ -28,13 +27,19 @@ export const GrowthTab: React.FC<GrowthTabProps> = ({ osData, engineData }) => {
         { data: osData.growth.level3, level: 3 },
     ];
 
+    const LEVEL_META = [
+        { label: t.levelLabels[0], color: '#94a3b8', bgColor: 'bg-slate-50', borderColor: 'border-slate-200' },
+        { label: t.levelLabels[1], color: '#0ABAB5', bgColor: 'bg-prisma-50/50', borderColor: 'border-prisma-200' },
+        { label: t.levelLabels[2], color: '#eab308', bgColor: 'bg-amber-50/50', borderColor: 'border-amber-200' },
+    ] as const;
+
     return (
         <div className="space-y-8">
             {/* 成長アドバイス */}
             <Card className="p-6">
                 <h3 className="text-lg font-bold text-slate-800 mb-3 flex items-center gap-2">
                     <TrendingUp size={20} className="text-prisma-500" />
-                    成長へのアドバイス
+                    {t.advice}
                 </h3>
                 <p className="text-slate-600 leading-relaxed text-sm">
                     <FormattedText text={engineData.growthAdvice} />
@@ -45,7 +50,7 @@ export const GrowthTab: React.FC<GrowthTabProps> = ({ osData, engineData }) => {
             <div className="space-y-6">
                 <h3 className="text-xl font-bold text-slate-800 flex items-center gap-2 px-2">
                     <span className="w-1.5 h-6 bg-prisma-500 rounded-full" />
-                    成長ロードマップ
+                    {t.roadmap}
                 </h3>
 
                 {/* タイムライン */}

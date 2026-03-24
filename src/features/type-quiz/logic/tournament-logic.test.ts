@@ -7,12 +7,14 @@ import {
 } from './tournament-logic';
 import { STAGE2_QUESTIONS } from '../data/tournament-data';
 import type { QuadrantType } from '@/features/mini-diagnosis/data/mini-types';
+import type { OSTypeCode } from '@/types/diagnosis';
+import type { TournamentState } from '../data/tournament-data';
 
 describe('tournament-logic', () => {
     describe('createInitialState', () => {
         it('初期状態が正しい', () => {
             const state = createInitialState();
-            expect(state.stage).toBe('intro');
+            expect(state.stage).toBe('stage1');
             expect(state.currentQuestionIndex).toBe(0);
             expect(state.determinedQuadra).toBeNull();
             expect(state.determinedType).toBeNull();
@@ -22,7 +24,7 @@ describe('tournament-logic', () => {
 
     describe('Stage 1 → Quadra判定', () => {
         it('A+A → Alpha (Merry+Judicious)', () => {
-            let state = { ...createInitialState(), stage: 'stage1' as const };
+            let state = createInitialState();
             state = processAnswer(state, 'A'); // Q1: Merry
             state = processAnswer(state, 'A'); // Q2: Judicious
             expect(state.stage).toBe('stage2');
@@ -30,7 +32,7 @@ describe('tournament-logic', () => {
         });
 
         it('A+B → Beta (Merry+Decisive)', () => {
-            let state = { ...createInitialState(), stage: 'stage1' as const };
+            let state = createInitialState();
             state = processAnswer(state, 'A');
             state = processAnswer(state, 'B');
             expect(state.stage).toBe('stage2');
@@ -38,7 +40,7 @@ describe('tournament-logic', () => {
         });
 
         it('B+B → Gamma (Serious+Decisive)', () => {
-            let state = { ...createInitialState(), stage: 'stage1' as const };
+            let state = createInitialState();
             state = processAnswer(state, 'B');
             state = processAnswer(state, 'B');
             expect(state.stage).toBe('stage2');
@@ -46,7 +48,7 @@ describe('tournament-logic', () => {
         });
 
         it('B+A → Delta (Serious+Judicious)', () => {
-            let state = { ...createInitialState(), stage: 'stage1' as const };
+            let state = createInitialState();
             state = processAnswer(state, 'B');
             state = processAnswer(state, 'A');
             expect(state.stage).toBe('stage2');
@@ -66,14 +68,14 @@ describe('tournament-logic', () => {
 
                 // 全8パターン(2^3)の回答を試す
                 for (let pattern = 0; pattern < 8; pattern++) {
-                    let state = {
+                    let state: TournamentState = {
                         ...createInitialState(),
-                        stage: 'stage2' as const,
+                        stage: 'stage2',
                         determinedQuadra: quadra,
                         remainingTypes: [
                             ...questions[0].resultIfA,
                             ...questions[0].resultIfB,
-                        ] as string[],
+                        ] as OSTypeCode[],
                     };
 
                     const answers: ('A' | 'B')[] = [
@@ -100,28 +102,23 @@ describe('tournament-logic', () => {
 
     describe('getCurrentQuestionNumber', () => {
         it('Stage 1 Q1 → 1', () => {
-            const state = { ...createInitialState(), stage: 'stage1' as const };
+            const state = createInitialState();
             expect(getCurrentQuestionNumber(state)).toBe(1);
         });
 
         it('Stage 2 Q1 → 3', () => {
-            const state = {
+            const state: TournamentState = {
                 ...createInitialState(),
-                stage: 'stage2' as const,
-                determinedQuadra: 'Alpha' as const,
+                stage: 'stage2',
+                determinedQuadra: 'Alpha',
             };
             expect(getCurrentQuestionNumber(state)).toBe(3);
         });
     });
 
     describe('getCurrentQuestion', () => {
-        it('intro状態ではnullを返す', () => {
-            const state = createInitialState();
-            expect(getCurrentQuestion(state)).toBeNull();
-        });
-
         it('stage1ではStage1の質問を返す', () => {
-            const state = { ...createInitialState(), stage: 'stage1' as const };
+            const state = createInitialState();
             const q = getCurrentQuestion(state);
             expect(q).not.toBeNull();
             expect(q?.id).toBe('s1-q1');

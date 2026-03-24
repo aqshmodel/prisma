@@ -25,6 +25,14 @@ export const MiniDiagnosisSection: React.FC = () => {
                     {/* 4象限クイック診断 */}
                     <Link
                         href="/mini-diagnosis/"
+                        onClick={() => {
+                            if (typeof window !== 'undefined' && typeof (window as any).gtag === 'function') {
+                                (window as any).gtag('event', 'click_mini_diagnosis', {
+                                    'event_category': 'CTA',
+                                    'event_label': 'Mini Diagnosis Section'
+                                });
+                            }
+                        }}
                         className="group relative bg-white border border-slate-100 rounded-2xl p-6 shadow-sm hover:shadow-lg hover:border-teal-200 transition-all duration-300 hover:-translate-y-1"
                     >
                         <div className="flex items-start gap-4">
@@ -48,6 +56,14 @@ export const MiniDiagnosisSection: React.FC = () => {
                     {/* タイプ絞り込みクイズ */}
                     <Link
                         href="/type-quiz/"
+                        onClick={() => {
+                            if (typeof window !== 'undefined' && typeof (window as any).gtag === 'function') {
+                                (window as any).gtag('event', 'click_type_quiz', {
+                                    'event_category': 'CTA',
+                                    'event_label': 'Type Quiz Section'
+                                });
+                            }
+                        }}
                         className="group relative bg-white border border-slate-100 rounded-2xl p-6 shadow-sm hover:shadow-lg hover:border-teal-200 transition-all duration-300 hover:-translate-y-1"
                     >
                         <div className="flex items-start gap-4">

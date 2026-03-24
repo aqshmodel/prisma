@@ -1,25 +1,33 @@
+'use client';
+
 import React from 'react';
 import Link from 'next/link';
 import { Sparkles, ArrowRight, Zap } from 'lucide-react';
 import { getAllCompatibilities } from '@/lib/constants/compatibility';
-import { OS_CONTENT } from '@/features/result/data/content-os';
 import { resolveColor } from '@/lib/constants/color-map';
 import type { OSTypeCode } from '@/types/diagnosis';
+import { useLocale } from '@/lib/i18n';
+import { getUIText } from '@/lib/i18n/ui-dictionary';
+import { getOSContent } from '@/lib/i18n/localized-data';
+import { getLocalePath } from '@/lib/i18n/navigation';
 
 interface ResultCompatibilityCTAProps {
     typeCode: OSTypeCode;
 }
 
 export const ResultCompatibilityCTA: React.FC<ResultCompatibilityCTAProps> = ({ typeCode }) => {
+    const locale = useLocale();
+    const t = getUIText(locale).compatCta;
+    const osContent = getOSContent(locale);
     const allRelations = getAllCompatibilities(typeCode);
 
     // 最高のパートナー (Dual)
     const bestMatchRel = allRelations.find(r => r.relation.type === 'Dual');
-    const bestMatchOs = bestMatchRel ? OS_CONTENT[bestMatchRel.targetCode] : null;
+    const bestMatchOs = bestMatchRel ? osContent[bestMatchRel.targetCode] : null;
 
-    // 成長を促す相手 (Conflict または相反するタイプ)
+    // 成長を促す相手 (Conflict)
     const challengeMatchRel = allRelations.find(r => r.relation.type === 'Conflict');
-    const challengeMatchOs = challengeMatchRel ? OS_CONTENT[challengeMatchRel.targetCode] : null;
+    const challengeMatchOs = challengeMatchRel ? osContent[challengeMatchRel.targetCode] : null;
 
     if (!bestMatchRel || !bestMatchOs || !challengeMatchRel || !challengeMatchOs) {
         return null;
@@ -33,18 +41,18 @@ export const ResultCompatibilityCTA: React.FC<ResultCompatibilityCTAProps> = ({ 
             <div className="text-center mb-6">
                 <div className="inline-flex items-center gap-2 bg-prisma-100 text-prisma-700 px-4 py-1.5 rounded-full text-xs font-bold tracking-widest mb-4">
                     <Sparkles size={14} />
-                    特別な相性
+                    {t.badge}
                 </div>
-                <h2 className="text-2xl font-bold text-slate-800 font-serif">特別な相性のパートナー</h2>
+                <h2 className="text-2xl font-bold text-slate-800 font-serif">{t.title}</h2>
                 <p className="text-sm text-slate-500 mt-2">
-                    あなたにとって最も重要な意味を持つ2つのタイプをチェックしましょう
+                    {t.subtitle}
                 </p>
             </div>
 
             <div className="grid md:grid-cols-2 gap-4">
                 {/* Best Match */}
                 <Link
-                    href={`/types/${typeCode}/compatibility/${bestMatchRel.targetCode}`}
+                    href={getLocalePath(locale, `/types/${typeCode}/compatibility/${bestMatchRel.targetCode}`)}
                     className="group bg-white rounded-2xl border border-slate-200 overflow-hidden hover:border-prisma-300 transition-all duration-300 p-6 flex flex-col"
                 >
                     <div className="flex-grow">
@@ -54,7 +62,7 @@ export const ResultCompatibilityCTA: React.FC<ResultCompatibilityCTAProps> = ({ 
                                 style={{ backgroundColor: `${bestColor}15`, color: bestColor }}
                             >
                                 <Sparkles size={12} />
-                                最高の相性（双対関係）
+                                {t.bestLabel}
                             </span>
                             <div className="flex gap-0.5">
                                 {Array.from({ length: 5 }).map((_, i) => (
@@ -75,13 +83,13 @@ export const ResultCompatibilityCTA: React.FC<ResultCompatibilityCTAProps> = ({ 
                         className="flex items-center gap-1.5 text-sm font-bold transition-all group-hover:gap-2.5 mt-auto"
                         style={{ color: bestColor }}
                     >
-                        最高の相性を見る <ArrowRight size={16} />
+                        {t.bestLink} <ArrowRight size={16} />
                     </div>
                 </Link>
 
                 {/* Challenge Match */}
                 <Link
-                    href={`/types/${typeCode}/compatibility/${challengeMatchRel.targetCode}`}
+                    href={getLocalePath(locale, `/types/${typeCode}/compatibility/${challengeMatchRel.targetCode}`)}
                     className="group bg-white rounded-2xl border border-slate-200 overflow-hidden hover:border-prisma-300 transition-all duration-300 p-6 flex flex-col"
                 >
                     <div className="flex-grow">
@@ -91,7 +99,7 @@ export const ResultCompatibilityCTA: React.FC<ResultCompatibilityCTAProps> = ({ 
                                 style={{ backgroundColor: `${challengeColor}15`, color: challengeColor }}
                             >
                                 <Zap size={12} />
-                                成長を促す相手（衝突関係）
+                                {t.challengeLabel}
                             </span>
                         </div>
 
@@ -99,7 +107,7 @@ export const ResultCompatibilityCTA: React.FC<ResultCompatibilityCTAProps> = ({ 
                             {challengeMatchOs.name}
                         </h3>
                         <p className="text-sm text-slate-600 mb-6 line-clamp-2">
-                            価値観が根本的に異なり摩擦が起きやすい反面、自分にない視点を学べる成長の鍵となる相手です。
+                            {t.challengeDesc}
                         </p>
                     </div>
 
@@ -107,7 +115,7 @@ export const ResultCompatibilityCTA: React.FC<ResultCompatibilityCTAProps> = ({ 
                         className="flex items-center gap-1.5 text-sm font-bold transition-all group-hover:gap-2.5 mt-auto"
                         style={{ color: challengeColor }}
                     >
-                        接し方のコツを見る <ArrowRight size={16} />
+                        {t.challengeLink} <ArrowRight size={16} />
                     </div>
                 </Link>
             </div>
@@ -115,10 +123,10 @@ export const ResultCompatibilityCTA: React.FC<ResultCompatibilityCTAProps> = ({ 
             {/* 全タイプ相性一覧への導線 */}
             <div className="mt-6 text-center">
                 <Link
-                    href={`/types/${typeCode}`}
+                    href={getLocalePath(locale, `/types/${typeCode}`)}
                     className="inline-flex items-center gap-2 text-sm font-bold text-prisma-600 hover:text-prisma-800 transition-colors"
                 >
-                    全16タイプとの相性を見る <ArrowRight size={14} />
+                    {t.viewAll16} <ArrowRight size={14} />
                 </Link>
             </div>
         </section>

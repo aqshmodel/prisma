@@ -16,6 +16,7 @@ import { extractFaqJsonLd } from '@/features/articles/utils/faqExtractor';
 import { SITE_CONFIG, PUBLISHER_JSON_LD, buildUrl } from '@/lib/constants/site-config';
 import rehypeSanitize from 'rehype-sanitize';
 import { rehypePreserveMdx, rehypeRestoreMdx, mdxSanitizeSchema } from '@/features/articles/utils/rehype-preserve-mdx';
+import { rehypeGlossaryLink } from '@/features/glossary/utils/rehype-glossary-link';
 
 /**
  * SSG（静的生成）のためのパス一覧をNext.jsに提供します。
@@ -83,6 +84,14 @@ const createComponents = (headings: { id: string; text: string }[]) => ({
         const text = String(props.children || '').replace(/[*_`]/g, '').trim();
         const heading = headings.find(h => h.text === text);
         return <h2 id={heading?.id} {...props} />;
+    },
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    a: (props: any) => {
+        const href = props.href;
+        if (href && href.startsWith('/')) {
+            return <Link href={href} {...props} />;
+        }
+        return <a target="_blank" rel="noopener noreferrer" {...props} />;
     },
     DiagnosisCTA,
 });
@@ -289,7 +298,8 @@ export default async function ArticleDetailPage({ params }: { params: Promise<{ 
                                     rehypePlugins: [
                                         rehypePreserveMdx,
                                         [rehypeSanitize, mdxSanitizeSchema],
-                                        rehypeRestoreMdx
+                                        rehypeRestoreMdx,
+                                        rehypeGlossaryLink
                                     ]
                                 }
                             }}

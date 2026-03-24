@@ -11,6 +11,7 @@ interface RadarChartProps {
         adaptability: number;
     };
     color: string; // Tailwind class name (e.g., 'sky-500')
+    locale?: 'ja' | 'en';
 }
 
 // Map Tailwind colors to Hex for SVG usage
@@ -33,7 +34,7 @@ const COLOR_MAP: Record<string, string> = {
     'gray-500': '#6b7280',
 };
 
-const LABELS = [
+const LABELS_JA = [
     { key: 'analysis', label: '論理・分析' },
     { key: 'innovation', label: '革新・創造' },
     { key: 'empathy', label: '共感・協調' },
@@ -41,8 +42,17 @@ const LABELS = [
     { key: 'adaptability', label: '柔軟・適応' },
 ];
 
-export const RadarChart = React.memo<RadarChartProps>(({ data, color }) => {
+const LABELS_EN = [
+    { key: 'analysis', label: 'Logic/Analysis' },
+    { key: 'innovation', label: 'Innovation' },
+    { key: 'empathy', label: 'Empathy' },
+    { key: 'execution', label: 'Execution' },
+    { key: 'adaptability', label: 'Adaptability' },
+];
+
+export const RadarChart = React.memo<RadarChartProps>(({ data, color, locale = 'ja' }) => {
     const hexColor = COLOR_MAP[color] || '#6366f1'; // Default to indigo if not found
+    const currentLabels = locale === 'en' ? LABELS_EN : LABELS_JA;
 
     // Config
     const size = 300;
@@ -60,15 +70,15 @@ export const RadarChart = React.memo<RadarChartProps>(({ data, color }) => {
     };
 
     // Calculate polygon points
-    const points = LABELS.map((item, i) => {
+    const points = currentLabels.map((item, i) => {
         const val = data[item.key as keyof typeof data] || 0;
-        const { x, y } = getPoint(val, i, LABELS.length);
+        const { x, y } = getPoint(val, i, currentLabels.length);
         return `${x},${y}`;
     }).join(' ');
 
     // Calculate label positions (slightly outside)
-    const labelPoints = LABELS.map((item, i) => {
-        const angle = (Math.PI * 2 * i) / LABELS.length - Math.PI / 2;
+    const labelPoints = currentLabels.map((item, i) => {
+        const angle = (Math.PI * 2 * i) / currentLabels.length - Math.PI / 2;
         const r = radius + 25; // Offset for text
         const x = center + r * Math.cos(angle);
         const y = center + r * Math.sin(angle);
@@ -86,8 +96,8 @@ export const RadarChart = React.memo<RadarChartProps>(({ data, color }) => {
                 {levels.map((level, idx) => (
                     <polygon
                         key={level}
-                        points={LABELS.map((_, i) => {
-                            const { x, y } = getPoint(level, i, LABELS.length);
+                        points={currentLabels.map((_, i) => {
+                            const { x, y } = getPoint(level, i, currentLabels.length);
                             return `${x},${y}`;
                         }).join(' ')}
                         fill="none"
@@ -100,8 +110,8 @@ export const RadarChart = React.memo<RadarChartProps>(({ data, color }) => {
                 ))}
 
                 {/* Axis Lines */}
-                {LABELS.map((item, i) => {
-                    const { x, y } = getPoint(10, i, LABELS.length);
+                {currentLabels.map((item, i) => {
+                    const { x, y } = getPoint(10, i, currentLabels.length);
                     return (
                         <line
                             key={item.key}
@@ -129,9 +139,9 @@ export const RadarChart = React.memo<RadarChartProps>(({ data, color }) => {
                 />
 
                 {/* Data Points */}
-                {LABELS.map((item, i) => {
+                {currentLabels.map((item, i) => {
                     const val = data[item.key as keyof typeof data] || 0;
-                    const { x, y } = getPoint(val, i, LABELS.length);
+                    const { x, y } = getPoint(val, i, currentLabels.length);
                     return (
                         <circle
                             key={item.key}

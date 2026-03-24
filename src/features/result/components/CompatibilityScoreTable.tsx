@@ -6,8 +6,11 @@ import Link from 'next/link';
 import { BarChart3, ChevronDown, ArrowRight } from 'lucide-react';
 import { Card } from '@/components/ui/Card';
 import { getAllCompatibilities } from '@/lib/constants/compatibility';
-import { OS_CONTENT } from '../data/content-os';
 import type { OSTypeCode } from '@/types/diagnosis';
+import { useLocale } from '@/lib/i18n';
+import { getUIText } from '@/lib/i18n/ui-dictionary';
+import { getOSContent } from '@/lib/i18n/localized-data';
+import { getLocalePath } from '@/lib/i18n/navigation';
 
 interface CompatibilityScoreTableProps {
     typeCode: OSTypeCode;
@@ -16,6 +19,9 @@ interface CompatibilityScoreTableProps {
 const INITIAL_DISPLAY_COUNT = 5;
 
 export const CompatibilityScoreTable: React.FC<CompatibilityScoreTableProps> = ({ typeCode }) => {
+    const locale = useLocale();
+    const t = getUIText(locale).compatTable;
+    const osContent = getOSContent(locale);
     const [showAll, setShowAll] = useState(false);
     const allRelations = getAllCompatibilities(typeCode);
 
@@ -25,18 +31,18 @@ export const CompatibilityScoreTable: React.FC<CompatibilityScoreTableProps> = (
         <Card className="p-6">
             <h3 className="text-lg font-bold text-slate-800 mb-4 flex items-center gap-2">
                 <BarChart3 size={20} className="text-prisma-500" />
-                全タイプとの相性一覧
+                {t.title}
             </h3>
 
             <div className="space-y-2">
                 {displayRelations.map(({ targetCode, relation }) => {
-                    const targetOs = OS_CONTENT[targetCode];
+                    const targetOs = osContent[targetCode];
                     if (!targetOs) return null;
 
                     return (
                         <Link
                             key={targetCode}
-                            href={`/types/${typeCode}/compatibility/${targetCode}`}
+                            href={getLocalePath(locale, `/types/${typeCode}/compatibility/${targetCode}`)}
                             className="group flex items-center justify-between p-3 rounded-xl border border-slate-100 hover:border-prisma-200 hover:bg-prisma-50/30 transition-all"
                         >
                             <div className="flex items-center gap-3 min-w-0">
@@ -52,7 +58,6 @@ export const CompatibilityScoreTable: React.FC<CompatibilityScoreTableProps> = (
                             </div>
 
                             <div className="flex items-center gap-3 shrink-0">
-                                {/* 星評価 */}
                                 <div className="flex gap-0.5">
                                     {Array.from({ length: 5 }).map((_, i) => (
                                         <span
@@ -73,13 +78,12 @@ export const CompatibilityScoreTable: React.FC<CompatibilityScoreTableProps> = (
                 })}
             </div>
 
-            {/* もっと見る / 閉じる */}
             {allRelations.length > INITIAL_DISPLAY_COUNT && (
                 <button
                     onClick={() => setShowAll(!showAll)}
                     className="mt-4 w-full flex items-center justify-center gap-1.5 py-2.5 text-sm font-bold text-prisma-600 hover:text-prisma-800 border border-prisma-200 hover:border-prisma-300 rounded-xl transition-colors"
                 >
-                    {showAll ? '閉じる' : `残り ${allRelations.length - INITIAL_DISPLAY_COUNT} タイプを表示`}
+                    {showAll ? t.close : t.showMore(allRelations.length - INITIAL_DISPLAY_COUNT)}
                     <ChevronDown
                         size={16}
                         className={`transition-transform ${showAll ? 'rotate-180' : ''}`}

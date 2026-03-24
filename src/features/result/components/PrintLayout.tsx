@@ -13,6 +13,7 @@ interface PrintLayoutProps {
     /** 検出されたバイアスリスク（BiasContentにリスクレベルを付与） */
     biasRisks: Array<BiasContent & { level: string }>;
     themeColor: string;
+    locale?: 'ja' | 'en';
 }
 
 /* ── 印刷用ヘルパー ── */
@@ -36,7 +37,7 @@ const PageHeader = ({ label }: { label: string }) => (
 );
 
 export const PrintLayout = forwardRef<HTMLDivElement, PrintLayoutProps>(
-    ({ osData, engineData, biasRisks, themeColor }, ref) => {
+    ({ osData, engineData, biasRisks, themeColor, locale = 'ja' }, ref) => {
         return (
             <div ref={ref} className="print-container bg-white text-slate-900 p-8 max-w-[210mm] mx-auto hidden print:block">
                 <style type="text/css" media="print">
@@ -69,7 +70,7 @@ export const PrintLayout = forwardRef<HTMLDivElement, PrintLayoutProps>(
                         <div className="flex flex-col items-center justify-center bg-slate-50 p-4 rounded-xl border border-slate-100">
                             <h3 className="font-bold text-sm mb-4 text-slate-500 uppercase tracking-wider">Parameters</h3>
                             <div className="rader-chart-print w-full max-w-[300px]">
-                                <RadarChart data={osData.params} color={themeColor} />
+                                <RadarChart data={osData.params} color={themeColor} locale={locale} />
                             </div>
                         </div>
                         <div>

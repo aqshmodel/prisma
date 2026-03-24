@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 
@@ -15,9 +15,34 @@ export const DiagnosisCTA: React.FC<DiagnosisCTAProps> = ({
     description,
     buttonText = '無料で診断する',
 }) => {
+    const ctaRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        if (!ctaRef.current) return;
+        const observer = new IntersectionObserver(
+            (entries) => {
+                const [entry] = entries;
+                if (entry.isIntersecting) {
+                    if (typeof window !== 'undefined' && (window as any).gtag) {
+                        (window as any).gtag('event', 'read_complete', {
+                            event_category: 'engagement',
+                            event_label: 'Article Read Complete',
+                            location: window.location.pathname,
+                        });
+                    }
+                    observer.disconnect(); // 一度だけ発火
+                }
+            },
+            { threshold: 0.5 } // 要素が半分見えたら読了とみなす
+        );
+
+        observer.observe(ctaRef.current);
+        return () => observer.disconnect();
+    }, []);
+
     const handleClick = () => {
         if (typeof window !== 'undefined' && (window as any).gtag) {
-            (window as any).gtag('event', 'cta_click', {
+            (window as any).gtag('event', 'click_main_diagnosis', {
                 event_category: 'engagement',
                 event_label: 'DiagnosisCTA',
                 location: window.location.pathname,
@@ -26,7 +51,7 @@ export const DiagnosisCTA: React.FC<DiagnosisCTAProps> = ({
     };
 
     return (
-        <div className="my-10 flex flex-col items-center justify-center not-prose w-full">
+        <div ref={ctaRef} className="my-10 flex flex-col items-center justify-center not-prose w-full">
             {description && (
                 <p className="text-center text-slate-600 mb-6 font-medium">
                     {description}

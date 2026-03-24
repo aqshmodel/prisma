@@ -1,6 +1,7 @@
 import React from 'react';
 import { getAllArticles, type ArticleMetadata } from '../utils/mdx';
 import { ArticleCardSmall } from './ArticleCard';
+import { TrackableCardWrapper } from './TrackableCardWrapper';
 
 interface RelatedArticlesProps {
     currentSlug: string;
@@ -53,14 +54,15 @@ export const RelatedArticles: React.FC<RelatedArticlesProps> = ({
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {articles.map(article => (
-                    <ArticleCardSmall
-                        key={article.slug}
-                        slug={article.slug}
-                        title={article.title}
-                        coverImage={article.coverImage}
-                        category={article.category}
-                        className="bg-slate-50 hover:bg-prisma-50/30"
-                    />
+                    <TrackableCardWrapper key={article.slug} slug={article.slug} className="cursor-pointer">
+                        <ArticleCardSmall
+                            slug={article.slug}
+                            title={article.title}
+                            coverImage={article.coverImage}
+                            category={article.category}
+                            className="bg-slate-50 hover:bg-prisma-50/30"
+                        />
+                    </TrackableCardWrapper>
                 ))}
             </div>
         </div>

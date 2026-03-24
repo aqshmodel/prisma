@@ -4,8 +4,10 @@ import React from 'react';
 import { Briefcase, Target, ShieldAlert, Users, TrendingUp, CircleDollarSign, Battery, Rocket } from 'lucide-react';
 import { Card } from '@/components/ui/Card';
 import { FormattedText } from '@/components/ui/FormattedText';
-import type { OSContent } from '../../data/content-os';
+import type { OSContent } from '../../data/os/types';
 import type { EngineContent } from '../../data/content-engine';
+import { useLocale } from '@/lib/i18n';
+import { getUIText } from '@/lib/i18n/ui-dictionary';
 
 interface WorkTabProps {
     osData: OSContent;
@@ -14,6 +16,9 @@ interface WorkTabProps {
 }
 
 export const WorkTab: React.FC<WorkTabProps> = ({ osData, engineData, themeColor }) => {
+    const locale = useLocale();
+    const t = getUIText(locale).workTab;
+
     if (!osData.workStyle) return null;
 
     return (
@@ -22,24 +27,24 @@ export const WorkTab: React.FC<WorkTabProps> = ({ osData, engineData, themeColor
             <Card className="p-6">
                 <h3 className="text-lg font-bold text-slate-800 mb-4 flex items-center gap-2">
                     <Briefcase size={20} style={{ color: themeColor }} />
-                    ワークスタイル分析
+                    {t.workStyle}
                 </h3>
                 <div className="space-y-6">
                     <div>
-                        <h4 className="font-bold text-slate-700 mb-2">ミッション</h4>
+                        <h4 className="font-bold text-slate-700 mb-2">{t.mission}</h4>
                         <p className="text-lg font-medium text-slate-800 border-l-4 border-slate-300 pl-4 py-1 italic">
                             "<FormattedText text={osData.workStyle.mission} />"
                         </p>
                     </div>
                     <div className="grid md:grid-cols-2 gap-6">
                         <div>
-                            <h4 className="font-bold text-slate-700 mb-2 text-sm">働き方のスタイル</h4>
+                            <h4 className="font-bold text-slate-700 mb-2 text-sm">{t.style}</h4>
                             <p className="text-sm text-slate-600 leading-relaxed bg-slate-50 p-3 rounded-lg whitespace-pre-wrap">
                                 <FormattedText text={osData.workStyle.style} />
                             </p>
                         </div>
                         <div>
-                            <h4 className="font-bold text-slate-700 mb-2 text-sm">モチベーションの源泉</h4>
+                            <h4 className="font-bold text-slate-700 mb-2 text-sm">{t.motivation}</h4>
                             <p className="text-sm text-slate-600 leading-relaxed bg-slate-50 p-3 rounded-lg whitespace-pre-wrap">
                                 <FormattedText text={osData.workStyle.motivation} />
                             </p>
@@ -47,7 +52,7 @@ export const WorkTab: React.FC<WorkTabProps> = ({ osData, engineData, themeColor
                     </div>
                     {/* マネジメント適性 */}
                     <div>
-                        <h4 className="font-bold text-slate-700 mb-2 text-sm">マネジメント適性</h4>
+                        <h4 className="font-bold text-slate-700 mb-2 text-sm">{t.management}</h4>
                         <p className="text-sm text-slate-600 leading-relaxed bg-slate-50 p-3 rounded-lg whitespace-pre-wrap">
                             <FormattedText text={osData.workStyle.management} />
                         </p>
@@ -59,7 +64,7 @@ export const WorkTab: React.FC<WorkTabProps> = ({ osData, engineData, themeColor
                                 <div>
                                     <h4 className="font-bold text-slate-700 mb-2 text-sm flex items-center gap-1.5">
                                         <Users size={14} style={{ color: themeColor }} />
-                                        会議・チームでの振る舞い
+                                        {t.teamBehavior}
                                     </h4>
                                     <p className="text-sm text-slate-600 leading-relaxed bg-slate-50 p-3 rounded-lg whitespace-pre-wrap">
                                         <FormattedText text={osData.workStyle.teamBehavior} />
@@ -70,7 +75,7 @@ export const WorkTab: React.FC<WorkTabProps> = ({ osData, engineData, themeColor
                                 <div>
                                     <h4 className="font-bold text-slate-700 mb-2 text-sm flex items-center gap-1.5">
                                         <Battery size={14} style={{ color: themeColor }} />
-                                        仕事エネルギーのリズム
+                                        {t.energyRhythm}
                                     </h4>
                                     <p className="text-sm text-slate-600 leading-relaxed bg-slate-50 p-3 rounded-lg whitespace-pre-wrap">
                                         <FormattedText text={osData.workStyle.workEnergyPattern} />
@@ -86,7 +91,7 @@ export const WorkTab: React.FC<WorkTabProps> = ({ osData, engineData, themeColor
             <Card className="p-6">
                 <h3 className="text-lg font-bold text-slate-800 mb-4 flex items-center gap-2">
                     <Target size={20} className="text-rose-500" />
-                    適職・キャリアパス
+                    {t.careerPath}
                 </h3>
                 <div className="grid md:grid-cols-3 gap-4">
                     {osData.workStyle.bestRoles.map((role) => (
@@ -103,7 +108,7 @@ export const WorkTab: React.FC<WorkTabProps> = ({ osData, engineData, themeColor
                     <div className="mt-6">
                         <h4 className="font-bold text-slate-700 mb-3 text-sm flex items-center gap-1.5">
                             <Rocket size={14} className="text-indigo-500" />
-                            副業・サイドプロジェクト適性
+                            {t.sideProjects}
                         </h4>
                         <div className="grid md:grid-cols-3 gap-4">
                             {osData.workStyle.sideProjects.map((project) => (
@@ -124,12 +129,12 @@ export const WorkTab: React.FC<WorkTabProps> = ({ osData, engineData, themeColor
                 <Card className="p-6">
                     <h3 className="text-lg font-bold text-slate-800 mb-4 flex items-center gap-2">
                         <ShieldAlert size={20} className="text-amber-500" />
-                        避けるべき環境・モチベーションキラー
+                        {t.ngEnvironments}
                     </h3>
                     <div className="grid md:grid-cols-2 gap-6">
                         {osData.workStyle.ngEnvironments && (
                             <div>
-                                <h4 className="font-bold text-slate-700 mb-3 text-sm">この性格タイプに合わない環境</h4>
+                                <h4 className="font-bold text-slate-700 mb-3 text-sm">{t.ngEnvLabel}</h4>
                                 <ul className="space-y-2">
                                     {osData.workStyle.ngEnvironments.map((env, i) => (
                                         <li key={i} className="flex items-start gap-2 text-sm text-slate-600 bg-red-50 p-3 rounded-lg">
@@ -142,7 +147,7 @@ export const WorkTab: React.FC<WorkTabProps> = ({ osData, engineData, themeColor
                         )}
                         {engineData?.motivationKillers && (
                             <div>
-                                <h4 className="font-bold text-slate-700 mb-3 text-sm">やる気を殺す3大要素</h4>
+                                <h4 className="font-bold text-slate-700 mb-3 text-sm">{t.motivationKillers}</h4>
                                 <ul className="space-y-2">
                                     {engineData.motivationKillers.map((killer, i) => (
                                         <li key={i} className="flex items-start gap-2 text-sm text-slate-600 bg-amber-50 p-3 rounded-lg">
@@ -162,12 +167,12 @@ export const WorkTab: React.FC<WorkTabProps> = ({ osData, engineData, themeColor
                 <Card className="p-6">
                     <h3 className="text-lg font-bold text-slate-800 mb-4 flex items-center gap-2">
                         <Users size={20} style={{ color: themeColor }} />
-                        上司・部下の相性
+                        {t.bossCompat}
                     </h3>
                     <div className="grid md:grid-cols-2 gap-6">
                         {osData.workStyle.idealBoss && (
                             <div>
-                                <h4 className="font-bold text-slate-700 mb-2 text-sm">こういう上司の下で力を発揮する</h4>
+                                <h4 className="font-bold text-slate-700 mb-2 text-sm">{t.idealBoss}</h4>
                                 <p className="text-sm text-slate-600 leading-relaxed bg-blue-50 p-4 rounded-lg whitespace-pre-wrap">
                                     <FormattedText text={osData.workStyle.idealBoss} />
                                 </p>
@@ -175,7 +180,7 @@ export const WorkTab: React.FC<WorkTabProps> = ({ osData, engineData, themeColor
                         )}
                         {osData.workStyle.idealSubordinate && (
                             <div>
-                                <h4 className="font-bold text-slate-700 mb-2 text-sm">こういう部下と相性がいい</h4>
+                                <h4 className="font-bold text-slate-700 mb-2 text-sm">{t.idealSubordinate}</h4>
                                 <p className="text-sm text-slate-600 leading-relaxed bg-green-50 p-4 rounded-lg whitespace-pre-wrap">
                                     <FormattedText text={osData.workStyle.idealSubordinate} />
                                 </p>
@@ -190,23 +195,23 @@ export const WorkTab: React.FC<WorkTabProps> = ({ osData, engineData, themeColor
                 <Card className="p-6">
                     <h3 className="text-lg font-bold text-slate-800 mb-4 flex items-center gap-2">
                         <TrendingUp size={20} className="text-orange-500" />
-                        キャリアの危険信号
+                        {t.careerRisk}
                     </h3>
                     <div className="space-y-4">
                         <div>
-                            <h4 className="font-bold text-slate-700 mb-2 text-sm">陥りがちなパターン</h4>
+                            <h4 className="font-bold text-slate-700 mb-2 text-sm">{t.trapPattern}</h4>
                             <p className="text-sm text-slate-600 leading-relaxed bg-orange-50 p-3 rounded-lg whitespace-pre-wrap">
                                 <FormattedText text={engineData.careerRisk.trapPattern} />
                             </p>
                         </div>
                         <div>
-                            <h4 className="font-bold text-slate-700 mb-2 text-sm">転職の引き金になりやすいこと</h4>
+                            <h4 className="font-bold text-slate-700 mb-2 text-sm">{t.quitTrigger}</h4>
                             <p className="text-sm text-slate-600 leading-relaxed bg-orange-50 p-3 rounded-lg whitespace-pre-wrap">
                                 <FormattedText text={engineData.careerRisk.quitTrigger} />
                             </p>
                         </div>
                         <div>
-                            <h4 className="font-bold text-slate-700 mb-2 text-sm">予防策</h4>
+                            <h4 className="font-bold text-slate-700 mb-2 text-sm">{t.prevention}</h4>
                             <p className="text-sm text-slate-600 leading-relaxed bg-emerald-50 p-3 rounded-lg whitespace-pre-wrap">
                                 <FormattedText text={engineData.careerRisk.prevention} />
                             </p>
@@ -220,23 +225,23 @@ export const WorkTab: React.FC<WorkTabProps> = ({ osData, engineData, themeColor
                 <Card className="p-6">
                     <h3 className="text-lg font-bold text-slate-800 mb-4 flex items-center gap-2">
                         <CircleDollarSign size={20} className="text-emerald-500" />
-                        お金と交渉の傾向
+                        {t.moneyStyle}
                     </h3>
                     <div className="space-y-4">
                         <div>
-                            <h4 className="font-bold text-slate-700 mb-2 text-sm">損しやすいパターン</h4>
+                            <h4 className="font-bold text-slate-700 mb-2 text-sm">{t.lossPattern}</h4>
                             <p className="text-sm text-slate-600 leading-relaxed bg-red-50 p-3 rounded-lg whitespace-pre-wrap">
                                 <FormattedText text={engineData.moneyStyle.lossPattern} />
                             </p>
                         </div>
                         <div>
-                            <h4 className="font-bold text-slate-700 mb-2 text-sm">交渉のクセ</h4>
+                            <h4 className="font-bold text-slate-700 mb-2 text-sm">{t.negotiationHabit}</h4>
                             <p className="text-sm text-slate-600 leading-relaxed bg-slate-50 p-3 rounded-lg whitespace-pre-wrap">
                                 <FormattedText text={engineData.moneyStyle.negotiationHabit} />
                             </p>
                         </div>
                         <div>
-                            <h4 className="font-bold text-slate-700 mb-2 text-sm">収入アップの戦略</h4>
+                            <h4 className="font-bold text-slate-700 mb-2 text-sm">{t.earningStrategy}</h4>
                             <p className="text-sm text-slate-600 leading-relaxed bg-emerald-50 p-3 rounded-lg whitespace-pre-wrap">
                                 <FormattedText text={engineData.moneyStyle.earningStrategy} />
                             </p>

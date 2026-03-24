@@ -11,7 +11,7 @@
  */
 
 import type { Locale } from './types';
-import type { Question, EngineType, BiasType } from '@/types/diagnosis';
+import type { Question, EngineType, BiasType, OSTypeCode } from '@/types/diagnosis';
 import type { OSContent } from '@/features/result/data/os/types';
 import type { EngineContent } from '@/features/result/data/content-engine';
 import type { BiasContent } from '@/features/result/data/content-bias';
@@ -31,8 +31,11 @@ import { QUESTIONS_EN } from '@/features/diagnosis/data/questions.en';
 import { OS_CONTENT_EN } from '@/features/result/data/os/en';
 import { ENGINE_CONTENT_EN } from '@/features/result/data/content-engine.en';
 import { BIAS_CONTENT_EN } from '@/features/result/data/content-bias.en';
-// import { CROSS_CONTENT_EN } from '@/features/result/data/cross/en';
-// import { RELATION_DEFINITIONS_EN } from '@/lib/constants/compatibility.en';
+import { CROSS_CONTENT_EN } from '@/features/result/data/cross/en/index.en';
+import { PAIR_CONCRETE_TIPS } from '@/lib/constants/compatibility-tips';
+import { PAIR_CONCRETE_TIPS_EN } from '@/lib/constants/compatibility-tips.en';
+import { getCompatibility } from '@/lib/constants/compatibility';
+import { RELATION_DEFINITIONS_EN } from '@/lib/constants/compatibility.en';
 
 /**
  * 質問データを取得する
@@ -79,11 +82,24 @@ export function getBiasContent(locale: Locale): Record<BiasType, BiasContent> {
  */
 export function getCrossContent(locale: Locale): Record<string, CrossContent> {
     if (locale === 'en') {
-        // TODO: 英語版データが実装されたらコメント解除
-        // return CROSS_CONTENT_EN;
-        return CROSS_CONTENT;
+        return CROSS_CONTENT_EN;
     }
     return CROSS_CONTENT;
+}
+
+/**
+ * ペア固有のconcreTipをロケールに応じて取得する
+ */
+export function getPairConcreteTipLocalized(
+    typeA: OSTypeCode,
+    typeB: OSTypeCode,
+    locale: Locale
+): string {
+    const key = `${typeA}-${typeB}` as `${OSTypeCode}-${OSTypeCode}`;
+    const tips = locale === 'en' ? PAIR_CONCRETE_TIPS_EN : PAIR_CONCRETE_TIPS;
+    const relationDefs = getRelationDefinitions(locale);
+    const relation = getCompatibility(typeA, typeB);
+    return (tips as Record<string, string | undefined>)[key] ?? relationDefs[relation.type]?.concreteTip ?? relation.concreteTip;
 }
 
 /**
@@ -91,9 +107,7 @@ export function getCrossContent(locale: Locale): Record<string, CrossContent> {
  */
 export function getRelationDefinitions(locale: Locale): Record<RelationType, RelationDefinition> {
     if (locale === 'en') {
-        // TODO: 英語版データが実装されたらコメント解除
-        // return RELATION_DEFINITIONS_EN;
-        return RELATION_DEFINITIONS;
+        return RELATION_DEFINITIONS_EN;
     }
     return RELATION_DEFINITIONS;
 }

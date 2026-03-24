@@ -4,11 +4,13 @@ import React from 'react';
 import { Microscope, CheckCircle2, AlertTriangle, Sparkles, Lightbulb, Smile, Shield } from 'lucide-react';
 import { Card } from '@/components/ui/Card';
 import { FormattedText } from '@/components/ui/FormattedText';
-import type { OSContent } from '../../data/content-os';
+import type { OSContent } from '../../data/os/types';
 import type { EngineContent } from '../../data/content-engine';
 import type { BiasContent } from '../../data/content-bias';
 import { VerbalHabitsSection } from '../VerbalHabitsSection';
 import { StressManualSection } from '../StressManualSection';
+import { useLocale } from '@/lib/i18n';
+import { getUIText } from '@/lib/i18n/ui-dictionary';
 
 interface AnalysisTabProps {
     osData: OSContent;
@@ -18,6 +20,8 @@ interface AnalysisTabProps {
 }
 
 export const AnalysisTab: React.FC<AnalysisTabProps> = ({ osData, engineData, themeColor, biasRisks }) => {
+    const locale = useLocale();
+    const t = getUIText(locale).analysisTab;
     const highCount = biasRisks.filter(b => b.level === 'high').length;
     const mediumCount = biasRisks.filter(b => b.level === 'medium').length;
 
@@ -28,7 +32,7 @@ export const AnalysisTab: React.FC<AnalysisTabProps> = ({ osData, engineData, th
             <Card className="p-6">
                 <h3 className="text-lg font-bold text-slate-800 mb-4 flex items-center gap-2">
                     <Microscope size={20} style={{ color: themeColor }} />
-                    基本プロファイル
+                    {t.profile}
                 </h3>
                 <div className="prose prose-slate max-w-none text-slate-600 leading-relaxed mb-6 whitespace-pre-wrap">
                     <FormattedText text={osData.description} />
@@ -36,7 +40,7 @@ export const AnalysisTab: React.FC<AnalysisTabProps> = ({ osData, engineData, th
                 <div className="grid md:grid-cols-2 gap-4">
                     <div className="bg-green-50/50 p-4 rounded-xl border border-green-100">
                         <h4 className="font-bold text-green-800 mb-2 flex items-center gap-2">
-                            <CheckCircle2 size={18} /> 強み
+                            <CheckCircle2 size={18} /> {t.strengths}
                         </h4>
                         <div className="text-sm text-slate-700 leading-relaxed whitespace-pre-wrap">
                             <FormattedText text={osData.strength} />
@@ -44,7 +48,7 @@ export const AnalysisTab: React.FC<AnalysisTabProps> = ({ osData, engineData, th
                     </div>
                     <div className="bg-blue-50/50 p-4 rounded-xl border border-blue-100">
                         <h4 className="font-bold text-blue-800 mb-2 flex items-center gap-2">
-                            <AlertTriangle size={18} /> 弱点
+                            <AlertTriangle size={18} /> {t.weaknesses}
                         </h4>
                         <div className="text-sm text-slate-700 leading-relaxed whitespace-pre-wrap">
                             <FormattedText text={osData.weakness} />
@@ -58,7 +62,7 @@ export const AnalysisTab: React.FC<AnalysisTabProps> = ({ osData, engineData, th
                 <Card className="p-6">
                     <h3 className="text-lg font-bold text-slate-800 mb-4 flex items-center gap-2">
                         <Smile size={20} className="text-prisma-500" />
-                        あるある
+                        {t.aruaru}
                     </h3>
                     <ul className="space-y-3">
                         {osData.aruaru.map((item, index) => (
@@ -78,24 +82,24 @@ export const AnalysisTab: React.FC<AnalysisTabProps> = ({ osData, engineData, th
                 <Card className="p-6">
                     <h3 className="text-lg font-bold text-slate-800 mb-4 flex items-center gap-2">
                         <Sparkles size={20} className="text-prisma-500" />
-                        深層心理
+                        {t.deepPsychology}
                     </h3>
                     <div className="space-y-4">
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                             <div className="bg-slate-50 p-4 rounded-lg">
-                                <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">根源的欲求</h4>
+                                <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">{t.coreDesire}</h4>
                                 <p className="font-medium text-slate-800">
                                     <FormattedText text={osData.psychology.coreDesire} />
                                 </p>
                             </div>
                             <div className="bg-slate-50 p-4 rounded-lg">
-                                <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">盲点</h4>
+                                <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">{t.blindSpot}</h4>
                                 <p className="font-medium text-slate-800">
                                     <FormattedText text={osData.psychology.blindSpot} />
                                 </p>
                             </div>
                             <div className="bg-indigo-50 p-4 rounded-lg">
-                                <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">フロー状態</h4>
+                                <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">{t.flowState}</h4>
                                 <p className="font-medium text-slate-800">
                                     <FormattedText text={osData.psychology.flowState} />
                                 </p>
@@ -113,27 +117,27 @@ export const AnalysisTab: React.FC<AnalysisTabProps> = ({ osData, engineData, th
                 <Card className="p-6">
                     <h3 className="text-lg font-bold text-slate-800 mb-4 flex items-center gap-2">
                         <Shield size={20} className="text-slate-500" />
-                        思考のクセ診断
+                        {t.cognitiveHabits}
                     </h3>
 
                     {/* サマリーバー */}
                     <div className="flex items-center gap-4 mb-6 p-4 bg-slate-50 rounded-xl border border-slate-100">
                         <div className="text-center">
                             <p className="text-3xl font-bold text-slate-800">{biasRisks.length}</p>
-                            <p className="text-xs text-slate-500">検出数</p>
+                            <p className="text-xs text-slate-500">{t.detected}</p>
                         </div>
                         <div className="w-px h-10 bg-slate-200" />
                         <div className="flex gap-3">
                             {highCount > 0 && (
                                 <div className="flex items-center gap-1.5">
                                     <span className="w-2.5 h-2.5 rounded-full bg-red-400" />
-                                    <span className="text-sm text-slate-600">高リスク <span className="font-bold text-red-700">{highCount}</span></span>
+                                    <span className="text-sm text-slate-600">{t.highRisk} <span className="font-bold text-red-700">{highCount}</span></span>
                                 </div>
                             )}
                             {mediumCount > 0 && (
                                 <div className="flex items-center gap-1.5">
                                     <span className="w-2.5 h-2.5 rounded-full bg-amber-400" />
-                                    <span className="text-sm text-slate-600">中リスク <span className="font-bold text-amber-700">{mediumCount}</span></span>
+                                    <span className="text-sm text-slate-600">{t.medRisk} <span className="font-bold text-amber-700">{mediumCount}</span></span>
                                 </div>
                             )}
                         </div>
@@ -152,7 +156,7 @@ export const AnalysisTab: React.FC<AnalysisTabProps> = ({ osData, engineData, th
                                             {bias.name}
                                         </h4>
                                         <span className={`text-xs font-bold px-2 py-0.5 rounded-full ${isHigh ? 'bg-red-100 text-red-700' : 'bg-amber-100 text-amber-700'}`}>
-                                            {isHigh ? '高リスク' : '中リスク'}
+                                            {isHigh ? t.highRisk : t.medRisk}
                                         </span>
                                     </div>
 
@@ -169,7 +173,7 @@ export const AnalysisTab: React.FC<AnalysisTabProps> = ({ osData, engineData, th
                                         <div className="bg-slate-50 p-4 rounded-lg border border-slate-100">
                                             <h5 className="font-bold text-slate-700 mb-1 text-sm flex items-center gap-2">
                                                 <Lightbulb size={16} className="text-prisma-500" />
-                                                対策アプローチ
+                                                {t.countermeasure}
                                             </h5>
                                             <p className="text-sm text-slate-600 leading-relaxed">
                                                 <FormattedText text={bias.countermeasure} />

@@ -17,8 +17,6 @@ import { FormattedText } from '@/components/ui/FormattedText';
 import { useDiagnosisStore } from '@/stores/useDiagnosisStore';
 import { usePairStore } from '@/stores/usePairStore';
 import { OS_CONTENT } from '../data/content-os';
-import { ENGINE_CONTENT } from '../data/content-engine';
-import { BIAS_CONTENT } from '../data/content-bias';
 import { Button } from '@/components/ui/Button';
 import { ShareButtons } from '@/components/common/ShareButtons';
 import { useReactToPrint } from 'react-to-print';
@@ -31,6 +29,7 @@ import { SITE_CONFIG } from '@/lib/constants/site-config';
 import { decodeResult, buildSharedResult } from '@/lib/utils/share-result';
 import type { OSTypeCode } from '@/types/diagnosis';
 import { useLocale, useLocalePath, getUIText } from '@/lib/i18n';
+import { getOSContent, getEngineContent, getBiasContent } from '@/lib/i18n/localized-data';
 
 // Tab Components (lazy loading for code splitting)
 const OverviewTab = lazy(() => import('./tabs/OverviewTab').then(m => ({ default: m.OverviewTab })));
@@ -42,10 +41,11 @@ const GrowthTab = lazy(() => import('./tabs/GrowthTab').then(m => ({ default: m.
 
 type TabType = 'overview' | 'analysis' | 'work' | 'relations' | 'growth';
 
-/** ペア相性診断への導線コンポーネント */
+/** ペア相性診断への導線コンポーネント（日本語版のみ表示） */
 const PairDiagnosisCTA: React.FC<{ myCode: OSTypeCode; myName: string }> = ({ myCode, myName }) => {
     const router = useRouter();
     const localePath = useLocalePath();
+    const locale = useLocale();
     const partnerCode = usePairStore((s) => s.partnerCode);
     const isValidInvite = usePairStore((s) => s.isValidInvite);
     const clearPartnerCode = usePairStore((s) => s.clearPartnerCode);
@@ -53,6 +53,9 @@ const PairDiagnosisCTA: React.FC<{ myCode: OSTypeCode; myName: string }> = ({ my
     const [copied, setCopied] = useState(false);
 
     useEffect(() => setMounted(true), []);
+
+    // 英語版ではペア診断CTAを非表示
+    if (locale === 'en') return null;
 
     const inviteUrl = `${SITE_CONFIG.baseUrl}/pair/invite/${myCode}/`;
     const hasValidPair = mounted && isValidInvite() && partnerCode;
@@ -144,6 +147,11 @@ export const ResultPage: React.FC = () => {
     const [activeTab, setActiveTab] = useState<TabType>('overview');
     /** 共有URLからの閲覧かどうか（Firestore保存をスキップ、CTAを表示） */
     const [isSharedView, setIsSharedView] = useState(false);
+
+    // Localized data
+    const osContentMap = getOSContent(locale);
+    const engineContentMap = getEngineContent(locale);
+    const biasContentMap = getBiasContent(locale);
 
     // Print logic state and ref
     const [isPrinting, setIsPrinting] = useState(false);
@@ -243,12 +251,12 @@ export const ResultPage: React.FC = () => {
 
     if (!result) return null;
 
-    const osData = OS_CONTENT[result.os.code];
-    const engineData = ENGINE_CONTENT[result.engine.primary];
+    const osData = osContentMap[result.os.code];
+    const engineData = engineContentMap[result.engine.primary];
 
     // Calculate bias risks from alerts
     const biasRisks = result.bias.alerts?.map((alertType) => {
-        const content = BIAS_CONTENT[alertType];
+        const content = biasContentMap[alertType];
         // Determine risk level based on score if available, otherwise default to high/medium logic
         const score = result.bias.scores[alertType] || 0;
         const level = score >= 2 ? 'high' : 'medium';
@@ -269,6 +277,36 @@ export const ResultPage: React.FC = () => {
         { id: 'relations', label: t.result.tabs.relations, icon: Users },
         { id: 'growth', label: t.result.tabs.growth, icon: TrendingUp },
     ];
+
+    // ロケール対応テキスト
+    const shareXLabel = locale === 'en' ? 'Share on X' : 'Xでシェア';
+    const shareXText = locale === 'en'
+        ? `My personality type is "${osData.name}"! Discover yours too.`
+        : `私の基本タイプは「${osData.name}」でした！あなたのタイプも診断してみませんか？`;
+    const shareXHashtags = locale === 'en'
+        ? '16Personalities,PersonalityTest'
+        : '16性格診断,性格診断,自己分析';
+    const shareTitle = locale === 'en'
+        ? `【Personality Diagnosis】My type is "${osData.name}"!`
+        : `【16性格診断】私の基本タイプは『${osData.name}』でした！`;
+    const shareText = locale === 'en'
+        ? `My personality type is "${osData.name}"! Find out your type too.`
+        : `私の基本タイプは「${osData.name}」でした！あなたのタイプも診断してみませんか？`;
+    const shareHashtags = locale === 'en'
+        ? ['16Personalities', 'PersonalityTest']
+        : ['16性格診断', '性格診断', '自己分析'];
+    const footerMessage = locale === 'en'
+        ? 'These results are a guide to unlocking your full potential.'
+        : 'この診断結果は、あなたが本来持っている可能性を最大限に引き出すための指針です。';
+    const pdfLabel = locale === 'en'
+        ? (isPrinting ? 'Preparing...' : 'Save as PDF')
+        : (isPrinting ? '準備中...' : 'PDFで保存する');
+    const sharedViewCTA = locale === 'en'
+        ? 'Curious about your own type?'
+        : 'あなたのタイプも気になりませんか？';
+    const sharedViewButton = locale === 'en'
+        ? 'Take the Free Diagnosis (3 min)'
+        : '無料で診断する（3分）';
 
     return (
         <div className="min-h-screen bg-gradient-to-br from-slate-50 via-prisma-50 to-white pb-20 relative">
@@ -319,29 +357,30 @@ export const ResultPage: React.FC = () => {
                         <button
                             onClick={() => {
                                 const shareUrl = `${SITE_CONFIG.baseUrl}/result/share/${result.os.code}`;
-                                const text = `私の基本タイプは「${osData.name}」でした！あなたのタイプも診断してみませんか？`;
                                 window.open(
-                                    `https://twitter.com/intent/tweet?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(text)}&hashtags=16性格診断,性格診断,自己分析`,
+                                    `https://twitter.com/intent/tweet?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(shareXText)}&hashtags=${shareXHashtags}`,
                                     '_blank'
                                 );
                             }}
                             className="inline-flex items-center gap-1.5 px-4 py-2 bg-black/80 text-white text-xs font-medium rounded-full hover:bg-black transition-colors"
                         >
                             <Share2 size={13} />
-                            Xでシェア
+                            {shareXLabel}
                         </button>
-                        <button
-                            onClick={() => {
-                                const shareUrl = `${SITE_CONFIG.baseUrl}/result/share/${result.os.code}`;
-                                window.open(
-                                    `https://social-plugins.line.me/lineit/share?url=${encodeURIComponent(shareUrl)}`,
-                                    '_blank'
-                                );
-                            }}
-                            className="inline-flex items-center gap-1.5 px-4 py-2 bg-[#06C755] text-white text-xs font-medium rounded-full hover:bg-[#05b34c] transition-colors"
-                        >
-                            LINE
-                        </button>
+                        {locale === 'ja' && (
+                            <button
+                                onClick={() => {
+                                    const shareUrl = `${SITE_CONFIG.baseUrl}/result/share/${result.os.code}`;
+                                    window.open(
+                                        `https://social-plugins.line.me/lineit/share?url=${encodeURIComponent(shareUrl)}`,
+                                        '_blank'
+                                    );
+                                }}
+                                className="inline-flex items-center gap-1.5 px-4 py-2 bg-[#06C755] text-white text-xs font-medium rounded-full hover:bg-[#05b34c] transition-colors"
+                            >
+                                LINE
+                            </button>
+                        )}
                     </div>
             </div>
 
@@ -421,23 +460,25 @@ export const ResultPage: React.FC = () => {
                 {/* Compatibility CTA (Best Match & Challenge Match) */}
                 <ResultCompatibilityCTA typeCode={result.os.code} />
 
-                {/* ペア相性診断への導線 */}
+                {/* ペア相性診断への導線（日本語版のみ） */}
                 <PairDiagnosisCTA myCode={result.os.code} myName={osData.name} />
 
-                {/* Related Articles for this Type */}
-                <RelatedArticlesForResult typeCode={result.os.code} />
+                {/* Related Articles for this Type（日本語版のみ） */}
+                {locale === 'ja' && (
+                    <RelatedArticlesForResult typeCode={result.os.code} />
+                )}
 
                 {/* Footer Actions */}
                 <div className="mt-12 flex flex-col items-center gap-6">
                     <p className="text-slate-400 text-sm text-center max-w-md">
-                        この診断結果は、あなたが本来持っている可能性を最大限に引き出すための指針です。
+                        {footerMessage}
                     </p>
 
                     <ShareButtons
                         url={`${SITE_CONFIG.baseUrl}/result/share/${result.os.code}`}
-                        title={`【16性格診断】私の基本タイプは『${osData.name}』でした！`}
-                        text={`私の基本タイプは「${osData.name}」でした！あなたのタイプも診断してみませんか？`}
-                        hashtags={['16性格診断', '性格診断', '自己分析']}
+                        title={shareTitle}
+                        text={shareText}
+                        hashtags={shareHashtags}
                     />
 
                     <div className="flex flex-col sm:flex-row gap-4 mt-4">
@@ -448,7 +489,7 @@ export const ResultPage: React.FC = () => {
                             className={`flex items-center gap-2 text-slate-600 border-slate-300 ${isPrinting ? 'opacity-50 cursor-not-allowed' : 'hover:text-slate-800'}`}
                         >
                             <Download size={18} />
-                            {isPrinting ? '準備中...' : 'PDFで保存する'}
+                            {pdfLabel}
                         </Button>
 
                         <Button
@@ -465,13 +506,13 @@ export const ResultPage: React.FC = () => {
                     {isSharedView && (
                         <div className="mt-8 bg-gradient-to-r from-prisma-50 to-indigo-50 border border-prisma-200 rounded-2xl p-6 text-center max-w-md">
                             <p className="text-slate-700 font-medium mb-3">
-                                あなたのタイプも気になりませんか？
+                                {sharedViewCTA}
                             </p>
                             <Button
                                 onClick={() => router.push(localePath('/diagnosis'))}
                                 className="bg-prisma-600 hover:bg-prisma-700 text-white px-8 py-3 text-base font-bold"
                             >
-                                無料で診断する（3分）
+                                {sharedViewButton}
                             </Button>
                         </div>
                     )}

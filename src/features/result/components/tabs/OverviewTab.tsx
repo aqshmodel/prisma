@@ -3,13 +3,16 @@
 import React from 'react';
 
 import { Zap, LayoutDashboard, Blend } from 'lucide-react';
-import { OS_CONTENT } from '@/features/result/data/content-os';
 import { Card } from '@/components/ui/Card';
 import { FormattedText } from '@/components/ui/FormattedText';
 import { RadarChart } from '../RadarChart';
 import { MatrixChart } from '../MatrixChart';
-import { CROSS_CONTENT, getCrossKey } from '../../data/cross';
-import type { OSContent } from '../../data/content-os';
+import { getCrossKey } from '../../data/cross/types';
+import { getCrossContent, getOSContent } from '@/lib/i18n/localized-data';
+import { useLocale } from '@/lib/i18n';
+import { getUIText } from '@/lib/i18n/ui-dictionary';
+import { getLocalePath } from '@/lib/i18n/navigation';
+import type { OSContent } from '../../data/os/types';
 import type { EngineContent } from '../../data/content-engine';
 
 
@@ -19,8 +22,12 @@ interface OverviewTabProps {
 }
 
 export const OverviewTab: React.FC<OverviewTabProps> = ({ osData, engineData }) => {
+    const locale = useLocale();
+    const t = getUIText(locale).overviewTab;
+    const crossContent = getCrossContent(locale);
+    const osContent = getOSContent(locale);
     const crossKey = getCrossKey(osData.code, engineData.type);
-    const crossData = CROSS_CONTENT[crossKey];
+    const crossData = crossContent[crossKey];
 
     return (
         <div
@@ -29,12 +36,12 @@ export const OverviewTab: React.FC<OverviewTabProps> = ({ osData, engineData }) 
             <Card className="p-6 shadow-lg">
                 <div className="grid md:grid-cols-2 gap-8 items-center">
                     <div className="flex justify-center">
-                        <RadarChart data={osData.params} color={osData.color} />
+                        <RadarChart data={osData.params} color={osData.color} locale={locale} />
                     </div>
                     <div className="space-y-6">
                         <div>
                             <div className="flex items-center justify-between mb-2">
-                                <h3 className="text-sm font-semibold text-slate-400 tracking-wider">駆動エンジン</h3>
+                                <h3 className="text-sm font-semibold text-slate-400 tracking-wider">{t.engine}</h3>
                             </div>
                             <p className="text-3xl font-bold text-slate-800 flex items-center gap-3">
                                 <span className={`p-2 rounded-lg bg-yellow-100/50 text-yellow-600`}>
@@ -52,13 +59,13 @@ export const OverviewTab: React.FC<OverviewTabProps> = ({ osData, engineData }) 
 
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                             <div className="bg-red-50 p-3 rounded-lg border border-red-100">
-                                <span className="text-red-800 font-bold text-xs block mb-1">⚠️ ストレス反応</span>
+                                <span className="text-red-800 font-bold text-xs block mb-1">{t.stressReaction}</span>
                                 <p className="text-xs text-red-700 leading-snug">
                                     <FormattedText text={engineData.stressBehavior} />
                                 </p>
                             </div>
                             <div className="bg-emerald-50 p-3 rounded-lg border border-emerald-100">
-                                <span className="text-emerald-800 font-bold text-xs block mb-1">🌱 成長へのヒント</span>
+                                <span className="text-emerald-800 font-bold text-xs block mb-1">{t.growthHint}</span>
                                 <p className="text-xs text-emerald-700 leading-snug">
                                     <FormattedText text={engineData.growthAdvice} />
                                 </p>
@@ -66,7 +73,7 @@ export const OverviewTab: React.FC<OverviewTabProps> = ({ osData, engineData }) 
                         </div>
 
                         <div className="pt-6 border-t border-slate-100">
-                            <h3 className="text-sm font-semibold text-slate-400 tracking-wider mb-2">基本タイプ</h3>
+                            <h3 className="text-sm font-semibold text-slate-400 tracking-wider mb-2">{t.baseType}</h3>
                             <div className="flex items-baseline gap-2">
                                 <p className="text-2xl font-bold text-slate-800">
                                     {osData.name.split('(')[0].trim()}
@@ -74,11 +81,11 @@ export const OverviewTab: React.FC<OverviewTabProps> = ({ osData, engineData }) 
                                 <span className="text-lg font-semibold text-slate-400">({osData.code})</span>
                             </div>
                             <p className="text-slate-500 text-xs mt-2">
-                                相性最高: <span className="font-semibold">{OS_CONTENT[osData.bestMatch]?.name || osData.bestMatch}</span> / 要注意: <span className="font-semibold">{OS_CONTENT[osData.worstMatch]?.name || osData.worstMatch}</span>
+                                {t.bestMatch}: <span className="font-semibold">{osContent[osData.bestMatch]?.name || osData.bestMatch}</span> / {t.caution}: <span className="font-semibold">{osContent[osData.worstMatch]?.name || osData.worstMatch}</span>
                             </p>
                             <div className="mt-4">
-                                <a href={`/types/${osData.code}`} className="text-sm text-indigo-600 font-bold hover:underline flex items-center gap-1">
-                                    詳細プロファイルを見る <span aria-hidden="true">&rarr;</span>
+                                <a href={getLocalePath(locale, `/types/${osData.code}`)} className="text-sm text-indigo-600 font-bold hover:underline flex items-center gap-1">
+                                    {t.viewProfile} <span aria-hidden="true">&rarr;</span>
                                 </a>
                             </div>
                         </div>
@@ -91,7 +98,7 @@ export const OverviewTab: React.FC<OverviewTabProps> = ({ osData, engineData }) 
                 <Card className="p-6">
                     <h3 className="text-lg font-bold text-slate-800 mb-4 flex items-center gap-2">
                         <Blend size={20} className="text-prisma-500" />
-                        あなただけの組み合わせ
+                        {t.yourCombo}
                     </h3>
                     {osData.hashTag && (
                         <p className="text-prisma-600 font-bold text-sm mb-3">{osData.hashTag}</p>
@@ -105,7 +112,7 @@ export const OverviewTab: React.FC<OverviewTabProps> = ({ osData, engineData }) 
                         </p>
                     </div>
                     <p className="text-xs text-slate-400 mt-3">
-                        {osData.name} × {engineData.name} の組み合わせ解説
+                        {t.comboCaption(osData.name, engineData.name)}
                     </p>
                 </Card>
             )}
@@ -113,27 +120,27 @@ export const OverviewTab: React.FC<OverviewTabProps> = ({ osData, engineData }) 
             <Card className="p-6">
                 <h3 className="text-lg font-bold text-slate-800 mb-4 flex items-center gap-2">
                     <LayoutDashboard size={20} className="text-slate-400" />
-                    タイプポジション
+                    {t.typePosition}
                 </h3>
                 <div className="overflow-hidden rounded-xl border border-slate-100 bg-slate-50/50 p-2 text-center">
                     <MatrixChart highlightCode={osData.code} />
                 </div>
                 <div className="mt-4 grid grid-cols-2 gap-2 text-xs text-slate-500">
                     <div className="bg-slate-50 p-2 rounded border border-slate-100">
-                        <span className="font-bold block mb-1">左上: 伝統・規律</span>
-                        確実性と安定を重視し、組織の基盤を支える守り手。
+                        <span className="font-bold block mb-1">{t.quadrantTopLeft}</span>
+                        {t.quadrantTopLeftDesc}
                     </div>
                     <div className="bg-slate-50 p-2 rounded border border-slate-100">
-                        <span className="font-bold block mb-1">右上: 革新・論理</span>
-                        合理性と成果を追求し、変革を推進する開拓者。
+                        <span className="font-bold block mb-1">{t.quadrantTopRight}</span>
+                        {t.quadrantTopRightDesc}
                     </div>
                     <div className="bg-slate-50 p-2 rounded border border-slate-100">
-                        <span className="font-bold block mb-1">左下: 協調・感情</span>
-                        人の和と調和を尊び、チームの接着剤となる調整役。
+                        <span className="font-bold block mb-1">{t.quadrantBottomLeft}</span>
+                        {t.quadrantBottomLeftDesc}
                     </div>
                     <div className="bg-slate-50 p-2 rounded border border-slate-100">
-                        <span className="font-bold block mb-1">右下: 自由・直感</span>
-                        可能性と独自性を愛し、新しい風を吹き込む創作者。
+                        <span className="font-bold block mb-1">{t.quadrantBottomRight}</span>
+                        {t.quadrantBottomRightDesc}
                     </div>
                 </div>
             </Card>
