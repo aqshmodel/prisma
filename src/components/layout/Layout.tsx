@@ -104,6 +104,7 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
                                 <h4 className="text-white font-bold tracking-wider mb-2">規約・サポート</h4>
                                 <Link href="/terms" className="text-slate-400 hover:text-prisma-400 transition-colors">利用規約</Link>
                                 <Link href="/privacy" className="text-slate-400 hover:text-prisma-400 transition-colors">プライバシーポリシー</Link>
+                                <Link href="/legal" className="text-slate-400 hover:text-prisma-400 transition-colors">特定商取引法に基づく表記</Link>
                                 <Link href="https://aqsh.co.jp/contact/" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-prisma-400 transition-colors">お問い合わせ</Link>
                             </div>
                         </div>

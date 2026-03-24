@@ -96,3 +96,116 @@
     @apply bg-slate-50 text-slate-900;
   }
 }
+
+/* ===== PDF印刷モード ===== */
+@media print {
+  /* ===== 1. 白紙1ページ目の解消 ===== */
+  /* ページ上部の巨大パディング（pt-24 = 6rem）を除去 */
+  body.pdf-print-mode .min-h-screen {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    min-height: auto !important;
+  }
+
+  /* ヘッダー・フッター・ナビゲーションを非表示 */
+  body.pdf-print-mode header:not(.pdf-print-target header),
+  body.pdf-print-mode footer,
+  body.pdf-print-mode nav {
+    display: none !important;
+  }
+
+  /* 印刷対象のコンテナ調整 */
+  body.pdf-print-mode .pdf-print-target {
+    padding: 0 !important;
+    margin: 0 !important;
+    max-width: 100% !important;
+  }
+
+  /* ===== 2. 印刷時の背景色保持 ===== */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* ===== 3. ボタン・インタラクティブ要素を非表示 ===== */
+  button,
+  select {
+    display: none !important;
+  }
+
+  /* 視点絞り込みUIのコンテナごと非表示 */
+  body.pdf-print-mode .pdf-print-target select,
+  body.pdf-print-mode .pdf-print-target select + div {
+    display: none !important;
+  }
+
+  /* selectの親コンテナ（bg-white p-4 rounded-2xlの絞り込みUI全体）を非表示 */
+  .space-y-6 > .bg-white.rounded-2xl:has(select) {
+    display: none !important;
+  }
+
+  /* ===== 4. React Flow マップのはみ出し修正 ===== */
+  .react-flow__controls,
+  .react-flow__minimap,
+  .react-flow__attribution {
+    display: none !important;
+  }
+
+  /* React Flowコンテナを印刷幅に収める */
+  .react-flow {
+    overflow: visible !important;
+    max-width: 100% !important;
+    height: 400px !important;
+  }
+
+  .react-flow__viewport {
+    transform: scale(0.55) translate(-10%, -5%) !important;
+    transform-origin: top left !important;
+  }
+
+  /* マップの操作説明テキストを非表示 */
+  .react-flow ~ p,
+  .react-flow + p {
+    display: none !important;
+  }
+
+  /* ===== 5. カードの重なり防止 ===== */
+  /* グリッドを1列に変更（印刷時は横並びだと崩れやすい） */
+  .grid.md\:grid-cols-2,
+  .grid.lg\:grid-cols-3 {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 12px !important;
+  }
+
+  /* カードの改ページ制御 */
+  .grid > div {
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+    overflow: hidden !important;
+  }
+
+  /* headerカードのみ改ページ禁止（セクション単位では禁止しない → 白紙表紙を防ぐ） */
+  header {
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+
+  /* 角丸の過剰表示を抑制 */
+  .rounded-3xl {
+    border-radius: 16px !important;
+  }
+
+  /* shadowを軽量化（印刷時は不要） */
+  .shadow-sm,
+  .shadow-md,
+  .shadow-xl {
+    box-shadow: none !important;
+    border: 1px solid #e2e8f0 !important;
+  }
+
+  @page {
+    size: A4 portrait;
+    margin: 10mm 8mm;
+  }
+}
+
