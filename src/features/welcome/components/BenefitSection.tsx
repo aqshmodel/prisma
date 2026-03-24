@@ -1,7 +1,20 @@
+'use client';
+
 import React from 'react';
 import { Target, Users, TrendingUp } from 'lucide-react';
+import { useLocale } from '@/lib/i18n';
+import { getWelcomeText } from '../welcome-dictionary';
+
+const icons = [
+    <Target key="target" className="w-8 h-8" />,
+    <Users key="users" className="w-8 h-8" />,
+    <TrendingUp key="trending" className="w-8 h-8" />,
+];
 
 export const BenefitSection: React.FC = () => {
+    const locale = useLocale();
+    const t = getWelcomeText(locale).benefit;
+
     return (
         <section className="relative py-32 lg:py-40 overflow-hidden">
             {/* Diffused Background */}
@@ -11,36 +24,37 @@ export const BenefitSection: React.FC = () => {
             <div className="max-w-7xl mx-auto px-6">
                 <div className="text-left md:text-center max-w-3xl mx-auto mb-12 md:mb-20 space-y-6 animate-fade-in-up">
                     <span className="inline-block text-xs font-serif tracking-[0.2em] text-prisma-600 uppercase mb-2">
-                        Why Prisma?
+                        {t.badge}
                     </span>
                     <h2 className="text-3xl md:text-5xl font-serif font-medium text-slate-900 leading-[1.4] md:leading-[1.2] tracking-tight text-balance">
-                        <span className="inline-block">自己理解の深さが、</span><br className="hidden md:block" />
-                        <span className="inline-block"><span className="text-prisma-600">人生の質</span>に直結する。</span>
+                        <span className="inline-block">
+                            {locale === 'ja' ? (
+                                <>自己理解の深さが、</>
+                            ) : (
+                                <>{t.heading[0]}</>
+                            )}
+                        </span><br className="hidden md:block" />
+                        <span className="inline-block">
+                            {locale === 'ja' ? (
+                                <><span className="text-prisma-600">人生の質</span>に直結する。</>
+                            ) : (
+                                <>{t.heading[1]}</>
+                            )}
+                        </span>
                     </h2>
                 </div>
 
                 <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
-                    <BenefitCard
-                        icon={<Target className="w-8 h-8" />}
-                        title="Deep Insight"
-                        subtitle="自分だけの取扱説明書"
-                        description="自分が何者で、どこへ向かうべきかが明確に。得意なことだけでなく、絶対に避けるべき「致死量のタスク」まで可視化します。"
-                        delay={0}
-                    />
-                    <BenefitCard
-                        icon={<Users className="w-8 h-8" />}
-                        title="Empathy"
-                        subtitle="人間関係のノイズ削減"
-                        description="「なぜあの人はあんな態度をとるのか」が腑に落ちます。不毛な感情対立が減り、ストレスのない関係構築の土台が作れます。"
-                        delay={100}
-                    />
-                    <BenefitCard
-                        icon={<TrendingUp className="w-8 h-8" />}
-                        title="Life Hack"
-                        subtitle="才能の最大化"
-                        description="無理に自分を変えるのではなく、持って生まれた「思考のクセ」を活かしきることで、仕事も恋愛も本来の力を発揮できるようになります。"
-                        delay={200}
-                    />
+                    {t.cards.map((card, idx) => (
+                        <BenefitCard
+                            key={card.title}
+                            icon={icons[idx]}
+                            title={card.title}
+                            subtitle={card.subtitle}
+                            description={card.description}
+                            delay={idx * 100}
+                        />
+                    ))}
                 </div>
             </div>
         </section>

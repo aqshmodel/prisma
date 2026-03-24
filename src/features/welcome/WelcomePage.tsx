@@ -2,8 +2,9 @@
 
 import React, { Suspense, lazy } from 'react';
 import { useRouter } from 'next/navigation';
-import { useDiagnosisStore } from '../../stores/useDiagnosisStore';
+import { useDiagnosisStore } from '@/stores/useDiagnosisStore';
 import { HeroSection } from './components/HeroSection';
+import { useLocale, useLocalePath } from '@/lib/i18n';
 
 // ファーストビュー外のセクションを遅延読み込み（TBT改善）
 const ProblemSection = lazy(() => import('./components/ProblemSection').then(m => ({ default: m.ProblemSection })));
@@ -24,6 +25,8 @@ interface WelcomePageProps {
 
 export const WelcomePage: React.FC<WelcomePageProps> = ({ articleSlot }) => {
     const router = useRouter();
+    const locale = useLocale();
+    const localePath = useLocalePath();
     const resetDiagnosis = useDiagnosisStore((state) => state.resetDiagnosis);
     const answers = useDiagnosisStore((state) => state.answers);
     const result = useDiagnosisStore((state) => state.result);
@@ -35,14 +38,16 @@ export const WelcomePage: React.FC<WelcomePageProps> = ({ articleSlot }) => {
     // 完了済みの結果があるかどうか
     const hasResult = !!result || history.length > 0;
 
+    const isJa = locale === 'ja';
+
     const handleStart = () => {
         resetDiagnosis();
-        router.push('/diagnosis');
+        router.push(localePath('/diagnosis'));
     };
 
-    const handleResume = () => router.push('/diagnosis');
+    const handleResume = () => router.push(localePath('/diagnosis'));
 
-    const handleViewResult = () => router.push('/result');
+    const handleViewResult = () => router.push(localePath('/result'));
 
     return (
         <div className="flex flex-col w-full">
@@ -55,14 +60,16 @@ export const WelcomePage: React.FC<WelcomePageProps> = ({ articleSlot }) => {
             />
 
             <Suspense fallback={null}>
-                <MiniDiagnosisSection />
+                {/* MiniDiagnosisSection: 日本語版のみ表示 */}
+                {isJa && <MiniDiagnosisSection />}
                 <ProblemSection />
                 <SolutionSection />
                 <TypeSection />
                 <CompatibilitySection />
                 <BenefitSection />
                 <TrustSection />
-                <TheoryLinksSection />
+                {/* TheoryLinksSection: 日本語版のみ表示（日本語専用ページへのリンクを含む） */}
+                {isJa && <TheoryLinksSection />}
                 <HowToSection />
                 <FAQSection />
 

@@ -1,8 +1,12 @@
+'use client';
+
 import React from 'react';
 import Image from 'next/image';
 
 import { ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
+import { useLocale } from '@/lib/i18n';
+import { getWelcomeText } from '../welcome-dictionary';
 
 interface HeroSectionProps {
     onStart: () => void;
@@ -13,6 +17,9 @@ interface HeroSectionProps {
 }
 
 export const HeroSection: React.FC<HeroSectionProps> = ({ onStart, onResume, onViewResult, hasProgress, hasResult }) => {
+    const locale = useLocale();
+    const t = getWelcomeText(locale).hero;
+
     return (
         <section className="relative min-h-[calc(100vh-60px)] flex flex-col items-center justify-center overflow-hidden pt-8 pb-16 lg:py-16">
             {/* Background Decoration - Organic Shapes */}
@@ -32,26 +39,32 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onStart, onResume, onV
                     <div
                         className="inline-flex items-center gap-2 px-3 py-1 border-b border-prisma-500/30 text-prisma-700 text-xs font-serif tracking-[0.2em] uppercase mb-2 md:mb-4"
                     >
-                        Aqsh Prisma Analysis
+                        {t.badge}
                     </div>
 
                     <h1 className="font-serif text-3xl sm:text-5xl md:text-6xl lg:text-7xl text-slate-900 leading-tight lg:leading-[1.2] tracking-wide font-medium">
                         <br className="hidden lg:block" />
                         <span className="italic relative inline-block mr-2">
-                            <span className="relative z-10 text-prisma-600 inline-block">ソシオニクス</span>
+                            <span className="relative z-10 text-prisma-600 inline-block">{t.heading[0]}</span>
                             <span className="absolute bottom-2 left-0 w-full h-2 lg:h-3 bg-prisma-200/40 -z-10 -rotate-1 rounded-sm"></span>
                         </span>
-                        <span className="inline-block">自分を、科学する。</span>
+                        <span className="inline-block">{t.heading[1]}</span>
                     </h1>
 
                     <div className="max-w-lg lg:max-w-2xl text-left mx-auto lg:mx-0 space-y-6 md:space-y-8">
                         <p className="text-slate-600 text-base lg:text-lg leading-[1.8] md:leading-[2.2] font-normal tracking-wide">
-                            <span className="inline-block">なんとなく生きづらい。いつも同じところでつまずいてしまう。</span>
+                            <span className="inline-block">{t.desc[0]}</span>
                             <br className="block lg:hidden" />
-                            <span className="inline-block">その理由は、あなたが「自分の性格の構造」をまだ知らないから。</span>
+                            <span className="inline-block">{t.desc[1]}</span>
                             <br className="block my-2" />
-                            <span className="inline-block">Aqsh Prismaは、16タイプ診断とエニアグラムの力で、</span>
-                            <span className="inline-block">あなたの見えない<span className="text-prisma-600 font-bold">才能と欲求</span>を言語化する自己分析ツールです。</span>
+                            <span className="inline-block">{t.desc[2]}</span>
+                            <span className="inline-block">
+                                {locale === 'ja' ? (
+                                    <>あなたの見えない<span className="text-prisma-600 font-bold">才能と欲求</span>を言語化する自己分析ツールです。</>
+                                ) : (
+                                    <>{t.desc[3]}</>
+                                )}
+                            </span>
                         </p>
                     </div>
 
@@ -63,9 +76,9 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onStart, onResume, onV
                                 className="w-full sm:w-auto min-w-[260px] bg-prisma-600 hover:bg-prisma-700 text-white rounded-full px-10 py-5 h-auto shadow-lg shadow-prisma-200/40 transition-transform hover:-translate-y-0.5"
                             >
                                 <span className="flex flex-col items-center">
-                                    <span className="text-sm font-serif tracking-widest opacity-90 mb-1">Resume Analysis</span>
+                                    <span className="text-sm font-serif tracking-widest opacity-90 mb-1">{t.resumeSub}</span>
                                     <span className="text-lg font-bold flex items-center gap-2">
-                                        診断を再開する <ArrowRight className="w-4 h-4" />
+                                        {t.resumeLabel} <ArrowRight className="w-4 h-4" />
                                     </span>
                                 </span>
                             </Button>
@@ -77,9 +90,9 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onStart, onResume, onV
                                     className="w-full sm:w-auto min-w-[260px] bg-prisma-600 hover:bg-prisma-700 text-white rounded-full px-10 py-5 h-auto shadow-lg shadow-prisma-200/40 transition-transform hover:-translate-y-0.5"
                                 >
                                     <span className="flex flex-col items-center">
-                                        <span className="text-sm font-serif tracking-widest opacity-90 mb-1">View Result</span>
+                                        <span className="text-sm font-serif tracking-widest opacity-90 mb-1">{t.viewResultSub}</span>
                                         <span className="text-lg font-bold flex items-center gap-2">
-                                            最新の結果を見る <ArrowRight className="w-4 h-4" />
+                                            {t.viewResultLabel} <ArrowRight className="w-4 h-4" />
                                         </span>
                                     </span>
                                 </Button>
@@ -90,9 +103,9 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onStart, onResume, onV
                                     className="w-full sm:w-auto min-w-[260px] border-slate-300 text-slate-600 hover:bg-slate-50 hover:text-slate-900 rounded-full px-10 py-5 h-auto transition-transform hover:-translate-y-0.5"
                                 >
                                     <span className="flex flex-col items-center">
-                                        <span className="text-sm font-serif tracking-widest opacity-80 mb-1">Restart</span>
+                                        <span className="text-sm font-serif tracking-widest opacity-80 mb-1">{t.restartSub}</span>
                                         <span className="text-lg font-bold flex items-center gap-2">
-                                            新しく診断を始める
+                                            {t.restartLabel}
                                         </span>
                                     </span>
                                 </Button>
@@ -104,15 +117,15 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onStart, onResume, onV
                                 className="w-full sm:w-auto min-w-[280px] bg-prisma-600 hover:bg-prisma-700 text-white rounded-full px-12 py-6 h-auto shadow-xl shadow-prisma-200/40 transition-transform hover:-translate-y-0.5"
                             >
                                 <span className="flex flex-col items-center">
-                                    <span className="text-xs font-serif tracking-[0.2em] uppercase opacity-90 mb-2">Free Analysis</span>
+                                    <span className="text-xs font-serif tracking-[0.2em] uppercase opacity-90 mb-2">{t.ctaSub}</span>
                                     <span className="text-xl font-bold flex items-center gap-3">
-                                        無料で診断する <ArrowRight className="w-5 h-5" />
+                                        {t.ctaLabel} <ArrowRight className="w-5 h-5" />
                                     </span>
                                 </span>
                             </Button>
                         )}
                         <p className="text-xs text-slate-400 font-medium tracking-wider mt-2 font-serif">
-                            所要時間：約 10分  |  登録不要
+                            {t.timeNote}
                         </p>
                     </div>
                 </div>

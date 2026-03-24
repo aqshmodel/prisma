@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowLeft, BookOpen, ArrowRight, User } from 'lucide-react';
-import { OS_CONTENT } from '../../../../features/result/data/content-os';
-import { getAllArticles } from '../../../../features/articles/utils/mdx';
+import { OS_CONTENT } from '@/features/result/data/content-os';
+import { getAllArticles } from '@/features/articles/utils/mdx';
 import { toTypeLabel } from '@/lib/constants/type-mapping';
 import { buildUrl } from '@/lib/constants/site-config';
 import { filterArticlesByType } from '@/lib/utils/article-filter';

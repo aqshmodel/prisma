@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { DiagnosisWizard } from '../../features/diagnosis/components/DiagnosisWizard';
+import { DiagnosisWizard } from '@/features/diagnosis/components/DiagnosisWizard';
 
 export const metadata: Metadata = {
     title: '診断開始 | Aqsh Prisma',

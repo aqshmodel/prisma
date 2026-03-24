@@ -30,6 +30,7 @@ import { resolveColor } from '@/lib/constants/color-map';
 import { SITE_CONFIG } from '@/lib/constants/site-config';
 import { decodeResult, buildSharedResult } from '@/lib/utils/share-result';
 import type { OSTypeCode } from '@/types/diagnosis';
+import { useLocale, useLocalePath, getUIText } from '@/lib/i18n';
 
 // Tab Components (lazy loading for code splitting)
 const OverviewTab = lazy(() => import('./tabs/OverviewTab').then(m => ({ default: m.OverviewTab })));
@@ -44,6 +45,7 @@ type TabType = 'overview' | 'analysis' | 'work' | 'relations' | 'growth';
 /** ペア相性診断への導線コンポーネント */
 const PairDiagnosisCTA: React.FC<{ myCode: OSTypeCode; myName: string }> = ({ myCode, myName }) => {
     const router = useRouter();
+    const localePath = useLocalePath();
     const partnerCode = usePairStore((s) => s.partnerCode);
     const isValidInvite = usePairStore((s) => s.isValidInvite);
     const clearPartnerCode = usePairStore((s) => s.clearPartnerCode);
@@ -71,7 +73,7 @@ const PairDiagnosisCTA: React.FC<{ myCode: OSTypeCode; myName: string }> = ({ my
     const handleGoToPairResult = () => {
         if (!partnerCode) return;
         clearPartnerCode();
-        router.push(`/pair/result/${partnerCode}/${myCode}/`);
+        router.push(localePath(`/pair/result/${partnerCode}/${myCode}/`));
     };
 
     return (
@@ -133,6 +135,9 @@ const PairDiagnosisCTA: React.FC<{ myCode: OSTypeCode; myName: string }> = ({ my
 export const ResultPage: React.FC = () => {
     const router = useRouter();
     const searchParams = useSearchParams();
+    const locale = useLocale();
+    const localePath = useLocalePath();
+    const t = getUIText(locale);
     const result = useDiagnosisStore((state) => state.result);
     const setResult = useDiagnosisStore((state) => state.setResult);
     const reset = useDiagnosisStore((state) => state.resetDiagnosis);
@@ -191,7 +196,7 @@ export const ResultPage: React.FC = () => {
             if (history.length > 0) {
                 restore();
             } else {
-                router.push('/');
+                router.push(localePath('/'));
             }
             return;
         }
@@ -254,15 +259,15 @@ export const ResultPage: React.FC = () => {
 
     const handleReset = () => {
         reset();
-        router.push('/');
+        router.push(localePath('/'));
     };
 
     const tabs: { id: TabType; label: string; icon: React.ElementType }[] = [
-        { id: 'overview', label: 'サマリ', icon: LayoutDashboard },
-        { id: 'analysis', label: '性格分析', icon: Microscope },
-        { id: 'work', label: '仕事・適職', icon: Briefcase },
-        { id: 'relations', label: '人間関係', icon: Users },
-        { id: 'growth', label: '成長ロードマップ', icon: TrendingUp },
+        { id: 'overview', label: t.result.tabs.overview, icon: LayoutDashboard },
+        { id: 'analysis', label: t.result.tabs.psychology, icon: Microscope },
+        { id: 'work', label: t.result.tabs.career, icon: Briefcase },
+        { id: 'relations', label: t.result.tabs.relations, icon: Users },
+        { id: 'growth', label: t.result.tabs.growth, icon: TrendingUp },
     ];
 
     return (
@@ -285,7 +290,7 @@ export const ResultPage: React.FC = () => {
                 <div className="flex flex-col items-center">
                     <div className="inline-block mb-6 relative">
                         <span className="relative z-10 px-4 py-1 text-xs font-serif tracking-[0.2em] text-prisma-800 border-b border-prisma-300">
-                            あなたの診断結果
+                            {t.result.title}
                         </span>
                     </div>
 
@@ -452,7 +457,7 @@ export const ResultPage: React.FC = () => {
                             className="flex items-center gap-2 text-slate-500 hover:text-slate-700"
                         >
                             <RotateCcw size={16} />
-                            トップに戻る
+                            {t.result.backToTop}
                         </Button>
                     </div>
 
@@ -463,7 +468,7 @@ export const ResultPage: React.FC = () => {
                                 あなたのタイプも気になりませんか？
                             </p>
                             <Button
-                                onClick={() => router.push('/diagnosis')}
+                                onClick={() => router.push(localePath('/diagnosis'))}
                                 className="bg-prisma-600 hover:bg-prisma-700 text-white px-8 py-3 text-base font-bold"
                             >
                                 無料で診断する（3分）

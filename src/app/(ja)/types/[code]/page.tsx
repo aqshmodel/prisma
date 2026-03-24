@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
-import { TypeDetailPage } from '../../../features/type-detail/TypeDetailPage';
-import { OS_CONTENT } from '../../../features/result/data/content-os';
+import { TypeDetailPage } from '@/features/type-detail/TypeDetailPage';
+import { OS_CONTENT } from '@/features/result/data/content-os';
 import { buildUrl } from '@/lib/constants/site-config';
 
 type Props = {

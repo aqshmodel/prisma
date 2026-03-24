@@ -6,6 +6,7 @@ import { X, Sparkles, ArrowRight } from 'lucide-react';
 import { OS_CONTENT } from '@/features/result/data/content-os';
 import { Button } from '@/components/ui/Button';
 import type { OSTypeCode } from '@/types/diagnosis';
+import { useLocalePath } from '@/lib/i18n';
 
 interface CompatibilitySearchModalProps {
     isOpen: boolean;
@@ -19,6 +20,7 @@ const typeOptions = Object.entries(OS_CONTENT).map(([code, data]) => ({
 
 export const CompatibilitySearchModal: React.FC<CompatibilitySearchModalProps> = ({ isOpen, onClose }) => {
     const router = useRouter();
+    const localePath = useLocalePath();
     const [typeA, setTypeA] = useState<OSTypeCode | ''>('');
     const [typeB, setTypeB] = useState<OSTypeCode | ''>('');
     const [isAnimatingOut, setIsAnimatingOut] = useState(false);
@@ -80,7 +82,7 @@ export const CompatibilitySearchModal: React.FC<CompatibilitySearchModalProps> =
             window.history.back();
             setTimeout(() => {
                 onClose();
-                router.push(`/types/${typeA}/compatibility/${typeB}`);
+                router.push(localePath(`/types/${typeA}/compatibility/${typeB}`));
             }, 100);
         }
     };

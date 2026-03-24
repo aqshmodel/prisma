@@ -1,7 +1,20 @@
+'use client';
+
 import React from 'react';
 import { BookOpen, Users, Scale } from 'lucide-react';
+import { useLocale } from '@/lib/i18n';
+import { getWelcomeText } from '../welcome-dictionary';
 
 export const TrustSection: React.FC = () => {
+    const locale = useLocale();
+    const t = getWelcomeText(locale).trust;
+
+    const cardIcons = [
+        <BookOpen key="book" className="w-6 h-6 text-prisma-300" />,
+        <Users key="users" className="w-6 h-6 text-prisma-300" />,
+        <Scale key="scale" className="w-6 h-6 text-prisma-300" />,
+    ];
+
     return (
         <section className="py-24 md:py-32 bg-[#0B0F17] relative overflow-hidden text-white">
             {/* Ambient Background Effects */}
@@ -11,30 +24,23 @@ export const TrustSection: React.FC = () => {
             <div className="max-w-7xl mx-auto px-6 relative z-10">
                 <div className="text-center mb-20 animate-fade-in-up">
                     <span className="inline-block text-xs font-serif tracking-[0.2em] text-prisma-200 uppercase mb-4 opacity-70">
-                        Scientific Foundation
+                        {t.badge}
                     </span>
                     <h2 className="text-3xl md:text-5xl font-serif font-medium text-white leading-[1.3] tracking-tight mb-6">
-                        理論に裏打ちされた<br />
-                        確かな信頼性。
+                        {t.heading[0]}<br />
+                        {t.heading[1]}
                     </h2>
                 </div>
 
                 <div className="grid md:grid-cols-3 gap-8 mb-20">
-                    <TrustCard
-                        icon={<BookOpen className="w-6 h-6 text-prisma-300" />}
-                        title="Jungian Typology"
-                        desc={<>C.G.ユングの「タイプ論」をベースに、人間の認知プロセスを体系化。<span className="text-prisma-200 font-bold">生まれ持った「脳の利き手」</span>を特定します。</>}
-                    />
-                    <TrustCard
-                        icon={<Users className="w-6 h-6 text-prisma-300" />}
-                        title="Socionics"
-                        desc={<>16タイプ間の相性をモデル化したソシオニクス理論を採用。<span className="text-prisma-200 font-bold">恋愛や人間関係の摩擦メカニズム</span>を論理的に解明します。</>}
-                    />
-                    <TrustCard
-                        icon={<Scale className="w-6 h-6 text-prisma-300" />}
-                        title="Enneagram"
-                        desc={<>古代から伝わるエニアグラム理論を統合。行動の裏にある<span className="text-prisma-200 font-bold">無意識の欲求・恐れ</span>という心のエンジンを描き出します。</>}
-                    />
+                    {t.cards.map((card, idx) => (
+                        <TrustCard
+                            key={card.title}
+                            icon={cardIcons[idx]}
+                            title={card.title}
+                            desc={card.desc}
+                        />
+                    ))}
                 </div>
 
                 <div className="max-w-4xl mx-auto animate-fade-in-up stagger-3">
@@ -46,11 +52,21 @@ export const TrustSection: React.FC = () => {
                                     1
                                 </div>
                                 <div>
-                                    <h3 className="text-2xl font-serif font-bold mb-4 text-white">Why it works</h3>
+                                    <h3 className="text-2xl font-serif font-bold mb-4 text-white">{t.whyTitle}</h3>
                                     <p className="text-slate-300 leading-relaxed text-lg">
-                                        多くの性格診断が「よくある行動」や「気分」という<span className="text-white font-bold border-b border-prisma-500/50">表面的な現象</span>だけを測定するのに対し、
-                                        Aqsh Prismaはその源泉となる<span className="text-white font-bold border-b border-prisma-500/50">「思考のクセ」</span>と<span className="text-white font-bold border-b border-prisma-500/50">「心のエンジン」</span>を特定します。
-                                        そのため、環境や気分で結果がブレにくく、本質的なあなたの自己理解を助けます。
+                                        {locale === 'ja' ? (
+                                            <>
+                                                多くの性格診断が「よくある行動」や「気分」という<span className="text-white font-bold border-b border-prisma-500/50">表面的な現象</span>だけを測定するのに対し、
+                                                Aqsh Prismaはその源泉となる<span className="text-white font-bold border-b border-prisma-500/50">「思考のクセ」</span>と<span className="text-white font-bold border-b border-prisma-500/50">「心のエンジン」</span>を特定します。
+                                                そのため、環境や気分で結果がブレにくく、本質的なあなたの自己理解を助けます。
+                                            </>
+                                        ) : (
+                                            <>
+                                                {t.whyDesc[0]}
+                                                {t.whyDesc[1]}
+                                                {t.whyDesc[2]}
+                                            </>
+                                        )}
                                     </p>
                                 </div>
                             </div>
@@ -70,7 +86,7 @@ export const TrustSection: React.FC = () => {
     );
 };
 
-const TrustCard = ({ icon, title, desc }: { icon: React.ReactNode, title: string, desc: React.ReactNode }) => (
+const TrustCard = ({ icon, title, desc }: { icon: React.ReactNode, title: string, desc: string }) => (
     <div className="group p-8 rounded-apple bg-white/[0.03] border border-white/[0.05] hover:bg-white/[0.06] hover:border-white/[0.1] transition-all duration-500 ease-apple hover:-translate-y-1">
         <div className="mb-6 opacity-80 group-hover:opacity-100 transition-opacity duration-300">
             {icon}
@@ -81,5 +97,3 @@ const TrustCard = ({ icon, title, desc }: { icon: React.ReactNode, title: string
         </p>
     </div>
 );
-
-

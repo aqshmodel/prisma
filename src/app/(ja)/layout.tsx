@@ -1,9 +1,10 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
-import './globals.css';
-import { Layout } from '../components/layout/Layout';
-import { GoogleAnalytics } from '../components/GoogleAnalytics';
+import '../globals.css';
+import { Layout } from '@/components/layout/Layout';
+import { GoogleAnalytics } from '@/components/GoogleAnalytics';
 import { SITE_CONFIG } from '@/lib/constants/site-config';
+import { LocaleProvider } from '@/lib/i18n';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter', display: 'swap' });
 
@@ -44,18 +45,14 @@ export const metadata: Metadata = {
 };
 
 /**
- * 全ページ共通のルートレイアウト (Server Component)
- * JSON-LD（組織情報等）や共通のナビゲーション枠、フォントの設定を行います。
+ * 日本語版ルートレイアウト (Server Component)
+ * Route Group (ja) の全ページを包む。
  */
-export default function RootLayout({
+export default function JaRootLayout({
     children,
 }: {
     children: React.ReactNode;
 }) {
-    /**
-     * WebSite および Organization の情報構造化データ
-     * 検索エンジンがこのサイトを提供する運営元情報を正確にインデックスできるようにします。
-     */
     const jsonLd = {
         '@context': 'https://schema.org',
         '@type': 'Organization',
@@ -88,7 +85,9 @@ export default function RootLayout({
                 <div className="fixed inset-0 z-0 pointer-events-none opacity-[0.4]" style={{ backgroundImage: 'url(/noise.svg)', willChange: 'transform' }}></div>
 
                 <div className="relative z-10">
-                    <Layout>{children}</Layout>
+                    <LocaleProvider locale="ja">
+                        <Layout>{children}</Layout>
+                    </LocaleProvider>
                 </div>
             </body>
         </html>

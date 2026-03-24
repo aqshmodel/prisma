@@ -1,7 +1,7 @@
-import { WelcomePage } from '../features/welcome/WelcomePage';
+import { WelcomePage } from '@/features/welcome/WelcomePage';
 import type { Metadata } from 'next';
-import { getAllArticles } from '../features/articles/utils/mdx';
-import { ArticleSection } from '../features/welcome/components/ArticleSection';
+import { getAllArticles } from '@/features/articles/utils/mdx';
+import { ArticleSection } from '@/features/welcome/components/ArticleSection';
 import { SITE_CONFIG, buildUrl } from '@/lib/constants/site-config';
 
 export const metadata: Metadata = {

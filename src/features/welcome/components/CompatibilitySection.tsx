@@ -3,31 +3,35 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Sparkles, ArrowRight } from 'lucide-react';
-import { OS_CONTENT } from '@/features/result/data/content-os';
+import { getOSContent } from '@/lib/i18n/localized-data';
 import { Button } from '@/components/ui/Button';
 import type { OSTypeCode } from '@/types/diagnosis';
-
-const typeOptions = Object.entries(OS_CONTENT).map(([code, data]) => ({
-    code: code as OSTypeCode,
-    name: data.name,
-}));
+import { useLocale, useLocalePath } from '@/lib/i18n';
+import { getWelcomeText } from '../welcome-dictionary';
 
 /**
  * トップページの相性セクション
  *
  * 2つのタイプセレクタで任意のペアの相性詳細ページへ遷移できるUI。
- * 「気になるあの人との相性は？」の問いかけでユーザーを引き込む。
  */
 export const CompatibilitySection: React.FC = () => {
     const router = useRouter();
+    const locale = useLocale();
+    const localePath = useLocalePath();
+    const t = getWelcomeText(locale).compatibility;
     const [typeA, setTypeA] = useState<OSTypeCode | ''>('');
     const [typeB, setTypeB] = useState<OSTypeCode | ''>('');
 
+    // ロケールに応じたタイプデータを取得
+    const typeOptions = Object.entries(getOSContent(locale)).map(([code, data]) => ({
+        code: code as OSTypeCode,
+        name: data.name,
+    }));
     const canNavigate = typeA && typeB && typeA !== typeB;
 
     const handleCheck = () => {
         if (canNavigate) {
-            router.push(`/types/${typeA}/compatibility/${typeB}`);
+            router.push(localePath(`/types/${typeA}/compatibility/${typeB}`));
         }
     };
 
@@ -39,10 +43,10 @@ export const CompatibilitySection: React.FC = () => {
                     COMPATIBILITY CHECK
                 </div>
                 <h2 className="text-3xl sm:text-4xl font-bold text-slate-800 font-serif mb-4">
-                    気になるあの人との相性は？
+                    {t.heading}
                 </h2>
                 <p className="text-slate-500 mb-10 max-w-md mx-auto">
-                    2つのタイプを選んで、仕事・恋愛での相性パターンとコミュニケーションのコツを確認しましょう。
+                    {t.desc}
                 </p>
 
                 <div className="flex flex-col sm:flex-row items-center gap-4 justify-center mb-8">
@@ -51,7 +55,7 @@ export const CompatibilitySection: React.FC = () => {
                         onChange={(e) => setTypeA(e.target.value as OSTypeCode)}
                         className="w-64 px-4 py-3 rounded-xl border border-slate-200 bg-white text-slate-700 font-medium focus:outline-none focus:ring-2 focus:ring-prisma-400 focus:border-transparent transition-shadow"
                     >
-                        <option value="">自分のタイプを選択</option>
+                        <option value="">{t.selectA}</option>
                         {typeOptions.map(({ code, name }) => (
                             <option key={code} value={code}>
                                 {name}
@@ -66,7 +70,7 @@ export const CompatibilitySection: React.FC = () => {
                         onChange={(e) => setTypeB(e.target.value as OSTypeCode)}
                         className="w-64 px-4 py-3 rounded-xl border border-slate-200 bg-white text-slate-700 font-medium focus:outline-none focus:ring-2 focus:ring-prisma-400 focus:border-transparent transition-shadow"
                     >
-                        <option value="">相手のタイプを選択</option>
+                        <option value="">{t.selectB}</option>
                         {typeOptions.map(({ code, name }) => (
                             <option key={code} value={code}>
                                 {name}
@@ -84,7 +88,7 @@ export const CompatibilitySection: React.FC = () => {
                         }`}
                 >
                     <span className="flex items-center gap-2">
-                        相性を見る
+                        {t.button}
                         <ArrowRight size={18} />
                     </span>
                 </Button>

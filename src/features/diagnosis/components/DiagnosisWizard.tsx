@@ -9,42 +9,54 @@ import { useDiagnosisStore } from '@/stores/useDiagnosisStore';
 import { QUESTIONS } from '../data/questions';
 import { calculateDiagnosis } from '../logic/calculator';
 import { ArrowLeft, ArrowRight, CheckCircle, Clock, Sparkles } from 'lucide-react';
+import { useLocale, useLocalePath, getUIText } from '@/lib/i18n';
+import { getQuestions } from '@/lib/i18n/localized-data';
 
 const QUESTIONS_PER_PAGE = 10;
 const TOTAL_PAGES = Math.ceil(QUESTIONS.length / QUESTIONS_PER_PAGE);
 
-// セクション定義
-const SECTIONS = [
-    { name: '思考パターン', category: 'OS', startQ: 1, endQ: 20, color: 'prisma' },
-    { name: '行動傾向', category: 'Subtype', startQ: 21, endQ: 44, color: 'blue' },
-    { name: '行動エンジン', category: 'Engine', startQ: 45, endQ: 62, color: 'violet' },
-    { name: '判断バイアス', category: 'Bias', startQ: 63, endQ: 72, color: 'amber' },
-] as const;
+// セクション定義（ロケール対応）
+function getSections(locale: 'ja' | 'en') {
+    const t = getUIText(locale);
+    return [
+        { name: t.diagnosis.sectionNames.os, category: 'OS', startQ: 1, endQ: 20, color: 'prisma' },
+        { name: t.diagnosis.sectionNames.subtype, category: 'Subtype', startQ: 21, endQ: 44, color: 'blue' },
+        { name: t.diagnosis.sectionNames.engine, category: 'Engine', startQ: 45, endQ: 62, color: 'violet' },
+        { name: t.diagnosis.sectionNames.bias, category: 'Bias', startQ: 63, endQ: 72, color: 'amber' },
+    ] as const;
+}
 
 // ページ→セクション情報を取得
-function getSectionInfo(page: number) {
+function getSectionInfo(page: number, locale: 'ja' | 'en') {
+    const sections = getSections(locale);
     const startQ = page * QUESTIONS_PER_PAGE + 1;
-    const sectionIndex = SECTIONS.findIndex(s => startQ >= s.startQ && startQ <= s.endQ);
-    return { section: SECTIONS[sectionIndex] ?? SECTIONS[0], sectionIndex };
+    const sectionIndex = sections.findIndex(s => startQ >= s.startQ && startQ <= s.endQ);
+    return { section: sections[sectionIndex] ?? sections[0], sectionIndex };
 }
 
 // セクション切り替わり時のメッセージ
-function getSectionTransitionMessage(page: number, prevPage: number): string | null {
+function getSectionTransitionMessage(page: number, prevPage: number, locale: 'ja' | 'en'): string | null {
     if (page <= prevPage) return null; // 戻りでは表示しない
-    const { sectionIndex: currIdx } = getSectionInfo(page);
-    const { sectionIndex: prevIdx } = getSectionInfo(prevPage);
+    const sections = getSections(locale);
+    const t = getUIText(locale);
+    const { sectionIndex: currIdx } = getSectionInfo(page, locale);
+    const { sectionIndex: prevIdx } = getSectionInfo(prevPage, locale);
     if (currIdx === prevIdx) return null;
+    void sections; // suppress unused warning
 
     switch (currIdx) {
-        case 1: return '✅ 思考パターン編 完了！ 次は行動の傾向を見ていきます';
-        case 2: return '✅ 行動傾向 完了！ あなたの行動エンジンを特定します';
-        case 3: return '✅ もうすぐ完了！ 最後に判断パターンを見ます';
+        case 1: return t.diagnosis.transitions.s1;
+        case 2: return t.diagnosis.transitions.s2;
+        case 3: return t.diagnosis.transitions.s3;
         default: return null;
     }
 }
 
 export const DiagnosisWizard: React.FC = () => {
     const router = useRouter();
+    const locale = useLocale();
+    const localePath = useLocalePath();
+    const t = getUIText(locale);
     const { answers, setAnswer, setResult } = useDiagnosisStore();
     const [currentPage, setCurrentPage] = useState(0);
     const [prevPage, setPrevPage] = useState(0);
@@ -59,17 +71,18 @@ export const DiagnosisWizard: React.FC = () => {
 
     // セクション切り替わりメッセージ
     useEffect(() => {
-        const msg = getSectionTransitionMessage(currentPage, prevPage);
+        const msg = getSectionTransitionMessage(currentPage, prevPage, locale);
         if (msg) {
             setTransitionMessage(msg);
             setShowTransition(true);
             const timer = setTimeout(() => setShowTransition(false), 3000);
             return () => clearTimeout(timer);
         }
-    }, [currentPage, prevPage]);
+    }, [currentPage, prevPage, locale]);
 
     const startIndex = currentPage * QUESTIONS_PER_PAGE;
-    const currentQuestions = QUESTIONS.slice(startIndex, startIndex + QUESTIONS_PER_PAGE);
+    const localizedQuestions = getQuestions(locale);
+    const currentQuestions = localizedQuestions.slice(startIndex, startIndex + QUESTIONS_PER_PAGE);
 
     // Progress logic
     const answeredCount = Object.keys(answers).length;
@@ -81,7 +94,7 @@ export const DiagnosisWizard: React.FC = () => {
     const remainingMinutes = Math.max(1, Math.ceil(remainingQuestions * (10 / 72)));
 
     // 現在のセクション情報
-    const { section: currentSection } = getSectionInfo(currentPage);
+    const { section: currentSection } = getSectionInfo(currentPage, locale);
 
     const handleNext = useCallback(() => {
         setPrevPage(currentPage);
@@ -98,14 +111,12 @@ export const DiagnosisWizard: React.FC = () => {
             setCurrentPage(p => p - 1);
         } else {
             // ページ1で戻るを押した場合: 確認ダイアログ
-            const confirmed = window.confirm(
-                '診断を中断しますか？\n回答データは保持されるため、後から再開できます。'
-            );
+            const confirmed = window.confirm(t.diagnosis.abortConfirm);
             if (confirmed) {
-                router.push('/');
+                router.push(localePath('/'));
             }
         }
-    }, [currentPage, router]);
+    }, [currentPage, router, t.diagnosis.abortConfirm, localePath]);
 
     const finishDiagnosis = () => {
         setIsComputing(true);
@@ -114,8 +125,8 @@ export const DiagnosisWizard: React.FC = () => {
     const handleAnalysisComplete = useCallback(() => {
         const result = calculateDiagnosis(answers);
         setResult(result);
-        router.push('/result');
-    }, [answers, setResult, router]);
+        router.push(localePath('/result'));
+    }, [answers, setResult, router, localePath]);
 
     if (isComputing) {
         return <LoadingAnalysis onComplete={handleAnalysisComplete} />;
@@ -129,7 +140,7 @@ export const DiagnosisWizard: React.FC = () => {
                 <div className="flex justify-between items-center text-sm mb-2">
                     <div className="flex items-center gap-2">
                         <span className="font-bold text-slate-700">
-                            ページ {currentPage + 1} / {TOTAL_PAGES}
+                            {locale === 'ja' ? `ページ ${currentPage + 1} / ${TOTAL_PAGES}` : `Page ${currentPage + 1} / ${TOTAL_PAGES}`}
                         </span>
                         <span className="text-xs px-2 py-0.5 rounded-full bg-prisma-50 text-prisma-600 font-medium">
                             {currentSection.name}
@@ -138,7 +149,7 @@ export const DiagnosisWizard: React.FC = () => {
                     <div className="flex items-center gap-1.5 text-slate-400">
                         <Clock className="w-3.5 h-3.5" />
                         <span className="text-xs font-medium">
-                            {answeredCount === 0 ? '約10分' : `あと約${remainingMinutes}分`}
+                            {answeredCount === 0 ? t.diagnosis.aboutMinutes : t.diagnosis.remainingMinutes(remainingMinutes)}
                         </span>
                     </div>
                 </div>
@@ -150,7 +161,7 @@ export const DiagnosisWizard: React.FC = () => {
                         style={{ width: `${progress}%` }}
                     />
                     {/* セクション区切りマーカー */}
-                    {SECTIONS.slice(0, -1).map((s, i) => {
+                    {getSections(locale).slice(0, -1).map((s, i) => {
                         const position = (s.endQ / QUESTIONS.length) * 100;
                         return (
                             <div
@@ -164,7 +175,7 @@ export const DiagnosisWizard: React.FC = () => {
 
                 {/* 下段: 進捗詳細 */}
                 <div className="flex justify-between text-xs text-slate-400 mt-1.5">
-                    <span>{answeredCount} / {QUESTIONS.length} 問回答済み</span>
+                    <span>{t.diagnosis.answeredOf(answeredCount, QUESTIONS.length)}</span>
                     <span>{progress}%</span>
                 </div>
             </div>
@@ -195,7 +206,7 @@ export const DiagnosisWizard: React.FC = () => {
             <div className="mt-10 flex items-center justify-between p-4 bg-white rounded-xl shadow-lg border border-prisma-100 sticky bottom-4 z-40">
                 <Button variant="ghost" onClick={handleBack} className="text-slate-400 hover:text-slate-600">
                     <ArrowLeft className="w-5 h-5 mr-2" />
-                    {currentPage === 0 ? '中断' : '戻る'}
+                    {currentPage === 0 ? t.diagnosis.abort : t.diagnosis.back}
                 </Button>
 
                 <Button
@@ -206,12 +217,12 @@ export const DiagnosisWizard: React.FC = () => {
                 >
                     {currentPage === TOTAL_PAGES - 1 ? (
                         <>
-                            診断完了
+                            {t.diagnosis.complete}
                             <CheckCircle className="w-5 h-5 ml-2" />
                         </>
                     ) : (
                         <>
-                            次へ
+                            {t.diagnosis.next}
                             <ArrowRight className="w-5 h-5 ml-2" />
                         </>
                     )}

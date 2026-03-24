@@ -1,17 +1,30 @@
+'use client';
+
 import React from 'react';
 import { MousePointerClick, FileText, Rocket } from 'lucide-react';
+import { useLocale } from '@/lib/i18n';
+import { getWelcomeText } from '../welcome-dictionary';
+
+const icons = [
+    <MousePointerClick key="click" className="w-6 h-6 text-prisma-600" />,
+    <FileText key="file" className="w-6 h-6 text-prisma-600" />,
+    <Rocket key="rocket" className="w-6 h-6 text-prisma-600" />,
+];
 
 export const HowToSection: React.FC = () => {
+    const locale = useLocale();
+    const t = getWelcomeText(locale).howTo;
+
     return (
         <section className="py-24 md:py-32 bg-slate-50 border-t border-slate-200/60 relative overflow-hidden">
             <div className="max-w-7xl mx-auto px-6 relative z-10">
                 <div className="text-center max-w-3xl mx-auto mb-20 space-y-6 animate-fade-in-up">
                     <h2 className="text-3xl md:text-5xl font-serif font-medium text-slate-900 leading-[1.3] tracking-tight">
-                        使い方は、<br className="md:hidden" />
-                        とてもシンプル。
+                        {t.heading[0]}<br className="md:hidden" />
+                        {t.heading[1]}
                     </h2>
                     <p className="text-slate-600 text-base md:text-lg leading-loose tracking-wide font-medium">
-                        登録不要。今すぐあなたの組織タイプを診断できます。
+                        {t.subheading}
                     </p>
                 </div>
 
@@ -19,24 +32,15 @@ export const HowToSection: React.FC = () => {
                     {/* Connecting Line (PC only) */}
                     <div className="hidden md:block absolute top-12 left-[16%] right-[16%] h-px bg-gradient-to-r from-prisma-200/50 via-slate-300 to-prisma-200/50 -z-10" />
 
-                    <StepItem
-                        step={1}
-                        icon={<MousePointerClick className="w-6 h-6 text-prisma-600" />}
-                        title="72の質問に回答"
-                        desc="ブラウザ上で直感的に回答。所要時間は約10分〜15分です。アカウント登録は必要ありません。"
-                    />
-                    <StepItem
-                        step={2}
-                        icon={<FileText className="w-6 h-6 text-prisma-600" />}
-                        title="分析レポートを表示"
-                        desc="回答完了と同時に、詳細な分析結果が表示されます。あなたのタイプ、強み、盲点が即座にわかります。"
-                    />
-                    <StepItem
-                        step={3}
-                        icon={<Rocket className="w-6 h-6 text-prisma-600" />}
-                        title="チームで活用"
-                        desc="結果をチームでシェア。お互いの「取扱説明書」として活用し、相互理解を深めましょう。"
-                    />
+                    {t.steps.map((step, idx) => (
+                        <StepItem
+                            key={step.title}
+                            step={idx + 1}
+                            icon={icons[idx]}
+                            title={step.title}
+                            desc={step.desc}
+                        />
+                    ))}
                 </div>
             </div>
         </section>

@@ -1,5 +1,5 @@
 import { ImageResponse } from 'next/og';
-import { OS_CONTENT } from '../../../../../features/result/data/content-os';
+import { OS_CONTENT } from '@/features/result/data/content-os';
 import { getCompatibility } from '@/lib/constants/compatibility';
 import type { OSTypeCode } from '@/types/diagnosis';
 

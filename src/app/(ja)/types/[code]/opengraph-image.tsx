@@ -1,5 +1,5 @@
 import { ImageResponse } from 'next/og';
-import { OS_CONTENT } from '../../../features/result/data/content-os';
+import { OS_CONTENT } from '@/features/result/data/content-os';
 
 export const runtime = 'nodejs';
 export const contentType = 'image/png';
