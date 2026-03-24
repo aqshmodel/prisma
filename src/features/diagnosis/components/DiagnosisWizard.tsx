@@ -122,9 +122,9 @@ export const DiagnosisWizard: React.FC = () => {
     }
 
     return (
-        <div className="w-full mx-auto">
+        <div className="w-full max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-6">
             {/* Progress Header - Sticky */}
-            <div className="mb-6 sticky top-16 bg-white/95 backdrop-blur-md z-40 py-4 -mx-4 px-4 md:mx-0 md:px-0 border-b border-prisma-100 shadow-sm">
+            <div className="mb-6 sticky top-16 bg-white/95 backdrop-blur-md z-40 py-4 -mx-4 px-4 sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8 border-b border-prisma-100 shadow-sm">
                 {/* 上段: ページ番号 + 残り時間 */}
                 <div className="flex justify-between items-center text-sm mb-2">
                     <div className="flex items-center gap-2">

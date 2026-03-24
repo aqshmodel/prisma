@@ -15,6 +15,7 @@ import {
 
 import { FormattedText } from '@/components/ui/FormattedText';
 import { useDiagnosisStore } from '@/stores/useDiagnosisStore';
+import { usePairStore } from '@/stores/usePairStore';
 import { OS_CONTENT } from '../data/content-os';
 import { ENGINE_CONTENT } from '../data/content-engine';
 import { BIAS_CONTENT } from '../data/content-bias';
@@ -28,6 +29,7 @@ import { ResultCompatibilityCTA } from './ResultCompatibilityCTA';
 import { resolveColor } from '@/lib/constants/color-map';
 import { SITE_CONFIG } from '@/lib/constants/site-config';
 import { decodeResult, buildSharedResult } from '@/lib/utils/share-result';
+import type { OSTypeCode } from '@/types/diagnosis';
 
 // Tab Components (lazy loading for code splitting)
 const OverviewTab = lazy(() => import('./tabs/OverviewTab').then(m => ({ default: m.OverviewTab })));
@@ -38,6 +40,95 @@ const GrowthTab = lazy(() => import('./tabs/GrowthTab').then(m => ({ default: m.
 
 
 type TabType = 'overview' | 'analysis' | 'work' | 'relations' | 'growth';
+
+/** ペア相性診断への導線コンポーネント */
+const PairDiagnosisCTA: React.FC<{ myCode: OSTypeCode; myName: string }> = ({ myCode, myName }) => {
+    const router = useRouter();
+    const partnerCode = usePairStore((s) => s.partnerCode);
+    const isValidInvite = usePairStore((s) => s.isValidInvite);
+    const clearPartnerCode = usePairStore((s) => s.clearPartnerCode);
+    const [mounted, setMounted] = useState(false);
+    const [copied, setCopied] = useState(false);
+
+    useEffect(() => setMounted(true), []);
+
+    const inviteUrl = `${SITE_CONFIG.baseUrl}/pair/invite/${myCode}/`;
+    const hasValidPair = mounted && isValidInvite() && partnerCode;
+    const partnerData = hasValidPair ? OS_CONTENT[partnerCode] : null;
+    const partnerName = partnerData ? partnerData.name.split('(')[0].trim() : '';
+
+    const handleCopyInvite = async () => {
+        try {
+            await navigator.clipboard.writeText(inviteUrl);
+            setCopied(true);
+            setTimeout(() => setCopied(false), 2000);
+        } catch {
+            // Fallback
+            prompt('招待URLをコピーしてください:', inviteUrl);
+        }
+    };
+
+    const handleGoToPairResult = () => {
+        if (!partnerCode) return;
+        clearPartnerCode();
+        router.push(`/pair/result/${partnerCode}/${myCode}/`);
+    };
+
+    return (
+        <div className="mt-12 space-y-6 animate-fade-in-up">
+            {/* Bさん向け: ペア招待経由で診断完了した場合のCTA */}
+            {hasValidPair && (
+                <div className="bg-gradient-to-r from-teal-50 to-teal-100/60 border-2 border-teal-300 rounded-2xl p-6 sm:p-8 text-center">
+                    <Users size={32} className="text-teal-500 mx-auto mb-3" />
+                    <h3 className="text-xl font-serif font-bold text-slate-800 mb-2">
+                        {partnerName}さんとの相性結果を見る！
+                    </h3>
+                    <p className="text-sm text-slate-600 mb-4 max-w-md mx-auto">
+                        {partnerName}（{partnerCode}）とあなた（{myName.split('(')[0].trim()}）の相性を今すぐチェック。
+                    </p>
+                    <Button
+                        onClick={handleGoToPairResult}
+                        className="bg-teal-600 hover:bg-teal-700 text-white px-8 py-3 text-base font-bold"
+                    >
+                        相性結果を見る
+                        <Users size={18} className="ml-2" />
+                    </Button>
+                </div>
+            )}
+
+            {/* Aさん向け: 誰かを招待するCTA */}
+            <div className="bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 text-center">
+                <h3 className="text-lg font-serif font-bold text-slate-800 mb-2">
+                    💕 恋人や友人とペア相性診断をしてみませんか？
+                </h3>
+                <p className="text-sm text-slate-600 mb-4 max-w-md mx-auto">
+                    招待URLを送って、二人の相性を確認しましょう。ソシオニクス14種の関係性から分析します。
+                </p>
+                <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+                    <Button
+                        onClick={handleCopyInvite}
+                        variant="outline"
+                        className="border-teal-300 text-teal-700 hover:bg-teal-50"
+                    >
+                        {copied ? '✓ コピーしました！' : '📋 招待URLをコピー'}
+                    </Button>
+                    <button
+                        onClick={() => {
+                            const text = `私は「${myName}」タイプでした！あなたとの相性を診断してみない？`;
+                            window.open(
+                                `https://social-plugins.line.me/lineit/share?url=${encodeURIComponent(inviteUrl)}&text=${encodeURIComponent(text)}`,
+                                '_blank'
+                            );
+                        }}
+                        className="inline-flex items-center gap-1.5 px-4 py-2 bg-[#06C755] text-white text-sm font-medium rounded-xl hover:bg-[#05b34c] transition-colors"
+                    >
+                        LINEで招待する
+                    </button>
+                </div>
+            </div>
+        </div>
+    );
+};
 
 export const ResultPage: React.FC = () => {
     const router = useRouter();
@@ -324,6 +415,9 @@ export const ResultPage: React.FC = () => {
 
                 {/* Compatibility CTA (Best Match & Challenge Match) */}
                 <ResultCompatibilityCTA typeCode={result.os.code} />
+
+                {/* ペア相性診断への導線 */}
+                <PairDiagnosisCTA myCode={result.os.code} myName={osData.name} />
 
                 {/* Related Articles for this Type */}
                 <RelatedArticlesForResult typeCode={result.os.code} />
