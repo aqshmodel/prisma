@@ -1,11 +1,13 @@
 'use client';
 
 import { useState } from 'react';
-import type { TeamPair } from '../utils/pairs';
+import type { TeamPair, TeamMember } from '../utils/pairs';
 import { Star, BookOpen, ArrowRight, Filter } from 'lucide-react';
 import Link from 'next/link';
 import { CROSS_CONTENT } from '@/features/result/data/cross';
-import type { EngineType } from '@/types/diagnosis';
+import { OS_CONTENT } from '@/features/result/data/content-os';
+import { ENGINE_CONTENT } from '@/features/result/data/content-engine';
+import type { OSTypeCode, EngineType } from '@/types/diagnosis';
 
 interface PairCatalogProps {
   pairs: TeamPair[];
@@ -44,6 +46,30 @@ export function PairCatalog({ pairs, teamToken }: PairCatalogProps) {
     const engine = getEngineType(enneagram);
     if (!engine) return null;
     return CROSS_CONTENT[`${typeCode}_${engine}`] || null;
+  };
+
+  const getMemberDisplayName = (member: TeamMember) => {
+    const osData = OS_CONTENT[member.typeCode as OSTypeCode];
+    const engineType = getEngineType(member.enneagram);
+    const engineData = engineType ? ENGINE_CONTENT[engineType] : null;
+
+    let osDisplay = member.typeCode;
+    if (osData) {
+      const match = osData.name.match(/(.+?)\s*\((.+?)\)/);
+      if (match) {
+        osDisplay = `${match[1]}（${member.typeCode} / ${match[2]}）`;
+      } else {
+        osDisplay = osData.name;
+      }
+    }
+
+    if (engineData && member.enneagram) {
+      const engineMatch = engineData.name.match(/(.+?)\s*\(/);
+      const engineName = engineMatch ? engineMatch[1] : engineData.name;
+      return `${osDisplay} × ${engineName}（T${member.enneagram}）`;
+    }
+
+    return osDisplay;
   };
 
   return (
@@ -131,7 +157,7 @@ export function PairCatalog({ pairs, teamToken }: PairCatalogProps) {
                             {member.name}
                           </Link>
                           <p className="text-[10px] text-slate-500 font-medium px-1.5 py-0.5 bg-white rounded mt-1 border border-slate-200 inline-block">
-                            {member.typeCode}{member.enneagram ? ` / T${member.enneagram}` : ''}
+                            {getMemberDisplayName(member)}
                           </p>
                         </div>
                         
