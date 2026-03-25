@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import type { TeamPair } from '../utils/pairs';
-import { Star, BookOpen, ArrowRight, Filter } from 'lucide-react';
+import { Star, BookOpen, ArrowRight, Filter, ChevronDown } from 'lucide-react';
 import Link from 'next/link';
 import { CROSS_CONTENT } from '@/features/result/data/cross';
 import type { EngineType } from '@/types/diagnosis';
@@ -13,6 +13,15 @@ interface PairCatalogProps {
 
 export function PairCatalog({ pairs }: PairCatalogProps) {
   const [selectedMemberId, setSelectedMemberId] = useState<string>('ALL');
+  const [expandedDescriptions, setExpandedDescriptions] = useState<Set<string>>(new Set());
+
+  const toggleDescription = (key: string) => {
+    setExpandedDescriptions(prev => {
+      const next = new Set(prev);
+      if (next.has(key)) { next.delete(key); } else { next.add(key); }
+      return next;
+    });
+  };
 
   if (!pairs || pairs.length === 0) {
     return <div className="text-center p-8 text-slate-500">ペアデータがありません。</div>;
@@ -83,7 +92,7 @@ export function PairCatalog({ pairs }: PairCatalogProps) {
         </div>
       </div>
 
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-6 md:grid-cols-2">
         {filteredPairs.map((pair, index) => {
           const rel = pair.relation;
           if (!rel) return null; // 未定義・パースエラーの場合はスキップ
@@ -133,9 +142,17 @@ export function PairCatalog({ pairs }: PairCatalogProps) {
                               <BookOpen className="w-3 h-3 text-teal-500" />
                               {crossData.title}
                             </p>
-                            <p className="text-[10px] text-slate-600 leading-relaxed line-clamp-4">
+                            <p className={`text-[10px] text-slate-600 leading-relaxed transition-all duration-300 ${expandedDescriptions.has(`${index}-${i}`) ? '' : 'line-clamp-3'}`}>
                               {crossData.description}
                             </p>
+                            <button
+                              type="button"
+                              onClick={() => toggleDescription(`${index}-${i}`)}
+                              className="mt-1.5 text-[10px] font-bold text-teal-600 hover:text-teal-800 transition-colors flex items-center justify-center gap-0.5 mx-auto"
+                            >
+                              <ChevronDown className={`w-3 h-3 transition-transform duration-300 ${expandedDescriptions.has(`${index}-${i}`) ? 'rotate-180' : ''}`} />
+                              {expandedDescriptions.has(`${index}-${i}`) ? '閉じる' : 'もっと見る'}
+                            </button>
                           </div>
                         ) : (
                           <div className="flex-1 flex items-center justify-center pt-2 border-t border-slate-100">
