@@ -158,8 +158,26 @@ export function PairCatalog({ pairs }: PairCatalogProps) {
                     {rel.workCompatibility.teamDynamics}
                   </p>
                 </div>
+
+                {/* この関係の強み */}
+                {rel.strengths && rel.strengths.length > 0 && (
+                  <div className="pt-3 border-t border-slate-100 mb-3">
+                    <p className="text-xs font-semibold text-teal-700 mb-1.5 flex items-center gap-1.5">
+                      <span className="w-1.5 h-1.5 rounded-full bg-teal-500 inline-block"></span>
+                      この関係の強み
+                    </p>
+                    <ul className="space-y-1 pl-1">
+                      {rel.strengths.map((s, si) => (
+                        <li key={si} className="text-xs text-slate-600 leading-relaxed flex items-start gap-1.5">
+                          <span className="text-teal-400 mt-0.5 text-[10px]">✓</span>
+                          {s}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
                 
-                <div className="pt-4 border-t border-slate-100">
+                <div className="pt-3 border-t border-slate-100">
                   <p className="text-xs font-semibold text-teal-700 mb-1 flex items-center gap-1.5">
                     <span className="w-1.5 h-1.5 rounded-full bg-teal-500 inline-block"></span>
                     組織での活かし方
@@ -168,6 +186,19 @@ export function PairCatalog({ pairs }: PairCatalogProps) {
                     {rel.workCompatibility.roleAdvice}
                   </p>
                 </div>
+
+                {/* 摩擦ポイント */}
+                {rel.workCompatibility.frictionPoint && (
+                  <div className="pt-3 border-t border-slate-100 mt-3">
+                    <p className="text-xs font-semibold text-amber-700 mb-1 flex items-center gap-1.5">
+                      <span className="w-1.5 h-1.5 rounded-full bg-amber-500 inline-block"></span>
+                      気をつけたいポイント
+                    </p>
+                    <p className="text-xs text-slate-600 leading-relaxed">
+                      {rel.workCompatibility.frictionPoint}
+                    </p>
+                  </div>
+                )}
 
                 {/* 詳細ページへのリンク */}
                 <div className="pt-4 mt-auto">
