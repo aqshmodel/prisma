@@ -59,7 +59,7 @@ export default async function TeamResultPage(props: TeamResultPageProps) {
 
   return (
     <div className="min-h-screen bg-slate-50 pt-24 pb-32 font-sans selection:bg-teal-200 selection:text-teal-900">
-      <div id="report-container" className="container mx-auto px-4 max-w-6xl">
+      <div id="report-container" className="container mx-auto px-2 sm:px-4 max-w-6xl">
         
         {/* レポートヘッダー */}
         <header className="bg-white rounded-3xl p-8 md:p-10 shadow-sm border border-slate-200 mb-10 relative overflow-hidden">
