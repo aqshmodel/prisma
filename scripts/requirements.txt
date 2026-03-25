@@ -1,5 +1,7 @@
 google-api-python-client
 google-analytics-data
+google-genai
 python-dotenv
 pandas
 oauth2client
+Pillow

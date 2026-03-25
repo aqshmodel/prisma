@@ -3,7 +3,8 @@ Aqsh Prisma - Analytics Data Fetcher (Enhanced for SEO Strategy)
 GA4 (REST API) + Google Search Console のデータを取得して documents/analytics/ に格納する。
 Usage: python scripts/fetch_analytics_data.py [--days 30]
 
-NOTE: GA4はgRPCクライアントだとDNS解決に失敗するため、REST APIを直接使用している。
+NOTE: GA4はgRPCクライアントだとDNS解決に失敗するため、REST APIを直接使用している。Python3で実行すること。
+例： python3 scripts/fetch_analytics_data.py
 """
 import os
 import json
@@ -349,6 +350,14 @@ def evaluate_rewrite_flag(p):
         
     return " / ".join(flags) if flags else ""
 
+# ── JSON出力 ─────────────────────────────────────────────
+def save_json(data, filename, out_dir):
+    if data is None:
+        return
+    path = os.path.join(out_dir, filename)
+    with open(path, "w", encoding="utf-8") as f:
+        json.dump(data, f, ensure_ascii=False, indent=2)
+
 # ── Markdown出力 ─────────────────────────────────────────
 def fmt_sec(sec):
     m, s = divmod(int(sec), 60)
@@ -541,7 +550,16 @@ def main():
     process_and_merge(ga4_organic_pages)
 
     # 4. Save and Output
-    print("\n[OUTPUT] Generating Markdown Reports...")
+    print("\n[OUTPUT] Generating Markdown & JSON Reports...")
+    save_json(summary, "ga4_summary.json", out_dir)
+    save_json(prev_summary, "ga4_prev_summary.json", out_dir)
+    save_json(ga4_pages, "ga4_pages.json", out_dir)
+    save_json(ga4_organic_pages, "ga4_organic_pages.json", out_dir)
+    save_json(ga4_sources, "ga4_sources.json", out_dir)
+    save_json(ga4_source_detail, "ga4_source_detail.json", out_dir)
+    save_json(gsc_q, "gsc_queries.json", out_dir)
+    save_json(gsc_p, "gsc_pages.json", out_dir)
+    
     save_ga4_markdown(summary, prev_summary, ga4_pages, ga4_organic_pages, ga4_sources, out_dir, ga4_source_detail, args.days)
     save_gsc_markdown(gsc_q, out_dir, args.days)
 
