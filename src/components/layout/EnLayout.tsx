@@ -1,10 +1,9 @@
 'use client';
 
-import React, { useState, type ReactNode } from 'react';
+import React, { type ReactNode } from 'react';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
-import { CompatibilitySearchModal } from '@/components/common/CompatibilitySearchModal';
 
 interface EnLayoutProps {
     children: ReactNode;
@@ -20,7 +19,6 @@ interface EnLayoutProps {
 export const EnLayout: React.FC<EnLayoutProps> = ({ children }) => {
     const pathname = usePathname();
     const isTopPage = pathname === '/en' || pathname === '/en/';
-    const [isCompatibilityModalOpen, setIsCompatibilityModalOpen] = useState(false);
 
     return (
         <div className="min-h-screen bg-slate-50 text-slate-800 font-sans selection:bg-prisma-200 flex flex-col">
@@ -31,12 +29,12 @@ export const EnLayout: React.FC<EnLayoutProps> = ({ children }) => {
                         Aqsh <span className="text-prisma-600">PRISMA</span>
                     </Link>
                     <nav className="flex items-center gap-6 text-sm font-medium">
-                        <button
-                            onClick={() => setIsCompatibilityModalOpen(true)}
+                        <Link
+                            href="/en/compatibility"
                             className="text-slate-600 hover:text-prisma-600 transition-colors focus:outline-none"
                         >
                             Compatibility
-                        </button>
+                        </Link>
                         {/* 記事・用語集リンクは英語版では非表示 */}
                     </nav>
                 </div>
@@ -78,28 +76,28 @@ export const EnLayout: React.FC<EnLayoutProps> = ({ children }) => {
                             {/* Service */}
                             <div className="flex flex-col gap-4">
                                 <h4 className="text-white font-bold tracking-wider mb-2">Service</h4>
-                                <button
-                                    onClick={() => setIsCompatibilityModalOpen(true)}
+                                <Link
+                                    href="/en/compatibility"
                                     className="text-left text-slate-400 hover:text-prisma-400 transition-colors focus:outline-none"
                                 >
                                     Compatibility
-                                </button>
+                                </Link>
                                 <Link href="/en/diagnosis" className="text-slate-400 hover:text-prisma-400 transition-colors">Diagnosis</Link>
                             </div>
 
                             {/* About */}
                             <div className="flex flex-col gap-4">
                                 <h4 className="text-white font-bold tracking-wider mb-2">About</h4>
-                                <Link href="/about/methodology" className="text-slate-400 hover:text-prisma-400 transition-colors">Diagnostic Logic</Link>
-                                <Link href="/about/enneagram" className="text-slate-400 hover:text-prisma-400 transition-colors">What is Enneagram?</Link>
-                                <Link href="/about/socionics" className="text-slate-400 hover:text-prisma-400 transition-colors">What is Socionics?</Link>
+                                <Link href="/en/about/methodology" className="text-slate-400 hover:text-prisma-400 transition-colors">Diagnostic Logic</Link>
+                                <Link href="/en/about/enneagram" className="text-slate-400 hover:text-prisma-400 transition-colors">What is Enneagram?</Link>
+                                <Link href="/en/about/socionics" className="text-slate-400 hover:text-prisma-400 transition-colors">What is Socionics?</Link>
                             </div>
 
                             {/* Legal */}
                             <div className="flex flex-col gap-4">
                                 <h4 className="text-white font-bold tracking-wider mb-2">Legal</h4>
-                                <Link href="/terms" className="text-slate-400 hover:text-prisma-400 transition-colors">Terms of Service</Link>
-                                <Link href="/privacy" className="text-slate-400 hover:text-prisma-400 transition-colors">Privacy Policy</Link>
+                                <Link href="/en/terms" className="text-slate-400 hover:text-prisma-400 transition-colors">Terms of Service</Link>
+                                <Link href="/en/privacy" className="text-slate-400 hover:text-prisma-400 transition-colors">Privacy Policy</Link>
                                 <Link href="https://aqsh.co.jp/contact/" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-prisma-400 transition-colors">Contact</Link>
                             </div>
                         </div>
@@ -113,10 +111,6 @@ export const EnLayout: React.FC<EnLayoutProps> = ({ children }) => {
                 </div>
             </footer>
 
-            <CompatibilitySearchModal
-                isOpen={isCompatibilityModalOpen}
-                onClose={() => setIsCompatibilityModalOpen(false)}
-            />
         </div>
     );
 };
