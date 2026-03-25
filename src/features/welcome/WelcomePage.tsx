@@ -68,8 +68,8 @@ export const WelcomePage: React.FC<WelcomePageProps> = ({ articleSlot }) => {
                 <CompatibilitySection />
                 <BenefitSection />
                 <TrustSection />
-                {/* TheoryLinksSection: 日本語版のみ表示（日本語専用ページへのリンクを含む） */}
-                {isJa && <TheoryLinksSection />}
+                {/* TheoryLinksSection: 英語化が完了したため全言語で表示 */}
+                <TheoryLinksSection />
                 <HowToSection />
                 <FAQSection />
 

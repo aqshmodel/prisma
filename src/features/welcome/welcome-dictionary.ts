@@ -74,6 +74,20 @@ export interface WelcomeText {
         selectB: string;
         button: string;
     };
+    theoryLinks: {
+        heading: string;
+        desc: string[];
+        socionics: {
+            title: string;
+            desc: string;
+            link: string;
+        };
+        enneagram: {
+            title: string;
+            desc: string;
+            link: string;
+        };
+    };
 }
 
 export const WELCOME_TEXT: Record<Locale, WelcomeText> = {
@@ -197,6 +211,23 @@ export const WELCOME_TEXT: Record<Locale, WelcomeText> = {
             selectB: '相手のタイプを選択',
             button: '相性を見る',
         },
+        theoryLinks: {
+            heading: '診断の裏側にある「2つの科学」',
+            desc: [
+                'Aqshの診断は、2つの緻密な心理学理論の掛け合わせで、',
+                'あなたという存在の解像度を極限まで引き上げます。',
+            ],
+            socionics: {
+                title: 'ソシオニクスと16タイプ',
+                desc: '情報をどう受け取り、どう処理するか。「思考のクセ」を解明し、あなたの脳の構造設計図を提示します。',
+                link: '思考のクセについて詳しく知る',
+            },
+            enneagram: {
+                title: 'エニアグラムと9タイプ',
+                desc: 'なぜそれをするのか。どんな恐れがあるのか。あなたの行動を最も深くで支配する「心のエンジン」を特定します。',
+                link: '心のエンジンについて詳しく知る',
+            },
+        },
     },
     en: {
         hero: {
@@ -317,6 +348,23 @@ export const WELCOME_TEXT: Record<Locale, WelcomeText> = {
             selectA: 'Select your type',
             selectB: 'Select their type',
             button: 'Check Compatibility',
+        },
+        theoryLinks: {
+            heading: 'The Two Sciences Behind the Diagnosis',
+            desc: [
+                'Aqsh Prisma elevates the resolution of who you are to the absolute limit',
+                'by combining two meticulous psychological theories.',
+            ],
+            socionics: {
+                title: 'Socionics & 16 Types',
+                desc: 'How you receive and process information. We unravel your "thinking patterns" and provide the structural blueprint of your brain.',
+                link: 'Learn more about thinking patterns',
+            },
+            enneagram: {
+                title: 'Enneagram & 9 Types',
+                desc: 'Why you do what you do. What your fears are. We identify the "heart\'s engine" that governs your deepest actions.',
+                link: 'Learn more about the heart\'s engine',
+            },
         },
     },
 };
