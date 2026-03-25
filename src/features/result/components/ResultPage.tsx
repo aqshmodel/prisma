@@ -208,7 +208,7 @@ export const ResultPage: React.FC = () => {
                 // 非同期でFirestore検証を行う
                 const verifyTeamAccess = async () => {
                     try {
-                        const res = await fetch(`/api/team/verify-member?token=${encodeURIComponent(teamToken)}&os=${encodeURIComponent(osParam)}&engine=${encodeURIComponent(engineParam)}`);
+                        const res = await fetch(`/api/team/verify-member/?token=${encodeURIComponent(teamToken)}&os=${encodeURIComponent(osParam)}&engine=${encodeURIComponent(engineParam)}`);
                         if (res.ok) {
                             const decoded = decodeResult(btoa(`${osParam}-${engineParam}`));
                             if (decoded) {

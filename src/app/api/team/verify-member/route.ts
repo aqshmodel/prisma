@@ -21,7 +21,7 @@ export async function GET(req: NextRequest) {
     try {
         // Firestoreでトークンに一致するpaid状態のオーダーを検索
         const snapshot = await dbAdmin
-            .collection('team_orders')
+            .collection('team_analysis_orders')
             .where('resultToken', '==', token)
             .where('status', '==', 'paid')
             .limit(1)
