@@ -114,7 +114,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         priority: 0.5,
     }));
 
-    // Dynamic Routes (Share Result: 16 pages)
+    // 動的ルート (シェア結果: 16ページ)
     const shareResultRoutes: MetadataRoute.Sitemap = Object.keys(OS_CONTENT).map((code) => ({
         url: buildUrl(`/result/share/${code}`),
         lastModified: currentDate,
@@ -122,6 +122,53 @@ export default function sitemap(): MetadataRoute.Sitemap {
         priority: 0.3,
     }));
 
-    return [...staticRoutes, ...typeRoutes, ...typeArticleRoutes, ...compatibilityRoutes, ...articleRoutes, ...glossaryRoutes, ...shareResultRoutes];
+    // --- 英語版 (English Routes) ---
+
+    // 英語版 静的ルート
+    const enStaticRoutes: MetadataRoute.Sitemap = [
+        { url: buildUrl('/en'), lastModified: currentDate, changeFrequency: 'weekly', priority: 1 },
+        { url: buildUrl('/en/diagnosis'), lastModified: currentDate, changeFrequency: 'monthly', priority: 0.8 },
+        { url: buildUrl('/en/result'), lastModified: currentDate, changeFrequency: 'monthly', priority: 0.7 },
+        { url: buildUrl('/en/compatibility'), lastModified: currentDate, changeFrequency: 'monthly', priority: 0.8 },
+        { url: buildUrl('/en/about/socionics'), lastModified: currentDate, changeFrequency: 'monthly', priority: 0.7 },
+        { url: buildUrl('/en/about/enneagram'), lastModified: currentDate, changeFrequency: 'monthly', priority: 0.7 },
+        { url: buildUrl('/en/about/methodology'), lastModified: currentDate, changeFrequency: 'monthly', priority: 0.6 },
+        { url: buildUrl('/en/privacy'), lastModified: currentDate, changeFrequency: 'monthly', priority: 0.3 },
+        { url: buildUrl('/en/terms'), lastModified: currentDate, changeFrequency: 'monthly', priority: 0.3 },
+    ];
+
+    // 英語版 動的ルート (16 types)
+    const enTypeRoutes: MetadataRoute.Sitemap = typeCodes.map((code) => ({
+        url: buildUrl(`/en/types/${code}`),
+        lastModified: currentDate,
+        changeFrequency: 'monthly',
+        priority: 0.7,
+    }));
+
+    // 英語版 動的ルート (Compatibility: 16×15=240 pages)
+    const enCompatibilityRoutes: MetadataRoute.Sitemap = typeCodes.flatMap((code) =>
+        typeCodes
+            .filter((target) => target !== code)
+            .map((target) => ({
+                url: buildUrl(`/en/types/${code}/compatibility/${target}`),
+                lastModified: currentDate,
+                changeFrequency: 'monthly' as const,
+                priority: 0.6,
+            }))
+    );
+
+    return [
+        ...staticRoutes,
+        ...typeRoutes,
+        ...typeArticleRoutes,
+        ...compatibilityRoutes,
+        ...articleRoutes,
+        ...glossaryRoutes,
+        ...shareResultRoutes,
+        // English Routes
+        ...enStaticRoutes,
+        ...enTypeRoutes,
+        ...enCompatibilityRoutes,
+    ];
 }
 

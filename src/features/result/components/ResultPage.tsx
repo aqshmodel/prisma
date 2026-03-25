@@ -19,6 +19,7 @@ import { usePairStore } from '@/stores/usePairStore';
 import { OS_CONTENT } from '../data/content-os';
 import { Button } from '@/components/ui/Button';
 import { ShareButtons } from '@/components/common/ShareButtons';
+import { ShareButtonsEn } from '@/components/common/ShareButtonsEn';
 import { useReactToPrint } from 'react-to-print';
 import { useRef } from 'react';
 import { PrintLayout } from './PrintLayout';
@@ -506,12 +507,21 @@ export const ResultPage: React.FC = () => {
                         {footerMessage}
                     </p>
 
-                    <ShareButtons
-                        url={`${SITE_CONFIG.baseUrl}/result/share/${result.os.code}`}
-                        title={shareTitle}
-                        text={shareText}
-                        hashtags={shareHashtags}
-                    />
+                    {locale === 'en' ? (
+                        <ShareButtonsEn
+                            url={`${SITE_CONFIG.baseUrl}/en/result/share/${result.os.code}`}
+                            title={shareTitle}
+                            text={shareText}
+                            hashtags={shareHashtags}
+                        />
+                    ) : (
+                        <ShareButtons
+                            url={`${SITE_CONFIG.baseUrl}/result/share/${result.os.code}`}
+                            title={shareTitle}
+                            text={shareText}
+                            hashtags={shareHashtags}
+                        />
+                    )}
 
                     <div className="flex flex-col sm:flex-row gap-4 mt-4">
                         <Button

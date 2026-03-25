@@ -18,8 +18,8 @@ export const TrustSection: React.FC = () => {
     return (
         <section className="py-24 md:py-32 bg-[#0B0F17] relative overflow-hidden text-white">
             {/* Ambient Background Effects */}
-            <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-prisma-900/40 rounded-full blur-[120px] pointer-events-none mix-blend-screen" />
-            <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-teal-900/20 rounded-full blur-[120px] pointer-events-none mix-blend-screen" />
+            <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-prisma-900/40 rounded-full blur-3xl pointer-events-none" />
+            <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-teal-900/20 rounded-full blur-3xl pointer-events-none" />
 
             <div className="max-w-7xl mx-auto px-6 relative z-10">
                 <div className="text-center mb-20 animate-fade-in-up">

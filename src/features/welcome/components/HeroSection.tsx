@@ -26,10 +26,10 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onStart, onResume, onV
             <div className="absolute inset-0 bg-[#f8fcfc] -z-20" /> {/* Slightly warmer/off-white background */}
 
             {/* Organic Shape 1 (Top Right) */}
-            <div className="absolute top-[-20%] right-[-10%] w-[70vw] h-[70vw] max-w-[1000px] max-h-[1000px] bg-gradient-to-br from-prisma-100/30 to-white/0 rounded-full blur-[100px] -z-10 opacity-50 mix-blend-multiply animate-[spin_60s_linear_infinite] motion-reduce:animate-none" style={{ willChange: 'transform' }} />
+            <div className="absolute top-[-20%] right-[-10%] w-[70vw] h-[70vw] max-w-[1000px] max-h-[1000px] bg-gradient-to-br from-prisma-100/30 to-white/0 rounded-full blur-3xl -z-10 opacity-60 animate-[spin_60s_linear_infinite] motion-reduce:animate-none" style={{ willChange: 'transform' }} />
 
             {/* Organic Shape 2 (Bottom Left) */}
-            <div className="absolute bottom-[-20%] left-[-10%] w-[60vw] h-[60vw] max-w-[800px] max-h-[800px] bg-gradient-to-tr from-prisma-200/20 to-white/0 rounded-full blur-[120px] -z-10 opacity-50 mix-blend-multiply animate-[spin_45s_linear_infinite_reverse] motion-reduce:animate-none" style={{ willChange: 'transform' }} />
+            <div className="absolute bottom-[-20%] left-[-10%] w-[60vw] h-[60vw] max-w-[800px] max-h-[800px] bg-gradient-to-tr from-prisma-200/20 to-white/0 rounded-full blur-3xl -z-10 opacity-60 animate-[spin_45s_linear_infinite_reverse] motion-reduce:animate-none" style={{ willChange: 'transform' }} />
 
             <div className="max-w-7xl mx-auto px-6 w-full grid lg:grid-cols-12 lg:gap-16 items-center relative z-10">
                 {/* Left Content (Text) - Spans 7 cols */}
