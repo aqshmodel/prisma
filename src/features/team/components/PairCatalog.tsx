@@ -9,9 +9,10 @@ import type { EngineType } from '@/types/diagnosis';
 
 interface PairCatalogProps {
   pairs: TeamPair[];
+  teamToken?: string;
 }
 
-export function PairCatalog({ pairs }: PairCatalogProps) {
+export function PairCatalog({ pairs, teamToken }: PairCatalogProps) {
   const [selectedMemberId, setSelectedMemberId] = useState<string>('ALL');
 
   if (!pairs || pairs.length === 0) {
@@ -122,8 +123,8 @@ export function PairCatalog({ pairs }: PairCatalogProps) {
                       <div key={i} className="bg-slate-50 rounded-xl p-3 border border-slate-100 flex flex-col relative h-full">
                         <div className="text-center mb-3">
                           <Link 
-                            href={member.enneagram 
-                              ? `/result?os=${member.typeCode}&engine=T${member.enneagram}` 
+                            href={member.enneagram && teamToken
+                              ? `/result?os=${member.typeCode}&engine=T${member.enneagram}&teamToken=${teamToken}` 
                               : `/types/${member.typeCode}`}
                             className="font-bold text-slate-800 text-sm line-clamp-1 hover:text-teal-600 transition-colors underline decoration-slate-200 hover:decoration-teal-400 underline-offset-2"
                           >

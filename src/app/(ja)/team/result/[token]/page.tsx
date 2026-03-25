@@ -115,7 +115,7 @@ export default async function TeamResultPage(props: TeamResultPageProps) {
             チーム内の全ての組み合わせにおける「相性関係」を一覧化しています。星の数（★）が多いほど自然に補完し合える良好な相性であり、少ないほど摩擦が起きやすい（あるいは大きく成長できる）相性を示しています。
           </p>
           
-          <PairCatalog pairs={pairs} />
+          <PairCatalog pairs={pairs} teamToken={token} />
         </section>
         
       </div>

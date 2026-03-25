@@ -200,7 +200,35 @@ export const ResultPage: React.FC = () => {
                 }
             }
 
-            // 2. ローカル履歴から復元を試みる
+            // 2. チームトークンによるアクセス（課金ユーザー向け）
+            const teamToken = searchParams.get('teamToken');
+            const osParam = searchParams.get('os');
+            const engineParam = searchParams.get('engine');
+            if (teamToken && osParam && engineParam) {
+                // 非同期でFirestore検証を行う
+                const verifyTeamAccess = async () => {
+                    try {
+                        const res = await fetch(`/api/team/verify-member?token=${encodeURIComponent(teamToken)}&os=${encodeURIComponent(osParam)}&engine=${encodeURIComponent(engineParam)}`);
+                        if (res.ok) {
+                            const decoded = decodeResult(btoa(`${osParam}-${engineParam}`));
+                            if (decoded) {
+                                const teamResult = buildSharedResult(decoded);
+                                setResult(teamResult);
+                                setIsSharedView(true); // Firestore保存をスキップ
+                                return;
+                            }
+                        }
+                    } catch (e) {
+                        console.error('Team token verification failed:', e);
+                    }
+                    // 検証失敗時はTOPにリダイレクト
+                    router.push(localePath('/'));
+                };
+                verifyTeamAccess();
+                return;
+            }
+
+            // 3. ローカル履歴から復元を試みる
             if (history.length > 0) {
                 restore();
             } else {
