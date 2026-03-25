@@ -10,16 +10,36 @@ export function generateStaticParams() {
     return Object.keys(OS_CONTENT).map((code) => ({ code }));
 }
 
+async function fetchWithRetry(url: string, options: any, retries = 3, delay = 1000): Promise<Response> {
+    for (let i = 0; i < retries; i++) {
+        try {
+            const res = await fetch(url, options);
+            if (res.ok) return res;
+            if (res.status === 429) {
+                // Rate limited, wait longer
+                await new Promise(resolve => setTimeout(resolve, delay * 2));
+                continue;
+            }
+            throw new Error(`HTTP error ${res.status}`);
+        } catch (e) {
+            if (i === retries - 1) throw e;
+            await new Promise(resolve => setTimeout(resolve, delay));
+            delay *= 2;
+        }
+    }
+    throw new Error('fetchWithRetry failed');
+}
+
 async function loadGoogleFont(text: string) {
     const userAgent = 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_8; de-at) AppleWebKit/533.21.1 (KHTML, like Gecko) Version/5.0.5 Safari/533.21.1';
     const url = `https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&text=${encodeURIComponent(text)}`;
 
     try {
-        const css = await fetch(url, { headers: { 'User-Agent': userAgent } }).then(res => res.text());
+        const css = await fetchWithRetry(url, { headers: { 'User-Agent': userAgent } }).then(res => res.text());
         const resource = css.match(/src: url\((.+)\) format\('(opentype|truetype)'\)/);
 
         if (resource) {
-            return await fetch(resource[1]).then(res => res.arrayBuffer());
+            return await fetchWithRetry(resource[1], {}).then(res => res.arrayBuffer());
         }
     } catch (e) {
         console.error('Failed to load font:', e);
