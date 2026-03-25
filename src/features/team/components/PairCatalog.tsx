@@ -116,7 +116,7 @@ export function PairCatalog({ pairs, teamToken }: PairCatalogProps) {
           if (!rel) return null; // 未定義・パースエラーの場合はスキップ
           
           return (
-            <div key={index} className="bg-white rounded-2xl p-6 shadow-sm border border-slate-200 hover:border-teal-300 hover:shadow-md transition-all flex flex-col h-full group">
+            <div key={index} className="bg-white rounded-2xl p-4 md:p-6 shadow-sm border border-slate-200 hover:border-teal-300 hover:shadow-md transition-all flex flex-col h-full group">
               <div className="flex justify-between items-start mb-4">
                 <div className="inline-flex flex-col items-center gap-1">
                   <span className="text-3xl filter drop-shadow-sm group-hover:scale-110 transition-transform">{rel.emoji}</span>
@@ -138,11 +138,11 @@ export function PairCatalog({ pairs, teamToken }: PairCatalogProps) {
 
               {/* メンバー個別取扱説明書エリア */}
               <div className="relative mb-5 mt-2">
-                <div className="absolute left-1/2 top-8 -translate-x-1/2 -translate-y-1/2 z-10 bg-white rounded-full p-1 shadow-sm border border-slate-100 flex items-center justify-center">
+                <div className="hidden md:flex absolute left-1/2 top-8 -translate-x-1/2 -translate-y-1/2 z-10 bg-white rounded-full p-1 shadow-sm border border-slate-100 items-center justify-center">
                   <span className="text-slate-300 font-black text-xs block leading-none w-3 h-3 text-center">×</span>
                 </div>
                 
-                <div className="grid grid-cols-2 gap-2">
+                <div className="flex flex-col md:grid md:grid-cols-2 gap-3 md:gap-2">
                   {[pair.memberA, pair.memberB].map((member, i) => {
                     const crossData = getCrossData(member.typeCode, member.enneagram);
                     return (
