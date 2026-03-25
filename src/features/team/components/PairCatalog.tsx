@@ -121,7 +121,14 @@ export function PairCatalog({ pairs }: PairCatalogProps) {
                     return (
                       <div key={i} className="bg-slate-50 rounded-xl p-3 border border-slate-100 flex flex-col relative h-full">
                         <div className="text-center mb-3">
-                          <p className="font-bold text-slate-800 text-sm line-clamp-1">{member.name}</p>
+                          <Link 
+                            href={member.enneagram 
+                              ? `/result?os=${member.typeCode}&engine=T${member.enneagram}` 
+                              : `/types/${member.typeCode}`}
+                            className="font-bold text-slate-800 text-sm line-clamp-1 hover:text-teal-600 transition-colors underline decoration-slate-200 hover:decoration-teal-400 underline-offset-2"
+                          >
+                            {member.name}
+                          </Link>
                           <p className="text-[10px] text-slate-500 font-medium px-1.5 py-0.5 bg-white rounded mt-1 border border-slate-200 inline-block">
                             {member.typeCode}{member.enneagram ? ` / T${member.enneagram}` : ''}
                           </p>
