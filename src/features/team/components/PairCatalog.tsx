@@ -160,7 +160,7 @@ export function PairCatalog({ pairs, teamToken }: PairCatalogProps) {
                               : `/types/${member.typeCode}`}
                             className="font-bold text-slate-800 text-sm line-clamp-1 hover:text-teal-600 transition-colors underline decoration-slate-200 hover:decoration-teal-400 underline-offset-2"
                           >
-                            {member.name}
+                            {member.name.replace(/\s*[（\(].*?[）\)]$/, '')}
                           </Link>
                           <div className="text-[8.5px] sm:text-[10px] text-slate-500 font-medium px-1.5 py-1 bg-white rounded mt-1.5 border border-slate-200 inline-block w-full">
                             {getMemberDisplayName(member)}
