@@ -2,7 +2,7 @@ import os
 import argparse
 from PIL import Image
 
-def optimize_image(input_path, output_name=None, output_dir=None, target_ratio=None):
+def optimize_image(input_path, output_name=None, output_dir=None, target_ratio=None, crop_y=0.5):
     """
     指定された画像をブログの標準規格にクロップし、100KB以下のWebPに変換する。
     """
@@ -41,8 +41,8 @@ def optimize_image(input_path, output_name=None, output_dir=None, target_ratio=N
                 # 縦長すぎる場合 → 上下をクロップ（顔が入りやすいようやや上寄り）
                 new_h = int(w / target_ratio)
                 max_top = h - new_h
-                # 真ん中(0.5)ではなく上から20%(0.2)の位置を基準にすることが多いが、中央(0.5)をデフォルトに
-                top = int(max_top * 0.5)
+                # ユーザー指定のクロップ位置(デフォルト0.5=中央、0=上端)
+                top = int(max_top * crop_y)
                 bottom = top + new_h
                 img = img.crop((0, top, w, bottom))
             else:
@@ -81,9 +81,10 @@ if __name__ == "__main__":
     parser.add_argument('--name', '-n', help="出力ファイル名（指定しない場合は入力の拡張子を.webpにしたもの）", default=None)
     parser.add_argument('--dir', '-d', help="出力先ディレクトリ（デフォルト: public/images/blog/）", default=None)
     parser.add_argument('--ratio_16_9', action='store_true', help="アスペクト比を16:9 (1200x675)にする（デフォルトは1.9:1 (1200x630)）")
+    parser.add_argument('--crop_y', type=float, default=0.5, help="縦方向のクロップ位置 (0.0=上端, 0.5=中央, 1.0=下端)")
     
     args = parser.parse_args()
     
     target_ratio = 16 / 9 if args.ratio_16_9 else 1200 / 630
     
-    optimize_image(args.input, args.name, args.dir, target_ratio)
+    optimize_image(args.input, args.name, args.dir, target_ratio, args.crop_y)
