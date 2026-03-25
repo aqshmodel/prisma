@@ -121,7 +121,7 @@ export function PairCatalog({ pairs, teamToken }: PairCatalogProps) {
           if (!rel) return null; // 未定義・パースエラーの場合はスキップ
           
           return (
-            <div key={index} className="bg-white rounded-2xl p-4 md:p-6 shadow-sm border border-slate-200 hover:border-teal-300 hover:shadow-md transition-all flex flex-col h-full group">
+            <div key={index} className="bg-white rounded-2xl p-2.5 sm:p-4 md:p-6 shadow-sm border border-slate-200 hover:border-teal-300 hover:shadow-md transition-all flex flex-col h-full group">
               <div className="flex justify-between items-start mb-4">
                 <div className="inline-flex flex-col items-center gap-1">
                   <span className="text-3xl filter drop-shadow-sm group-hover:scale-110 transition-transform">{rel.emoji}</span>
