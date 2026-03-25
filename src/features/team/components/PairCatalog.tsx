@@ -66,10 +66,15 @@ export function PairCatalog({ pairs, teamToken }: PairCatalogProps) {
     if (engineData && member.enneagram) {
       const engineMatch = engineData.name.match(/(.+?)\s*\(/);
       const engineName = engineMatch ? engineMatch[1] : engineData.name;
-      return `${osDisplay} × ${engineName}（T${member.enneagram}）`;
+      return (
+        <span className="flex flex-col items-center leading-tight">
+          <span>{osDisplay}</span>
+          <span className="text-slate-400 mt-0.5">× {engineName}（T{member.enneagram}）</span>
+        </span>
+      );
     }
 
-    return osDisplay;
+    return <span>{osDisplay}</span>;
   };
 
   return (
@@ -138,15 +143,16 @@ export function PairCatalog({ pairs, teamToken }: PairCatalogProps) {
 
               {/* メンバー個別取扱説明書エリア */}
               <div className="relative mb-5 mt-2">
-                <div className="hidden md:flex absolute left-1/2 top-8 -translate-x-1/2 -translate-y-1/2 z-10 bg-white rounded-full p-1 shadow-sm border border-slate-100 items-center justify-center">
+                {/* 中央の「×」バッジ（スマホでは非表示にして重なり回避） */}
+                <div className="hidden sm:flex absolute left-1/2 top-8 -translate-x-1/2 -translate-y-1/2 z-10 bg-white rounded-full p-1 shadow-sm border border-slate-100 items-center justify-center">
                   <span className="text-slate-300 font-black text-xs block leading-none w-3 h-3 text-center">×</span>
                 </div>
                 
-                <div className="flex flex-col md:grid md:grid-cols-2 gap-3 md:gap-2">
+                <div className="grid grid-cols-2 gap-2 sm:gap-3">
                   {[pair.memberA, pair.memberB].map((member, i) => {
                     const crossData = getCrossData(member.typeCode, member.enneagram);
                     return (
-                      <div key={i} className="bg-slate-50 rounded-xl p-3 border border-slate-100 flex flex-col relative h-full">
+                      <div key={i} className="bg-slate-50 rounded-xl p-2 sm:p-3 border border-slate-100 flex flex-col relative h-full">
                         <div className="text-center mb-3">
                           <Link 
                             href={member.enneagram && teamToken
@@ -156,9 +162,9 @@ export function PairCatalog({ pairs, teamToken }: PairCatalogProps) {
                           >
                             {member.name}
                           </Link>
-                          <p className="text-[10px] text-slate-500 font-medium px-1.5 py-0.5 bg-white rounded mt-1 border border-slate-200 inline-block">
+                          <div className="text-[8.5px] sm:text-[10px] text-slate-500 font-medium px-1.5 py-1 bg-white rounded mt-1.5 border border-slate-200 inline-block w-full">
                             {getMemberDisplayName(member)}
-                          </p>
+                          </div>
                         </div>
                         
                         {crossData ? (
