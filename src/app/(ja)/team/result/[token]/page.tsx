@@ -39,7 +39,13 @@ export default async function TeamResultPage(props: TeamResultPageProps) {
 
   const orderData = snapshot.docs[0].data();
   const leadInfo = orderData.leadInfo;
-  const members = orderData.members as TeamMember[];
+  
+  // Firestoreから取得したメンバーにIDが付与されていない場合、明示的に割り当てる
+  // ※Server Component→Client Componentへのシリアライズ後もIDが一貫するようにする
+  const members = (orderData.members as TeamMember[]).map((m, i) => ({
+    ...m,
+    id: m.id || String(i),
+  }));
   
   // チームペアの総当りリストを生成＆ソート
   const pairs = generateTeamPairs(members);

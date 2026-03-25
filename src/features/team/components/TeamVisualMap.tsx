@@ -62,8 +62,8 @@ export function TeamVisualMap({ members, pairs }: TeamVisualMapProps) {
 
         return {
           id: `e-${pair.memberA.id}-${pair.memberB.id}`,
-          source: pair.memberA.id || String(members.indexOf(pair.memberA)),
-          target: pair.memberB.id || String(members.indexOf(pair.memberB)),
+          source: pair.memberA.id,
+          target: pair.memberB.id,
           label: pair.relation!.emoji + ' ' + pair.relation!.name,
           animated: pair.relation!.stars >= 4, // 良い関係はアニメーション
           style: { stroke: color, strokeWidth: isGood ? 3 : 1.5 },
