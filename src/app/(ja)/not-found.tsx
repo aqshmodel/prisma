@@ -48,7 +48,7 @@ export default function NotFound() {
                         {popularArticles.map(article => (
                             <li key={article.slug}>
                                 <Link
-                                    href={`/articles/${article.slug}`}
+                                    href={`/articles/${article.slug}/`}
                                     className="text-sm text-slate-600 hover:text-prisma-600 transition-colors leading-snug"
                                 >
                                     {article.title}

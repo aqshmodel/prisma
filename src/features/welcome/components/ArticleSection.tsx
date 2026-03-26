@@ -35,7 +35,7 @@ export const ArticleSection: React.FC<ArticleSectionProps> = ({ articles }) => {
                     {articles.map(article => (
                         <Link
                             key={article.slug}
-                            href={`/articles/${article.slug}`}
+                            href={`/articles/${article.slug}/`}
                             className="group block bg-white rounded-2xl border border-slate-200 overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
                         >
                             <div className="aspect-video bg-slate-100 relative overflow-hidden">

@@ -146,7 +146,7 @@ export const AboutSocionicsPage = () => {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                         {Object.values(OS_CONTENT).map((os) => (
                             <Link
-                                href={`/types/${os.code}`}
+                                href={`/types/${os.code}/`}
                                 key={os.code}
                                 className={cn(
                                     "bg-white rounded-3xl p-8 shadow-sm border border-slate-200 block group",

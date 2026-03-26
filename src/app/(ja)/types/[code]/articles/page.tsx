@@ -75,7 +75,7 @@ export default async function TypeArticlesPage({ params }: Props) {
             <div className="bg-white border-b border-slate-200 sticky top-0 z-50">
                 <div className="absolute inset-0 bg-white border-b border-slate-200 w-screen left-1/2 -translate-x-1/2 -z-10" aria-hidden="true" />
                 <div className="max-w-4xl md:max-w-6xl xl:max-w-[1200px] mx-auto px-4 h-16 flex items-center justify-between">
-                    <Link href={`/types/${code}`} className="text-slate-500 hover:text-slate-800 flex items-center gap-2 font-medium">
+                    <Link href={`/types/${code}/`} className="text-slate-500 hover:text-slate-800 flex items-center gap-2 font-medium">
                         <ArrowLeft size={20} />
                         {data.name}
                     </Link>
@@ -103,7 +103,7 @@ export default async function TypeArticlesPage({ params }: Props) {
                             {descriptionSummary}
                         </p>
                         <Link
-                            href={`/types/${code}`}
+                            href={`/types/${code}/`}
                             className="inline-flex items-center gap-1.5 text-sm font-medium text-prisma-600 hover:text-prisma-700 transition-colors"
                         >
                             <User size={14} />
@@ -142,7 +142,7 @@ export default async function TypeArticlesPage({ params }: Props) {
                         <p className="text-slate-500 mb-8">このタイプに特化した記事を現在執筆準備中です。</p>
                         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                             <Link
-                                href={`/types/${code}`}
+                                href={`/types/${code}/`}
                                 className="inline-flex items-center gap-2 px-6 py-3 bg-white border border-prisma-300 text-prisma-600 font-medium rounded-xl hover:bg-prisma-50 transition-colors"
                             >
                                 <User size={16} />

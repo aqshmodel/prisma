@@ -75,7 +75,7 @@ export const parseGlossaryLinks = (
                     parts.push(
                         <Link
                             key={`glossary-${matchedTerm.slug}-${keyCounter.current}`}
-                            href={`/glossary/${matchedTerm.slug}`}
+                            href={`/glossary/${matchedTerm.slug}/`}
                             title={`${matchedTerm.title}とは`}
                             className="text-prisma-600 font-medium hover:text-prisma-700 hover:underline transition-colors glossary-link whitespace-nowrap"
                         >
