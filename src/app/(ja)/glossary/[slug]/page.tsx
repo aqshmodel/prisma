@@ -28,9 +28,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         title,
         description,
         alternates: {
-            canonical: buildUrl(`/glossary/${slug}`),
+            canonical: buildUrl(`/glossary/${slug}/`),
         },
-        openGraph: { title, description, url: buildUrl(`/glossary/${slug}`) },
+        openGraph: { title, description, url: buildUrl(`/glossary/${slug}/`) },
         twitter: { card: 'summary', title, description },
     };
 }
@@ -63,7 +63,7 @@ export default async function GlossaryEntryPage({ params }: Props) {
             'itemListElement': [
                 { '@type': 'ListItem', 'position': 1, 'name': 'ホーム', 'item': buildUrl('/') },
                 { '@type': 'ListItem', 'position': 2, 'name': '用語集', 'item': buildUrl('/glossary') },
-                { '@type': 'ListItem', 'position': 3, 'name': metadata.title, 'item': buildUrl(`/glossary/${slug}`) },
+                { '@type': 'ListItem', 'position': 3, 'name': metadata.title, 'item': buildUrl(`/glossary/${slug}/`) },
             ],
         },
         {
@@ -142,7 +142,7 @@ export default async function GlossaryEntryPage({ params }: Props) {
                                 {relatedTermEntries.map((term) => term && (
                                     <Link
                                         key={term.slug}
-                                        href={`/glossary/${term.slug}`}
+                                        href={`/glossary/${term.slug}/`}
                                         className="group bg-white rounded-xl border border-slate-200 p-4 hover:border-prisma-300 hover:shadow-sm transition-all flex items-center justify-between"
                                     >
                                         <div>
@@ -166,7 +166,7 @@ export default async function GlossaryEntryPage({ params }: Props) {
                                 {metadata.relatedArticles.map((articleSlug) => (
                                     <Link
                                         key={articleSlug}
-                                        href={`/articles/${articleSlug}`}
+                                        href={`/articles/${articleSlug}/`}
                                         className="group block bg-white rounded-xl border border-slate-200 p-4 hover:border-prisma-300 hover:shadow-sm transition-all"
                                     >
                                         <span className="text-sm font-bold text-slate-700 group-hover:text-prisma-600 transition-colors flex items-center gap-2">

@@ -337,7 +337,7 @@ export default async function ArticleDetailPage({ params }: { params: Promise<{ 
                         <div className="mt-12 pt-8 border-t border-slate-100 grid grid-cols-1 sm:grid-cols-2 gap-4" data-pagefind-ignore>
                             {prevArticle ? (
                                 <Link
-                                    href={`/articles/${prevArticle.slug}`}
+                                    href={`/articles/${prevArticle.slug}/`}
                                     className="group flex flex-col gap-1 p-4 rounded-xl border border-slate-100 hover:border-prisma-200 hover:bg-prisma-50/30 transition-all"
                                 >
                                     <span className="text-xs text-slate-400 flex items-center gap-1">
@@ -351,7 +351,7 @@ export default async function ArticleDetailPage({ params }: { params: Promise<{ 
                             ) : <div />}
                             {nextArticle && (
                                 <Link
-                                    href={`/articles/${nextArticle.slug}`}
+                                    href={`/articles/${nextArticle.slug}/`}
                                     className="group flex flex-col gap-1 p-4 rounded-xl border border-slate-100 hover:border-prisma-200 hover:bg-prisma-50/30 transition-all text-right sm:col-start-2"
                                 >
                                     <span className="text-xs text-slate-400 flex items-center gap-1 justify-end">

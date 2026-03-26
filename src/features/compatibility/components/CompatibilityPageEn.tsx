@@ -80,7 +80,7 @@ export const CompatibilityPageEn: React.FC<CompatibilityPageEnProps> = ({
             <nav className="flex items-center gap-2 text-sm text-slate-400 mb-8 flex-wrap">
                 <Link href="/en" className="hover:text-prisma-600 transition-colors">TOP</Link>
                 <ChevronRight size={14} />
-                <Link href={`/en/types/${sourceCode}`} className="hover:text-prisma-600 transition-colors">
+                <Link href={`/en/types/${sourceCode}/`} className="hover:text-prisma-600 transition-colors">
                     {sourceData.name.split('(')[0].trim()}
                 </Link>
                 <ChevronRight size={14} />
@@ -103,7 +103,7 @@ export const CompatibilityPageEn: React.FC<CompatibilityPageEnProps> = ({
                             <RadarChart data={sourceData.params} color={sourceColor} />
                         </div>
                         <Link
-                            href={`/en/types/${sourceCode}`}
+                            href={`/en/types/${sourceCode}/`}
                             className="text-lg font-bold text-slate-800 hover:text-prisma-600 transition-colors font-serif"
                         >
                             {sourceData.name.split('(')[0].trim()}
@@ -127,7 +127,7 @@ export const CompatibilityPageEn: React.FC<CompatibilityPageEnProps> = ({
                             <RadarChart data={targetData.params} color={targetColor} />
                         </div>
                         <Link
-                            href={`/en/types/${targetCode}`}
+                            href={`/en/types/${targetCode}/`}
                             className="text-lg font-bold text-slate-800 hover:text-prisma-600 transition-colors font-serif"
                         >
                             {targetData.name.split('(')[0].trim()}
@@ -348,7 +348,7 @@ export const CompatibilityPageEn: React.FC<CompatibilityPageEnProps> = ({
                         Take the Personality Test
                     </Link>
                     <Link
-                        href={`/en/types/${sourceCode}`}
+                        href={`/en/types/${sourceCode}/`}
                         className="inline-flex items-center justify-center gap-2 border border-slate-300 text-slate-500 hover:text-slate-700 hover:border-slate-400 px-8 py-3 text-base font-bold rounded-lg transition-colors"
                     >
                         <ArrowLeft size={16} />

@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
     const title = `私のタイプは「${data.name}」でした！ | Aqsh Prisma`;
     const description = `${data.catchphrase} — ${data.name}（${typeLabel}）の診断結果をシェア中。あなたのタイプも無料で診断できます。`;
-    const url = buildUrl(`/result/share/${code}`);
+    const url = buildUrl(`/result/share/${code}/`);
 
     return {
         title,
@@ -107,7 +107,7 @@ export default async function ShareResultPage({ params }: Props) {
                     </p>
 
                     <Link
-                        href={`/types/${code}`}
+                        href={`/types/${code}/`}
                         className="inline-flex items-center gap-2 text-sm font-medium text-prisma-600 hover:text-prisma-700 transition-colors mb-12"
                     >
                         このタイプの詳細を見る

@@ -31,7 +31,7 @@ export const CompatibilityCard: React.FC<CompatibilityCardProps> = ({
 
     return (
         <Link
-            href={`/types/${sourceCode}/compatibility/${targetCode}`}
+            href={`/types/${sourceCode}/compatibility/${targetCode}/`}
             className="group block bg-white rounded-xl border border-slate-200 p-4 hover:shadow-md hover:border-prisma-300 transition-all duration-200"
         >
             <div className="flex items-center justify-between mb-2">

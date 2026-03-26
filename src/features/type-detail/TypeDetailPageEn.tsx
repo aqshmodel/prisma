@@ -180,7 +180,7 @@ export const TypeDetailPageEn: React.FC = () => {
                     </h2>
                     <Card className="p-6">
                         <div className="grid md:grid-cols-2 gap-6 mb-6">
-                            <Link href={`/en/types/${code}/compatibility/${osData.bestMatch}`} className="bg-indigo-50 p-4 rounded-lg border border-indigo-100 hover:shadow-md transition-shadow block">
+                            <Link href={`/en/types/${code}/compatibility/${osData.bestMatch}/`} className="bg-indigo-50 p-4 rounded-lg border border-indigo-100 hover:shadow-md transition-shadow block">
                                 <h4 className="font-bold text-indigo-900 mb-1">Best Match</h4>
                                 <div className="text-lg font-bold text-indigo-600">
                                     {OS_CONTENT_EN[osData.bestMatch]?.name ? (
@@ -195,7 +195,7 @@ export const TypeDetailPageEn: React.FC = () => {
                                 </p>
                                 <span className="text-xs text-indigo-500 mt-2 inline-block">→ View details</span>
                             </Link>
-                            <Link href={`/en/types/${code}/compatibility/${osData.worstMatch}`} className="bg-orange-50 p-4 rounded-lg border border-orange-100 hover:shadow-md transition-shadow block">
+                            <Link href={`/en/types/${code}/compatibility/${osData.worstMatch}/`} className="bg-orange-50 p-4 rounded-lg border border-orange-100 hover:shadow-md transition-shadow block">
                                 <h4 className="font-bold text-orange-900 mb-1">Cautionary Match</h4>
                                 <div className="text-lg font-bold text-orange-600">
                                     {OS_CONTENT_EN[osData.worstMatch]?.name ? (
@@ -262,7 +262,7 @@ export const TypeDetailPageEn: React.FC = () => {
                         {Object.keys(OS_CONTENT_EN).map(key => (
                             <Link
                                 key={key}
-                                href={`/en/types/${key}`}
+                                href={`/en/types/${key}/`}
                                 className={`
                                     p-3 rounded-lg text-center border transition-all
                                     ${key === code

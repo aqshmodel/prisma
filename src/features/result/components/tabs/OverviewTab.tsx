@@ -84,7 +84,7 @@ export const OverviewTab: React.FC<OverviewTabProps> = ({ osData, engineData }) 
                                 {t.bestMatch}: <span className="font-semibold">{osContent[osData.bestMatch]?.name || osData.bestMatch}</span> / {t.caution}: <span className="font-semibold">{osContent[osData.worstMatch]?.name || osData.worstMatch}</span>
                             </p>
                             <div className="mt-4">
-                                <a href={getLocalePath(locale, `/types/${osData.code}`)} className="text-sm text-indigo-600 font-bold hover:underline flex items-center gap-1">
+                                <a href={getLocalePath(locale, `/types/${osData.code}/`)} className="text-sm text-indigo-600 font-bold hover:underline flex items-center gap-1">
                                     {t.viewProfile} <span aria-hidden="true">&rarr;</span>
                                 </a>
                             </div>

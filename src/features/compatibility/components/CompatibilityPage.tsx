@@ -76,7 +76,7 @@ export const CompatibilityPage: React.FC<CompatibilityPageProps> = ({
             <nav className="flex items-center gap-2 text-sm text-slate-400 mb-8 flex-wrap">
                 <Link href="/" className="hover:text-prisma-600 transition-colors">TOP</Link>
                 <ChevronRight size={14} />
-                <Link href={`/types/${sourceCode}`} className="hover:text-prisma-600 transition-colors">
+                <Link href={`/types/${sourceCode}/`} className="hover:text-prisma-600 transition-colors">
                     {sourceData.name}
                 </Link>
                 <ChevronRight size={14} />
@@ -99,7 +99,7 @@ export const CompatibilityPage: React.FC<CompatibilityPageProps> = ({
                             <RadarChart data={sourceData.params} color={sourceColor} />
                         </div>
                         <Link
-                            href={`/types/${sourceCode}`}
+                            href={`/types/${sourceCode}/`}
                             className="text-lg font-bold text-slate-800 hover:text-prisma-600 transition-colors font-serif"
                         >
                             {sourceData.name}
@@ -123,7 +123,7 @@ export const CompatibilityPage: React.FC<CompatibilityPageProps> = ({
                             <RadarChart data={targetData.params} color={targetColor} />
                         </div>
                         <Link
-                            href={`/types/${targetCode}`}
+                            href={`/types/${targetCode}/`}
                             className="text-lg font-bold text-slate-800 hover:text-prisma-600 transition-colors font-serif"
                         >
                             {targetData.name}
@@ -345,7 +345,7 @@ export const CompatibilityPage: React.FC<CompatibilityPageProps> = ({
                         自分のタイプを診断する
                     </Link>
                     <Link
-                        href={`/types/${sourceCode}`}
+                        href={`/types/${sourceCode}/`}
                         className="inline-flex items-center justify-center gap-2 border border-slate-300 text-slate-500 hover:text-slate-700 hover:border-slate-400 px-8 py-3 text-base font-bold rounded-lg transition-colors"
                     >
                         <ArrowLeft size={16} />

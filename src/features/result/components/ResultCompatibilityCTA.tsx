@@ -52,7 +52,7 @@ export const ResultCompatibilityCTA: React.FC<ResultCompatibilityCTAProps> = ({ 
             <div className="grid md:grid-cols-2 gap-4">
                 {/* Best Match */}
                 <Link
-                    href={getLocalePath(locale, `/types/${typeCode}/compatibility/${bestMatchRel.targetCode}`)}
+                    href={getLocalePath(locale, `/types/${typeCode}/compatibility/${bestMatchRel.targetCode}/`)}
                     className="group bg-white rounded-2xl border border-slate-200 overflow-hidden hover:border-prisma-300 transition-all duration-300 p-6 flex flex-col"
                 >
                     <div className="flex-grow">
@@ -89,7 +89,7 @@ export const ResultCompatibilityCTA: React.FC<ResultCompatibilityCTAProps> = ({ 
 
                 {/* Challenge Match */}
                 <Link
-                    href={getLocalePath(locale, `/types/${typeCode}/compatibility/${challengeMatchRel.targetCode}`)}
+                    href={getLocalePath(locale, `/types/${typeCode}/compatibility/${challengeMatchRel.targetCode}/`)}
                     className="group bg-white rounded-2xl border border-slate-200 overflow-hidden hover:border-prisma-300 transition-all duration-300 p-6 flex flex-col"
                 >
                     <div className="flex-grow">
@@ -123,7 +123,7 @@ export const ResultCompatibilityCTA: React.FC<ResultCompatibilityCTAProps> = ({ 
             {/* 全タイプ相性一覧への導線 */}
             <div className="mt-6 text-center">
                 <Link
-                    href={getLocalePath(locale, `/types/${typeCode}`)}
+                    href={getLocalePath(locale, `/types/${typeCode}/`)}
                     className="inline-flex items-center gap-2 text-sm font-bold text-prisma-600 hover:text-prisma-800 transition-colors"
                 >
                     {t.viewAll16} <ArrowRight size={14} />

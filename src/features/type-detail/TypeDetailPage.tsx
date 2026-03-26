@@ -181,7 +181,7 @@ export const TypeDetailPage: React.FC = () => {
                 {/* Related Articles Link */}
                 <section className="text-center">
                     <Link
-                        href={`/types/${code}/articles`}
+                        href={`/types/${code}/articles/`}
                         className="inline-flex items-center gap-3 px-8 py-4 bg-white border-2 border-prisma-200 rounded-2xl text-prisma-700 font-bold hover:bg-prisma-50 hover:border-prisma-400 transition-all shadow-sm hover:shadow-md group"
                     >
                         <BookOpen size={20} />
@@ -200,7 +200,7 @@ export const TypeDetailPage: React.FC = () => {
                     </h2>
                     <Card className="p-6">
                         <div className="grid md:grid-cols-2 gap-6 mb-6">
-                            <Link href={`/types/${code}/compatibility/${osData.bestMatch}`} className="bg-indigo-50 p-4 rounded-lg border border-indigo-100 hover:shadow-md transition-shadow block">
+                            <Link href={`/types/${code}/compatibility/${osData.bestMatch}/`} className="bg-indigo-50 p-4 rounded-lg border border-indigo-100 hover:shadow-md transition-shadow block">
                                 <h4 className="font-bold text-indigo-900 mb-1">最高の相性</h4>
                                 <div className="text-lg font-bold text-indigo-600">
                                     {OS_CONTENT[osData.bestMatch]?.name ? (
@@ -215,7 +215,7 @@ export const TypeDetailPage: React.FC = () => {
                                 </p>
                                 <span className="text-xs text-indigo-500 mt-2 inline-block">→ 相性の詳細を見る</span>
                             </Link>
-                            <Link href={`/types/${code}/compatibility/${osData.worstMatch}`} className="bg-orange-50 p-4 rounded-lg border border-orange-100 hover:shadow-md transition-shadow block">
+                            <Link href={`/types/${code}/compatibility/${osData.worstMatch}/`} className="bg-orange-50 p-4 rounded-lg border border-orange-100 hover:shadow-md transition-shadow block">
                                 <h4 className="font-bold text-orange-900 mb-1">要注意な相性</h4>
                                 <div className="text-lg font-bold text-orange-600">
                                     {OS_CONTENT[osData.worstMatch]?.name ? (
@@ -282,7 +282,7 @@ export const TypeDetailPage: React.FC = () => {
                         {Object.keys(OS_CONTENT).map(key => (
                             <Link
                                 key={key}
-                                href={`/types/${key}`}
+                                href={`/types/${key}/`}
                                 className={`
                                     p-3 rounded-lg text-center border transition-all
                                     ${key === code

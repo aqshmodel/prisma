@@ -42,7 +42,7 @@ export const CompatibilityScoreTable: React.FC<CompatibilityScoreTableProps> = (
                     return (
                         <Link
                             key={targetCode}
-                            href={getLocalePath(locale, `/types/${typeCode}/compatibility/${targetCode}`)}
+                            href={getLocalePath(locale, `/types/${typeCode}/compatibility/${targetCode}/`)}
                             className="group flex items-center justify-between p-3 rounded-xl border border-slate-100 hover:border-prisma-200 hover:bg-prisma-50/30 transition-all"
                         >
                             <div className="flex items-center gap-3 min-w-0">

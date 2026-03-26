@@ -130,7 +130,7 @@ export default function GlossaryPage() {
                                     {items.map((entry) => (
                                         <Link
                                             key={entry.slug}
-                                            href={`/glossary/${entry.slug}`}
+                                            href={`/glossary/${entry.slug}/`}
                                             className={`group bg-white rounded-xl border ${colors.border} p-5 hover:shadow-md transition-all`}
                                         >
                                             <h3 className="font-bold text-slate-800 group-hover:text-prisma-600 transition-colors mb-2">

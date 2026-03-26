@@ -116,7 +116,7 @@ export const RelationsTab: React.FC<RelationsTabProps> = ({ osData, engineData }
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     {bestMatchOs && (
                         <Link
-                            href={getLocalePath(locale, `/types/${osData.code}/compatibility/${osData.bestMatch}`)}
+                            href={getLocalePath(locale, `/types/${osData.code}/compatibility/${osData.bestMatch}/`)}
                             className="group flex items-center justify-between p-4 bg-prisma-50/50 rounded-xl border border-prisma-100 hover:border-prisma-300 transition-colors"
                         >
                             <div>
@@ -128,7 +128,7 @@ export const RelationsTab: React.FC<RelationsTabProps> = ({ osData, engineData }
                     )}
                     {worstMatchOs && (
                         <Link
-                            href={getLocalePath(locale, `/types/${osData.code}/compatibility/${osData.worstMatch}`)}
+                            href={getLocalePath(locale, `/types/${osData.code}/compatibility/${osData.worstMatch}/`)}
                             className="group flex items-center justify-between p-4 bg-slate-50 rounded-xl border border-slate-200 hover:border-slate-300 transition-colors"
                         >
                             <div>
@@ -141,7 +141,7 @@ export const RelationsTab: React.FC<RelationsTabProps> = ({ osData, engineData }
                 </div>
                 <div className="mt-4 text-center">
                     <Link
-                        href={getLocalePath(locale, `/types/${osData.code}`)}
+                        href={getLocalePath(locale, `/types/${osData.code}/`)}
                         className="inline-flex items-center gap-1.5 text-sm font-bold text-prisma-600 hover:text-prisma-800 transition-colors"
                     >
                         {t.viewAll16} <ArrowRight size={14} />

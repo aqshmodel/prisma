@@ -23,7 +23,7 @@ export const ArticleCardLarge: React.FC<ArticleCardBaseProps> = ({
     slug, title, description, coverImage, category, date, updatedAt, author,
 }) => (
     <Link
-        href={`/articles/${slug}`}
+        href={`/articles/${slug}/`}
         className="group bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden hover:shadow-md transition-all flex flex-col"
     >
         <div className="h-48 md:h-64 bg-slate-200 relative overflow-hidden">
@@ -87,7 +87,7 @@ export const ArticleCardSmall: React.FC<ArticleCardBaseProps & { className?: str
     slug, title, coverImage, category, className = '',
 }) => (
     <Link
-        href={`/articles/${slug}`}
+        href={`/articles/${slug}/`}
         className={`group flex gap-3 rounded-xl p-3 border border-slate-100 hover:border-prisma-200 transition-all duration-200 ${className}`}
     >
         <div className="w-20 h-20 flex-shrink-0 rounded-lg overflow-hidden bg-slate-200 relative">

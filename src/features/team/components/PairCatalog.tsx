@@ -157,7 +157,7 @@ export function PairCatalog({ pairs, teamToken }: PairCatalogProps) {
                           <Link 
                             href={member.enneagram && teamToken
                               ? `/result?os=${member.typeCode}&engine=T${member.enneagram}&teamToken=${teamToken}` 
-                              : `/types/${member.typeCode}`}
+                              : `/types/${member.typeCode}/`}
                             className="font-bold text-slate-800 text-sm line-clamp-1 hover:text-teal-600 transition-colors underline decoration-slate-200 hover:decoration-teal-400 underline-offset-2"
                           >
                             {member.name.replace(/\s*[（\(].*?[）\)]$/, '')}
@@ -243,7 +243,7 @@ export function PairCatalog({ pairs, teamToken }: PairCatalogProps) {
                 {/* 詳細ページへのリンク */}
                 <div className="pt-4 mt-auto">
                   <Link 
-                    href={`/types/${pair.memberA.typeCode}/compatibility/${pair.memberB.typeCode}`}
+                    href={`/types/${pair.memberA.typeCode}/compatibility/${pair.memberB.typeCode}/`}
                     className="flex justify-center items-center gap-1.5 w-full py-2.5 bg-slate-50 hover:bg-teal-50 text-slate-600 hover:text-teal-700 text-xs font-bold rounded-xl transition-colors border border-slate-200 hover:border-teal-200"
                   >
                     このペアの相性詳細をより深く読む

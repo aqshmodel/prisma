@@ -105,7 +105,7 @@ const PairDiagnosisCTA: React.FC<{ myCode: OSTypeCode; myName: string }> = ({ my
             {/* Aさん向け: 誰かを招待するCTA */}
             <div className="bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 text-center">
                 <h3 className="text-lg font-serif font-bold text-slate-800 mb-2">
-                    💕 恋人や友人とペア相性診断をしてみませんか？
+                    恋人や友人とペア相性診断をしてみませんか？
                 </h3>
                 <p className="text-sm text-slate-600 mb-4 max-w-md mx-auto">
                     招待URLを送って、二人の相性を確認しましょう。ソシオニクス14種の関係性から分析します。
