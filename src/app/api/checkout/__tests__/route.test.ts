@@ -40,6 +40,10 @@ describe('Checkout API Route', () => {
   beforeEach(() => {
     vi.clearAllMocks();
     mockCreateSession.mockResolvedValue({ url: 'https://checkout.stripe.test/123' });
+    // Vitest用にPriceIDの環境変数をモック
+    process.env.NEXT_PUBLIC_STRIPE_PRICE_ID_SMALL = 'price_test_small';
+    process.env.NEXT_PUBLIC_STRIPE_PRICE_ID_MIDDLE = 'price_test_middle';
+    process.env.NEXT_PUBLIC_STRIPE_PRICE_ID_LARGE = 'price_test_large';
   });
 
   const validPayload = {

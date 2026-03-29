@@ -35,3 +35,6 @@ documents/
 # Google API Keys
 google-key/
 
+## .env
+.env.production
+.env.local
