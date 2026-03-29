@@ -1,6 +1,7 @@
 import React from 'react';
 import type { Metadata } from 'next';
-import { Users, Presentation, MessageSquareText } from 'lucide-react';
+import Link from 'next/link';
+import { Users, Presentation, MessageSquareText, FileText } from 'lucide-react';
 import { TeamInputForm } from '@/features/team/components/TeamInputForm';
 
 export const metadata: Metadata = {
@@ -25,6 +26,17 @@ export default function TeamPage() {
           <p className="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed text-left">
             メンバーの名前と16タイプを入力するだけで、全ペアの「相性カタログ」と「AIによる組織ケミストリー分析」を即座に生成。勘や経験に頼らない科学的なマネジメントを実現します。
           </p>
+
+          <div className="mt-10 mb-4 animate-fade-in-up md:delay-100">
+            <Link 
+              href="/team/result/demo-test-token-12345/" 
+              target="_blank" 
+              className="inline-flex items-center justify-center gap-2 bg-slate-800 hover:bg-slate-900 text-white px-8 py-4 rounded-xl text-base font-bold shadow-lg hover:shadow-xl transition-all w-full sm:w-auto"
+            >
+              <FileText className="w-5 h-5" />
+              実際のサンプルレポートを見る（無料）
+            </Link>
+          </div>
         </section>
 
         {/* 機能ハイライト */}
