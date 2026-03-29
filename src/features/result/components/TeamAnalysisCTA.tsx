@@ -16,6 +16,12 @@ export const TeamAnalysisCTA: React.FC = () => {
     if (locale === 'en') return null;
 
     const handleGoToTeam = () => {
+        if (typeof window !== 'undefined' && (window as any).gtag) {
+            (window as any).gtag('event', 'click_team_analysis', {
+                event_category: 'engagement',
+                event_label: 'team_analysis_cta'
+            });
+        }
         router.push(localePath('/team/'));
     };
 

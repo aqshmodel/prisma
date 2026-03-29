@@ -380,7 +380,7 @@ export function TeamInputForm() {
           
           <div className="text-center mt-5 text-slate-400 text-xs space-y-1">
             <p>Stripeの安全な決済システムを使用します。</p>
-            <p>購入後、すぐにAI相性マップご覧いただけます。</p>
+            <p>購入後、すぐにAI相性マップをご覧いただけます。</p>
           </div>
         </div>
       </section>
