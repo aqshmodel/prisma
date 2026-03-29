@@ -46,9 +46,7 @@ describe('Stripe Webhook API Route', () => {
     const req = new Request('http://localhost:3003/api/webhook/stripe', {
       method: 'POST',
       body: JSON.stringify({}),
-      headers: {
-        // 'stripe-signature' is intentionally omitted
-      },
+      headers: {},
     });
 
     const res = await POST(req);
@@ -78,8 +76,64 @@ describe('Stripe Webhook API Route', () => {
     expect(data.error).toBe('Webhook Error: Invalid signature');
   });
 
+  it('should return 200 without updating DB if event is not checkout.session.completed', async () => {
+    const mockEvent = {
+      type: 'payment_intent.succeeded', // 対象外のイベント
+      data: { object: { id: 'pi_123' } },
+    };
+    mockConstructEvent.mockReturnValueOnce(mockEvent);
+
+    const req = new Request('http://localhost:3003/api/webhook/stripe', {
+      method: 'POST',
+      body: JSON.stringify(mockEvent),
+      headers: {
+        'stripe-signature': 'valid-sig',
+      },
+    });
+
+    const res = await POST(req);
+    expect(res.status).toBe(200);
+
+    const data = await res.json();
+    expect(data.received).toBe(true);
+
+    // DB更新は呼ばれていないことの確認
+    expect(mockDoc).not.toHaveBeenCalled();
+    expect(mockUpdate).not.toHaveBeenCalled();
+  });
+
+  it('should return 200 without updating DB if client_reference_id is missing', async () => {
+    const mockEvent = {
+      type: 'checkout.session.completed',
+      data: {
+        object: {
+          id: 'cs_test_123',
+          client_reference_id: null, // IDがない場合
+        },
+      },
+    };
+    mockConstructEvent.mockReturnValueOnce(mockEvent);
+
+    const req = new Request('http://localhost:3003/api/webhook/stripe', {
+      method: 'POST',
+      body: JSON.stringify(mockEvent),
+      headers: {
+        'stripe-signature': 'valid-sig',
+      },
+    });
+
+    const res = await POST(req);
+    expect(res.status).toBe(200);
+
+    const data = await res.json();
+    expect(data.received).toBe(true);
+
+    // DB更新は呼ばれていないことの確認
+    expect(mockDoc).not.toHaveBeenCalled();
+    expect(mockUpdate).not.toHaveBeenCalled();
+  });
+
   it('should process checkout.session.completed and update firestore order to paid', async () => {
-    // 正常なイベントのモック定義
     const mockEvent = {
       type: 'checkout.session.completed',
       data: {

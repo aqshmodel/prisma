@@ -2,12 +2,16 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { POST } from '../route';
 
 // Stripe APIのモック
+const { mockCreateSession } = vi.hoisted(() => ({
+  mockCreateSession: vi.fn().mockResolvedValue({ url: 'https://checkout.stripe.test/123' }),
+}));
+
 vi.mock('stripe', () => {
   return {
     default: class {
       checkout = {
         sessions: {
-          create: vi.fn().mockResolvedValue({ url: 'https://checkout.stripe.test/123' }),
+          create: mockCreateSession,
         },
       };
     },
@@ -35,6 +39,7 @@ vi.mock('@/lib/firebase-admin', () => ({
 describe('Checkout API Route', () => {
   beforeEach(() => {
     vi.clearAllMocks();
+    mockCreateSession.mockResolvedValue({ url: 'https://checkout.stripe.test/123' });
   });
 
   const validPayload = {
@@ -64,6 +69,47 @@ describe('Checkout API Route', () => {
 
     const data = await res.json();
     expect(data.error).toBe('Invalid input data');
+  });
+
+  it('should return 400 for enterprise plan (more than 30 members)', async () => {
+    const enterpriseMembers = Array.from({ length: 31 }, (_, i) => ({
+      name: `Member ${i}`,
+      typeCode: 'ENTp',
+    }));
+    const req = new Request('http://localhost:3003/api/checkout', {
+      method: 'POST',
+      body: JSON.stringify({ ...validPayload, members: enterpriseMembers }),
+    });
+
+    const res = await POST(req);
+    expect(res.status).toBe(400);
+
+    const data = await res.json();
+    // 31名以上はZodバリデーションによって弾かれる（二重ガード）
+    expect(data.error).toBe('Invalid input data');
+    expect(data.details[0].message).toContain('31名以上');
+    expect(mockDoc).not.toHaveBeenCalled(); // Firestoreへの保存は行われない
+  });
+
+  it('should throw Error and update firestore if stripe session url is missing', async () => {
+    // StripeからURLが返ってこない異常事態をモック
+    mockCreateSession.mockResolvedValueOnce({ url: null });
+
+    const req = new Request('http://localhost:3003/api/checkout', {
+      method: 'POST',
+      headers: { origin: 'http://localhost:3003' },
+      body: JSON.stringify(validPayload),
+    });
+
+    const res = await POST(req);
+    // 内部エラー(500)になるはず
+    expect(res.status).toBe(500);
+    const data = await res.json();
+    expect(data.error).toBe('Internal server error');
+
+    // 最初にpendingで作られ、その後異常を受けてupdateで failed_stripe_url_creation になっているか
+    expect(mockSet).toHaveBeenCalledWith(expect.objectContaining({ status: 'pending' }));
+    expect(mockUpdate).toHaveBeenCalledWith({ status: 'failed_stripe_url_creation' });
   });
 
   it('should save pending order in Firestore and return stripe checkout URL for valid input', async () => {
