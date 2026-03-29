@@ -25,6 +25,7 @@ import { useRef } from 'react';
 import { PrintLayout } from './PrintLayout';
 import { RelatedArticlesForResult } from './RelatedArticlesForResult';
 import { ResultCompatibilityCTA } from './ResultCompatibilityCTA';
+import { TeamAnalysisCTA } from './TeamAnalysisCTA';
 import { resolveColor } from '@/lib/constants/color-map';
 import { SITE_CONFIG } from '@/lib/constants/site-config';
 import { decodeResult, buildSharedResult } from '@/lib/utils/share-result';
@@ -492,6 +493,11 @@ export const ResultPage: React.FC = () => {
 
                 {/* Compatibility CTA (Best Match & Challenge Match) */}
                 <ResultCompatibilityCTA typeCode={result.os.code} />
+
+                {/* チーム・組織分析への導線（日本語版のみ） */}
+                {locale === 'ja' && (
+                    <TeamAnalysisCTA />
+                )}
 
                 {/* ペア相性診断への導線（日本語版のみ） */}
                 <PairDiagnosisCTA myCode={result.os.code} myName={osData.name} />

@@ -22,7 +22,7 @@ export default function TeamPage() {
             チームの<span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-500 to-cyan-500">見えない摩擦</span>を<br className="hidden md:block" />
             データとAIで解き明かす。
           </h1>
-          <p className="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed text-left">
             メンバーの名前と16タイプを入力するだけで、全ペアの「相性カタログ」と「AIによる組織ケミストリー分析」を即座に生成。勘や経験に頼らない科学的なマネジメントを実現します。
           </p>
         </section>
