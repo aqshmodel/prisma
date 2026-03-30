@@ -1,0 +1,138 @@
+[
+  {
+    "source": "google",
+    "medium": "organic",
+    "active_users": 215,
+    "sessions": 335,
+    "page_views": 993,
+    "avg_engagement_sec": 201.3
+  },
+  {
+    "source": "(direct)",
+    "medium": "(none)",
+    "active_users": 71,
+    "sessions": 138,
+    "page_views": 565,
+    "avg_engagement_sec": 383.6
+  },
+  {
+    "source": "bing",
+    "medium": "organic",
+    "active_users": 100,
+    "sessions": 120,
+    "page_views": 147,
+    "avg_engagement_sec": 188.2
+  },
+  {
+    "source": "yahoo",
+    "medium": "organic",
+    "active_users": 29,
+    "sessions": 35,
+    "page_views": 49,
+    "avg_engagement_sec": 126.1
+  },
+  {
+    "source": "duckduckgo",
+    "medium": "organic",
+    "active_users": 11,
+    "sessions": 15,
+    "page_views": 44,
+    "avg_engagement_sec": 175.0
+  },
+  {
+    "source": "twitter",
+    "medium": "social",
+    "active_users": 1,
+    "sessions": 10,
+    "page_views": 96,
+    "avg_engagement_sec": 1601.0
+  },
+  {
+    "source": "(not set)",
+    "medium": "(not set)",
+    "active_users": 7,
+    "sessions": 9,
+    "page_views": 7,
+    "avg_engagement_sec": 74.0
+  },
+  {
+    "source": "t.co",
+    "medium": "referral",
+    "active_users": 5,
+    "sessions": 7,
+    "page_views": 46,
+    "avg_engagement_sec": 437.6
+  },
+  {
+    "source": "m.facebook.com",
+    "medium": "referral",
+    "active_users": 6,
+    "sessions": 6,
+    "page_views": 6,
+    "avg_engagement_sec": 0.0
+  },
+  {
+    "source": "checkout.stripe.com",
+    "medium": "referral",
+    "active_users": 1,
+    "sessions": 6,
+    "page_views": 24,
+    "avg_engagement_sec": 159.0
+  },
+  {
+    "source": "facebook.com",
+    "medium": "referral",
+    "active_users": 4,
+    "sessions": 4,
+    "page_views": 4,
+    "avg_engagement_sec": 0.0
+  },
+  {
+    "source": "cn.bing.com",
+    "medium": "referral",
+    "active_users": 2,
+    "sessions": 3,
+    "page_views": 4,
+    "avg_engagement_sec": 120.0
+  },
+  {
+    "source": "ecosia.org",
+    "medium": "organic",
+    "active_users": 2,
+    "sessions": 2,
+    "page_views": 2,
+    "avg_engagement_sec": 9.0
+  },
+  {
+    "source": "copilot.com",
+    "medium": "referral",
+    "active_users": 1,
+    "sessions": 1,
+    "page_views": 1,
+    "avg_engagement_sec": 214.0
+  },
+  {
+    "source": "perplexity.ai",
+    "medium": "referral",
+    "active_users": 1,
+    "sessions": 1,
+    "page_views": 1,
+    "avg_engagement_sec": 0.0
+  },
+  {
+    "source": "service.smt.docomo.ne.jp",
+    "medium": "referral",
+    "active_users": 1,
+    "sessions": 1,
+    "page_views": 1,
+    "avg_engagement_sec": 0.0
+  },
+  {
+    "source": "websearch.rakuten.co.jp",
+    "medium": "referral",
+    "active_users": 1,
+    "sessions": 1,
+    "page_views": 1,
+    "avg_engagement_sec": 133.0
+  }
+]
