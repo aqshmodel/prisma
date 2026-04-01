@@ -166,6 +166,32 @@ def fetch_ga4_pages(token, target_days, organic_only=False):
         print(f"  Error (pages organic={organic_only}): {e}")
         return None
 
+def fetch_ga4_overall_events(token, start_date, end_date, event_names):
+    if not event_names: return {}
+    body = {
+        "dateRanges": [{"startDate": start_date, "endDate": end_date}],
+        "dimensions": [{"name": "eventName"}],
+        "metrics": [{"name": "eventCount"}],
+        "dimensionFilter": {
+            "filter": {
+                "fieldName": "eventName",
+                "inListFilter": {"values": event_names}
+            }
+        },
+        "limit": 1000
+    }
+    try:
+        result = ga4_request(token, body)
+        data = {}
+        for row in result.get("rows", []):
+            ev_name = row["dimensionValues"][0]["value"]
+            count = int(row["metricValues"][0]["value"])
+            data[ev_name] = count
+        return data
+    except Exception as e:
+        print(f"  Error (overall_events): {e}")
+        return {}
+
 
 def fetch_ga4_custom_events_grouped(token, target_days, event_names):
     """指定されたカスタムイベント群をページ×イベント名ごとにグループ化して取得する"""
@@ -397,8 +423,24 @@ def save_ga4_markdown(summary, prev_summary, pages, organic_pages, sources, out_
             f.write(f"| ページ/セッション | {summary['pages_per_session']} | {calc_diff(summary['pages_per_session'], p.get('pages_per_session', 0))} |\n")
             f.write(f"| エンゲージメント率 | {summary['engagement_rate']:.1%} | {calc_pt_diff(summary['engagement_rate'], p.get('engagement_rate', 0))} |\n")
             f.write(f"| 直帰率 | {summary['bounce_rate']:.1%} | {calc_pt_diff(summary['bounce_rate'], p.get('bounce_rate', 0))} |\n")
-            f.write(f"| **コンバージョン (CV)** | {summary.get('conversions', 0):,} | {calc_diff(summary.get('conversions', 0), p.get('conversions', 0))} |\n")
-            f.write(f"| セッションCVR | {summary.get('cvr_per_session', 0):.2%} | {calc_pt_diff(summary.get('cvr_per_session', 0), p.get('cvr_per_session', 0))} |\n\n")
+            f.write(f"| **全コンバージョン目標の合算** | {summary.get('conversions', 0):,} | {calc_diff(summary.get('conversions', 0), p.get('conversions', 0))} |\n")
+            f.write(f"| セッション全体CVR | {summary.get('cvr_per_session', 0):.2%} | {calc_pt_diff(summary.get('cvr_per_session', 0), p.get('cvr_per_session', 0))} |\n")
+
+            # --- Individual Events ---
+            ev_curr = summary.get('events', {})
+            ev_prev = p.get('events', {})
+            target_evs = [
+                ("click_main_diagnosis", "メイン診断クリック"),
+                ("click_compatibility_diagnosis", "相性診断クリック"),
+                ("click_mini_diagnosis", "ミニ診断クリック"),
+                ("read_complete", "記事完読数")
+            ]
+            for ev_key, ev_label in target_evs:
+                curr_c = ev_curr.get(ev_key, 0)
+                prev_c = ev_prev.get(ev_key, 0)
+                f.write(f"| └ {ev_label} | {curr_c:,} | {calc_diff(curr_c, prev_c)} |\n")
+            
+            f.write("\n")
 
         # --- ページ群パフォーマンス出力ヘルパー ---
         def render_table(title, items, limit=20, show_top_query=False):
@@ -504,6 +546,16 @@ def main():
 
     print(f"  - Fetching summary data...")
     summary, prev_summary = fetch_ga4_summary(token, args.days)
+
+    print(f"  - Fetching specific key events...")
+    summary_events = ["click_compatibility_diagnosis", "click_main_diagnosis", "click_mini_diagnosis", "read_complete"]
+    current_evs = fetch_ga4_overall_events(token, f"{args.days}daysAgo", "yesterday", summary_events)
+    prev_evs = fetch_ga4_overall_events(token, f"{args.days * 2}daysAgo", f"{args.days + 1}daysAgo", summary_events)
+    
+    if summary: 
+        summary["events"] = current_evs
+    if prev_summary: 
+        prev_summary["events"] = prev_evs
     
     print(f"  - Fetching page data...")
     ga4_pages = fetch_ga4_pages(token, args.days)
