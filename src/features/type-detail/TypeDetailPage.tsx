@@ -13,6 +13,7 @@ import {
     BookOpen
 } from 'lucide-react';
 import { OS_CONTENT } from '@/features/result/data/content-os';
+import { DiagnosisCTA } from '@/features/articles/components/DiagnosisCTA';
 import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
 import { FormattedText } from '@/components/ui/FormattedText';
@@ -126,6 +127,14 @@ export const TypeDetailPage: React.FC = () => {
                             <FormattedText text={osData.description} />
                         </div>
                     </Card>
+
+                    <div className="mt-8 mb-4">
+                        <DiagnosisCTA 
+                            title="FREE ANALYSIS" 
+                            description="あなたもこのタイプの特性を持っているかもしれません。"
+                            buttonText="無料で診断する"
+                        />
+                    </div>
                 </section>
 
                 {/* Strength & Weakness */}
@@ -273,6 +282,15 @@ export const TypeDetailPage: React.FC = () => {
                             />
                         ))}
                     </div>
+                </section>
+
+                {/* Diagnosis CTA Bottom */}
+                <section className="border-t border-slate-200 pt-12 pb-4">
+                    <DiagnosisCTA 
+                        title="FREE ANALYSIS" 
+                        description="本当の自分を知り、最適な人間関係を見つけませんか？"
+                        buttonText="16性格・相性診断ツールを使う"
+                    />
                 </section>
 
                 {/* All Types Nav */}
