@@ -4,6 +4,7 @@ import { OS_CONTENT } from '@/features/result/data/content-os';
 import { cn } from '@/lib/utils';
 import { SITE_CONFIG, PUBLISHER_JSON_LD } from '@/lib/constants/site-config';
 import { parseBoldText } from '@/lib/utils/parse-bold-text';
+import { DiagnosisCTA } from '@/features/articles/components/DiagnosisCTA';
 
 const renderTextWithBullets = (text: string) => {
     if (!text) return null;
@@ -206,22 +207,13 @@ export const AboutSocionicsPage = () => {
                 </section>
 
                 {/* CTA */}
-                <div className="mb-12">
-                    <h2 className="text-2xl font-bold text-slate-900 mb-6">
-                        自分の思考のクセを知る
-                    </h2>
-                    <Link
-                        href="/diagnosis"
-                        className={cn(
-                            "inline-flex items-center justify-center px-8 py-4 text-base font-bold text-white",
-                            "bg-prisma-500 rounded-full hover:bg-prisma-600 transition-all",
-                            "transform hover:-translate-y-1 shadow-lg hover:shadow-xl hover:shadow-prisma-500/20"
-                        )}
-                    >
-                        無料で診断してみる
-                        <ArrowRight className="w-5 h-5 ml-2" />
-                    </Link>
-                </div>
+                <section className="border-t border-slate-200 pt-12 pb-4">
+                    <DiagnosisCTA 
+                        title="FREE ANALYSIS" 
+                        description="自分の思考のクセを知り、最適な人間関係を見つけませんか？"
+                        buttonText="無料で診断してみる"
+                    />
+                </section>
 
             </main>
         </div>
