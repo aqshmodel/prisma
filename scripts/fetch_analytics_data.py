@@ -370,9 +370,11 @@ def evaluate_rewrite_flag(p):
     if 1 <= pos <= 7 and pv < 15:
         flags.append("⚠️ [C: CTR改善] 順位は高いがPVが少ない。タイトル/リード文の検索意図マッチを見直してください。")
         
-    # E: 直帰改善
-    if bounce >= 0.6 and read_rate <= 0.15 and pv >= 10:
-        flags.append("⚠️ [E: 直帰改善] 直帰率が高く完読されていません。リード文やUIUXの改善が推奨されます。")
+    # E: 直帰改善 (辞書的な /types/ ページは除外)
+    path = p.get('page_path', '')
+    if not path.startswith('/types/'):
+        if bounce >= 0.6 and read_rate <= 0.15 and pv >= 10:
+            flags.append("⚠️ [E: 直帰改善] 直帰率が高く完読されていません。リード文やUIUXの改善が推奨されます。")
         
     return " / ".join(flags) if flags else ""
 
