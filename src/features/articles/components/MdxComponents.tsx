@@ -3,6 +3,7 @@
 import { MDXRemote, type MDXRemoteSerializeResult } from 'next-mdx-remote';
 import { DiagnosisCTA } from '@/features/articles/components/DiagnosisCTA';
 import { RelationshipDualCTA } from '@/features/articles/components/RelationshipDualCTA';
+import { TeamAnalysisCTA } from '@/features/articles/components/TeamAnalysisCTA';
 import { useEffect } from 'react';
 
 interface MdxArticleBodyProps {
@@ -28,6 +29,7 @@ export function MdxArticleBody({ mdxSource, headings }: MdxArticleBodyProps) {
         },
         DiagnosisCTA,
         RelationshipDualCTA,
+        TeamAnalysisCTA,
     };
 
     // 見出しIDの補完（コンポーネントマッチで漏れた場合のフォールバック）

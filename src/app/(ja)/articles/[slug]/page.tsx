@@ -8,6 +8,7 @@ import { ShareButtons } from '@/components/common/ShareButtons';
 import { DiagnosisCTA } from '@/features/articles/components/DiagnosisCTA';
 import { CompatibilityCTA } from '@/features/articles/components/CompatibilityCTA';
 import { RelationshipDualCTA } from '@/features/articles/components/RelationshipDualCTA';
+import { TeamAnalysisCTA } from '@/features/articles/components/TeamAnalysisCTA';
 import { AuthorBio } from '@/features/articles/components/AuthorBio';
 import { RelatedArticles } from '@/features/articles/components/RelatedArticles';
 import { TableOfContents } from '@/features/articles/components/TableOfContents';
@@ -96,6 +97,7 @@ const createComponents = (headings: { id: string; text: string }[]) => ({
     },
     DiagnosisCTA,
     RelationshipDualCTA,
+    TeamAnalysisCTA,
 });
 
 /**
