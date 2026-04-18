@@ -1,8 +1,12 @@
 [
-  {"slug": "low-motivation-subordinate-personality", "prompt": "会議室で熱弁する上司と、まったく響いていない冷めた目をした部下たちの圧倒的な温度差の空間"},
-  {"slug": "adjustment-disorder-personality-type", "prompt": "SNSの成功者の投稿と仕事の通知に挟まれ、一見笑顔でいるが内側では限界を超えて崩れ落ちそうなビジネスパーソン"},
-  {"slug": "dv-personality-traits-structure", "prompt": "外では完璧な笑顔の人物が、ドアを閉めた密室の中では相手を威圧的な空気で縛り付けている二面性"},
-  {"slug": "idol-dependency-personality-structure", "prompt": "大量のグッズと推しの祭壇に囲まれた薄暗い部屋で、スマホの光だけを見つめている人物。自分自身の輪郭が薄れている"},
-  {"slug": "quiet-quitting-reason-personality-type", "prompt": "かつての情熱の火が完全に消え、PCの前の作業員が透明なブロックのように無機質に定時を待っている姿"},
-  {"slug": "overthinking-personality-exhaustion", "prompt": "満員電車の中で、他人のイライラした感情や言葉が目に見えるノイズのように自分へ流れ込み、頭を抱えて疲弊している人物"}
+  {"slug": "construction-leadership-by-personality-type", "prompt": "建設現場で、険しい顔をした職人たちと冷静に図面を見て指示を出す施工管理者の対比。人間関係の複雑さと高いストレスを表すリアリスティックで緊張感のある情景"},
+  {"slug": "housewife-unsuited-16types", "prompt": "整然とした綺麗なリビングで一人ポツンと座り、社会や他者との繋がりから取り残されたような虚無感と孤独感を抱えている女性の姿"},
+  {"slug": "call-center-stress-16types", "prompt": "コールセンターでヘッドセットをつけ、顧客からの理不尽な怒りの声が赤いノイズの矢印となって降り注ぐ中、無理やり笑顔を作って耐え忍ぶ疲弊した人物"},
+  {"slug": "love-exploitation-enneagram-type2", "prompt": "尽くして精神的にボロボロになっている人物が、自己中心的な相手に都合よく「便利な存在」として利用されている、切なくも依存的な関係性を示す仄暗い情景"},
+  {"slug": "firefighter-burnout-personality", "prompt": "炎や過酷な訓練を背景に、強靭な肉体の裏側で、人命を背負う重圧と古い人間関係により内面が静かに燃え尽きていく消防士の姿"},
+  {"slug": "freeter-stagnation-os", "prompt": "自室で時間が止まってしまったように虚無の表情でスマホを見つめる若者。周りの景色や同級生たちだけが先に進み高速で過ぎていく不安感と停滞感"},
+  {"slug": "hsp-civil-servant-burnout-os-mismatch", "prompt": "天井まで届くほどの無意味な書類やハンコの山、窓口での理不尽な市民からの心無いクレームに囲まれて、神経をすり減らしている感受性の強い役所職員"},
+  {"slug": "medical-clerk-stress-16types", "prompt": "病院の受付カウンターの内側で、患者からの理不尽なクレームと背後のお局からの陰湿な監視の目の板挟みになり、笑顔の裏側で心が削られている医療事務の姿"},
+  {"slug": "general-affairs-unsuited-16types", "prompt": "オフィスの片隅で一人大量の備品発注や雑務に埋もれ、誰も感謝することのない「何でも屋」としての評価されない虚無感に苛まれている総務の人物"},
+  {"slug": "dental-hygienist-unsuited-16types", "prompt": "歯科医院のチェアサイドで、患者の極めて精密な作業を行いながら、背後のお局スタッフの機嫌をうかがい過剰なストレスと冷や汗をかいている逃げ場のない衛生士"}
 ]
