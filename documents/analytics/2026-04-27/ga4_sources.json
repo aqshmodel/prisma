@@ -1,0 +1,42 @@
+[
+  {
+    "channel": "Organic Search",
+    "active_users": 450,
+    "sessions": 577,
+    "page_views": 1159,
+    "avg_engagement_sec": 187.5,
+    "conversions": 609
+  },
+  {
+    "channel": "Direct",
+    "active_users": 66,
+    "sessions": 77,
+    "page_views": 419,
+    "avg_engagement_sec": 144.8,
+    "conversions": 145
+  },
+  {
+    "channel": "Unassigned",
+    "active_users": 19,
+    "sessions": 25,
+    "page_views": 32,
+    "avg_engagement_sec": 177.7,
+    "conversions": 21
+  },
+  {
+    "channel": "Organic Social",
+    "active_users": 8,
+    "sessions": 8,
+    "page_views": 27,
+    "avg_engagement_sec": 275.0,
+    "conversions": 5
+  },
+  {
+    "channel": "Referral",
+    "active_users": 2,
+    "sessions": 2,
+    "page_views": 2,
+    "avg_engagement_sec": 84.5,
+    "conversions": 2
+  }
+]

@@ -1,0 +1,130 @@
+[
+  {
+    "source": "google",
+    "medium": "organic",
+    "active_users": 220,
+    "sessions": 296,
+    "page_views": 641,
+    "avg_engagement_sec": 147.6
+  },
+  {
+    "source": "bing",
+    "medium": "organic",
+    "active_users": 169,
+    "sessions": 200,
+    "page_views": 299,
+    "avg_engagement_sec": 189.3
+  },
+  {
+    "source": "(direct)",
+    "medium": "(none)",
+    "active_users": 66,
+    "sessions": 77,
+    "page_views": 419,
+    "avg_engagement_sec": 144.8
+  },
+  {
+    "source": "yahoo",
+    "medium": "organic",
+    "active_users": 43,
+    "sessions": 62,
+    "page_views": 192,
+    "avg_engagement_sec": 342.0
+  },
+  {
+    "source": "chatgpt.com",
+    "medium": "(not set)",
+    "active_users": 8,
+    "sessions": 13,
+    "page_views": 23,
+    "avg_engagement_sec": 209.1
+  },
+  {
+    "source": "duckduckgo",
+    "medium": "organic",
+    "active_users": 12,
+    "sessions": 12,
+    "page_views": 20,
+    "avg_engagement_sec": 308.1
+  },
+  {
+    "source": "(not set)",
+    "medium": "(not set)",
+    "active_users": 7,
+    "sessions": 8,
+    "page_views": 3,
+    "avg_engagement_sec": 73.3
+  },
+  {
+    "source": "t.co",
+    "medium": "referral",
+    "active_users": 6,
+    "sessions": 6,
+    "page_views": 25,
+    "avg_engagement_sec": 320.2
+  },
+  {
+    "source": "openai",
+    "medium": "(not set)",
+    "active_users": 4,
+    "sessions": 4,
+    "page_views": 6,
+    "avg_engagement_sec": 297.5
+  },
+  {
+    "source": "cn.bing.com",
+    "medium": "referral",
+    "active_users": 2,
+    "sessions": 2,
+    "page_views": 2,
+    "avg_engagement_sec": 163.0
+  },
+  {
+    "source": "openai",
+    "medium": "organic",
+    "active_users": 2,
+    "sessions": 2,
+    "page_views": 3,
+    "avg_engagement_sec": 408.5
+  },
+  {
+    "source": "twitter",
+    "medium": "social",
+    "active_users": 2,
+    "sessions": 2,
+    "page_views": 2,
+    "avg_engagement_sec": 139.5
+  },
+  {
+    "source": "chatgpt.com",
+    "medium": "referral",
+    "active_users": 1,
+    "sessions": 1,
+    "page_views": 1,
+    "avg_engagement_sec": 5.0
+  },
+  {
+    "source": "ecosia.org",
+    "medium": "organic",
+    "active_users": 1,
+    "sessions": 1,
+    "page_views": 1,
+    "avg_engagement_sec": 174.0
+  },
+  {
+    "source": "hk.search.yahoo.com",
+    "medium": "referral",
+    "active_users": 1,
+    "sessions": 1,
+    "page_views": 1,
+    "avg_engagement_sec": 222.0
+  },
+  {
+    "source": "service.smt.docomo.ne.jp",
+    "medium": "referral",
+    "active_users": 1,
+    "sessions": 1,
+    "page_views": 1,
+    "avg_engagement_sec": 164.0
+  }
+]
