@@ -1,0 +1,2662 @@
+[
+  {
+    "query": "intj 飲み会",
+    "clicks": 6,
+    "impressions": 34,
+    "ctr": 0.17647058823529413,
+    "position": 10.323529411764707
+  },
+  {
+    "query": "intj 飲み会 嫌い",
+    "clicks": 6,
+    "impressions": 44,
+    "ctr": 0.13636363636363635,
+    "position": 5.659090909090909
+  },
+  {
+    "query": "intj 一人が好き",
+    "clicks": 5,
+    "impressions": 32,
+    "ctr": 0.15625,
+    "position": 5.09375
+  },
+  {
+    "query": "intj 飲み会 行かない",
+    "clicks": 4,
+    "impressions": 17,
+    "ctr": 0.23529411764705882,
+    "position": 7.176470588235294
+  },
+  {
+    "query": "entp 冷めても 戻る",
+    "clicks": 2,
+    "impressions": 28,
+    "ctr": 0.07142857142857142,
+    "position": 7.25
+  },
+  {
+    "query": "entp 恋愛 飽きる",
+    "clicks": 2,
+    "impressions": 29,
+    "ctr": 0.06896551724137931,
+    "position": 4.517241379310345
+  },
+  {
+    "query": "infj フェードアウト",
+    "clicks": 2,
+    "impressions": 60,
+    "ctr": 0.03333333333333333,
+    "position": 9.6
+  },
+  {
+    "query": "infj 人間関係リセット",
+    "clicks": 2,
+    "impressions": 59,
+    "ctr": 0.03389830508474576,
+    "position": 4.966101694915254
+  },
+  {
+    "query": "ソシオニクスとは",
+    "clicks": 2,
+    "impressions": 300,
+    "ctr": 0.006666666666666667,
+    "position": 11.656666666666666
+  },
+  {
+    "query": "ドアスラム 後悔",
+    "clicks": 2,
+    "impressions": 16,
+    "ctr": 0.125,
+    "position": 8.25
+  },
+  {
+    "query": "eie enfj",
+    "clicks": 1,
+    "impressions": 3,
+    "ctr": 0.3333333333333333,
+    "position": 8.333333333333332
+  },
+  {
+    "query": "entp 4",
+    "clicks": 1,
+    "impressions": 1,
+    "ctr": 1,
+    "position": 4
+  },
+  {
+    "query": "entp 冷めた時",
+    "clicks": 1,
+    "impressions": 1,
+    "ctr": 1,
+    "position": 3
+  },
+  {
+    "query": "entp 急に冷める",
+    "clicks": 1,
+    "impressions": 30,
+    "ctr": 0.03333333333333333,
+    "position": 5.533333333333333
+  },
+  {
+    "query": "entp 恋愛向いてない",
+    "clicks": 1,
+    "impressions": 4,
+    "ctr": 0.25,
+    "position": 6
+  },
+  {
+    "query": "estj パワハラ",
+    "clicks": 1,
+    "impressions": 9,
+    "ctr": 0.1111111111111111,
+    "position": 5.888888888888889
+  },
+  {
+    "query": "estp infj 合わない",
+    "clicks": 1,
+    "impressions": 53,
+    "ctr": 0.018867924528301886,
+    "position": 7.056603773584905
+  },
+  {
+    "query": "estp infj 相性",
+    "clicks": 1,
+    "impressions": 45,
+    "ctr": 0.022222222222222223,
+    "position": 9.733333333333333
+  },
+  {
+    "query": "estp ソシオニクス",
+    "clicks": 1,
+    "impressions": 4,
+    "ctr": 0.25,
+    "position": 13.5
+  },
+  {
+    "query": "iee enfp",
+    "clicks": 1,
+    "impressions": 2,
+    "ctr": 0.5,
+    "position": 8
+  },
+  {
+    "query": "infj estp",
+    "clicks": 1,
+    "impressions": 44,
+    "ctr": 0.022727272727272728,
+    "position": 10.522727272727273
+  },
+  {
+    "query": "infj estp 似てる",
+    "clicks": 1,
+    "impressions": 3,
+    "ctr": 0.3333333333333333,
+    "position": 8.333333333333332
+  },
+  {
+    "query": "infj estp 相性",
+    "clicks": 1,
+    "impressions": 70,
+    "ctr": 0.014285714285714285,
+    "position": 9.128571428571428
+  },
+  {
+    "query": "infj 後悔",
+    "clicks": 1,
+    "impressions": 3,
+    "ctr": 0.3333333333333333,
+    "position": 13
+  },
+  {
+    "query": "infp 社会不適合",
+    "clicks": 1,
+    "impressions": 168,
+    "ctr": 0.005952380952380952,
+    "position": 9.285714285714286
+  },
+  {
+    "query": "intj きつい",
+    "clicks": 1,
+    "impressions": 1,
+    "ctr": 1,
+    "position": 6
+  },
+  {
+    "query": "intj 一人の時間",
+    "clicks": 1,
+    "impressions": 5,
+    "ctr": 0.2,
+    "position": 14.8
+  },
+  {
+    "query": "intj 孤独耐性",
+    "clicks": 1,
+    "impressions": 34,
+    "ctr": 0.029411764705882353,
+    "position": 5.617647058823529
+  },
+  {
+    "query": "intj 孤立",
+    "clicks": 1,
+    "impressions": 17,
+    "ctr": 0.058823529411764705,
+    "position": 8.588235294117647
+  },
+  {
+    "query": "intj 放置",
+    "clicks": 1,
+    "impressions": 2,
+    "ctr": 0.5,
+    "position": 44.5
+  },
+  {
+    "query": "intj 職場",
+    "clicks": 1,
+    "impressions": 1,
+    "ctr": 1,
+    "position": 87
+  },
+  {
+    "query": "intj 自然消滅",
+    "clicks": 1,
+    "impressions": 2,
+    "ctr": 0.5,
+    "position": 22.5
+  },
+  {
+    "query": "istp sli",
+    "clicks": 1,
+    "impressions": 17,
+    "ctr": 0.058823529411764705,
+    "position": 7.117647058823529
+  },
+  {
+    "query": "lse sle",
+    "clicks": 1,
+    "impressions": 3,
+    "ctr": 0.3333333333333333,
+    "position": 4
+  },
+  {
+    "query": "sle iei",
+    "clicks": 1,
+    "impressions": 9,
+    "ctr": 0.1111111111111111,
+    "position": 10
+  },
+  {
+    "query": "teとは",
+    "clicks": 1,
+    "impressions": 50,
+    "ctr": 0.02,
+    "position": 7.04
+  },
+  {
+    "query": "エニアグラム t2",
+    "clicks": 1,
+    "impressions": 1,
+    "ctr": 1,
+    "position": 29
+  },
+  {
+    "query": "ソシオニクス",
+    "clicks": 1,
+    "impressions": 108,
+    "ctr": 0.009259259259259259,
+    "position": 17.51851851851852
+  },
+  {
+    "query": "ソシオニクス ロマンススタイル",
+    "clicks": 1,
+    "impressions": 14,
+    "ctr": 0.07142857142857142,
+    "position": 7.928571428571429
+  },
+  {
+    "query": "ソシオニクス 子供タイプ",
+    "clicks": 1,
+    "impressions": 8,
+    "ctr": 0.125,
+    "position": 8
+  },
+  {
+    "query": "ソシオニクス 解説",
+    "clicks": 1,
+    "impressions": 14,
+    "ctr": 0.07142857142857142,
+    "position": 8.571428571428571
+  },
+  {
+    "query": "ソシオニクスとは 簡単に",
+    "clicks": 1,
+    "impressions": 39,
+    "ctr": 0.02564102564102564,
+    "position": 9.435897435897436
+  },
+  {
+    "query": "人心掌握 診断",
+    "clicks": 1,
+    "impressions": 1,
+    "ctr": 1,
+    "position": 41
+  },
+  {
+    "query": "怒ると怖い人",
+    "clicks": 1,
+    "impressions": 6,
+    "ctr": 0.16666666666666666,
+    "position": 54.333333333333336
+  },
+  {
+    "query": "飲み会 浮く",
+    "clicks": 1,
+    "impressions": 16,
+    "ctr": 0.0625,
+    "position": 9
+  },
+  {
+    "query": "0100思考",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 67
+  },
+  {
+    "query": "0か100か",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 72
+  },
+  {
+    "query": "16タイプ ソシオニクス",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 9
+  },
+  {
+    "query": "16タイプ 管理者",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 35
+  },
+  {
+    "query": "16タイプ診断 ソシオニクス",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 9
+  },
+  {
+    "query": "aqsh",
+    "clicks": 0,
+    "impressions": 2,
+    "ctr": 0,
+    "position": 1
+  },
+  {
+    "query": "artisan personality type",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 80
+  },
+  {
+    "query": "clubs",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 39
+  },
+  {
+    "query": "dv 気質",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 41
+  },
+  {
+    "query": "dv 特徴",
+    "clicks": 0,
+    "impressions": 2,
+    "ctr": 0,
+    "position": 92.5
+  },
+  {
+    "query": "dvする人の心理",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 79
+  },
+  {
+    "query": "dvの特徴",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 98
+  },
+  {
+    "query": "dv気質とは",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 52
+  },
+  {
+    "query": "e nfp",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 78
+  },
+  {
+    "query": "eie iee",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 4
+  },
+  {
+    "query": "eii infj",
+    "clicks": 0,
+    "impressions": 4,
+    "ctr": 0,
+    "position": 9.5
+  },
+  {
+    "query": "enfp iee",
+    "clicks": 0,
+    "impressions": 2,
+    "ctr": 0,
+    "position": 7
+  },
+  {
+    "query": "enfp intj カップル",
+    "clicks": 0,
+    "impressions": 3,
+    "ctr": 0,
+    "position": 10.333333333333334
+  },
+  {
+    "query": "entp iee",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 20
+  },
+  {
+    "query": "entp ile",
+    "clicks": 0,
+    "impressions": 2,
+    "ctr": 0,
+    "position": 8.5
+  },
+  {
+    "query": "entp そっけない",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 9
+  },
+  {
+    "query": "entp モラハラ",
+    "clicks": 0,
+    "impressions": 3,
+    "ctr": 0,
+    "position": 22.666666666666668
+  },
+  {
+    "query": "entp モラハラ 気質",
+    "clicks": 0,
+    "impressions": 14,
+    "ctr": 0,
+    "position": 9.071428571428571
+  },
+  {
+    "query": "entp 口だけ",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 23
+  },
+  {
+    "query": "entp 恋愛 向いてない",
+    "clicks": 0,
+    "impressions": 37,
+    "ctr": 0,
+    "position": 6.1891891891891895
+  },
+  {
+    "query": "entp 最後の恋人",
+    "clicks": 0,
+    "impressions": 2,
+    "ctr": 0,
+    "position": 11
+  },
+  {
+    "query": "entp 音信不通",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 34
+  },
+  {
+    "query": "es fj",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 40
+  },
+  {
+    "query": "esfj",
+    "clicks": 0,
+    "impressions": 51,
+    "ctr": 0,
+    "position": 36.490196078431374
+  },
+  {
+    "query": "esfj 恋愛 感情の起伏 対応 方法",
+    "clicks": 0,
+    "impressions": 3,
+    "ctr": 0,
+    "position": 18.666666666666668
+  },
+  {
+    "query": "esfja",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 40
+  },
+  {
+    "query": "esfjt",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 27
+  },
+  {
+    "query": "estj isfp 恋愛",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 9
+  },
+  {
+    "query": "estp",
+    "clicks": 0,
+    "impressions": 52,
+    "ctr": 0,
+    "position": 73.1923076923077
+  },
+  {
+    "query": "estp infj",
+    "clicks": 0,
+    "impressions": 61,
+    "ctr": 0,
+    "position": 10.59016393442623
+  },
+  {
+    "query": "estp infj カップル",
+    "clicks": 0,
+    "impressions": 3,
+    "ctr": 0,
+    "position": 6.333333333333333
+  },
+  {
+    "query": "estp infj 嫌い",
+    "clicks": 0,
+    "impressions": 9,
+    "ctr": 0,
+    "position": 8.777777777777779
+  },
+  {
+    "query": "estp infj 恋愛",
+    "clicks": 0,
+    "impressions": 20,
+    "ctr": 0,
+    "position": 9
+  },
+  {
+    "query": "estp 弱点",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 35
+  },
+  {
+    "query": "estp 最強",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 63
+  },
+  {
+    "query": "estp 相性 infj",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 11
+  },
+  {
+    "query": "estp 相性 悪い",
+    "clicks": 0,
+    "impressions": 6,
+    "ctr": 0,
+    "position": 17.5
+  },
+  {
+    "query": "estp-as",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 37
+  },
+  {
+    "query": "estpとinfj",
+    "clicks": 0,
+    "impressions": 21,
+    "ctr": 0,
+    "position": 8.904761904761905
+  },
+  {
+    "query": "estpとinfj 恋愛",
+    "clicks": 0,
+    "impressions": 5,
+    "ctr": 0,
+    "position": 10
+  },
+  {
+    "query": "estpとinfj 相性",
+    "clicks": 0,
+    "impressions": 7,
+    "ctr": 0,
+    "position": 10.142857142857142
+  },
+  {
+    "query": "estpとinfj相性",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 9
+  },
+  {
+    "query": "estp相性悪い",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 45
+  },
+  {
+    "query": "guardian personality type",
+    "clicks": 0,
+    "impressions": 2,
+    "ctr": 0,
+    "position": 78
+  },
+  {
+    "query": "hsp エンジニア",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 32
+  },
+  {
+    "query": "iei infp",
+    "clicks": 0,
+    "impressions": 4,
+    "ctr": 0,
+    "position": 9.5
+  },
+  {
+    "query": "iei sle",
+    "clicks": 0,
+    "impressions": 4,
+    "ctr": 0,
+    "position": 8.75
+  },
+  {
+    "query": "ile entp",
+    "clicks": 0,
+    "impressions": 4,
+    "ctr": 0,
+    "position": 8.5
+  },
+  {
+    "query": "ili infj",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 20
+  },
+  {
+    "query": "ili intj",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 9
+  },
+  {
+    "query": "ili intp",
+    "clicks": 0,
+    "impressions": 6,
+    "ctr": 0,
+    "position": 10.5
+  },
+  {
+    "query": "ili 性格",
+    "clicks": 0,
+    "impressions": 3,
+    "ctr": 0,
+    "position": 10.666666666666666
+  },
+  {
+    "query": "infj eii",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 13
+  },
+  {
+    "query": "infj estp 恋愛",
+    "clicks": 0,
+    "impressions": 4,
+    "ctr": 0,
+    "position": 6.75
+  },
+  {
+    "query": "infj estp 結婚",
+    "clicks": 0,
+    "impressions": 4,
+    "ctr": 0,
+    "position": 8.25
+  },
+  {
+    "query": "infj x estp",
+    "clicks": 0,
+    "impressions": 3,
+    "ctr": 0,
+    "position": 8.666666666666668
+  },
+  {
+    "query": "infj やめたい",
+    "clicks": 0,
+    "impressions": 3,
+    "ctr": 0,
+    "position": 9.333333333333334
+  },
+  {
+    "query": "infj シャットアウト",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 38
+  },
+  {
+    "query": "infj ドアスラム",
+    "clicks": 0,
+    "impressions": 2,
+    "ctr": 0,
+    "position": 45
+  },
+  {
+    "query": "infj ドアスラム され たら",
+    "clicks": 0,
+    "impressions": 2,
+    "ctr": 0,
+    "position": 29
+  },
+  {
+    "query": "infj ドアスラム 友達",
+    "clicks": 0,
+    "impressions": 13,
+    "ctr": 0,
+    "position": 6.461538461538462
+  },
+  {
+    "query": "infj ドアスラム 対処法",
+    "clicks": 0,
+    "impressions": 3,
+    "ctr": 0,
+    "position": 30
+  },
+  {
+    "query": "infj ドアスラム 復縁",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 23
+  },
+  {
+    "query": "infj ドアスラム 恋愛",
+    "clicks": 0,
+    "impressions": 7,
+    "ctr": 0,
+    "position": 25.428571428571427
+  },
+  {
+    "query": "infj ドアスラム 職場",
+    "clicks": 0,
+    "impressions": 6,
+    "ctr": 0,
+    "position": 12.833333333333334
+  },
+  {
+    "query": "infj メンヘラ製造機",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 8
+  },
+  {
+    "query": "infj リセット",
+    "clicks": 0,
+    "impressions": 7,
+    "ctr": 0,
+    "position": 7
+  },
+  {
+    "query": "infj リセット症候群",
+    "clicks": 0,
+    "impressions": 14,
+    "ctr": 0,
+    "position": 8.571428571428571
+  },
+  {
+    "query": "infj 人間不信",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 49
+  },
+  {
+    "query": "infj 人間関係",
+    "clicks": 0,
+    "impressions": 2,
+    "ctr": 0,
+    "position": 22
+  },
+  {
+    "query": "infj 体の関係",
+    "clicks": 0,
+    "impressions": 2,
+    "ctr": 0,
+    "position": 25
+  },
+  {
+    "query": "infj 冷酷",
+    "clicks": 0,
+    "impressions": 5,
+    "ctr": 0,
+    "position": 20.2
+  },
+  {
+    "query": "infj 壁がある",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 27
+  },
+  {
+    "query": "infj 嫌 われ たら終わり",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 15
+  },
+  {
+    "query": "infj 急に 消える",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 25
+  },
+  {
+    "query": "infj 消え そう",
+    "clicks": 0,
+    "impressions": 4,
+    "ctr": 0,
+    "position": 12.75
+  },
+  {
+    "query": "infj 疎外感",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 28
+  },
+  {
+    "query": "infj 病気",
+    "clicks": 0,
+    "impressions": 3,
+    "ctr": 0,
+    "position": 12
+  },
+  {
+    "query": "infj 縁を切る",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 17
+  },
+  {
+    "query": "infj 自然消滅",
+    "clicks": 0,
+    "impressions": 4,
+    "ctr": 0,
+    "position": 9
+  },
+  {
+    "query": "infj 逃げ癖",
+    "clicks": 0,
+    "impressions": 4,
+    "ctr": 0,
+    "position": 10.5
+  },
+  {
+    "query": "infj 関係修復",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 24
+  },
+  {
+    "query": "infjとestp",
+    "clicks": 0,
+    "impressions": 16,
+    "ctr": 0,
+    "position": 7.125
+  },
+  {
+    "query": "infjとestp 相性",
+    "clicks": 0,
+    "impressions": 6,
+    "ctr": 0,
+    "position": 9.166666666666666
+  },
+  {
+    "query": "infp as",
+    "clicks": 0,
+    "impressions": 3,
+    "ctr": 0,
+    "position": 22.333333333333332
+  },
+  {
+    "query": "infp iei",
+    "clicks": 0,
+    "impressions": 3,
+    "ctr": 0,
+    "position": 8
+  },
+  {
+    "query": "infp ゴミ",
+    "clicks": 0,
+    "impressions": 6,
+    "ctr": 0,
+    "position": 11
+  },
+  {
+    "query": "infp ソシオニクス",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 22
+  },
+  {
+    "query": "infp ドライ",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 9
+  },
+  {
+    "query": "infp メンタル弱い",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 8
+  },
+  {
+    "query": "infp 心の壁",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 7
+  },
+  {
+    "query": "infp 怒り 爆発",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 27
+  },
+  {
+    "query": "infp 怒り方",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 50
+  },
+  {
+    "query": "infp 情緒不安定",
+    "clicks": 0,
+    "impressions": 5,
+    "ctr": 0,
+    "position": 10.8
+  },
+  {
+    "query": "infp 既読無視",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 28
+  },
+  {
+    "query": "infp 社不",
+    "clicks": 0,
+    "impressions": 94,
+    "ctr": 0,
+    "position": 7.23404255319149
+  },
+  {
+    "query": "infp 社不 理由",
+    "clicks": 0,
+    "impressions": 17,
+    "ctr": 0,
+    "position": 9.705882352941176
+  },
+  {
+    "query": "infp 社会不適合 なぜ",
+    "clicks": 0,
+    "impressions": 2,
+    "ctr": 0,
+    "position": 12
+  },
+  {
+    "query": "infp 社会不適合者",
+    "clicks": 0,
+    "impressions": 34,
+    "ctr": 0,
+    "position": 6.294117647058823
+  },
+  {
+    "query": "infp 重い",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 11
+  },
+  {
+    "query": "infp-as",
+    "clicks": 0,
+    "impressions": 3,
+    "ctr": 0,
+    "position": 36.333333333333336
+  },
+  {
+    "query": "infp社会不適合",
+    "clicks": 0,
+    "impressions": 8,
+    "ctr": 0,
+    "position": 9.375
+  },
+  {
+    "query": "intj",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 10
+  },
+  {
+    "query": "intj enfp 喧嘩",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 31
+  },
+  {
+    "query": "intj enfpカップル",
+    "clicks": 0,
+    "impressions": 7,
+    "ctr": 0,
+    "position": 11
+  },
+  {
+    "query": "intj lii",
+    "clicks": 0,
+    "impressions": 3,
+    "ctr": 0,
+    "position": 7
+  },
+  {
+    "query": "intj 不器用",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 12
+  },
+  {
+    "query": "intj 人に興味がない",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 56
+  },
+  {
+    "query": "intj 共感",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 74
+  },
+  {
+    "query": "intj 共感力",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 60
+  },
+  {
+    "query": "intj 友達いない",
+    "clicks": 0,
+    "impressions": 2,
+    "ctr": 0,
+    "position": 34
+  },
+  {
+    "query": "intj 口が悪い",
+    "clicks": 0,
+    "impressions": 4,
+    "ctr": 0,
+    "position": 12.5
+  },
+  {
+    "query": "intj 口下手",
+    "clicks": 0,
+    "impressions": 5,
+    "ctr": 0,
+    "position": 10.8
+  },
+  {
+    "query": "intj 嘘を見抜く",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 26
+  },
+  {
+    "query": "intj 孤独",
+    "clicks": 0,
+    "impressions": 25,
+    "ctr": 0,
+    "position": 9.84
+  },
+  {
+    "query": "intj 寂しがり",
+    "clicks": 0,
+    "impressions": 20,
+    "ctr": 0,
+    "position": 8.2
+  },
+  {
+    "query": "intj 無口",
+    "clicks": 0,
+    "impressions": 6,
+    "ctr": 0,
+    "position": 12.666666666666666
+  },
+  {
+    "query": "intj 群れない",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 17
+  },
+  {
+    "query": "intj 言い方 きつい",
+    "clicks": 0,
+    "impressions": 2,
+    "ctr": 0,
+    "position": 8
+  },
+  {
+    "query": "intj 雑談苦手",
+    "clicks": 0,
+    "impressions": 2,
+    "ctr": 0,
+    "position": 8
+  },
+  {
+    "query": "intjに見えない",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 37
+  },
+  {
+    "query": "isfj entp 相性",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 39
+  },
+  {
+    "query": "isfj わがまま",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 10
+  },
+  {
+    "query": "isfp sei",
+    "clicks": 0,
+    "impressions": 2,
+    "ctr": 0,
+    "position": 9
+  },
+  {
+    "query": "isfp ソシオニクス",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 19
+  },
+  {
+    "query": "isfp-as",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 39
+  },
+  {
+    "query": "istj enfp 合わない",
+    "clicks": 0,
+    "impressions": 2,
+    "ctr": 0,
+    "position": 10.5
+  },
+  {
+    "query": "istj ソシオニクス",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 21
+  },
+  {
+    "query": "istp 職人",
+    "clicks": 0,
+    "impressions": 2,
+    "ctr": 0,
+    "position": 15.5
+  },
+  {
+    "query": "lie entj",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 6
+  },
+  {
+    "query": "lie lse",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 14
+  },
+  {
+    "query": "lii intj",
+    "clicks": 0,
+    "impressions": 5,
+    "ctr": 0,
+    "position": 7.2
+  },
+  {
+    "query": "lse sei",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 8
+  },
+  {
+    "query": "mbti guardian",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 63
+  },
+  {
+    "query": "mbti ソシオニクス 違い",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 9
+  },
+  {
+    "query": "mbti バーナム効果",
+    "clicks": 0,
+    "impressions": 3,
+    "ctr": 0,
+    "position": 51
+  },
+  {
+    "query": "mbti 結果が変わる 理由",
+    "clicks": 0,
+    "impressions": 3,
+    "ctr": 0,
+    "position": 8
+  },
+  {
+    "query": "mbti診断 ソシオニクス",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 24
+  },
+  {
+    "query": "ne優勢",
+    "clicks": 0,
+    "impressions": 4,
+    "ctr": 0,
+    "position": 9.5
+  },
+  {
+    "query": "ni とは",
+    "clicks": 0,
+    "impressions": 2,
+    "ctr": 0,
+    "position": 19
+  },
+  {
+    "query": "niとは",
+    "clicks": 0,
+    "impressions": 2,
+    "ctr": 0,
+    "position": 15
+  },
+  {
+    "query": "ni優勢",
+    "clicks": 0,
+    "impressions": 8,
+    "ctr": 0,
+    "position": 8
+  },
+  {
+    "query": "os 正社員",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 50
+  },
+  {
+    "query": "personality os 結果",
+    "clicks": 0,
+    "impressions": 2,
+    "ctr": 0,
+    "position": 2.5
+  },
+  {
+    "query": "personality type guardian",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 60
+  },
+  {
+    "query": "sei isfp",
+    "clicks": 0,
+    "impressions": 2,
+    "ctr": 0,
+    "position": 4
+  },
+  {
+    "query": "site:aqsh.co.jp",
+    "clicks": 0,
+    "impressions": 4,
+    "ctr": 0,
+    "position": 3.25
+  },
+  {
+    "query": "sle estp",
+    "clicks": 0,
+    "impressions": 3,
+    "ctr": 0,
+    "position": 6.333333333333333
+  },
+  {
+    "query": "sle lse",
+    "clicks": 0,
+    "impressions": 4,
+    "ctr": 0,
+    "position": 3
+  },
+  {
+    "query": "sle 性格",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 43
+  },
+  {
+    "query": "sli istp",
+    "clicks": 0,
+    "impressions": 4,
+    "ctr": 0,
+    "position": 6.25
+  },
+  {
+    "query": "te mbti",
+    "clicks": 0,
+    "impressions": 3,
+    "ctr": 0,
+    "position": 70.33333333333333
+  },
+  {
+    "query": "te とは",
+    "clicks": 0,
+    "impressions": 19,
+    "ctr": 0,
+    "position": 6.947368421052632
+  },
+  {
+    "query": "te 機能",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 9
+  },
+  {
+    "query": "te功能",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 5
+  },
+  {
+    "query": "the guardian personality type",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 66
+  },
+  {
+    "query": "tiとは",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 36
+  },
+  {
+    "query": "tritype",
+    "clicks": 0,
+    "impressions": 5,
+    "ctr": 0,
+    "position": 8.8
+  },
+  {
+    "query": "そしおにくす",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 34
+  },
+  {
+    "query": "アルファクアドラ",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 9
+  },
+  {
+    "query": "イライラしてる人",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 85
+  },
+  {
+    "query": "イライラしやすい性格",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 105
+  },
+  {
+    "query": "ウィングタイプ",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 73
+  },
+  {
+    "query": "エニア",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 82
+  },
+  {
+    "query": "エニアグラム",
+    "clicks": 0,
+    "impressions": 3,
+    "ctr": 0,
+    "position": 78.66666666666667
+  },
+  {
+    "query": "エニアグラム 1",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 40
+  },
+  {
+    "query": "エニアグラム とは",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 94
+  },
+  {
+    "query": "エニアグラム ソシオニクス",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 22
+  },
+  {
+    "query": "エニアグラム タイプ",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 98
+  },
+  {
+    "query": "エニアグラム タイプ 7",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 59
+  },
+  {
+    "query": "エニアグラム タイプ1",
+    "clicks": 0,
+    "impressions": 4,
+    "ctr": 0,
+    "position": 38.25
+  },
+  {
+    "query": "エニアグラム タイプ2",
+    "clicks": 0,
+    "impressions": 4,
+    "ctr": 0,
+    "position": 35.25
+  },
+  {
+    "query": "エニアグラム タイプ5",
+    "clicks": 0,
+    "impressions": 2,
+    "ctr": 0,
+    "position": 55
+  },
+  {
+    "query": "エニアグラム タイプ6",
+    "clicks": 0,
+    "impressions": 2,
+    "ctr": 0,
+    "position": 39.5
+  },
+  {
+    "query": "エニアグラム タイプ7",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 11
+  },
+  {
+    "query": "エニアグラム 無料 登録 なし",
+    "clicks": 0,
+    "impressions": 13,
+    "ctr": 0,
+    "position": 10.076923076923077
+  },
+  {
+    "query": "エニアグラム 熱中する人",
+    "clicks": 0,
+    "impressions": 2,
+    "ctr": 0,
+    "position": 11.5
+  },
+  {
+    "query": "エニアグラム1",
+    "clicks": 0,
+    "impressions": 2,
+    "ctr": 0,
+    "position": 45
+  },
+  {
+    "query": "エニアグラムとは",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 49
+  },
+  {
+    "query": "エニアグラムウィング",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 52
+  },
+  {
+    "query": "エニアグラムタイプ",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 66
+  },
+  {
+    "query": "エニアグラムタイプ9 生き づらい",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 29
+  },
+  {
+    "query": "カリスマ性がある人",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 60
+  },
+  {
+    "query": "ガンマクアドラ",
+    "clicks": 0,
+    "impressions": 7,
+    "ctr": 0,
+    "position": 17.142857142857142
+  },
+  {
+    "query": "クアドラとは",
+    "clicks": 0,
+    "impressions": 38,
+    "ctr": 0,
+    "position": 7.684210526315789
+  },
+  {
+    "query": "クラブとは",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 55
+  },
+  {
+    "query": "グループの調和とは",
+    "clicks": 0,
+    "impressions": 3,
+    "ctr": 0,
+    "position": 5.666666666666667
+  },
+  {
+    "query": "セラク パワハラ",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 21
+  },
+  {
+    "query": "ソシオニクス 16タイプ",
+    "clicks": 0,
+    "impressions": 3,
+    "ctr": 0,
+    "position": 12.666666666666666
+  },
+  {
+    "query": "ソシオニクス isfp",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 16
+  },
+  {
+    "query": "ソシオニクス mbti 違い",
+    "clicks": 0,
+    "impressions": 6,
+    "ctr": 0,
+    "position": 10.166666666666666
+  },
+  {
+    "query": "ソシオニクス ni",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 19
+  },
+  {
+    "query": "ソシオニクス とは",
+    "clicks": 0,
+    "impressions": 36,
+    "ctr": 0,
+    "position": 11.555555555555555
+  },
+  {
+    "query": "ソシオニクス アルファ",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 16
+  },
+  {
+    "query": "ソシオニクス エニアグラム",
+    "clicks": 0,
+    "impressions": 2,
+    "ctr": 0,
+    "position": 9
+  },
+  {
+    "query": "ソシオニクス クアドラ",
+    "clicks": 0,
+    "impressions": 5,
+    "ctr": 0,
+    "position": 22
+  },
+  {
+    "query": "ソシオニクス タイプ",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 14
+  },
+  {
+    "query": "ソシオニクス モデルa",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 14
+  },
+  {
+    "query": "ソシオニクス 二分法",
+    "clicks": 0,
+    "impressions": 23,
+    "ctr": 0,
+    "position": 8.695652173913043
+  },
+  {
+    "query": "ソシオニクス 恋愛",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 20
+  },
+  {
+    "query": "ソシオニクス 恋愛スタイル",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 11
+  },
+  {
+    "query": "ソシオニクス 政治家",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 24
+  },
+  {
+    "query": "ソシオニクス 暗示機能",
+    "clicks": 0,
+    "impressions": 3,
+    "ctr": 0,
+    "position": 8
+  },
+  {
+    "query": "ソシオニクス 犠牲者",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 10
+  },
+  {
+    "query": "ソシオニクス 監督関係",
+    "clicks": 0,
+    "impressions": 6,
+    "ctr": 0,
+    "position": 8.833333333333332
+  },
+  {
+    "query": "ソシオニクス 診断",
+    "clicks": 0,
+    "impressions": 5,
+    "ctr": 0,
+    "position": 41
+  },
+  {
+    "query": "ソシオニクス 診断 一覧",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 49
+  },
+  {
+    "query": "ソシオニクス 鏡像関係",
+    "clicks": 0,
+    "impressions": 3,
+    "ctr": 0,
+    "position": 8
+  },
+  {
+    "query": "ソシオニクス診断",
+    "clicks": 0,
+    "impressions": 6,
+    "ctr": 0,
+    "position": 29
+  },
+  {
+    "query": "ソシオニクス診断 mbti",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 8
+  },
+  {
+    "query": "ソシオニクス診断 おすすめ",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 18
+  },
+  {
+    "query": "ソシオニクス診断 どれ",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 20
+  },
+  {
+    "query": "ソシオニクス診断 一覧",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 38
+  },
+  {
+    "query": "ソシオニクス診断とは",
+    "clicks": 0,
+    "impressions": 15,
+    "ctr": 0,
+    "position": 12.533333333333333
+  },
+  {
+    "query": "タイプ4",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 19
+  },
+  {
+    "query": "タイプ7",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 24
+  },
+  {
+    "query": "ダイコトミー",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 36
+  },
+  {
+    "query": "デルタクアドラ",
+    "clicks": 0,
+    "impressions": 2,
+    "ctr": 0,
+    "position": 20
+  },
+  {
+    "query": "トライタイプ",
+    "clicks": 0,
+    "impressions": 9,
+    "ctr": 0,
+    "position": 21.22222222222222
+  },
+  {
+    "query": "トライタイプ 458",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 39
+  },
+  {
+    "query": "トライタイプ 決め方",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 37
+  },
+  {
+    "query": "トライタイプ 順番",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 23
+  },
+  {
+    "query": "トライタイプ458",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 30
+  },
+  {
+    "query": "トライタイプ診断",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 39
+  },
+  {
+    "query": "ドアスラム 恋愛",
+    "clicks": 0,
+    "impressions": 2,
+    "ctr": 0,
+    "position": 20
+  },
+  {
+    "query": "バーナム 効果",
+    "clicks": 0,
+    "impressions": 29,
+    "ctr": 0,
+    "position": 75.79310344827586
+  },
+  {
+    "query": "バーナム効果",
+    "clicks": 0,
+    "impressions": 41,
+    "ctr": 0,
+    "position": 77.26829268292683
+  },
+  {
+    "query": "バーナム効果 mbti",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 32
+  },
+  {
+    "query": "バーナム効果とは",
+    "clicks": 0,
+    "impressions": 3,
+    "ctr": 0,
+    "position": 49.333333333333336
+  },
+  {
+    "query": "ビジネス関係とは",
+    "clicks": 0,
+    "impressions": 20,
+    "ctr": 0,
+    "position": 4.75
+  },
+  {
+    "query": "フォアラー効果",
+    "clicks": 0,
+    "impressions": 7,
+    "ctr": 0,
+    "position": 38.285714285714285
+  },
+  {
+    "query": "プログラマー ストレス",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 28
+  },
+  {
+    "query": "プロジェクトマネジャー 診断",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 36
+  },
+  {
+    "query": "マーケティング 向いていない人",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 69
+  },
+  {
+    "query": "ミニマ リスト 性格",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 10
+  },
+  {
+    "query": "ミニマリスト 性格",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 12
+  },
+  {
+    "query": "ミラー関係とは",
+    "clicks": 0,
+    "impressions": 5,
+    "ctr": 0,
+    "position": 6
+  },
+  {
+    "query": "モラハラ dv 特徴",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 99
+  },
+  {
+    "query": "モラハラ 特徴 上司",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 92
+  },
+  {
+    "query": "ロマンススタイル",
+    "clicks": 0,
+    "impressions": 15,
+    "ctr": 0,
+    "position": 4.2
+  },
+  {
+    "query": "ロマンススタイル 犠牲者",
+    "clicks": 0,
+    "impressions": 2,
+    "ctr": 0,
+    "position": 6.5
+  },
+  {
+    "query": "二分法 ソシオニクス",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 9
+  },
+  {
+    "query": "仲介者 社不",
+    "clicks": 0,
+    "impressions": 8,
+    "ctr": 0,
+    "position": 10.25
+  },
+  {
+    "query": "仲介者 社会不適合者",
+    "clicks": 0,
+    "impressions": 2,
+    "ctr": 0,
+    "position": 9.5
+  },
+  {
+    "query": "優しい人 潰れる",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 29
+  },
+  {
+    "query": "優しさの暴力",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 6
+  },
+  {
+    "query": "内向直観",
+    "clicks": 0,
+    "impressions": 2,
+    "ctr": 0,
+    "position": 10
+  },
+  {
+    "query": "分析家",
+    "clicks": 0,
+    "impressions": 8,
+    "ctr": 0,
+    "position": 13.375
+  },
+  {
+    "query": "双対関係",
+    "clicks": 0,
+    "impressions": 7,
+    "ctr": 0,
+    "position": 11.428571428571429
+  },
+  {
+    "query": "双対関係とは",
+    "clicks": 0,
+    "impressions": 6,
+    "ctr": 0,
+    "position": 10.333333333333334
+  },
+  {
+    "query": "可愛げがない女",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 61
+  },
+  {
+    "query": "外向思考",
+    "clicks": 0,
+    "impressions": 4,
+    "ctr": 0,
+    "position": 12.25
+  },
+  {
+    "query": "外向的思考",
+    "clicks": 0,
+    "impressions": 2,
+    "ctr": 0,
+    "position": 36.5
+  },
+  {
+    "query": "外向的思考 te",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 10
+  },
+  {
+    "query": "外向的感情",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 31
+  },
+  {
+    "query": "外的思考",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 11
+  },
+  {
+    "query": "守护者 mbti",
+    "clicks": 0,
+    "impressions": 2,
+    "ctr": 0,
+    "position": 7
+  },
+  {
+    "query": "守護者 性格診断",
+    "clicks": 0,
+    "impressions": 4,
+    "ctr": 0,
+    "position": 13.5
+  },
+  {
+    "query": "守護者タイプ",
+    "clicks": 0,
+    "impressions": 2,
+    "ctr": 0,
+    "position": 7.5
+  },
+  {
+    "query": "守護者タイプ 相性",
+    "clicks": 0,
+    "impressions": 7,
+    "ctr": 0,
+    "position": 9.285714285714286
+  },
+  {
+    "query": "専業主婦 性格",
+    "clicks": 0,
+    "impressions": 5,
+    "ctr": 0,
+    "position": 7.2
+  },
+  {
+    "query": "平和をもたらす人",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 10
+  },
+  {
+    "query": "怒り方 種類 性格",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 45
+  },
+  {
+    "query": "思考型 感情型",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 78
+  },
+  {
+    "query": "思考的外向とは",
+    "clicks": 0,
+    "impressions": 2,
+    "ctr": 0,
+    "position": 12
+  },
+  {
+    "query": "性格診断 守護者",
+    "clicks": 0,
+    "impressions": 2,
+    "ctr": 0,
+    "position": 10.5
+  },
+  {
+    "query": "性格診断 管理者",
+    "clicks": 0,
+    "impressions": 22,
+    "ctr": 0,
+    "position": 36.31818181818182
+  },
+  {
+    "query": "恋愛ができない",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 116
+  },
+  {
+    "query": "恋愛バイアス",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 19
+  },
+  {
+    "query": "恩恵関係 ソシオニクス",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 7
+  },
+  {
+    "query": "感情型",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 69
+  },
+  {
+    "query": "懐に入るのがうまい 診断",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 11
+  },
+  {
+    "query": "批評家 性格",
+    "clicks": 0,
+    "impressions": 2,
+    "ctr": 0,
+    "position": 8
+  },
+  {
+    "query": "指示待ち",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 70
+  },
+  {
+    "query": "指示待ち人間",
+    "clicks": 0,
+    "impressions": 12,
+    "ctr": 0,
+    "position": 85.5
+  },
+  {
+    "query": "改革する人",
+    "clicks": 0,
+    "impressions": 2,
+    "ctr": 0,
+    "position": 7.5
+  },
+  {
+    "query": "料理 マルチタスク",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 102
+  },
+  {
+    "query": "新人 放置 辞める",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 61
+  },
+  {
+    "query": "既読スルー",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 6
+  },
+  {
+    "query": "暗示機能 ソシオニクス",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 6
+  },
+  {
+    "query": "朝方 夜 型 診断",
+    "clicks": 0,
+    "impressions": 2,
+    "ctr": 0,
+    "position": 71
+  },
+  {
+    "query": "本当に 怒ると怖い人",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 49
+  },
+  {
+    "query": "本音は裏アカで どこで読める",
+    "clicks": 0,
+    "impressions": 2,
+    "ctr": 0,
+    "position": 12
+  },
+  {
+    "query": "歯科 衛生 士 性格 きつい",
+    "clicks": 0,
+    "impressions": 5,
+    "ctr": 0,
+    "position": 33.2
+  },
+  {
+    "query": "歯科 衛生 士 性格 悪い",
+    "clicks": 0,
+    "impressions": 2,
+    "ctr": 0,
+    "position": 39.5
+  },
+  {
+    "query": "浮気 病気",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 37
+  },
+  {
+    "query": "浮気 繰り返す 病気",
+    "clicks": 0,
+    "impressions": 17,
+    "ctr": 0,
+    "position": 23.176470588235293
+  },
+  {
+    "query": "浮気は病気",
+    "clicks": 0,
+    "impressions": 3,
+    "ctr": 0,
+    "position": 41.666666666666664
+  },
+  {
+    "query": "浮気性",
+    "clicks": 0,
+    "impressions": 5,
+    "ctr": 0,
+    "position": 44
+  },
+  {
+    "query": "浮気性 病気",
+    "clicks": 0,
+    "impressions": 5,
+    "ctr": 0,
+    "position": 10.8
+  },
+  {
+    "query": "浮気性とは",
+    "clicks": 0,
+    "impressions": 2,
+    "ctr": 0,
+    "position": 26.5
+  },
+  {
+    "query": "浮気病気",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 30
+  },
+  {
+    "query": "浮気症",
+    "clicks": 0,
+    "impressions": 32,
+    "ctr": 0,
+    "position": 32.125
+  },
+  {
+    "query": "浮気繰り返す 病気",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 19
+  },
+  {
+    "query": "消防士 性格",
+    "clicks": 0,
+    "impressions": 2,
+    "ctr": 0,
+    "position": 12.5
+  },
+  {
+    "query": "消防士 病む",
+    "clicks": 0,
+    "impressions": 5,
+    "ctr": 0,
+    "position": 4.6
+  },
+  {
+    "query": "深層欲求ディープタイプ診断",
+    "clicks": 0,
+    "impressions": 7,
+    "ctr": 0,
+    "position": 8.428571428571429
+  },
+  {
+    "query": "準同一関係",
+    "clicks": 0,
+    "impressions": 3,
+    "ctr": 0,
+    "position": 7
+  },
+  {
+    "query": "監督関係 ソシオニクス",
+    "clicks": 0,
+    "impressions": 7,
+    "ctr": 0,
+    "position": 8.571428571428571
+  },
+  {
+    "query": "看護 師 配属 適性",
+    "clicks": 0,
+    "impressions": 34,
+    "ctr": 0,
+    "position": 33.11764705882353
+  },
+  {
+    "query": "確証バイアス 恋愛",
+    "clicks": 0,
+    "impressions": 2,
+    "ctr": 0,
+    "position": 65.5
+  },
+  {
+    "query": "管理 者",
+    "clicks": 0,
+    "impressions": 7,
+    "ctr": 0,
+    "position": 68.42857142857143
+  },
+  {
+    "query": "管理者",
+    "clicks": 0,
+    "impressions": 25,
+    "ctr": 0,
+    "position": 36.68
+  },
+  {
+    "query": "管理者 性格診断",
+    "clicks": 0,
+    "impressions": 10,
+    "ctr": 0,
+    "position": 46.2
+  },
+  {
+    "query": "管理者 特徴",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 63
+  },
+  {
+    "query": "精神的dv する人の特徴",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 60
+  },
+  {
+    "query": "自己主張",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 91
+  },
+  {
+    "query": "自己主張できない",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 57
+  },
+  {
+    "query": "若手 が 辞める 会社 特徴",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 97
+  },
+  {
+    "query": "見切りが早い 性格",
+    "clicks": 0,
+    "impressions": 6,
+    "ctr": 0,
+    "position": 38.666666666666664
+  },
+  {
+    "query": "認知スタイル ソシオニクス",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 18
+  },
+  {
+    "query": "貢癖",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 11
+  },
+  {
+    "query": "転職 自己分析 性格",
+    "clicks": 0,
+    "impressions": 2,
+    "ctr": 0,
+    "position": 40.5
+  },
+  {
+    "query": "転職 面接 強み弱み 自己pr",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 26
+  },
+  {
+    "query": "達成者",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 39
+  },
+  {
+    "query": "部下 退職 突然",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 4
+  },
+  {
+    "query": "銀行員 性格",
+    "clicks": 0,
+    "impressions": 4,
+    "ctr": 0,
+    "position": 51.25
+  },
+  {
+    "query": "鏡像関係",
+    "clicks": 0,
+    "impressions": 14,
+    "ctr": 0,
+    "position": 10.428571428571429
+  },
+  {
+    "query": "鏡像関係とは",
+    "clicks": 0,
+    "impressions": 9,
+    "ctr": 0,
+    "position": 7.111111111111111
+  },
+  {
+    "query": "開拓者 mbti",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 10
+  },
+  {
+    "query": "開拓者 性格",
+    "clicks": 0,
+    "impressions": 30,
+    "ctr": 0,
+    "position": 10.5
+  },
+  {
+    "query": "開拓者タイプ",
+    "clicks": 0,
+    "impressions": 12,
+    "ctr": 0,
+    "position": 11.75
+  },
+  {
+    "query": "防衛機制 一覧",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 75
+  },
+  {
+    "query": "防衛機制とは",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 102
+  },
+  {
+    "query": "飲食店 マルチタスク",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 17
+  },
+  {
+    "query": "？",
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 3
+  },
+  {
+    "query": "ｴﾆｱｸﾞﾗﾑ ﾀｲﾌﾟ1",
+    "clicks": 0,
+    "impressions": 28,
+    "ctr": 0,
+    "position": 46.535714285714285
+  },
+  {
+    "query": "ｴﾆｱｸﾞﾗﾑ ﾀｲﾌﾟ2",
+    "clicks": 0,
+    "impressions": 23,
+    "ctr": 0,
+    "position": 34.56521739130435
+  },
+  {
+    "query": "ｶﾘｽﾏ に なるには",
+    "clicks": 0,
+    "impressions": 8,
+    "ctr": 0,
+    "position": 79.75
+  },
+  {
+    "query": "ﾊﾟﾜﾊﾗ上司 特徴",
+    "clicks": 0,
+    "impressions": 4,
+    "ctr": 0,
+    "position": 87
+  }
+]
