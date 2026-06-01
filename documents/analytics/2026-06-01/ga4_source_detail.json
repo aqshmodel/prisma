@@ -1,0 +1,178 @@
+[
+  {
+    "source": "google",
+    "medium": "organic",
+    "active_users": 382,
+    "sessions": 484,
+    "page_views": 757,
+    "avg_engagement_sec": 184.3
+  },
+  {
+    "source": "bing",
+    "medium": "organic",
+    "active_users": 194,
+    "sessions": 238,
+    "page_views": 428,
+    "avg_engagement_sec": 212.9
+  },
+  {
+    "source": "(direct)",
+    "medium": "(none)",
+    "active_users": 111,
+    "sessions": 140,
+    "page_views": 278,
+    "avg_engagement_sec": 110.4
+  },
+  {
+    "source": "chatgpt.com",
+    "medium": "(not set)",
+    "active_users": 101,
+    "sessions": 139,
+    "page_views": 424,
+    "avg_engagement_sec": 407.7
+  },
+  {
+    "source": "yahoo",
+    "medium": "organic",
+    "active_users": 80,
+    "sessions": 102,
+    "page_views": 172,
+    "avg_engagement_sec": 237.8
+  },
+  {
+    "source": "chatgpt.com",
+    "medium": "referral",
+    "active_users": 27,
+    "sessions": 38,
+    "page_views": 90,
+    "avg_engagement_sec": 533.0
+  },
+  {
+    "source": "duckduckgo",
+    "medium": "organic",
+    "active_users": 13,
+    "sessions": 15,
+    "page_views": 23,
+    "avg_engagement_sec": 311.4
+  },
+  {
+    "source": "(not set)",
+    "medium": "(not set)",
+    "active_users": 14,
+    "sessions": 14,
+    "page_views": 10,
+    "avg_engagement_sec": 47.6
+  },
+  {
+    "source": "openai",
+    "medium": "(not set)",
+    "active_users": 8,
+    "sessions": 10,
+    "page_views": 20,
+    "avg_engagement_sec": 568.8
+  },
+  {
+    "source": "ecosia.org",
+    "medium": "organic",
+    "active_users": 5,
+    "sessions": 7,
+    "page_views": 8,
+    "avg_engagement_sec": 35.8
+  },
+  {
+    "source": "openai",
+    "medium": "organic",
+    "active_users": 6,
+    "sessions": 6,
+    "page_views": 26,
+    "avg_engagement_sec": 440.5
+  },
+  {
+    "source": "chatgpt.com",
+    "medium": "(none)",
+    "active_users": 5,
+    "sessions": 5,
+    "page_views": 28,
+    "avg_engagement_sec": 744.4
+  },
+  {
+    "source": "copilot.com",
+    "medium": "(not set)",
+    "active_users": 3,
+    "sessions": 3,
+    "page_views": 3,
+    "avg_engagement_sec": 21.0
+  },
+  {
+    "source": "search.portal.auone.jp",
+    "medium": "referral",
+    "active_users": 2,
+    "sessions": 3,
+    "page_views": 3,
+    "avg_engagement_sec": 106.5
+  },
+  {
+    "source": "copilot.com",
+    "medium": "referral",
+    "active_users": 2,
+    "sessions": 2,
+    "page_views": 4,
+    "avg_engagement_sec": 1215.5
+  },
+  {
+    "source": "twitter",
+    "medium": "social",
+    "active_users": 2,
+    "sessions": 2,
+    "page_views": 6,
+    "avg_engagement_sec": 356.5
+  },
+  {
+    "source": "service.smt.docomo.ne.jp",
+    "medium": "referral",
+    "active_users": 1,
+    "sessions": 2,
+    "page_views": 2,
+    "avg_engagement_sec": 131.0
+  },
+  {
+    "source": "us.search.yahoo.com",
+    "medium": "referral",
+    "active_users": 1,
+    "sessions": 2,
+    "page_views": 1,
+    "avg_engagement_sec": 0.0
+  },
+  {
+    "source": "cn.bing.com",
+    "medium": "referral",
+    "active_users": 1,
+    "sessions": 1,
+    "page_views": 1,
+    "avg_engagement_sec": 21.0
+  },
+  {
+    "source": "facebook.com",
+    "medium": "referral",
+    "active_users": 1,
+    "sessions": 1,
+    "page_views": 1,
+    "avg_engagement_sec": 7.0
+  },
+  {
+    "source": "search.fenrir-inc.com",
+    "medium": "referral",
+    "active_users": 1,
+    "sessions": 1,
+    "page_views": 1,
+    "avg_engagement_sec": 76.0
+  },
+  {
+    "source": "t.co",
+    "medium": "referral",
+    "active_users": 1,
+    "sessions": 1,
+    "page_views": 4,
+    "avg_engagement_sec": 16.0
+  }
+]
