@@ -1,0 +1,18 @@
+{
+  "active_users": 891,
+  "new_users": 876,
+  "page_views": 2448,
+  "sessions": 1149,
+  "total_engagement_sec": 212484.0,
+  "avg_engagement_per_user_sec": 238.5,
+  "engagement_rate": 0.6989,
+  "bounce_rate": 0.3011,
+  "pages_per_session": 2.13,
+  "conversions": 871,
+  "cvr_per_session": 0.7581,
+  "events": {
+    "read_complete": 800,
+    "click_main_diagnosis": 53,
+    "click_mini_diagnosis": 18
+  }
+}
