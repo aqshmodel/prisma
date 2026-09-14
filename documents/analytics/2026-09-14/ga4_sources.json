@@ -1,0 +1,58 @@
+[
+  {
+    "channel": "Organic Search",
+    "active_users": 1601,
+    "sessions": 1927,
+    "page_views": 2982,
+    "avg_engagement_sec": 184.6,
+    "conversions": 1449
+  },
+  {
+    "channel": "Direct",
+    "active_users": 164,
+    "sessions": 186,
+    "page_views": 359,
+    "avg_engagement_sec": 86.4,
+    "conversions": 83
+  },
+  {
+    "channel": "Unassigned",
+    "active_users": 43,
+    "sessions": 63,
+    "page_views": 49,
+    "avg_engagement_sec": 150.7,
+    "conversions": 31
+  },
+  {
+    "channel": "Cross-network",
+    "active_users": 21,
+    "sessions": 21,
+    "page_views": 40,
+    "avg_engagement_sec": 196.4,
+    "conversions": 13
+  },
+  {
+    "channel": "AI Assistant",
+    "active_users": 16,
+    "sessions": 18,
+    "page_views": 36,
+    "avg_engagement_sec": 192.5,
+    "conversions": 5
+  },
+  {
+    "channel": "Referral",
+    "active_users": 10,
+    "sessions": 14,
+    "page_views": 16,
+    "avg_engagement_sec": 150.5,
+    "conversions": 9
+  },
+  {
+    "channel": "Organic Social",
+    "active_users": 5,
+    "sessions": 5,
+    "page_views": 10,
+    "avg_engagement_sec": 232.2,
+    "conversions": 2
+  }
+]
