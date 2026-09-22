@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { generateTeamPairs, TeamMember } from '../utils/pairs';
+import { generateTeamPairs, type TeamMember } from '../utils/pairs';
 
 describe('Team Pairs Generator', () => {
   it('correctly generates (N * (N - 1)) / 2 pairs for 3 members', () => {

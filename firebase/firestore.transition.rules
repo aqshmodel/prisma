@@ -1,0 +1,20 @@
+// Proposed transition rules. Not deployed automatically.
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /diagnosis_results/{id} {
+      // Keep the existing administrator's old dashboard working during rollout.
+      allow read: if request.auth != null && request.auth.uid == 'KjBsEcKIAJdbpOJ48SDJnPc0EGa2';
+      // Support already-open legacy clients during rollout; no updates/deletes.
+      allow create: if request.resource.data.keys().hasOnly(['type', 'timestamp', 'userAgent'])
+        && request.resource.data.keys().hasAll(['type', 'timestamp'])
+        && request.resource.data.timestamp == request.time
+        && request.resource.data.type is map
+        && request.resource.data.type.os.code in ['ENTp','ISFp','ESFj','INTj','ENFj','ISTj','ESTp','INFp','ESFp','INTp','ENTj','ISFj','ESTj','INFj','ENFp','ISTp']
+        && request.resource.data.type.engine.primary in ['T1','T2','T3','T4','T5','T6','T7','T8','T9'];
+    }
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

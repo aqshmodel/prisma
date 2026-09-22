@@ -1,359 +1,694 @@
-'use client';
-
-import React, { useState, useEffect } from 'react';
+"use client";
+import { useCallback, useEffect, useRef, useState } from "react";
 import {
-    signInWithEmailAndPassword,
-    onAuthStateChanged,
-    signOut,
-    type User
-} from 'firebase/auth';
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+  signOut,
+  type User,
+} from "firebase/auth";
+import { auth } from "@/lib/firebase";
+import { useRouter, useSearchParams } from "next/navigation";
 import {
-    collection,
-    query,
-    orderBy,
-    limit,
-    getDocs,
-    Timestamp
-} from 'firebase/firestore';
-import { auth, db } from '@/lib/firebase';
-import { Button } from '@/components/ui/Button';
+  ResponsiveContainer,
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+} from "recharts";
+import { OS_CONTENT } from "@/features/result/data/content-os";
+import { ENGINE_CONTENT } from "@/features/result/data/content-engine";
 import {
-    Loader2,
-    LogOut,
-    BarChart3,
-    Users,
-    Calendar,
-    RefreshCw
-} from 'lucide-react';
+  ENGINE_CODES,
+  OS_CODES,
+  jstMonth,
+  type Bucket,
+  type DashboardData,
+} from "./lib/statistics";
+import { statisticsCsv } from "./lib/csv";
+import {
+  BarChart3,
+  Calendar,
+  TrendingUp,
+  LogOut,
+  RefreshCw,
+  Download,
+} from "lucide-react";
 
-// Types
-interface DiagnosisLog {
-    id: string;
-    type: {
-        os: { code: string; name: string };
-        engine: { primary: string };
-    };
-    timestamp: Timestamp;
-}
-
-interface Stats {
-    total: number;
-    today: number;
-    typeDistribution: Record<string, number>;
-}
-
-interface AdminState {
-    user: User | null;
-    loading: boolean;
-    dataLoading: boolean;
-    logs: DiagnosisLog[];
-    stats: Stats;
-}
-
-type AdminAction =
-    | { type: 'AUTH_STATE_CHANGED'; payload: User | null }
-    | { type: 'FETCH_START' }
-    | { type: 'FETCH_SUCCESS'; payload: { logs: DiagnosisLog[]; stats: Stats } }
-    | { type: 'FETCH_ERROR'; payload?: unknown };
-
-function adminReducer(state: AdminState, action: AdminAction): AdminState {
-    switch (action.type) {
-        case 'AUTH_STATE_CHANGED':
-            return { ...state, user: action.payload, loading: false };
-        case 'FETCH_START':
-            return { ...state, dataLoading: true };
-        case 'FETCH_SUCCESS':
-            return { ...state, dataLoading: false, logs: action.payload.logs, stats: action.payload.stats };
-        case 'FETCH_ERROR':
-            return { ...state, dataLoading: false };
-        default:
-            return state;
-    }
-}
-
-export const AdminPage: React.FC = () => {
-    const [state, dispatch] = React.useReducer(adminReducer, {
-        user: null,
-        loading: true,
-        dataLoading: false,
-        logs: [],
-        stats: { total: 0, today: 0, typeDistribution: {} }
-    });
-
-    // Form State (kept as useState for simple form handling)
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [authError, setAuthError] = useState('');
-
-    // Handle Authentication
-    useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-            dispatch({ type: 'AUTH_STATE_CHANGED', payload: currentUser });
-            if (currentUser) {
-                fetchData();
-            }
-        });
-        return () => unsubscribe();
-    }, []);
-
-    const handleLogin = async (e: React.FormEvent) => {
-        e.preventDefault();
-        setAuthError('');
-        try {
-            await signInWithEmailAndPassword(auth, email, password);
-        } catch (err: unknown) {
-            console.error(err);
-            setAuthError('ログインに失敗しました。IDまたはパスワードを確認してください。');
-        }
-    };
-
-    const handleLogout = async () => {
-        await signOut(auth);
-    };
-
-    // Fetch Data from Firestore
-    const fetchData = async () => {
-        dispatch({ type: 'FETCH_START' });
-        try {
-            const resultsRef = collection(db, 'diagnosis_results');
-
-            // Fetch recent logs
-            const q = query(resultsRef, orderBy('timestamp', 'desc'), limit(100)); // Limit to 100 for performance
-            const querySnapshot = await getDocs(q);
-
-            const fetchedLogs: DiagnosisLog[] = [];
-            const typeDist: Record<string, number> = {};
-            let todayCount = 0;
-            const now = new Date();
-            const startOfDay = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-
-            querySnapshot.forEach((doc) => {
-                const data = doc.data();
-                const log: DiagnosisLog = {
-                    id: doc.id,
-                    type: data.type,
-                    timestamp: data.timestamp
-                };
-                fetchedLogs.push(log);
-
-                const typeCode = data.type?.os?.code || 'Unknown';
-                typeDist[typeCode] = (typeDist[typeCode] || 0) + 1;
-
-                if (data.timestamp?.toDate() >= startOfDay) {
-                    todayCount++;
-                }
-            });
-
-            dispatch({
-                type: 'FETCH_SUCCESS',
-                payload: {
-                    logs: fetchedLogs,
-                    stats: {
-                        total: querySnapshot.size,
-                        today: todayCount,
-                        typeDistribution: typeDist
-                    }
-                }
-            });
-
-        } catch (error) {
-            console.error("Error fetching data:", error);
-            dispatch({ type: 'FETCH_ERROR', payload: error });
-        }
-    };
-
-    if (state.loading) {
-        return (
-            <div className="min-h-screen flex items-center justify-center bg-slate-50">
-                <Loader2 className="animate-spin text-prisma-500 w-10 h-10" />
-            </div>
-        );
-    }
-
-    if (!state.user) {
-        return (
-            <div className="min-h-screen flex items-center justify-center bg-slate-50 p-4">
-                <div className="bg-white p-8 rounded-2xl shadow-xl w-full max-w-md border border-slate-100">
-                    <div className="text-center mb-8">
-                        <h1 className="text-2xl font-bold text-slate-800">Prisma Admin</h1>
-                        <p className="text-slate-500 text-sm mt-2">管理画面へログイン</p>
-                    </div>
-
-                    <form onSubmit={handleLogin} className="space-y-4">
-                        <div>
-                            <label htmlFor="email" className="block text-sm font-medium text-slate-700 mb-1">Email ID</label>
-                            <input
-                                id="email"
-                                type="email"
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
-                                className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-prisma-500 focus:border-transparent outline-none transition-all"
-                                placeholder="name@aqsh.co.jp"
-                                required
-                            />
-                        </div>
-                        <div>
-                            <label htmlFor="password" className="block text-sm font-medium text-slate-700 mb-1">Password</label>
-                            <input
-                                id="password"
-                                type="password"
-                                value={password}
-                                onChange={(e) => setPassword(e.target.value)}
-                                className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-prisma-500 focus:border-transparent outline-none transition-all"
-                                placeholder="••••••••"
-                                required
-                            />
-                        </div>
-
-                        {authError && (
-                            <p className="text-red-500 text-sm font-medium bg-red-50 p-3 rounded-lg">
-                                {authError}
-                            </p>
-                        )}
-
-                        <Button type="submit" className="w-full bg-prisma-500 hover:bg-prisma-600 text-white font-bold py-3">
-                            ログイン
-                        </Button>
-                    </form>
-                </div>
-            </div>
-        );
-    }
-
-    return (
-        <div className="min-h-screen bg-slate-50">
-            {/* Header */}
-            <header className="bg-white border-b border-slate-200 sticky top-0 z-10">
-                <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                        <span className="font-bold text-xl text-prisma-600">Prisma Admin</span>
-                        <span className="text-xs bg-slate-100 text-slate-500 px-2 py-1 rounded">Dashboard</span>
-                    </div>
-                    <div className="flex items-center gap-4">
-                        <span className="text-sm text-slate-600 hidden sm:inline">{state.user?.email}</span>
-                        <button
-                            onClick={handleLogout}
-                            className="p-2 text-slate-400 hover:text-red-500 transition-colors"
-                            title="Logout"
-                        >
-                            <LogOut size={20} />
-                        </button>
-                    </div>
-                </div>
-            </header>
-
-            <main className="max-w-7xl mx-auto px-4 py-8">
-                {/* Stats Cards */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-                    <div className="bg-white p-6 rounded-xl shadow-sm border border-slate-100 flex items-center gap-4">
-                        <div className="p-3 bg-blue-50 text-blue-500 rounded-lg">
-                            <BarChart3 size={24} />
-                        </div>
-                        <div>
-                            <p className="text-sm text-slate-500 font-medium">表示中の診断データ</p>
-                            <p className="text-3xl font-bold text-slate-800">{state.stats.total}</p>
-                        </div>
-                    </div>
-                    <div className="bg-white p-6 rounded-xl shadow-sm border border-slate-100 flex items-center gap-4">
-                        <div className="p-3 bg-emerald-50 text-emerald-500 rounded-lg">
-                            <Calendar size={24} />
-                        </div>
-                        <div>
-                            <p className="text-sm text-slate-500 font-medium">本日の診断数</p>
-                            <p className="text-3xl font-bold text-slate-800">{state.stats.today}</p>
-                        </div>
-                    </div>
-                    <div className="bg-white p-6 rounded-xl shadow-sm border border-slate-100 flex items-center gap-4">
-                        <div className="p-3 bg-violet-50 text-violet-500 rounded-lg">
-                            <Users size={24} />
-                        </div>
-                        <div>
-                            <p className="text-sm text-slate-500 font-medium">タイプ種類数</p>
-                            <p className="text-3xl font-bold text-slate-800">{Object.keys(state.stats.typeDistribution).length}</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                    {/* Recent Logs List */}
-                    <div className="lg:col-span-2 bg-white rounded-xl shadow-sm border border-slate-100 overflow-hidden">
-                        <div className="p-6 border-b border-slate-100 flex items-center justify-between">
-                            <h2 className="font-bold text-slate-800">最新診断ログ</h2>
-                            <button
-                                onClick={fetchData}
-                                className="text-slate-400 hover:text-prisma-500 transition-colors"
-                                title="Refresh"
-                            >
-                                <RefreshCw size={18} className={state.dataLoading ? "animate-spin" : ""} />
-                            </button>
-                        </div>
-                        <div className="overflow-x-auto">
-                            <table className="w-full text-sm text-left">
-                                <thead className="text-xs text-slate-500 uppercase bg-slate-50">
-                                    <tr>
-                                        <th className="px-6 py-3">日時</th>
-                                        <th className="px-6 py-3">タイプ</th>
-                                        <th className="px-6 py-3">Primary Engine</th>
-                                        <th className="px-6 py-3">ID</th>
-                                    </tr>
-                                </thead>
-                                <tbody className="divide-y divide-slate-100">
-                                    {state.logs.map((log) => (
-                                        <tr key={log.id} className="hover:bg-slate-50/50">
-                                            <td className="px-6 py-4 text-slate-600">
-                                                {log.timestamp?.toDate().toLocaleString('ja-JP', { timeZone: 'Asia/Tokyo' })}
-                                            </td>
-                                            <td className="px-6 py-4">
-                                                <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-prisma-50 text-prisma-700 border border-prisma-100">
-                                                    {log.type?.os?.code}
-                                                </span>
-                                            </td>
-                                            <td className="px-6 py-4 text-slate-600">
-                                                {log.type?.engine?.primary}
-                                            </td>
-                                            <td className="px-6 py-4 text-slate-400 font-mono text-xs">
-                                                {log.id.slice(0, 8)}...
-                                            </td>
-                                        </tr>
-                                    ))}
-                                    {state.logs.length === 0 && (
-                                        <tr>
-                                            <td colSpan={4} className="px-6 py-8 text-center text-slate-400">
-                                                データがありません
-                                            </td>
-                                        </tr>
-                                    )}
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-
-                    {/* Type Distribution */}
-                    <div className="bg-white rounded-xl shadow-sm border border-slate-100 overflow-hidden h-fit">
-                        <div className="p-6 border-b border-slate-100">
-                            <h2 className="font-bold text-slate-800">タイプ分布</h2>
-                        </div>
-                        <div className="p-6">
-                            <div className="space-y-4">
-                                {Object.entries(state.stats.typeDistribution)
-                                    .sort(([, a], [, b]) => b - a)
-                                    .map(([type, count]) => (
-                                        <div key={type} className="flex items-center gap-3">
-                                            <div className="w-12 text-sm font-bold text-slate-700">{type}</div>
-                                            <div className="flex-1 h-2 bg-slate-100 rounded-full overflow-hidden">
-                                                <div
-                                                    className="h-full bg-prisma-500 rounded-full"
-                                                    style={{ width: `${(count / state.stats.total) * 100}%` }}
-                                                />
-                                            </div>
-                                            <div className="w-8 text-right text-sm text-slate-500">{count}</div>
-                                        </div>
-                                    ))}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </main>
-        </div>
-    );
+type Log = {
+  id: string;
+  timestamp: string | null;
+  os: string | null;
+  engine: string | null;
 };
+const date = (value: string) =>
+  new Date(value).toLocaleString("ja-JP", { timeZone: "Asia/Tokyo" });
+const number = (value: number) => value.toLocaleString("ja-JP");
+const panel =
+  "rounded-xl border border-slate-100 bg-white p-5 shadow-sm sm:p-6";
+const action =
+  "inline-flex items-center justify-center gap-2 rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-slate-600 transition-colors hover:border-prisma-500 hover:text-prisma-700 disabled:opacity-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-prisma-700";
+function Trend({
+  title,
+  points,
+}: {
+  title: string;
+  points: Array<{ period: string; count: number | null }>;
+}) {
+  return (
+    <section className={panel}>
+      <h2 className="text-lg font-bold">{title}</h2>
+      <p className="mb-4 text-sm text-slate-600">
+        単位：件。今月・本日は集計時点までの値です。
+      </p>
+      <div
+        className="h-64 w-full"
+        aria-label={`${title}。正確な値は直後の数値表で確認できます。`}
+      >
+        <ResponsiveContainer width="100%" height="100%">
+          <LineChart
+            data={points}
+            margin={{ top: 10, right: 16, left: 0, bottom: 5 }}
+            accessibilityLayer
+          >
+            <CartesianGrid strokeDasharray="3 3" vertical={false} />
+            <XAxis
+              dataKey="period"
+              minTickGap={35}
+              tick={{ fontSize: 12, fill: "#475569" }}
+            />
+            <YAxis
+              allowDecimals={false}
+              domain={[0, "auto"]}
+              width={45}
+              tick={{ fontSize: 12, fill: "#475569" }}
+            />
+            <Tooltip formatter={(v) => [`${v} 件`, "診断件数"]} />
+            <Line
+              type="linear"
+              dataKey="count"
+              stroke="#078282"
+              strokeWidth={2}
+              dot={points.length < 35}
+              connectNulls={false}
+              isAnimationActive={false}
+            />
+          </LineChart>
+        </ResponsiveContainer>
+      </div>
+      <details className="mt-3">
+        <summary className="cursor-pointer text-sm underline">
+          数値表を表示
+        </summary>
+        <div className="max-h-64 overflow-auto">
+          <table className="mt-3 w-full text-sm">
+            <caption className="sr-only">{title}</caption>
+            <thead className="bg-slate-50 text-xs text-slate-500">
+              <tr>
+                <th className="p-2 text-left">期間</th>
+                <th className="p-2 text-right">診断件数</th>
+              </tr>
+            </thead>
+            <tbody>
+              {points.map((p) => (
+                <tr key={p.period} className="border-t border-slate-100">
+                  <th className="p-2 text-left font-normal">{p.period}</th>
+                  <td className="p-2 text-right tabular-nums">
+                    {p.count === null ? "未到来" : number(p.count)}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </details>
+    </section>
+  );
+}
+function Distribution({
+  kind,
+  bucket,
+  previous,
+}: {
+  kind: "os" | "engine";
+  bucket: Bucket;
+  previous: Bucket | null;
+}) {
+  const codes = kind === "os" ? OS_CODES : ENGINE_CODES,
+    unknown = kind === "os" ? bucket.unknownOs : bucket.unknownEngine;
+  const denominator = bucket.count - unknown,
+    previousDenominator = previous
+      ? previous.count -
+        (kind === "os" ? previous.unknownOs : previous.unknownEngine)
+      : 0;
+  const name = (code: string) =>
+    kind === "os"
+      ? OS_CONTENT[code as (typeof OS_CODES)[number]].name
+      : ENGINE_CONTENT[code as (typeof ENGINE_CODES)[number]].name;
+  return (
+    <section className={panel}>
+      <h2 className="text-lg font-bold">
+        {kind === "os" ? "OSタイプ" : "Primary Engine"}の分布
+      </h2>
+      <p className="mt-1 text-sm text-slate-600">
+        有効 {number(denominator)} 件を分母に計算／不明 {number(unknown)} 件
+      </p>
+      <table className="mt-5 w-full text-sm">
+        <thead>
+          <tr>
+            <th className="pb-3 text-left">分類・構成比</th>
+            <th className="pb-3 text-right">件数</th>
+            <th className="pb-3 text-right">
+              前期間差
+              <br />
+              <span className="font-normal">ポイント</span>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          {[...codes]
+            .sort((a, b) => (bucket[kind][b] ?? 0) - (bucket[kind][a] ?? 0))
+            .map((code) => {
+              const count = bucket[kind][code] ?? 0,
+                ratio = denominator ? (count / denominator) * 100 : 0;
+              const diff =
+                denominator && previousDenominator
+                  ? ratio -
+                    ((previous?.[kind][code] ?? 0) / previousDenominator) * 100
+                  : null;
+              return (
+                <tr key={code} className="border-t border-slate-100">
+                  <th className="py-3 pr-3 text-left font-normal">
+                    <span>
+                      {name(code)}{" "}
+                      <span className="text-slate-600">{code}</span>
+                    </span>
+                    <div className="mt-2 flex items-center gap-2">
+                      <div
+                        className="h-2 flex-1 rounded bg-slate-100"
+                        aria-hidden="true"
+                      >
+                        <div
+                          className="h-2 rounded bg-prisma-500"
+                          style={{ width: `${ratio}%` }}
+                        />
+                      </div>
+                      <span className="w-14 text-right tabular-nums">
+                        {denominator ? `${ratio.toFixed(1)}%` : "—"}
+                      </span>
+                    </div>
+                  </th>
+                  <td className="text-right tabular-nums">{count}</td>
+                  <td className="pl-2 text-right tabular-nums">
+                    {diff === null
+                      ? "—"
+                      : `${diff > 0 ? "+" : ""}${diff.toFixed(1)}`}
+                  </td>
+                </tr>
+              );
+            })}
+        </tbody>
+      </table>
+    </section>
+  );
+}
+export function AdminPage() {
+  const router = useRouter(),
+    params = useSearchParams();
+  const period = params.get("period") ?? jstMonth(Date.now());
+  const [user, setUser] = useState<User | null>(null),
+    [authLoading, setAuthLoading] = useState(true);
+  const [email, setEmail] = useState(""),
+    [password, setPassword] = useState(""),
+    [loginError, setLoginError] = useState(""),
+    [loggingIn, setLoggingIn] = useState(false);
+  const [data, setData] = useState<DashboardData | null>(null),
+    [error, setError] = useState(""),
+    [loading, setLoading] = useState(false);
+  const [logs, setLogs] = useState<Log[]>([]),
+    [cursor, setCursor] = useState<string | null>(null),
+    [logError, setLogError] = useState(""),
+    [logsLoading, setLogsLoading] = useState(false),
+    [allMonths, setAllMonths] = useState(false);
+  const requestId = useRef(0),
+    logsId = useRef(0);
+  useEffect(
+    () =>
+      onAuthStateChanged(auth, (u) => {
+        setUser(u);
+        setAuthLoading(false);
+        setData(null);
+        setLogs([]);
+        setError("");
+        requestId.current++;
+        logsId.current++;
+      }),
+    [],
+  );
+  const api = useCallback(
+    async (path: string) => {
+      if (!user) throw new Error("ログインしてください。");
+      const token = await user.getIdToken();
+      const res = await fetch(path, {
+        headers: { Authorization: `Bearer ${token}` },
+        cache: "no-store",
+      });
+      const body = await res.json();
+      if (!res.ok) throw new Error(body.error ?? "取得に失敗しました。");
+      return body;
+    },
+    [user],
+  );
+  const loadLogs = useCallback(
+    async (next: string | null = null) => {
+      const id = ++logsId.current;
+      setLogsLoading(true);
+      setLogError("");
+      try {
+        const body = await api(
+          `/api/admin/diagnosis-logs/?period=${encodeURIComponent(period)}${next ? `&cursor=${encodeURIComponent(next)}` : ""}`,
+        );
+        if (id !== logsId.current) return;
+        setLogs((old) => (next ? [...old, ...body.logs] : body.logs));
+        setCursor(body.nextCursor);
+      } catch (e) {
+        if (id === logsId.current)
+          setLogError(e instanceof Error ? e.message : "取得に失敗しました。");
+      } finally {
+        if (id === logsId.current) setLogsLoading(false);
+      }
+    },
+    [api, period],
+  );
+  const refresh = useCallback(async () => {
+    const id = ++requestId.current;
+    setLoading(true);
+    setError("");
+    try {
+      const body = await api(
+        `/api/admin/statistics/?period=${encodeURIComponent(period)}`,
+      );
+      if (id === requestId.current) setData(body);
+    } catch (e) {
+      if (id === requestId.current)
+        setError(e instanceof Error ? e.message : "取得に失敗しました。");
+    } finally {
+      if (id === requestId.current) setLoading(false);
+    }
+  }, [api, period]);
+  useEffect(() => {
+    setData(null);
+    setLogs([]);
+    setCursor(null);
+    if (user) {
+      void refresh();
+      void loadLogs();
+    }
+    return () => {
+      requestId.current++;
+      logsId.current++;
+    };
+  }, [user, refresh, loadLogs]);
+  if (authLoading)
+    return (
+      <p className="p-8" role="status">
+        認証状態を確認しています…
+      </p>
+    );
+  if (!user)
+    return (
+      <div className="mx-auto my-12 w-full max-w-md rounded-2xl border border-slate-100 bg-white p-8 shadow-xl">
+        <h1 className="text-2xl font-bold">Prisma 管理画面</h1>
+        <form
+          className="mt-8 space-y-5"
+          onSubmit={async (e) => {
+            e.preventDefault();
+            setLoggingIn(true);
+            setLoginError("");
+            try {
+              await signInWithEmailAndPassword(auth, email, password);
+              setPassword("");
+            } catch {
+              setLoginError(
+                "ログインに失敗しました。メールアドレスとパスワードを確認してください。",
+              );
+            } finally {
+              setLoggingIn(false);
+            }
+          }}
+        >
+          <label className="block">
+            メールアドレス
+            <input
+              className="mt-2 w-full rounded border border-slate-400 p-3"
+              type="email"
+              autoComplete="username"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </label>
+          <label className="block">
+            パスワード
+            <input
+              className="mt-2 w-full rounded border border-slate-400 p-3"
+              type="password"
+              autoComplete="current-password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </label>
+          {loginError && (
+            <p role="alert" className="text-red-800">
+              {loginError}
+            </p>
+          )}
+          <button
+            className="w-full rounded-lg bg-prisma-500 px-4 py-3 font-bold text-white transition-colors hover:bg-prisma-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-prisma-700 disabled:opacity-50"
+            disabled={loggingIn}
+          >
+            {loggingIn ? "確認中…" : "ログイン"}
+          </button>
+        </form>
+      </div>
+    );
+  const selectPeriod = (value: string) =>
+    router.replace(`/admin/?period=${encodeURIComponent(value)}`, {
+      scroll: false,
+    });
+  const download = () => {
+    if (!data) return;
+    const url = URL.createObjectURL(
+      new Blob([statisticsCsv(data)], { type: "text/csv;charset=utf-8;" }),
+    );
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `prisma-statistics-${data.period}.csv`;
+    a.click();
+    URL.revokeObjectURL(url);
+  };
+  return (
+    <div className="mx-auto w-full max-w-7xl space-y-5 bg-slate-50 px-4 py-8 text-slate-800 sm:space-y-6 sm:px-6">
+      <header className="flex flex-wrap items-center justify-between gap-4 border-b border-slate-200 bg-white px-4 py-4 sm:px-6">
+        <div className="flex items-center gap-2">
+          <h1 className="text-xl font-bold text-prisma-600">Prisma Admin</h1>
+          <span className="rounded bg-slate-100 px-2 py-1 text-xs text-slate-500">
+            Dashboard
+          </span>
+        </div>
+        <div className="flex items-center gap-4">
+          <span className="hidden text-sm text-slate-600 sm:inline">
+            {user.email}
+          </span>
+          <button
+            className="rounded p-2 text-slate-400 transition-colors hover:text-red-600 focus-visible:outline-2 focus-visible:outline-prisma-700"
+            aria-label="ログアウト"
+            title="ログアウト"
+            onClick={() => void signOut(auth)}
+          >
+            <LogOut size={20} />
+          </button>
+        </div>
+      </header>
+      <div className={`${panel} flex flex-wrap items-end gap-4`}>
+        <label className="text-sm">
+          表示範囲
+          <select
+            className="mt-1 block rounded-lg border border-slate-300 bg-white p-2 text-slate-700 focus:outline-prisma-700"
+            value={period === "all" ? "all" : "month"}
+            onChange={(e) =>
+              selectPeriod(
+                e.target.value === "all" ? "all" : jstMonth(Date.now()),
+              )
+            }
+          >
+            <option value="month">月を指定</option>
+            <option value="all">全期間</option>
+          </select>
+        </label>
+        {period !== "all" && (
+          <label className="text-sm">
+            対象月
+            <input
+              type="month"
+              aria-label="対象月"
+              className="mt-1 block rounded-lg border border-slate-300 bg-white p-2 text-slate-700 focus:outline-prisma-700"
+              value={period}
+              max={jstMonth(Date.now())}
+              min="1970-01"
+              onInput={(e) => {
+                if (e.currentTarget.value) selectPeriod(e.currentTarget.value);
+              }}
+            />
+          </label>
+        )}
+        <button
+          disabled={loading}
+          className={action}
+          onClick={() => {
+            void refresh();
+            void loadLogs();
+          }}
+        >
+          <RefreshCw
+            size={16}
+            aria-hidden="true"
+            className={loading ? "animate-spin" : ""}
+          />{" "}
+          更新
+        </button>
+        <button disabled={!data} className={action} onClick={download}>
+          <Download size={16} aria-hidden="true" /> 集計CSV
+        </button>
+        <p className="text-sm text-slate-600">
+          日時は日本時間／集計は5分間有効／同じ人の再診断を含む件数です
+        </p>
+      </div>
+      {loading && <p role="status">集計を読み込んでいます…</p>}
+      {error && (
+        <div
+          role="alert"
+          className="rounded-lg border border-red-300 bg-red-50 p-4 text-red-900"
+        >
+          {error}
+          {data && " 前回取得した値を表示しています。"}
+        </div>
+      )}
+      {data && (
+        <>
+          <p className="text-sm text-slate-600">
+            集計時刻：{date(data.generatedAt)}／記録開始：
+            {data.firstDay ?? "記録なし"}／対象：
+            {data.period === "all" ? "全期間" : data.period}
+            {data.stale && (
+              <strong className="ml-2 text-amber-900">古い集計です</strong>
+            )}
+          </p>
+          {data.refreshError && (
+            <p
+              role="alert"
+              className="rounded-lg border border-amber-400 bg-amber-50 p-4 text-amber-900"
+            >
+              {data.refreshError}
+            </p>
+          )}
+          <div className="grid gap-6 md:grid-cols-3">
+            {[
+              ["全期間の累計", `${number(data.total)} 件`],
+              ["選択期間の診断件数", `${number(data.selected.count)} 件`],
+              [
+                "前期間との差",
+                data.change === null
+                  ? "比較対象なし"
+                  : `${data.change > 0 ? "+" : ""}${number(data.change)} 件`,
+              ],
+            ].map(([label, value], index) => (
+              <section
+                className={`${panel} flex items-center gap-4`}
+                key={label}
+              >
+                <div
+                  aria-hidden="true"
+                  className={`rounded-lg p-3 ${["bg-blue-50 text-blue-500", "bg-emerald-50 text-emerald-500", "bg-violet-50 text-violet-500"][index]}`}
+                >
+                  {index === 0 ? (
+                    <BarChart3 size={24} />
+                  ) : index === 1 ? (
+                    <Calendar size={24} />
+                  ) : (
+                    <TrendingUp size={24} />
+                  )}
+                </div>
+                <div className="min-w-0">
+                  <h2 className="text-sm font-medium text-slate-500">
+                    {label}
+                  </h2>
+                  <p className="mt-1 text-3xl font-bold tabular-nums text-slate-800">
+                    {value}
+                  </p>
+                  {label === "前期間との差" && (
+                    <p className="mt-2 text-sm">
+                      増減率：
+                      {data.changePercent === null
+                        ? "算出不可"
+                        : `${data.changePercent > 0 ? "+" : ""}${data.changePercent.toFixed(1)}%`}
+                    </p>
+                  )}
+                </div>
+              </section>
+            ))}
+          </div>
+          {data.comparisonStart && data.comparisonEnd && (
+            <p className="text-sm text-slate-600">
+              比較対象：{date(data.comparisonStart)} 以上〜{" "}
+              {date(data.comparisonEnd)} 未満（
+              {number(data.comparison?.count ?? 0)}{" "}
+              件）。今月は前月の同じ経過期間と比較します。
+            </p>
+          )}
+          {data.selected.count === 0 && (
+            <p role="status" className={panel}>
+              選択期間に保存された診断結果はありません。
+            </p>
+          )}
+          <div className="flex flex-wrap items-center justify-between gap-3">
+            <h2 className="text-xl font-bold">利用件数の推移</h2>
+            <label className="flex gap-2 text-sm">
+              <input
+                type="checkbox"
+                checked={allMonths}
+                onChange={(e) => setAllMonths(e.target.checked)}
+              />
+              月別推移を全履歴で表示
+            </label>
+          </div>
+          <div
+            className={`grid gap-6 ${data.period === "all" ? "" : "lg:grid-cols-2"}`}
+          >
+            <Trend
+              title={
+                allMonths
+                  ? "月別の診断件数（全履歴）"
+                  : "月別の診断件数（直近12か月・記録開始以降）"
+              }
+              points={allMonths ? data.monthly : data.monthly.slice(-12)}
+            />
+            {data.period !== "all" && (
+              <Trend
+                title={`${data.period} の日別診断件数`}
+                points={data.daily}
+              />
+            )}
+          </div>
+          <div>
+            <h2 className="text-xl font-bold">選択期間の結果の内訳</h2>
+            <p className="mt-1 text-sm text-slate-600">
+              構成比の差は前期間からの変化です。一般人口の分布や、変化の原因を示すものではありません。
+            </p>
+          </div>
+          <div className="grid gap-6 lg:grid-cols-2">
+            <Distribution
+              kind="os"
+              bucket={data.selected}
+              previous={data.comparison}
+            />
+            <Distribution
+              kind="engine"
+              bucket={data.selected}
+              previous={data.comparison}
+            />
+          </div>
+          <section className={panel}>
+            <h2 className="text-lg font-bold">データの状態と定義</h2>
+            <dl className="mt-3 grid grid-cols-2 gap-2 text-sm">
+              <dt>日時不明</dt>
+              <dd>{number(data.invalidDate)} 件</dd>
+              <dt>集計時刻以降の日時</dt>
+              <dd>{number(data.futureDate)} 件</dd>
+            </dl>
+            <p className="mt-3 text-sm leading-7 text-slate-600">
+              これらは全期間の累計と全期間の結果分布に含め、月別・日別集計から除外します。記録範囲内の0件は保存レコードがないことを示します。保存障害による欠測、過去の重複・テスト診断は判別できません。明細は集計キャッシュとは別に取得するため、最新の保存分だけ件数が異なる場合があります。
+            </p>
+          </section>
+        </>
+      )}
+      <section className={panel}>
+        <h2 className="text-lg font-bold">診断ログ</h2>
+        <p className="mt-1 text-sm text-slate-600">
+          {period === "all"
+            ? "全期間：日時不明も含め、ID順で表示します。"
+            : "選択月：新しい日時順で表示します。"}{" "}
+          50件ずつ取得します。
+        </p>
+        {logError && (
+          <p role="alert" className="mt-3 text-red-800">
+            {logError}{" "}
+            <button className="underline" onClick={() => void loadLogs(cursor)}>
+              再試行
+            </button>
+          </p>
+        )}
+        <div className="mt-4 overflow-x-auto">
+          <table className="w-full text-left text-sm">
+            <thead className="bg-slate-50 text-xs text-slate-500">
+              <tr>
+                {["保存日時（日本時間）", "タイプ", "Primary Engine", "ID"].map(
+                  (t) => (
+                    <th className="px-4 py-3" key={t}>
+                      {t}
+                    </th>
+                  ),
+                )}
+              </tr>
+            </thead>
+            <tbody>
+              {logs.map((log) => (
+                <tr
+                  className="border-t border-slate-100 hover:bg-slate-50/50"
+                  key={log.id}
+                >
+                  <td className="whitespace-nowrap px-4 py-4 text-slate-600">
+                    {log.timestamp ? date(log.timestamp) : "日時不明"}
+                  </td>
+                  <td className="px-4 py-4">
+                    <span className="inline-flex rounded-full border border-prisma-100 bg-prisma-50 px-2.5 py-0.5 text-xs font-medium text-prisma-700">
+                      {log.os ?? "不明"}
+                    </span>
+                  </td>
+                  <td className="px-4 py-4 text-slate-600">
+                    {log.engine ?? "不明"}
+                  </td>
+                  <td
+                    className="px-4 py-4 font-mono text-xs text-slate-400"
+                    title={log.id}
+                  >
+                    {log.id.slice(0, 8)}…
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        {!logs.length && !logsLoading && !logError && (
+          <p className="py-4 text-sm">該当するログはありません。</p>
+        )}
+        {logsLoading && (
+          <p role="status" className="mt-3">
+            ログを取得しています…
+          </p>
+        )}
+        {cursor && (
+          <button
+            className={`${action} mt-4`}
+            disabled={logsLoading}
+            onClick={() => void loadLogs(cursor)}
+          >
+            次の50件を表示
+          </button>
+        )}
+      </section>
+    </div>
+  );
+}

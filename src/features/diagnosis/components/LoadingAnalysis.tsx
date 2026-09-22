@@ -19,8 +19,8 @@ export const LoadingAnalysis: React.FC<LoadingAnalysisProps> = ({ onComplete }) 
 
     useEffect(() => {
         if (step >= LOADING_MESSAGES.length) {
-            setTimeout(onComplete, 800);
-            return;
+            const timer = setTimeout(onComplete, 800);
+            return () => clearTimeout(timer);
         }
 
         const timer = setTimeout(() => {

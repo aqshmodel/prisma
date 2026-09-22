@@ -184,9 +184,6 @@ export const ResultPage: React.FC = () => {
 
     const restore = useDiagnosisStore((state) => state.restoreLastResult);
     const history = useDiagnosisStore((state) => state.history);
-    const isNewResult = useDiagnosisStore((state) => state.isNewResult);
-    const markResultAsSaved = useDiagnosisStore((state) => state.markResultAsSaved);
-    const dataSavedRef = useRef(false);
 
     useEffect(() => {
         // 0. チームトークンによるアクセス（課金ユーザー向け）— 最優先で処理
@@ -243,45 +240,7 @@ export const ResultPage: React.FC = () => {
             return;
         }
 
-        const saveResult = async () => {
-            // 共有閲覧時はFirestoreに保存しない
-            if (isSharedView) return;
-            // Only save if it's a new result and hasn't been saved in this session yet
-            if (!isNewResult || dataSavedRef.current) return;
-
-            // 競合（Race Condition）を防ぐため、非同期処理の「前」に同期的にロックをかける
-            dataSavedRef.current = true;
-
-            try {
-                // Dynamic import to avoid SSR issues
-                const [
-                    { db },
-                    { collection, addDoc, serverTimestamp }
-                ] = await Promise.all([
-                    import('@/lib/firebase'),
-                    import('firebase/firestore')
-                ]);
-
-                // Save only necessary data
-                await addDoc(collection(db, 'diagnosis_results'), {
-                    type: result,
-                    // engine: result.engine, // engine data is included in result
-                    // bias: result.bias,     // bias data is included in result
-                    timestamp: serverTimestamp(),
-                    userAgent: window.navigator.userAgent,
-                });
-
-                markResultAsSaved(); // Reset flag so it won't be saved again
-                console.log('Diagnosis result saved to Firestore');
-            } catch (error) {
-                // 保存に失敗した場合はロックを解除し、次回以降のレンダリングで再試行できるようにする
-                dataSavedRef.current = false;
-                console.error('Error saving diagnosis result:', error);
-            }
-        };
-
-        saveResult();
-    }, [result, history, restore, router, isNewResult, markResultAsSaved, searchParams, setResult, isSharedView]);
+    }, [result, history, restore, router, searchParams, setResult, isSharedView]);
 
     if (!result) return null;
 

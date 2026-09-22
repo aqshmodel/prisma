@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/Button';
 import { QuestionCard } from './QuestionCard';
@@ -57,7 +57,7 @@ export const DiagnosisWizard: React.FC = () => {
     const locale = useLocale();
     const localePath = useLocalePath();
     const t = getUIText(locale);
-    const { answers, setAnswer, setResult } = useDiagnosisStore();
+    const { answers, setAnswer, completeDiagnosis } = useDiagnosisStore();
     const [currentPage, setCurrentPage] = useState(0);
     const [prevPage, setPrevPage] = useState(0);
     const [isComputing, setIsComputing] = useState(false);
@@ -122,11 +122,14 @@ export const DiagnosisWizard: React.FC = () => {
         setIsComputing(true);
     };
 
+    const completedRef = useRef(false);
     const handleAnalysisComplete = useCallback(() => {
+        if (completedRef.current) return;
+        completedRef.current = true;
         const result = calculateDiagnosis(answers);
-        setResult(result);
+        completeDiagnosis(result, locale);
         router.push(localePath('/result'));
-    }, [answers, setResult, router, localePath]);
+    }, [answers, completeDiagnosis, locale, router, localePath]);
 
     if (isComputing) {
         return <LoadingAnalysis onComplete={handleAnalysisComplete} />;

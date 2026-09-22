@@ -4,6 +4,7 @@ import React, { useState, type ReactNode } from 'react';
 
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
+import { DiagnosisSaveSync } from '@/features/diagnosis/components/DiagnosisSaveSync';
 import { cn } from '@/lib/utils';
 import { CompatibilitySearchModal } from '@/components/common/CompatibilitySearchModal';
 
@@ -48,7 +49,8 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
                 <div
                     className="flex-grow flex flex-col w-full"
                 >
-                    {children}
+                    <DiagnosisSaveSync locale="ja" />
+                {children}
                 </div>
             </main>
 

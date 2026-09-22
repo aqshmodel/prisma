@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { ArrowLeft, Brain, Compass, Users, Target, ArrowRight } from 'lucide-react';
+import { ArrowLeft, Brain, Compass, Users, Target } from 'lucide-react';
 import { OS_CONTENT } from '@/features/result/data/content-os';
 import { cn } from '@/lib/utils';
 import { SITE_CONFIG, PUBLISHER_JSON_LD } from '@/lib/constants/site-config';

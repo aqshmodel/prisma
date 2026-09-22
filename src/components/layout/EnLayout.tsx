@@ -3,6 +3,7 @@
 import React, { type ReactNode } from 'react';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
+import { DiagnosisSaveSync } from '@/features/diagnosis/components/DiagnosisSaveSync';
 import { cn } from '@/lib/utils';
 
 interface EnLayoutProps {
@@ -45,7 +46,8 @@ export const EnLayout: React.FC<EnLayoutProps> = ({ children }) => {
                 !isTopPage && "px-4 w-full md:max-w-[1200px] mx-auto pb-12 pt-24"
             )}>
                 <div className="flex-grow flex flex-col w-full">
-                    {children}
+                    <DiagnosisSaveSync locale="en" />
+                {children}
                 </div>
             </main>
 

@@ -1,0 +1,8 @@
+// Final proposed rules. Server Admin SDK access is governed by IAM.
+// Apply only after transition and server API verification.
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    allow read, write: if false;
+  }
+}

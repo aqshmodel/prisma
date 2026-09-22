@@ -1,5 +1,5 @@
 import type { OSTypeCode } from '@/types/diagnosis';
-import { getCompatibility, RelationDefinition } from '@/lib/constants/compatibility';
+import { getCompatibility, type RelationDefinition } from '@/lib/constants/compatibility';
 
 export interface TeamMember {
   id: string; 

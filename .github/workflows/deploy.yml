@@ -24,14 +24,20 @@ jobs:
 
       # 3. .env.local を復元（ビルド時にNEXT_PUBLIC_* が必要）
       - name: Create .env.local
-        run: printf '%s\n' "$ENV_FILE" > .env.local
+        run: |
+          test -n "$PRISMA_ADMIN_UIDS" || { echo "PRISMA_ADMIN_UIDS repository variable is required"; exit 1; }
+          printf '%s\n' "$ENV_FILE" > .env.local
+          printf '\nPRISMA_ADMIN_UIDS=%s\n' "$PRISMA_ADMIN_UIDS" >> .env.local
         env:
           ENV_FILE: ${{ secrets.ENV_FILE }}
+          PRISMA_ADMIN_UIDS: ${{ vars.PRISMA_ADMIN_UIDS }}
 
       # 4. 依存関係インストール ＆ ビルド
       - name: Install & Build
         run: |
           npm ci
+          npx tsc -p tsconfig.app.json --noEmit
+          npm test -- --run
           npm run build
 
       # 5. SSH鍵をセットアップ

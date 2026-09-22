@@ -1,7 +1,13 @@
-import { describe, it, expect } from 'vitest';
-import { calculateTeamPlan, STRIPE_PRICE_IDS } from '../utils/pricing';
+import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
+import { calculateTeamPlan } from '../utils/pricing';
 
 describe('Team Pricing Logic', () => {
+  beforeEach(() => {
+    vi.stubEnv('NEXT_PUBLIC_STRIPE_PRICE_ID_SMALL', 'price_small');
+    vi.stubEnv('NEXT_PUBLIC_STRIPE_PRICE_ID_MIDDLE', 'price_middle');
+    vi.stubEnv('NEXT_PUBLIC_STRIPE_PRICE_ID_LARGE', 'price_large');
+  });
+  afterEach(() => vi.unstubAllEnvs());
   it('should throw an error for less than 3 members', () => {
     expect(() => calculateTeamPlan(2)).toThrowError('チーム分析には最低3名のメンバーが必要です');
   });
@@ -12,7 +18,7 @@ describe('Team Pricing Logic', () => {
     
     expect(minResult.plan).toBe('small');
     expect(minResult.priceAmount).toBe(3300);
-    expect(minResult.stripePriceId).toBe(STRIPE_PRICE_IDS.small);
+    expect(minResult.stripePriceId).toBe('price_small');
 
     expect(maxResult.plan).toBe('small');
   });
@@ -23,7 +29,7 @@ describe('Team Pricing Logic', () => {
     
     expect(minResult.plan).toBe('middle');
     expect(minResult.priceAmount).toBe(5500);
-    expect(minResult.stripePriceId).toBe(STRIPE_PRICE_IDS.middle);
+    expect(minResult.stripePriceId).toBe('price_middle');
 
     expect(maxResult.plan).toBe('middle');
   });
@@ -34,7 +40,7 @@ describe('Team Pricing Logic', () => {
     
     expect(minResult.plan).toBe('large');
     expect(minResult.priceAmount).toBe(11000);
-    expect(minResult.stripePriceId).toBe(STRIPE_PRICE_IDS.large);
+    expect(minResult.stripePriceId).toBe('price_large');
 
     expect(maxResult.plan).toBe('large');
   });

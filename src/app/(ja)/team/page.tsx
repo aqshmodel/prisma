@@ -1,4 +1,3 @@
-import React from 'react';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Users, Presentation, MessageSquareText, FileText } from 'lucide-react';

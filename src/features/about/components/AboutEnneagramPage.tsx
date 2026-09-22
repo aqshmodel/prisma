@@ -1,7 +1,6 @@
 import Link from 'next/link';
-import { ArrowLeft, Flame, Shield, Heart, Eye, Layout, ArrowRight } from 'lucide-react';
+import { ArrowLeft, Flame, Shield, Heart, Eye, Layout } from 'lucide-react';
 import { ENGINE_CONTENT } from '@/features/result/data/content-engine';
-import { cn } from '@/lib/utils';
 import { SITE_CONFIG, PUBLISHER_JSON_LD } from '@/lib/constants/site-config';
 import { parseBoldText } from '@/lib/utils/parse-bold-text';
 import { DiagnosisCTA } from '@/features/articles/components/DiagnosisCTA';
