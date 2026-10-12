@@ -1,0 +1,146 @@
+[
+  {
+    "source": "google",
+    "medium": "organic",
+    "active_users": 1040,
+    "sessions": 1297,
+    "page_views": 2179,
+    "avg_engagement_sec": 185.6
+  },
+  {
+    "source": "(direct)",
+    "medium": "(none)",
+    "active_users": 631,
+    "sessions": 657,
+    "page_views": 823,
+    "avg_engagement_sec": 19.0
+  },
+  {
+    "source": "yahoo",
+    "medium": "organic",
+    "active_users": 216,
+    "sessions": 257,
+    "page_views": 328,
+    "avg_engagement_sec": 150.6
+  },
+  {
+    "source": "bing",
+    "medium": "organic",
+    "active_users": 78,
+    "sessions": 87,
+    "page_views": 94,
+    "avg_engagement_sec": 122.2
+  },
+  {
+    "source": "chatgpt.com",
+    "medium": "ai-assistant",
+    "active_users": 17,
+    "sessions": 39,
+    "page_views": 108,
+    "avg_engagement_sec": 233.4
+  },
+  {
+    "source": "(not set)",
+    "medium": "(not set)",
+    "active_users": 27,
+    "sessions": 27,
+    "page_views": 1,
+    "avg_engagement_sec": 35.0
+  },
+  {
+    "source": "service.smt.docomo.ne.jp",
+    "medium": "referral",
+    "active_users": 10,
+    "sessions": 15,
+    "page_views": 19,
+    "avg_engagement_sec": 198.5
+  },
+  {
+    "source": "duckduckgo",
+    "medium": "organic",
+    "active_users": 8,
+    "sessions": 12,
+    "page_views": 15,
+    "avg_engagement_sec": 556.8
+  },
+  {
+    "source": "openai",
+    "medium": "organic",
+    "active_users": 8,
+    "sessions": 10,
+    "page_views": 8,
+    "avg_engagement_sec": 45.1
+  },
+  {
+    "source": "ecosia.org",
+    "medium": "organic",
+    "active_users": 3,
+    "sessions": 3,
+    "page_views": 10,
+    "avg_engagement_sec": 144.0
+  },
+  {
+    "source": "l.instagram.com",
+    "medium": "referral",
+    "active_users": 2,
+    "sessions": 3,
+    "page_views": 4,
+    "avg_engagement_sec": 20.0
+  },
+  {
+    "source": "cn.bing.com",
+    "medium": "referral",
+    "active_users": 2,
+    "sessions": 2,
+    "page_views": 3,
+    "avg_engagement_sec": 0.5
+  },
+  {
+    "source": "openai",
+    "medium": "(not set)",
+    "active_users": 2,
+    "sessions": 2,
+    "page_views": 4,
+    "avg_engagement_sec": 58.0
+  },
+  {
+    "source": "search.portal.auone.jp",
+    "medium": "referral",
+    "active_users": 2,
+    "sessions": 2,
+    "page_views": 2,
+    "avg_engagement_sec": 582.5
+  },
+  {
+    "source": "chatgpt.com",
+    "medium": "(none)",
+    "active_users": 1,
+    "sessions": 1,
+    "page_views": 1,
+    "avg_engagement_sec": 73.0
+  },
+  {
+    "source": "copilot.com",
+    "medium": "ai-assistant",
+    "active_users": 1,
+    "sessions": 1,
+    "page_views": 1,
+    "avg_engagement_sec": 19.0
+  },
+  {
+    "source": "facebook.com",
+    "medium": "referral",
+    "active_users": 1,
+    "sessions": 1,
+    "page_views": 1,
+    "avg_engagement_sec": 4.0
+  },
+  {
+    "source": "t.co",
+    "medium": "referral",
+    "active_users": 1,
+    "sessions": 1,
+    "page_views": 5,
+    "avg_engagement_sec": 1050.0
+  }
+]
