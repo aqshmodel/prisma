@@ -29,6 +29,9 @@ jobs:
       - run: npm run build
         env:
           NODE_OPTIONS: --max-old-space-size=4096
+          STRIPE_SECRET_KEY: sk_test_build_placeholder
+          STRIPE_WEBHOOK_SECRET: whsec_build_placeholder
+          GEMINI_API_KEY: build-placeholder-not-a-real-key
       - run: python3 scripts/secure-release/prepare_next.py . stage/web
       - name: Package release
         id: package
