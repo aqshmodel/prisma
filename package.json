@@ -11,7 +11,6 @@
     "lint": "next lint",
     "test": "vitest",
     "build:standalone": "npm run build && cp -r content .next/standalone/content && cp -r public .next/standalone/public && cp -r .next/static .next/standalone/.next/static",
-    "deploy:vps": "npm run build:standalone && rsync -avz --delete --exclude='.env.local' -e 'ssh -i ~/.ssh/Aqsh_new' .next/standalone/ tsukada@162.43.31.17:/var/www/prisma/ && ssh -i ~/.ssh/Aqsh_new tsukada@162.43.31.17 'echo \"9s8%s8+sdhs9fhs!\" | sudo -S systemctl restart aqsh-prisma'",
     "deploy:lolipop": "npm run build && rsync -avz --delete --exclude='.htaccess' -e 'ssh -p 2222' out/ boyfriend.jp-aqsh@ssh.lolipop.jp:/home/users/2/boyfriend.jp-aqsh/web/prisma/",
     "deploy:lolipop:dry": "npm run build && rsync -avzn --delete --exclude='.htaccess' -e 'ssh -p 2222' out/ boyfriend.jp-aqsh@ssh.lolipop.jp:/home/users/2/boyfriend.jp-aqsh/web/prisma/"
   },
@@ -23,17 +22,17 @@
     "@xyflow/react": "^12.10.1",
     "clsx": "^2.1.1",
     "date-fns": "^4.1.0",
-    "eslint-config-next": "^16.1.6",
+    "eslint-config-next": "16.3.8",
     "firebase": "^12.9.0",
     "firebase-admin": "^13.7.0",
     "hast-util-sanitize": "^5.0.2",
     "html2canvas": "^1.4.1",
     "jspdf": "^4.2.1",
     "lucide-react": "^0.564.0",
-    "next": "^16.1.6",
+    "next": "16.3.8",
     "next-mdx-remote": "^6.0.0",
-    "react": "^19.2.4",
-    "react-dom": "^19.2.4",
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
     "react-hook-form": "^7.72.0",
     "react-to-print": "^3.2.0",
     "recharts": "^3.7.0",
@@ -69,5 +68,8 @@
     "typescript-eslint": "^8.48.0",
     "vite": "^7.3.1",
     "vitest": "^4.0.18"
+  },
+  "engines": {
+    "node": ">=24.21.0 <25"
   }
 }
