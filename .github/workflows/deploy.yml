@@ -1,98 +1,54 @@
 name: Deploy to VPS
-
 on:
   push:
     branches: [main]
   workflow_dispatch:
+  pull_request:
+    branches: [main]
+permissions:
+  contents: read
+concurrency:
+  group: isolated-deploy-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
-    env:
-      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
-
+    timeout-minutes: 30
     steps:
-      # 1. チェックアウト
-      - uses: actions/checkout@v4
-
-      # 2. Node.js セットアップ
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
         with:
-          node-version: 22
-          cache: npm
-
-      # 3. .env.local を復元（ビルド時にNEXT_PUBLIC_* が必要）
-      - name: Create .env.local
-        run: |
-          test -n "$PRISMA_ADMIN_UIDS" || { echo "PRISMA_ADMIN_UIDS repository variable is required"; exit 1; }
-          printf '%s\n' "$ENV_FILE" > .env.local
-          printf '\nPRISMA_ADMIN_UIDS=%s\n' "$PRISMA_ADMIN_UIDS" >> .env.local
+          node-version: '24.21.0'
+      - name: Configure public browser build values
         env:
-          ENV_FILE: ${{ secrets.ENV_FILE }}
-          PRISMA_ADMIN_UIDS: ${{ vars.PRISMA_ADMIN_UIDS }}
-
-      # 4. 依存関係インストール ＆ ビルド
-      - name: Install & Build
+          PUBLIC_BUILD_ENV: ${{ vars.PUBLIC_BUILD_ENV_JSON }}
+        run: python3 scripts/secure-release/public_build.py
+      - run: npm ci
+      - run: npx tsc -p tsconfig.app.json --noEmit && npm test -- --run
+      - run: npm run build
+        env:
+          NODE_OPTIONS: --max-old-space-size=4096
+          STRIPE_SECRET_KEY: sk_test_build_placeholder
+          STRIPE_WEBHOOK_SECRET: whsec_build_placeholder
+          GEMINI_API_KEY: build-placeholder-not-a-real-key
+      - run: python3 scripts/secure-release/prepare_next.py . stage/web
+      - name: Package release
+        id: package
+        run: python3 scripts/secure-release/package_release.py --app prisma --repository aqshmodel/prisma --component web=stage/web --lockfile package-lock.json=package-lock.json --output release.tar.gz
+      - name: Submit verified release through scoped SSH
+        if: github.event_name != 'pull_request'
+        env:
+          DEPLOY_KEY: ${{ secrets.ISOLATED_DEPLOY_SSH_KEY }}
+          KNOWN_HOSTS: ${{ vars.ISOLATED_DEPLOY_KNOWN_HOSTS }}
+          RELEASE: ${{ steps.package.outputs.release }}
+          SHA256: ${{ steps.package.outputs.sha256 }}
         run: |
-          npm ci
-          npx tsc -p tsconfig.app.json --noEmit
-          npm test -- --run
-          npm run build
-
-      # 5. SSH鍵をセットアップ
-      - name: Setup SSH
-        run: |
+          set -euo pipefail
+          umask 077
           mkdir -p ~/.ssh
-          echo "${{ secrets.VPS_SSH_KEY }}" > ~/.ssh/deploy_key
-          chmod 600 ~/.ssh/deploy_key
-          ssh-keyscan -H ${{ secrets.VPS_HOST }} >> ~/.ssh/known_hosts 2>/dev/null
-
-      # 6. ビルド成果物をVPSへ転送
-      - name: Deploy to VPS
-        run: |
-          SSH="ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no"
-          TARGET="tsukada@${{ secrets.VPS_HOST }}:/var/www/prisma"
-
-          # standalone ビルド成果物を転送
-          # --delete で古いファイルを除去しつつ、手動配置ファイルは保護
-          rsync -avz --delete \
-            --exclude 'google-key/' \
-            --exclude '.env.local' \
-            --exclude 'public/' \
-            -e "$SSH" \
-            .next/standalone/ \
-            "$TARGET/"
-
-          # 静的ファイルを転送
-          rsync -avz --delete \
-            -e "$SSH" \
-            .next/static/ \
-            "$TARGET/.next/static/"
-
-          # public ディレクトリを転送
-          rsync -avz \
-            -e "$SSH" \
-            public/ \
-            "$TARGET/public/"
-
-          # .env.local を転送（Secretsから復元したもの）
-          rsync -avz \
-            -e "$SSH" \
-            .env.local \
-            "$TARGET/.env.local"
-
-      # 7. サービスを再起動
-      - name: Restart service
-        run: |
-          ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no tsukada@${{ secrets.VPS_HOST }} '
-            sudo systemctl restart aqsh-prisma
-            sleep 3
-            if sudo systemctl is-active --quiet aqsh-prisma; then
-              echo "✅ Service restarted successfully"
-            else
-              echo "❌ Service failed to start"
-              sudo journalctl -u aqsh-prisma --no-pager -n 20
-              exit 1
-            fi
-          '
+          printf '%s\n' "$DEPLOY_KEY" > ~/.ssh/isolated_key
+          printf '%s\n' "$KNOWN_HOSTS" > ~/.ssh/known_hosts
+          test -s ~/.ssh/known_hosts
+          trap 'rm -f ~/.ssh/isolated_key release.tar.gz' EXIT
+          ssh -T -i ~/.ssh/isolated_key -o IdentitiesOnly=yes -o BatchMode=yes -o StrictHostKeyChecking=yes -o PasswordAuthentication=no -o KbdInteractiveAuthentication=no -o ConnectTimeout=20 aqsh-deploy-prisma@162.43.31.17 "submit $RELEASE $SHA256" < release.tar.gz
