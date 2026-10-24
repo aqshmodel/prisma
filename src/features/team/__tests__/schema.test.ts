@@ -77,6 +77,18 @@ describe('Team Zod Schemas', () => {
       expect(result.success).toBe(false);
     });
 
+    it.each([
+      { members: Array(1000).fill(null) },
+      { members: Array.from({ length: 1000 }, () => ({ name: null, typeCode: null })) },
+    ])('rejects oversized invalid members with one collection issue', ({ members }) => {
+      const result = teamInputSchema.safeParse({ members, leadInfo: validLeadInfo });
+      expect(result.success).toBe(false);
+      if (!result.success) {
+        expect(result.error.issues).toHaveLength(1);
+        expect(result.error.issues[0]).toMatchObject({ code: 'too_big', path: ['members'] });
+      }
+    });
+
     it('validates exactly 3 members', () => {
       const result = teamInputSchema.safeParse({
         members: [

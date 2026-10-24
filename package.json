@@ -41,7 +41,7 @@
     "tailwind-merge": "^3.4.0",
     "unist-util-visit": "^5.1.0",
     "uuid": "^13.0.0",
-    "zod": "^4.3.6",
+    "zod": "4.6.7",
     "zustand": "^5.0.11"
   },
   "devDependencies": {
@@ -70,6 +70,30 @@
     "vitest": "^4.0.18"
   },
   "engines": {
-    "node": ">=24.21.0 <25"
+    "node": ">=24.22.1 <25"
+  },
+  "overrides": {
+    "yaml": "2.8.3",
+    "node-forge": "1.4.0",
+    "@tootallnate/once": "2.0.1",
+    "protobufjs": "7.6.5",
+    "@protobufjs/utf8": "1.1.1",
+    "@grpc/grpc-js": "1.14.5",
+    "@fastify/busboy": "3.2.2",
+    "fast-xml-parser": "5.7.0",
+    "source-map-js": "1.2.2",
+    "baseline-browser-mapping": "2.11.0",
+    "@google-cloud/storage": {
+      "uuid": "11.1.1"
+    },
+    "gaxios": {
+      "uuid": "11.1.1"
+    },
+    "google-gax": {
+      "uuid": "11.1.1"
+    },
+    "teeny-request": {
+      "uuid": "11.1.1"
+    }
   }
 }
