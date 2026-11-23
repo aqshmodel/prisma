@@ -1,0 +1,50 @@
+[
+  {
+    "channel": "Organic Search",
+    "active_users": 574,
+    "sessions": 707,
+    "page_views": 1144,
+    "avg_engagement_sec": 193.1,
+    "conversions": 590
+  },
+  {
+    "channel": "Direct",
+    "active_users": 449,
+    "sessions": 496,
+    "page_views": 860,
+    "avg_engagement_sec": 59.4,
+    "conversions": 201
+  },
+  {
+    "channel": "Referral",
+    "active_users": 70,
+    "sessions": 71,
+    "page_views": 70,
+    "avg_engagement_sec": 5.1,
+    "conversions": 14
+  },
+  {
+    "channel": "AI Assistant",
+    "active_users": 16,
+    "sessions": 18,
+    "page_views": 48,
+    "avg_engagement_sec": 280.0,
+    "conversions": 16
+  },
+  {
+    "channel": "Unassigned",
+    "active_users": 14,
+    "sessions": 14,
+    "page_views": 2,
+    "avg_engagement_sec": 47.6,
+    "conversions": 2
+  },
+  {
+    "channel": "Organic Social",
+    "active_users": 6,
+    "sessions": 6,
+    "page_views": 25,
+    "avg_engagement_sec": 149.5,
+    "conversions": 0
+  }
+]
